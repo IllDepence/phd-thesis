@@ -1,0 +1,219 @@
+%% Dissertationsvorlage
+%%
+%% Karlsruhe Institute of Technology
+%% Institute for Program Structures and Data Organization
+%% Chair for Software Design and Quality (SDQ)
+%%
+%% Dr.-Ing. Erik Burger
+%% burger@kit.edu
+%%
+%% Siehe https://sdq.kastel.kit.edu/wiki/Dokumentvorlagen
+
+% Für Dokumentoptionen siehe README.md
+
+\documentclass[format=a4-sdq]{sdqdiss}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T2A,T1]{fontenc}  % use 8-bit T1 fonts, T2A Cyrillic fonts
+
+% better looking fonts
+\usepackage[tt=false, type1=true]{libertine}
+\usepackage{libertinust1math}
+% Improves general appearance of the text
+\usepackage[protrusion=true,expansion=true,kerning]{microtype}
+
+% set up for Japanese
+\usepackage{CJKutf8}
+\newcommand{\ja}[1]{\begin{CJK}{UTF8}{min}#1\end{CJK}}
+
+% Für Sprachumschaltung
+\usepackage[russian,ngerman,english]{babel}
+\selectlanguage{english}
+\usepackage{csquotes}
+
+% Abstract
+\newcommand{\Abstract}[1][Abstract]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}\markboth{#1}{#1}} 
+
+%% Nur als Beispiel – im endgültigen Dokument bitte entfernen
+\usepackage{blindtext}
+% TikZ ist kein Zeichenprogramm
+\usepackage{tikz}
+% Schöne Tabellen
+\usepackage{booktabs}
+%% /Beispiel
+
+% Fancy chapter headings
+\usepackage{quotchap}
+% adjustment of header font
+\makeatletter
+\renewcommand*{\chapnumfont}{%
+  \usefont{T1}{\@defaultcnfont}{n}{n}\fontsize{100}{130}\selectfont%
+  \color{chaptergrey}%
+}
+\makeatother
+% make headlines use serif font
+\addtokomafont{disposition}{\rmfamily}
+
+% % TODO: consider using appendix package (see msc)
+% % enable appenix
+% \usepackage[toc,page]{appendix}
+% \noappendicestocpagenum
+
+%% --------------------------------
+%% | Bibliographie                |
+%% --------------------------------
+
+%% Biber statt BibTeX, siehe README.md
+\usepackage[citestyle=numeric,style=numeric,backend=biber]{biblatex}
+\addbibresource{dis.bib}
+
+%%
+%% Beginn des Dokuments
+%%
+
+\title{Final Dissertation Title Which Will Probably Need Multiple Lines}
+\author{Tarek Saier}
+\subject{}
+
+\subtitle{
+\vskip2em
+zur Erlangung des akademischen Grades eines\\[1em]
+Doktors der Ingenieurwissenschaften\\
+(Dr.-Ing.)\\[1em]
+von der Fakultät für Wirtschaftswissenschaften\\
+des Karlsruher Instituts für Technologie (KIT)\\[1em]
+vorgelegte\\
+Dissertation\\[1.5em]
+von
+}
+
+\author{{\LARGE M.\,Sc. Tarek Saier}}
+
+\publishers{%
+\flushleft\small
+\begin{align*}
+    &\text{Tag der mündlichen Prüfung:} &\text{XX. Monat XXXX}\\
+    &\text{Referent:} &\text{Prof. Dr. N. N.}\\
+    &\text{Korreferent:} &\text{Prof. Dr. M. M.}
+\end{align*}
+}
+
+\date{}  % used to supress printing a date
+
+%%
+%% Titelseite
+%%
+
+\begin{document}
+\selectlanguage{ngerman}
+\maketitle
+
+%%
+%% Abstract/Zusammenfassung
+%%
+% Römische Seitenzahlen
+\frontmatter
+
+%% Englischer Abstract
+\selectlanguage{english}
+\Abstract{}
+English works of course.
+
+Wäre großartig wenn Deutsch auch funktioniert.
+
+\ja{日本語も使えば助かる。}
+
+\foreignlanguage{russian}{Я не знаю русский, но в диссертации будет немного.}
+
+%% Deutsche Zusammenfassung
+\selectlanguage{ngerman}
+\Abstract[Zusammenfassung]{}
+\Blindtext[10]
+
+% Sprache der Dissertation
+\selectlanguage{english}
+
+%%
+%% Inhaltsverzeichnis
+%%
+\tableofcontents
+
+% Linksbündige Einträge ohne Einzug
+\listoffigures
+\listoftables
+
+%%
+%% Inhalt
+%%
+% Arabische Seitenzahlen
+\mainmatter
+
+\part{Introduction}
+\chapter{Introduction}
+\section{Motivation}
+
+\cite{burger2014diss}
+\Blindtext[6]
+
+\part{Contents}
+\chapter{Approach}
+\section{Description}
+\Blindtext
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\node[draw] (one) {42};
+\draw (one) edge [loop above] (one);
+\end{tikzpicture}
+\caption{A Figure with long long long long long long long long long long long
+long long long long long long long long long long long text}
+\label{fig:one}
+\end{figure}
+
+
+%% 
+%% Mit Komascript können unterschiedliche Titel für Abschnittsüberschrift,
+%% Seitenkopf und Inhaltsverzeichnis gesetzt werden 
+%%
+\section[tocentry={Text with table (TOC entry)},%
+head={Text with table (page head)}]%
+{Text with table (section heading)}
+\Blindtext
+
+\begin{table}
+\centering
+% Schöne Tabellen mit Booktabs
+\begin{tabular}{rl}
+\toprule
+\textbf{a header} & \textbf{a header}\\
+\midrule
+something & important\\
+something & important\\
+\bottomrule
+\end{tabular}
+\caption{A Table}
+\label{tab:one}
+\end{table}
+
+\section{Text with Formulae}
+\blindmathpaper[8]
+
+%% Add entry to the table of contents for the bibliography
+\printbibliography[heading=bibintoc]
+
+%% ----------------
+%% |   Appendix   |
+%% ----------------
+\appendix
+\chapter{Appendix}
+
+\section{Foo}
+\Blindtext
+
+\chapter{Bappendix}
+
+\section{Bar}
+\Blindtext
+
+\end{document}
