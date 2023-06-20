@@ -13,6 +13,10 @@
 
 \documentclass[format=a4-sdq]{sdqdiss}
 
+%% --------------------------------
+%% | Font and language setup      |
+%% --------------------------------
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T2A,T1]{fontenc}  % use 8-bit T1 fonts, T2A Cyrillic fonts
@@ -30,6 +34,11 @@
 % Für Sprachumschaltung
 \usepackage[russian,ngerman,english]{babel}
 \selectlanguage{english}
+
+%% --------------------------------
+%% | Misc setup                   |
+%% --------------------------------
+
 \usepackage{csquotes}
 
 % Abstract
@@ -42,6 +51,10 @@
 % Schöne Tabellen
 \usepackage{booktabs}
 %% /Beispiel
+
+%% --------------------------------
+%% | Heading setup                |
+%% --------------------------------
 
 % Fancy chapter headings
 \usepackage{quotchap}
@@ -61,16 +74,16 @@
 % \noappendicestocpagenum
 
 %% --------------------------------
-%% | Bibliographie                |
+%% | Bibliographie setup          |
 %% --------------------------------
 
 %% Biber statt BibTeX, siehe README.md
 \usepackage[citestyle=numeric,style=numeric,backend=biber]{biblatex}
-\addbibresource{dis.bib}
+\addbibresource{bib/dis.bib}
 
-%%
-%% Beginn des Dokuments
-%%
+%% --------------------------------
+%% | Title page                   |
+%% --------------------------------
 
 \title{Final Dissertation Title Which Will Probably Need Multiple Lines}
 \author{Tarek Saier}
@@ -101,119 +114,60 @@ von
 
 \date{}  % used to supress printing a date
 
-%%
-%% Titelseite
-%%
+%% --------------------------------
+%% | Document start               |
+%% --------------------------------
 
 \begin{document}
 \selectlanguage{ngerman}
 \maketitle
 
-%%
-%% Abstract/Zusammenfassung
-%%
+%% --------------------------------
+%% | Abstract                     |
+%% --------------------------------
+
 % Römische Seitenzahlen
 \frontmatter
 
 %% Englischer Abstract
-\selectlanguage{english}
-\Abstract{}
-English works of course.
-
-Wäre großartig wenn Deutsch auch funktioniert.
-
-\ja{日本語も使えば助かる。}
-
-\foreignlanguage{russian}{Я не знаю русский, но в диссертации будет немного.}
+\input{chapters/abstract}
 
 %% Deutsche Zusammenfassung
-\selectlanguage{ngerman}
-\Abstract[Zusammenfassung]{}
-\Blindtext[10]
+\input{chapters/zusammenfassung}
+
+%% --------------------------------
+%% | ToC                          |
+%% --------------------------------
 
 % Sprache der Dissertation
 \selectlanguage{english}
 
-%%
-%% Inhaltsverzeichnis
-%%
 \tableofcontents
 
 % Linksbündige Einträge ohne Einzug
 \listoffigures
 \listoftables
 
-%%
-%% Inhalt
-%%
+%% --------------------------------
+%% | Content                      |
+%% --------------------------------
+
 % Arabische Seitenzahlen
 \mainmatter
 
 \part{Introduction}
-\chapter{Introduction}
-\section{Motivation}
-
-\cite{burger2014diss}
-\Blindtext[6]
+\input{chapters/introduction}
 
 \part{Contents}
-\chapter{Approach}
-\section{Description}
-\Blindtext
-\begin{figure}
-\centering
-\begin{tikzpicture}
-\node[draw] (one) {42};
-\draw (one) edge [loop above] (one);
-\end{tikzpicture}
-\caption{A Figure with long long long long long long long long long long long
-long long long long long long long long long long long text}
-\label{fig:one}
-\end{figure}
-
-
-%% 
-%% Mit Komascript können unterschiedliche Titel für Abschnittsüberschrift,
-%% Seitenkopf und Inhaltsverzeichnis gesetzt werden 
-%%
-\section[tocentry={Text with table (TOC entry)},%
-head={Text with table (page head)}]%
-{Text with table (section heading)}
-\Blindtext
-
-\begin{table}
-\centering
-% Schöne Tabellen mit Booktabs
-\begin{tabular}{rl}
-\toprule
-\textbf{a header} & \textbf{a header}\\
-\midrule
-something & important\\
-something & important\\
-\bottomrule
-\end{tabular}
-\caption{A Table}
-\label{tab:one}
-\end{table}
-
-\section{Text with Formulae}
-\blindmathpaper[8]
+\input{chapters/approach}
 
 %% Add entry to the table of contents for the bibliography
 \printbibliography[heading=bibintoc]
 
-%% ----------------
-%% |   Appendix   |
-%% ----------------
+%% --------------------------------
+%% | Appendix                     |
+%% --------------------------------
 \appendix
-\chapter{Appendix}
-
-\section{Foo}
-\Blindtext
-
-\chapter{Bappendix}
-
-\section{Bar}
-\Blindtext
+\input{chapters/appendix}
 
 \end{document}
