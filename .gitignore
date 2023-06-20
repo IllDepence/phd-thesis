@@ -7,7 +7,7 @@
 *.lof
 *.lot
 *.out
-*.pdf
+/*.pdf
 *.run.xml
 *.sav
 *.swp
