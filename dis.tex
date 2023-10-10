@@ -81,6 +81,29 @@
 \usepackage[citestyle=numeric,style=numeric,backend=biber]{biblatex}
 \addbibresource{bib/dis.bib}
 
+
+%% --------------------------------
+%% | Additional packages          |
+%% --------------------------------
+
+% - - - notes
+% - packages NOT TO USE
+%   - natbib (causes compile to fail)
+% - - - /notes
+
+% - - - corpus
+\usepackage{listings}
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=true,
+  postbreak=\space
+}
+\definecolor{UniBlue}{RGB}{0, 74, 153}
+\definecolor{RandomRed}{RGB}{181, 93, 76}
+% - - - /corpus
+
 %% --------------------------------
 %% | Title page                   |
 %% --------------------------------
@@ -161,7 +184,7 @@ von
 \input{chapters/reference_coverage_and_granularity}
 \input{chapters/reference_accross_languages}
 \input{chapters/reference_with_usage_parameters}
-\input{chapters/reference_of_joint_use}
+% \input{chapters/reference_of_joint_use}
 \input{chapters/conclusion}
 
 %% Add entry to the table of contents for the bibliography
