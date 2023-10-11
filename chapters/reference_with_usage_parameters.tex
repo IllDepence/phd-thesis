@@ -1,16 +1,889 @@
 \chapter{References with Usage Parameters}
 
+This chapter is based on the following publication.
+\begin{quote}
+\AtNextCite{\defcounter{maxnames}{99}}
+\fullcite{Saier2023hyperpie}\\
+\end{quote}
+
+% \begin{abstract}
+% Automatic extraction of information from publications is key to making scientific knowledge machine readable at a large scale.
+% The extracted information can, for example, facilitate academic search, decision making, and knowledge graph construction.
+% An important type of information not covered by existing approaches is hyperparameters.
+% In this paper, we formalize and tackle hyperparameter information extraction (HyperPIE) as an entity recognition and relation extraction task.
+% We create a labeled data set covering publications from a variety of computer science disciplines.
+% Using this data set, we train and evaluate BERT-based fine-tuned models as well as five large language models: GPT-3.5, GALACTICA, Falcon, Vicuna, and WizardLM.
+% For fine-tuned models, we develop a relation extraction approach that achieves an improvement of 29\% $\text{F}_1$ over a state-of-the-art baseline.
+% For large language models, we develop an approach leveraging YAML output for structured data extraction, which achieves an average improvement of 5.5\% $\text{F}_1$ in entity recognition over using JSON.
+% With our best performing model we extract hyperparameter information from a large number of unannotated papers, and analyze patterns across disciplines.
+% All our data and source code is publicly available at 
+% \url{https://anonymous.4open.science/r/hyperpie}.
+% % \url{https://github.com/IllDepence/hyperpie}.
+% \end{abstract}
+
 \section{Introduction}
-\Blindtext[1]
 
-\section{Related Work}
-\Blindtext[1]
+\begin{figure}[bt]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ref_params/schema_visual_v3}
+  \caption{Illustration of hyperparameter information in a text example alongside the extracted entities and relations. Entity types are {\color{artifactblue}{research artifact}}, {\color{parametergreen}{parameter}}, {\color{valuered}{value}}, and {\color{contextgrey}{context}}. Relations are indicated by arrows.}
+  \label{fig:schema-visual}
+\end{figure}
 
-\section{Approach}
-\Blindtext[1]
+% - - - - - Why is structured information about hyperparams important? - - - - -
 
-\section{Evaluation}
-\Blindtext[1]
+Models capable of extracting fine-grained information from publications can make scientific knowledge machine readable at a large scale.
+Aggregated, such information can fuel platforms like Papers with Code~\cite{paperswithcode} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, facilitating academic search, recommendation,  and reproducibility.
+%Potential for impact is especially large in rapidly progressing areas of research, such as machine learning (ML) and related fields. Platforms aggregating extracted information, like Papers with Code~\cite{paperswithcode} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, allow researchers to quickly gain insights into state-of-the-art approaches, reproduce others' work, and find papers relevant to their research.
+Accordingly, a variety of approaches for information extraction~(IE) from scientific text have been proposed~\cite{luan2018scierc,Jain2020scirex,semeval21_task8,semeval22_task12,Dunn2022}.  % / such as ...
 
-\section{Discussion}
-\Blindtext[1]
+% - - - - - What are key shortcomings of current research? (research gap)
+
+However, to the best of our knowledge, no approaches exist for the extraction of structured information on hyperparameter use.
+That is, information on \emph{with which parameters} researchers use methods and data. We refer to this information as ``hyperparameter information'' (see Fig.~\ref{fig:schema-visual}).
+%That is, information on not just what methods and data researchers use, but specifically \emph{with which parameters} they use them. We refer to this information as ``hyperparameter information'' (see Fig.~\ref{fig:schema-visual}).
+Hyperparameter information is important for several reasons. (1)~First, its existence in a paper is an indicator for reproducibility~\cite{Radd2019} and, when extracted automatically, can improve automated reproduction of results~\cite{sethi2018}. (2)~Second, in aggregate it can inform on both conventions in a field as well as trends over time. (3)~Lastly, it enables more fine-grained paper representations benefiting downstream applications based on document similarity, such as recommendation and search. %
+Hyperparameter information is challenging to extract, because (1) it is usually reported in a dense format, (2) often includes special notation, and (3) operates on domain specific text (e.g. ``For Adam we set $\alpha$ and $\beta$ to 1e-3 and 0.9 respectively.'').
+%Hyperparameter information is challenging to extract due to the types of entities involved. Research artifacts (e.g. ML models) are domain specific and often referred to by acronym only. Parameters may be referred to by symbol or written out (e.g. ``$\alpha$'' or ``learning rate''), and the symbol renditions are prone to being homographs (e.g. ``k'' in k-means and k-nearest neighbors). Lastly, values can be denoted in several forms such as plain text, e notation, and \LaTeX\ (e.g. ``0.01'', ``1e-2'', and ``\verb|1^{-2}|'').
+
+% further shortcomings (of related work doing IE (albeit not for hyperparameters) from scientific text (which is specific b/c of dense and complex information):
+% - only abstracts are considered, not full-text
+% - (specific to LLMs:) only models accessible solely via API (usually GPT-3/3.5) are considered
+
+% - - - - - How is this research gap closed? (conceptional) - - - - -
+
+To address the lack of approaches for extracting this type of information, we define the task of ``hyperparameter information extraction'' (HyperPIE) and develop several approaches to it. Specifically, we formalize HyperPIE as an entity recognition (ER) and relation extraction (RE) task. We create a labeled data set spanning a variety of computer science disciplines from machine learning (ML) and related areas. The data set is created by manual annotation of paper full-texts, which is accelerated by a pre-annotation mechanism based on an external knowledge base. Using our data set, we train and evaluate both BERT-based~\cite{devlin2019} fine-tuned models as well as large language models (LLMs).
+For the former, we develop a dedicated relation extraction model that achieves an improvement of 29\% $\text{F}_1$ compared to a state-of-the-art baseline.
+%For LLMs, we propose to prompt models to output structured data in YAML format rather than JSON, with which we achieve an average improvement of 5.5\% $\text{F}_1$ in entity recognition.
+For LLMs, we develop an approach leveraging YAML output for structured data extraction, which achieves a consistent improvement in entity recognition across all tested models, averaging at 5.5\% $\text{F}_1$.
+Using our best performing model, we extract hyperparameter information from 
+15,000 unannotated papers, and analyze patterns across ML disciplines of how authors report hyperparameters.
+%unannotated papers and find that it correlates with external reproducibility indicators, measured through interaction on GitHub with the papers' shared code.
+All our data and source code is made publicly available.\footnote{See \url{https://anonymous.4open.science/r/hyperpie}.}
+%
+% - - - - - List of contributions, shared data, etc. (name numbers, facts, links to data, etc.) - - - - -
+%
+In summary, we make the following contributions.
+
+\begin{enumerate}
+    \item We formalize a novel and relevant IE task (HyperPIE).
+    \item We create a high quality, manually labeled data set from paper full-texts, enabling the development and study of approaches to the task.
+    \item We develop two lines of approaches to HyperPIE and achieve performance improvements in both of them over solutions based on existing work.
+    \item We demonstrate the utility of our approaches by application on large-scale, unannotated data, and analyze the extracted hyperparameter information.
+%    \item To test the soundness of our model's predictions outside of the new evaluation data set, we investigate and affirm correlation with external reproducibility indicators.
+\end{enumerate}
+
+In the remainder of the paper we first discuss related work in Section~\ref{sec:refwork}. We then define the HyperPIE task and describe our data set construction in Section~\ref{sec:hyperpie}. This is followed by the description of our BERT- and LLM-based methods in Section~\ref{sec:methods}. In Section~\ref{sec:experiments} we describe our experiments and results. We conclude with a discussion of results and and overall summary in Sections~\ref{sec:discussion} and \ref{sec:hyper-conclusion}.
+
+
+\section{Related Work}\label{sec:refwork}
+
+%there are several works that address the extraction of other entity types from academic publications' text. Specifically, previous work seems to focus on the biomedical domain as well as material science~\cite{Choudhary2022,Wornow2023}. In the area of machine learning related literature, there notably are SciERC/SciIE~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, tackling the extraction of ML related enties (datasets, metrics, tasks, methods, etc.), from paper abstracts and full-texts respectively. With the recent advances in large language models (LLMs), there also has been a surge in been efforts to utilize LLMs for IE from scientific text.
+
+% We are not aware of previous research on IE of hyperparameter information. We therefore describe existing work that is concerned with IE of structurally similar information and/or IE approaches in similar application domains.% The related work is grouped into (1) approaches utilizing fine-tuned ML models, and (2) approaches using LLMs.
+
+% general areas of apparent focus on IE from scientific text
+% computational linguistics~\cite{semeval18_task7}
+% mathematics~\cite{Meadows2022}
+% biomedical domain~\cite{Choudhary2022}
+% material science~\cite{Wornow2023}
+
+\subsubsection{Fine-Tuned Models}
+
+% mby short intro paragraph regarding domain specificity
+
+% TODO: continue here shortening related work section
+% if possible shift focus from papers to methods/concepts/model types/trends/...
+
+Named entity recognition (NER) and RE from publications in ML and related fields have been tackled by SciERC~\cite{luan2018scierc} and subsequently SciREX~\cite{Jain2020scirex}. The scope considered are methods, tasks, data sets, and evaluation metrics. Proposed methods for the task utilize BiLSTMs, BERT and SciBERT~\cite{Beltagy2019}. With both approaches, there is a partial overlap in entity types to our task, as we also extract methods and data sets. The key difference arises though the nature of parameters and values we relate them to, and the challenges in extracting those as briefly laid out in the introduction.
+
+IE models aiming to relate natural language to numerical values and mathematical symbols have been introduced at SemEval 2021 Task 8~\cite{semeval21_task8} and SemEval 2022 Task 12~\cite{semeval22_task12} respectively. Most of the proposed models base their processing of natural language on BERT or SciBERT. To handle numbers and symbols rendered in \LaTeX, as well as to accomplish RE between entity types with highly regular writing conventions (e.g. numbers and units such as ``5 ms''), rule-based approaches or dedicated smaller neural networks are commonly used.
+
+Similarly, we find a level of regularity in how authors report parameters and values, and make use of that in our approach accordingly. In line with related work using fine-tuned models, we also use BERT and SciBERT for contextualized token embeddings.
+
+\subsubsection{LLMs}
+
+With the recent advances in LLMs, there has been a surge in efforts to utilize them for IE from scientific text. Nevertheless, their performance is not on par with dedicated models for NER and RE yet~\cite{Yang2023}.
+
+An improtant concept for IE with LLMs is introduced by Agrawal et al.~\cite{Agrawal2022}: a ``resolver'' is a function that maps the potentially ambiguous output of an LLM to a defined, task specific output space. In their work, the authors extract singular values and lists from clinical notes using GPT-3. They use a variety of resolvers that perform steps like tokenization, removal of specific symbols or words, and pattern matching using regular expressions.
+% - custom output format: list of ``-"medication name"'' lines
+% - formalize concept of a ``resolver'', that maps from LLM output to task specific output space
+
+Work with similar output data complexity (values and lists) has also been done in the area of material science. Xie et al.~\cite{Xie2023} use GPT-3.5 to extract information on solar cells from paper full-text.
+% For a list of properties to be extracted, they prompt the model to output ``property: value'' lines. The authors note that deviations from the pre-defined format (e.g. the name of a property being slightly changed by the LLM) lead to problems in parsing the LLM output.
+% - custom output format: multiple ``schema name: answer'' lines
+Similarly, Polak et al.~\cite{Polak2023} use ChatGPT %(also eval GPT-3.5 but performs worse)
+to extract material, value, and unit information from sentences of material science papers. They define a conversational progression, in which they prompt the model generate tables, which are processed using simple string parsing rules.
+%to extract material, value, and unit information from sentences of material science papers. They define a conversational progression for their IE procedure, in which they prompt the model generate a table and ask confirming follow-up questions on each extracted value. Parsing of the LLM generated table is done using simple string parsing rules.
+% - extract Material, Value, Unit
+% - use models:
+%   - text-davinci-002-render-paid  (ChatGPT)
+%   - gpt-3.5-turbo-0301  (ChatGPT)
+%   - text-davinci-003  (GPT-3.5)
+% - extract data on sentence level
+% - perform conversation w/ model
+
+An approach for IE of more complex information is proposed by Dunn et al.~\cite{Dunn2022}. They use GPT-3.5 to extract material information from materials chemistry papers. Given the hierarchical nature of the information to be extracted, the authors find simple output formats insufficient. To overcome this, they prompt the model to output the data in JSON format.%\footnote{See \url{https://www.json.org/}.}
+
+Given hyperparameter information also is hierarchical (see Fig.~\ref{fig:schema-visual}), we adopt prompting LLMs to output data in a text based data serialization format. Different from the related work introduced above, we do not limit our experiments to API access based closed source LLMs, but also evaluate various open LLMs, because we recognize the importance of contributing efforts to the advancement of the more transparent, accountable, and reproducibility friendly side of this new and rapidly evolving area of research~\cite{Liesenfeld2023}.
+
+
+\section{Hyperparameter Information Extraction}\label{sec:hyperpie}
+
+% In this section we define the task of hyperparameter information extraction and describe our data set creation process.
+
+\subsection{Task Definition}
+
+% To illustrate, in the sentence ``During fine-tuning, we use the Adam optimizer with a learning rate of $\alpha = 10^{-4}.$'' (based on text in \cite{Chen2019}) ``Adam optimizer'' is a research artifact,  ``learning rate''/``$\alpha$'' its parameter, ``$10^{-4}$'' the value of the parameter, and ``During fine-tuning'' the context in which the value applies.
+%parameter\,$\xrightarrow[]{\text{\tiny used for}}$\,research artifact, value\,$\xrightarrow[]{\text{\tiny used for}}$\,parameter, and context\,$\xrightarrow[]{\text{\tiny used for}}$\,value.
+
+We define HyperPIE as an ER+RE task with four entity classes ``research artifact'', ``parameter'', ``value'', and ``context'', and a single relation type. Briefly illustrated by a minimal example, in the sentence \textit{``During fine-tuning, we use the Adam optimizer with $\mathit{\alpha=10^{-4}}$.''}, the research artifact \textit{Adam} has the parameter $\mathit{\alpha}$ which is set to the value $\mathit{10^{-4}}$ in the context \textit{During fine-tuning}.
+
+The entity classes are characterized as follows. A ``research artifact'', within the scope of our task, is an entity used for a specific purpose with a set of variable aspects that can be chosen by the user. These include methods, models, and data sets.\footnote{Broader definitions in other contexts also include software in general, empirical laws, and ideas~\cite{Lin2022}. For our purposes, however, above specific definition is more useful.} A ``parameter'' is a variable aspect of an artifact. This includes model parameters, but also, for example, the size of a sub-sample of a data set. A ``value'' expresses a numerical quantity and in our task is treated like an entity rather than a literal. Lastly, a ``context'' can be attached to a value if the value is only valid in that specific context. The single relation type relates entities as follows: parameter\,$\rightarrow$\,research artifact, value\,$\rightarrow$\,parameter, and context\,$\rightarrow$\,value.
+Co-reference relations %in our scheme
+implicitly exist between the mentions of a common entity (e.g. ``AdamW'' and ``it'' in Fig.~\ref{fig:schema-visual}). That is, if an entity has multiple mentions within the text, they are considered co-references to each other.
+
+% could mby make an argument for the importance of including context based on ~\cite{Jiang2019}
+
+%\footnote{We note that concrete instantiations of an artifact are treated as metonymic references to the abstract concept itself. For example, in ``X et al. propose the Long short-term memory. We train an LSTM on Y. We evaluate our model on Z.'', ``Long short-term memory'', ``LSTM'' and ``our model'' are all treated as co-references.}
+
+% Since scientific ideas build upon each other, artifacts can include other artifacts, such as transformer models utilizing attention, and attention in turn utilizing softmax.
+
+% general discussion of challenges in finding balance between applicability and expressiveness
+
+% NOTES:
+% refer to concept of "salient entities" (SciREX paper) -> those that are "taking part in the article evaluation" / "needed to describe the article's results"
+
+% Part-of (beta1$\rightarrow$ADAM$\rightarrow$LSTM) out of scope b/c models already exist (SciERC, etc. $\rightarrow$ apply both models, have full info)
+
+
+The scope of the IE task comprises the extraction of entities, their relations, and the identification of all their mentions in the text (and thereby implicitly co-references). %The task does not involve mention/use classification or saliency classification. 
+Furthermore, we specifically consider IE from text, and not from tables, graphs, or source code.\footnote{We leave investigating multi-modal IE pipelines (text/code/graphs) for future work.}
+
+\subsection{Data Set Construction}\label{sec:data-set-contruction}
+
+% data selection: chose from various ``ML fields'' such as cs.CL, cs.LG, cs.CV. cs.DL to ensure capturing a wide variety of common artifacts as well as discipline specific writing conventions
+
+% To ensure X, Y, and Z (value of initial investigation is that design of the data scheme is ``compatible'' with real world data) (also convey that domain expertise and related work were a basis, but initial investigation is a plus on top of that)
+
+% Our initial annotation scheme and guidelines are informed by related work~\cite{Jain2020scirex,luan2018scierc}.
+
+% \begin{itemize}
+%     \item we follow the ACL RD-TEC 2.6 guidelines~\cite{Qasemizadeh2016} for term boundaries
+%     \item greedy annotation, maximal length annotation principle 
+%     \item no determiners
+%     \item no pronouns (``our model'' $\rightarrow$ ``model'')
+% \end{itemize}
+
+Because HyperPIE is a novel task, we cannot rely on existing data sets for training and evaluating our approaches. We therefore create a new data set by manually annotating papers. As our data source we chose unarXive~\cite{Saier2023unarXive}, because it includes paper full-texts and, most importantly, retains mathematical notation as \LaTeX. This is crucial because parsing such notation from PDFs is prone to noise, which would be problematic for our parameter and value entities.  % reference would be nice here (Bast2017 focus is on text only)
+
+% cs.LG, cs.CL, cs.CV, cs.DL = 143,203 papers (number from get_plaintext_paras.py)
+To ensure we cover a wide variety of artifacts and discipline specific writing conventions, we use papers from multiple ML related fields. Specifically, these are Machine Learning (ML), Computation and Language (CL), Computer Vision (CV), and Digital Libraries (DL), which make up 143,203 papers in unarXive.%\footnote{The respective arXiv categories are cs.LG, cs.CL, cs.AI, and cs.DL. See \url{https://arxiv.org/category_taxonomy} for a more detailed description.}
+
+We base our annotation guidelines on the widely used ACL RD-TEC guideline\footnote{See \url{http://pars.ie/publications/papers/pre-prints/acl-rd-tec-guidelines-ver2.pdf}.}~\cite{Qasemizadeh2016}. To make sure our resulting annotations are able to properly capture how authors report hyperparameters in text, we perform two annotation rounds: (1) an initial exploratory round, the results of which are used to refine the annotation guidelines and inform later model development, and (2) the main annotation round, the results of which constitute our data set used for model training and evaluation. In the following, both steps are described in more detail.
+
+\subsubsection{Initial Annotation Round}\label{sec:exploreannot}
+
+% data selection: heuristic pre-filtering for hyperparam descriptions (details in appendix)
+% heuristics
+% - has_math (=LaTeX)
+% - has_display_math (used as negative filter)
+% - has_num
+% - has_indicator_phraes
+%     re.search(r'we(\s+have)? (use|chos|set)', s, flags=re.I) or \
+%           'set to' in s or \
+%           'set the' in s or \
+%           ('set' in s and 'parameter' in s) or \
+%           ('use' in s and 'parameter' in s) or \
+%           ('set' in s and 'factor' in s) or \
+%           ('use' in s and 'factor' in s) or \
+%           ('use' in s and 'setting' in s) or \
+%           ('set' in s and 'value' in s) or \
+%           ('use' in s and 'value' in s) or \
+%           (quick_math and '=' in s):
+% if has_math and \
+%         has_num and \
+%         has_indicator_phraes and \
+%         not has_display_math:
+% not used:
+% - has_var_assignment (len(plain_math) < 15 and '=' in f_dict['latex'])
+% - quick_math (len(plain_math) < 7)
+
+We heuristically pre-filter our ML paper corpus for sections reporting on hyperparameters.\footnote{We filter based on key phrases (``use'', ``set'', etc.), numbers, and \LaTeX\ math content.} Annotators then inspect these sections, select a continuous segment of text that contain hyperparameter information, and make their annotations. This task is performed independently by two annotators and results in a total of 151 text segments (131 unique, $2\times10$ annotated by both). The annotated text segments contain 1,345 entities and 1,110 relations.
+
+\begin{figure}
+    \centering
+    \subfloat[text segments\label{fig:text-seg-size}]{%
+        \includegraphics[width=.35\linewidth]{figures/ref_params/text_span_size_stats}
+    }
+    \subfloat[relation distances (\#chars)\label{fig:rel-dists}]{%
+        \includegraphics[width=.53\linewidth]{figures/ref_params/stats_artifact_param_value_distance-crop}
+    }
+    \caption{Observations of initial annotation round}
+    \label{fig:init-annot}
+\end{figure}
+
+% basic stats on character lenghts of continuous text segments
+
+% count     151.000000
+% mean      269.834437
+% std       233.249350
+% min        44.000000
+% 25%       121.000000
+% 50%       191.000000
+% 75%       330.000000
+% max      1262.000000
+
+% basic stats on entity count within a continuous text segment
+
+% count    151.000000
+% mean       8.907285
+% std        7.693591
+% min        3.000000
+% 25%        4.000000
+% 50%        7.000000
+% 75%       10.000000
+% max       49.000000
+
+% full unarXive × PwC data paragraph length:
+% average 563.5783976547118   (based on 9,566,415 paragraphs)
+
+% param after artifact: 457/587 (78%)
+% param before artifact: 130/587 (22%)
+% mean: 45.89, std: 130.28
+% value after param: 548/587 (93%)
+% value before param: 39/587 (7%)
+% mean: 15.73, std: 25.98
+
+As shown in Figure~\ref{fig:text-seg-size}, we observe text segments reporting on hyperparameters to generally have a length below 600 characters. %, with a mean of 269.8 (standard deviation 233.2) and median of 191.
+We furthermore see that most text segments contain between 3 and 15 entities. % (mean 8.9, median 7).
+Lastly, in Figure~\ref{fig:rel-dists}, show distances between artifacts and their parameters, as well as parameters and their values. We see that artifacts usually are mentioned before their parameters (78\%), and parameters before their values (93\%). The reverse cases also exists, but are less common.
+Additionally, we can see that values are most commonly reported right after their parameter, while there is a higher variability in distances between parameters and artifacts.
+% The mean absolute distance is 51.6.
+Based on above observations % on (1) the length of text segments reporting hyperparameter information, and (2) relation distances between the entities concerned,
+we determine the unit of annotation for the final round to be one paragraph (on average 563.4 characters long in our corpus), as it is sufficient to capture hyperparameters being reported.
+%can safely set the unit of annotation for the final round to be one paragraph.\footnote{The average paragraph length for the whole paper corpus is 563.4 characters.}
+
+The inter annotator agreement (IAA, reported as Cohen's kappa) of the text segments annotated by both annotators is 0.867 for entities and 0.737 for relations %\footnote{Measured by the character level entity class and character level relation target span agreement respectively.}
+(strong to almost perfect agreement) which is compares favorably to SciERC~\cite{luan2018scierc} with an IAA of 0.769 for entities and 0.678 for relations.
+
+% TODO: compare IAA kappa score with SciERC (entities 76.9\%, relation extraction 67.8\% and co-reference 63.8\%)
+
+% initial investigation stats
+
+% 151 annotated text segments (131 unique), annotated by two annotators
+% 1,345 annotated entities
+% 1,110 annotated relations
+% inter annotator agreement (based on 20 text segments annotated by both annotators)
+%   entities
+%     Cohen’s kappa based on character level entity class: 0.867
+%     exact match of entity spans: 105/133 (0.789)
+%   entities + relations
+%     Cohen’s kappa based on character level relation target span : 0.737
+%     exact match of relations and their exact entity spans: 88/132 (0.667)
+
+\subsubsection{Main Annotation Round}
+
+% to make the annotation process more efficient text is pre-annotated using (1) the annotator's previous artifact and parameter annotations, and (2) simple regex patterns for numeric values (candidates for parameter values).
+
+In our main annotation round we annotate whole papers (paragraph by paragraph) instead of pre-filtered text-segments. This is done to ensure that the final annotation result reflects data as it will be encountered by a model during inference---that is, containing a realistic amount of paragraphs that have no information on hyperparameters, or, for example, only mention research artifacts but no parameters.
+
+Similar to related work~\cite{Jain2020scirex}, we use Papers with Code as an external knowledge base to pre-annotate entity candidates to make the annotation process more efficient. In a similar fashion, we use annotator's previously annotated entity mentions for pre-annotation. Pre-annotated text spans are, as the name suggests, set automatically, but need to be checked by annotators manually.
+
+Through this process we annotate 444 paragraphs, which contain 1,971 entities and 614 relations. The entity class distribution is 1,134 research artifacts, 131 parameters, 662 values, and 44 contexts. The annotation data is provided in a JSON structure as shown in Figure~\ref{fig:schema-visual}, as well as in the W3C Web Annotation Data Model\footnote{See \url{https://www.w3.org/TR/annotation-model/}.} to facilitate easy re-use and compatibility with existing systems.
+
+% 444 annotated paragraphs
+% 1,971 entities
+% 614 relations (212 used for, 402 co-relation (*counted as “to first mention, not n-to-n))
+
+
+
+\section{Methods}\label{sec:methods}
+
+We approach hyperparameter information extraction in two ways. First, we build upon established ER+RE methods and develop an approach using a fine-tuned model in a supervised learning setting. Second, given the recent promising advances with LLMs, we develop an approach utilizing LLMs in a zero-shot and few-shot setting.
+
+\subsection{Fine-Tuned Models}
+
+% - - - Fine-tuned - - -
+% - use SciERC SOTA PL-Marker: NER good, RE bad
+% - based on initial annotation round observation (regularity in rel dist)
+%   + entity class combo determinism: implement RE w/ reldist+class focus
+%
+% note that large variance in cross-eval results is due to varying class imbalance on test set b/c data is split stratified by paper
+
+% Despite the recent success of LLMs in a range of NLP tasks, smaller fined-tuned models still outperform them in the case of NER and RE~\cite{Yang2023}.
+
+We base our fine-tuned model approach on PL-Marker~\cite{Ye2022}, the currently best performing model on SciERC. Specifically, we use the ER component of PL-Marker. Our reason is that (1)~the text our model will be applied on is of the same type as in SciERC (ML publications), and (2)~there is some correspondence between the entities to be identified---namely our entity class ``research artifact'' including methods and datasets, which are both entity classes in SciERC.
+
+For RE we develop an approach that utilizes token embeddings as well as relative entity distance and entity class pairings. This is motivated by the fact that (a) we observed a high level or regularity in the relative distance of research artifact, parameter, and value mentions\footnote{We note that these observations where made during the initial exploratory annotation round (Sec.~\ref{sec:exploreannot}) and not during annotation of the evaluation data.} (see Fig.~\ref{fig:init-annot}), and (b) relations only exist between specific pairs of entity types.
+
+\begin{figure}[bt]
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/ref_params/ffnn_re_sub_visual_v2}
+  \caption{RE with emphasis on entity candidate pair types and distance.}
+  \label{fig:ffnn-re-sub-visual}
+\end{figure}
+
+In Figure~\ref{fig:ffnn-re-sub-visual} we show a schematic depiction of our new relation extraction component. Entity candidate pair classes as well as the relative distance between the entities in the text are used as a dedicated model input, BERT token embeddings of the entity mentions are combined using mean pooling. These inputs are fed into a feed-forward neural network FFNN for prediction. Formally, the model performs pairwise binary classification as $\text{FFNN}(E^c_0, E^c_1, E^d, E^T)$, where $E^c_i$ are class vectors, $E^d$ encodes candidate distance, and $E^T$ is the token pair embedding calculated as $E^T=\frac{1}{|T|}\sum^{|T|}_{i=0}\text{BERT}(t_i)$, the mean of the pair's tokens $t_i\in|T|$.
+
+% FFNN implemented with 4 hidden layers, each with ReLU activation and dimensions 300, 100, 25 and 2 respectively
+
+During the development of our model we also experiment with concatenation in favor of mean pooling to preserve information on the order of the entities, but find that mean pooling results in better performance. Furthermore, we investigated the use of SciBERT instead of BERT, but find that regular BERT embeddings give us better results, despite our model handling scientific text.
+
+% Implementation details for both the PL-Marker ER component as well as the RE component can be found in Appendix~\ref{sec:implementation-details}.
+
+\subsection{LLM}\label{sec:methLLMs}
+
+We develop our LLM approach for a zero-shot and a few-shot setting. This means the models perform the IE task based on either instructions only (zero-shot), or instructions and a small number of examples (few-shot).
+
+% common approaches
+% - chaining (identify entities, identify mentions, identify relations) (ex.: Wu2022)
+% - seq2seq (mark entities with types/IDs within text)
+% - using serialization format as output
+
+% common prompt structures/techniques
+% - [task][few shot examples][input] (ex.: Wang2023)
+% - chain of though prompting (ex.: Kojima2022)
+
+% ~\cite{Kojima2022} specify format input (e.g. ``The answer (arabic numerals) is''m or ``Among A through E, the answer is'') and also do ``answer cleansing''
+
+% Using LLMs to extract structured data from natural language text, means that at a transition has to be achieved from the ambiguous realm of natural language to precisely defined structures. 
+
+Performing IE using LLMs in zero-shot or few-shot settings requires the desired structure of the output data to be specified within the model input. In simple cases (e.g. numbers or yes/no decisions) this can be achieved by an in-line specification of the format in natural language (e.g. ``The answer (arabic numerals) is'')~\cite{Kojima2022}. IE from scientific publications, however, often seeks to extract more complex information. To achieve this, the model can be tasked to produce output in a text based data serialization format such as JSON, as done in previous work~\cite{Dunn2022}. Especially for complex structured predictions, few-shot prompting has been shown to further boost in-context learning (ICL) accuracy and consistency at inference time~\cite{Brown2020}.
+
+Drawing from techniques used in previous work approaching other IE tasks, we investigate several prompting strategies to build our approach.
+%
+% try
+% - few shot
+% not feasible b/c context length
+% - multi stage prompt
+% but leads to worse results (assume b/c context has to be re-established
+% each iteration, increasing potential for errors/loss of information)
+% - "infilling" type prompt
+% but LLM changes text
+% - infilling after extraction
+% but LLM hallucinates/is inconsistent with entity identifiers (e.g. marks an
+% entity "a6" when there is only a1 to a5 in extracted data)
+%
+
+\begin{enumerate}
+    \item \textit{Multi-stage prompting}~\cite{Polak2023}: first determine the presence of hyperparameters information; if present, extract the list of entities; lastly, determine relations.
+    \item \textit{In-text annotation}~\cite{Wang2023}: let the input text be repeated with entity annotations, e.g. repeat ``We use BERT for ...'' as ``We use [a1|BERT] for ...''. %, where ``a'' indicates entity class ``artifact'' and ``1'' is the entity ID.
+    \item \textit{Data serialization format}~\cite{Dunn2022}: specify a serialization format in the promt that is parsed afterwards; then match in-text mentions in the input.
+    \item \textit{(3)+(2)}: prompt as in (3); then match in-text mentions using (2).
+\end{enumerate}
+
+% We find that for (1) the higher number of steps leads to more points of potential errors being introduced and then propagated, and an overall less robust pipeline. In the case of (2) and (4) we see frequent changes in the reproduced annotated text posing significant challenges in making use of the output. Accordingly, we use prompt type (3) for our approach.
+We find (1) to lead to problems with errors propagation along steps, and with (2) and (4) we frequently see alterations in the reproduced text. Accordingly, we use prompt type (3) for our approach---specifying a data serialization format in the prompt.
+While existing work uses the JSON format for this~\cite{Dunn2022}, we use YAML, as it is less prone to ``delimiter collision'' problems due to its minimal requirements for structural characters.\footnote{See \url{https://yaml.org/spec/1.2.2/}.} 
+In doing so, we expect to avoid problems with LLM output not being parsable. Our overall LLM approach looks as follows.
+%
+% Because YAML primarily relies on outline indentation for structure, it is especially resistant to delimiter collision. (https://en.wikipedia.org/wiki/YAML#Indented_delimiting | https://en.wikipedia.org/wiki/Delimiter#Delimiter_collision)
+%
+
+\textbf{Zero-shot:} We build our zero-shot prompts from the following consecutive components: \texttt{[task]\allowbreak[input text]\allowbreak[format]\allowbreak[completion prefix]}
+% An example is shown in Appendix~\ref{sec:implementation-details}.
+In \texttt{[task]} we specify the information to extract, i.e. research artifacts, their parameters, etc. \texttt{[input text]} is the paragraph from which to extract the information. \texttt{[format]} defines the output YAML schema. \texttt{[completion prefix]} is a piece of text that directly precedes the LLM's output, such as \textit{``ASSISTANT:~''}.
+%
+% Also: in case of maximum output length being reached, “fixing” is trivial by removing last (potentially incomplete line), whereas fixing JSON to make it parsable is more involved (need matching delimiters
+%
+To then generate predictions based on LLM output, we pass it to a standard YAML parser after cleansing (e.g. removing text around the YAML block).
+%
+% To generate predictions based on the LLM output, we parse the YAML output\footnote{Note that this is not a custom procedure but means simply using the YAML parsing functionality in a programming languages standard library (in our case Python).} after cleansing (e.g. removing unwanted text before or after the YAML block) and transform it into the format used in the evaluation or downstream application.
+%
+For each used LLM model, we individually perform prompt tuning. Here we determine, for example, if a model gives better results when the \texttt{[completion prefix]} includes the beginning of the serialized output data (e.g, ``\texttt{-{}-{}-\allowbreak\textbackslash n\allowbreak text\_\allowbreak contains\_\allowbreak entities: }'') of if this leads to a deterioration in output quality.
+
+\textbf{Few-shot:} Our few shot approach makes the following adjustments to the method described above. Prompts additionally include a component \texttt{[examples]}, which are valid input output pairs sampled by their similarity to the input text. Specifically, for an input text from a document X, we sample the 5 most similar paragraphs from all ground truth documents excluding X. As these examples can be confused with the input text, we place it after the examples, resulting in the structure \texttt{[task]\allowbreak[format]\allowbreak[examples]\allowbreak[input text]\allowbreak[completion prefix]}.
+
+LLMs reaching a sufficient context size for a few-shot approach to our task are a recent development. We can therefore additionally make use of other recently added capabilities. Specifically, we make use of generation constrains via a gBNF grammar\footnote{See \url{https://github.com/ggerganov/llama.cpp/pull/1773}.} to enforce LLM output according to our data scheme, allowing us to mitigate parsing errors.
+
+\section{Experiments}\label{sec:experiments}
+
+We evaluate the fine-tuned models and LLM approach against baselines from existing work. Both evaluations are performed on our data set described in Section~\ref{sec:data-set-contruction}. Metrics used to measure prediction performance are precision, recall and $\text{F}_1$ score, abbreviated as P, R and $\text{F}_1$ respectively.
+
+\subsection{Fine-Tuned Models}
+
+% (side note: in PL-Marker data conversion, 93% of annotation boundaries
+%  exactly match a token boundary — therefore comparison is more realistic
+%  between LLM zero shot *exact match* and PL-Marker results)
+% Annotation boundary exactly matches token boundary: 3,786 (0.93)
+% Annotation boundary lies within token boundary: 266 (0.07)
+
+We use PL-Marker, the currently best performing model on SciERC, as our baseline.
+% As both PL-Marker and our model work on the level of tokens, whereas the evaluation data has annotations with character level granularity, we first convert the data to a tokenized format. 93\% of the annotation boundaries exactly match token boundaries.
+% (possible example for difference: token “5-fold” w/ only “5” annotated as value)
+Models are trained and evaluated using 5-fold cross validation (3 folds training, 1 dev, 1 test).
+%
+% We also experiment with splitting the data into folds obtained by sampling whole papers (i.e. the complete set of paragraphs of each paper) rather than individual paragraphs. We do this to ensure a realistic evaluation setting and prevent, for example, directly subsequent paragraphs of a paper being split up into training and testing data. This has the side effect that class distributions across the 10 evaluation runs vary considerably---in other words, some folds contain considerably fewer entities and/or relations to extract than others. As a consequence, model performance varies between splits, leading to high standard deviations in the evalution metrics.
+%
+We train the ER component of PL-Marker as done in~\cite{Ye2022}, using \textit{scibert-scivocab-uncased} as the encoder, Adam as the optimizer, a learning rate of 2e-5, and for 50 epochs. The PL-Marker RE component is trained using \textit{bert-base-uncased}, Adam, a learning rate of 2e-5, and for 10 epochs. Our own RE component also uses \textit{bert-base-uncased}, Adam as the optimizer, and is trained with a learning rate of 1e-3 for 90 epochs.
+Models are trained and evaluated on a single GeForce RTX 3090. % (24\,GB).
+
+% run_acener.py
+% learning_rate 2e-5
+% num_train_epochs 50
+% per_gpu_train_batch_size 8
+% per_gpu_eval_batch_size 16
+% gradient_accumulation_steps 1
+% max_seq_length 512
+% max_pair_length 256
+% max_mention_ori_length 8
+% run_acener.py:    optimizer = AdamW(optimizer_grouped_parameters, lr=args.learning_rate, eps=args.adam_epsilon)
+
+% run_re.py
+% learning_rate 2e-5
+% num_train_epochs 10
+% per_gpu_train_batch_size 8
+% per_gpu_eval_batch_size 16
+% gradient_accumulation_steps 1
+% max_seq_length 256
+% max_pair_length 16
+% run_ner.py:    parser.add_argument("--adam_epsilon", default=1e-8, type=float,
+
+% solver='adam',
+% learning_rate_init=0.001,
+% max_iter=10000,  (For stochastic solvers (‘sgd’, ‘adam’), note that this determines the number of epochs)
+% trained until 10 consecutive epochs loss does not improve by at least 1e-4
+
+\subsubsection{Results}
+
+% % PL
+% % NER precision: 81.5 ± 2.9
+% % NER recall: 76.8 ± 2.2
+% % NER f1: 79.0 ± 1.6
+% % RE precision: 33.5 ± 19.3
+% % RE recall: 5.9 ± 3.7
+% % RE f1: 9.9 ± 6.0
+
+% % FFNN
+% % RE precision: 30.7 ± 11.1
+% % RE recall: 65.0 ± 32.4
+% % RE f1: 38.8 ± 11.3
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/ref_params/fine_tuned_eval}
+  \caption{Fine-tuned model evaluation (5-fold cross validation).}
+  \label{fig:finetunedeval}
+\end{figure}
+
+In Figure~\ref{fig:finetunedeval} we show the results of PL-Marker ER (used for both models) as well as the PL-Marker RE component and our RE model. For ER we evaluate exact matches (no partial token overlap). In the case of RE, each entity pair is predicted as having a relation or not---as there is just one relation type.
+
+Mean ER performance is 81.5, 76.8, and 79.0 (P, R, $\text{F}_1$). For RE, the precision of PL-Marker and our model are similar at 33.5 and 30.7 respectively, but our model performs more consistent. PL-Marker only achieves a very low recall of 5.9, whereas our model, while showing large variability, achieves a mean of 65.0. The resulting $\text{F}_1$ scores are 9.9 for PL-Marker and 38.8 for our model.
+
+%We take this indication that overall the ER part of hyperparameter IE is comparatively difficult as more general IE from computer science publications. % TODO: discuss class differences if space allows (see figure below)
+
+% \begin{figure}[tb]
+%   \centering
+%   \includegraphics[width=\linewidth]{figures/ref_params/ner_confusion_matrix}
+%   \caption{ER confusion matrix for PL-Marker evaluation}
+%   \label{fig:plmrk-confusion}
+% \end{figure}
+
+% NER confusion matrix in Figure~\ref{fig:plmrk-confusion}.
+
+% \subsubsection{Error Analysis}
+
+% Analysing the ER predictions in our evaluation, we find that the worst performing entity class is ``context'' with 94\% false negatives. Given context boundaries can be fuzzy and our evaluation is for exact matches, partial match or manual evaluation could be an alternative. 
+
+\subsubsection{Analysis}
+
+% ER F1s per class (token level):
+% (labels = none, artifact, parameter, value, context)
+% $\text{F}_1$ scores to be 98.5\%, 77.8\%, 47.9\%, 84.4\%, 0\%
+
+Token level ER performance across entity classes (none, artifact, parameter, value, context) is at 98.5\%, 77.8\%, 47.9\%, 84.4\%, 0\% $\text{F}_1$. That is, the model does predict contexts and struggles with parameters, but artifacts and values are predicted reliably. For our RE model, we observe that value-parameter relations are more reliably predicted than parameter-artifact relations.
+
+% ### with everything
+% RE precision: 30.7 ± 11.1
+% RE recall: 65.0 ± 32.4
+% RE f1: 38.8 ± 11.3
+
+% ### no bert embeddings (adjusted network size** ((300, 100, 25, 2) -> (25, 5, 2)))
+% RE precision: 15.5 ± 22.6
+% RE recall: 8.8 ± 12.2
+% RE f1: 11.1 ± 15.7
+
+% ### no relative distance
+% RE precision: 26.5 ± 8.2
+% RE recall: 65.0 ± 28.5
+% RE f1: 35.5 ± 9.7
+
+% ### no token class embeddings (adjust bert embedding weight to 0.5)
+% RE precision: 16.6 ± 16.1
+% RE recall: 29.8 ± 33.0
+% RE f1: 19.6 ± 18.0
+\begin{wraptable}[8]{r}{4cm}\vspace*{-0\baselineskip}%
+  \caption{Ablation study}
+  \label{tab:finetunedablation}
+  \begin{tabular}{lccc}
+    \hline
+    Used & P [\%] & R [\%] & $\text{F}_1$\,[\%] \\
+    \hline
+    \textvisiblespace CD & 15.5 & 8.8 & 11.1 \\
+    T\textvisiblespace D & 16.6 & 29.8 & 19.6 \\
+    TC\textvisiblespace & 26.5 & 65.0 & 35.5 \\
+    TCD & \textbf{30.7} & \textbf{65.0} & \textbf{38.8} \\
+    \hline
+  \end{tabular}
+\end{wraptable}
+
+To assess the impact of the different components in our RE model, we perform an ablation study with the same 5-fold cross-validation setup as above. In Table~\ref{tab:finetunedablation}, showing its results, we can see that removing the BERT token embeddings (T) results in the largest performance loss, followed by entity class embeddings (C) and entity distance (D). Removing any of the inputs results in worse predictions.
+
+\begin{wrapfigure}[11]{r}{3cm}\vspace*{-2\baselineskip}%
+  \includegraphics[width=3cm]{figures/ref_params/hyperparam_pos-crop}
+  \vspace{-0.6cm}
+  \caption{Mentioning position in papers.}
+  \label{fig:hyperparam_info_pos}
+\end{wrapfigure}
+
+% cs.LG: 0.35890524569769855
+% cs.CV: 0.41702606412900806
+% cs.CL: 0.36408882082695254
+% cs.DL: 0.06666666666666667
+
+Finally, we apply our full model to a random sample of 15,000 papers. Analyzing the results, we find hyperparameters (artifact, parameter, value triples) are reported in 36\% of ML papers, 42\% of CV papers, 36\% of CL papers, and 7\% of DL papers. In Figure~\ref{fig:hyperparam_info_pos} we further look at the distribution of the information across the length of papers (excluding DL as not being representative). We can see a clear tendency towards the latter half of papers.
+
+\subsubsection{Application}
+
+We train a final ER+RE model on all annotated data and use it to extract hyperparameter information from a random sample of 15,000 papers. To test the soundness of the extracted information, we test its predictive strength for the re-use of code shared with each paper. Our method assumes that re-use of code is an indicator for reproducibility. For hyperparameter reporting, this has been shown in previous work~\cite{Radd2019}.
+
+We operationalize the two measures as follows. $r_\text{hype} =$ amount of hyperparameter information, measured as the number of extracted value-parameter, parameter-artifact, and value-parameter-artifact relation ``chains''. $r_\text{code} =$ code re-use, measured as the number of GitHub forks and closed issues, normalized by the number of stars. Normalization is done to control for the influence of author and affiliation renownedness.
+
+Measuing the correlation between $r_\text{hype}$ and $r_\text{code}$, we find the Pearson correlation coefficient to be 0.x (p=0.00y), a (weak/moderate/strong) positive correlation that is statistically relevant. We interpret our finding as an indicator that the hyperparameter information extracted by our model is sound, but note that additional testing is necessary to draw more definitive conclusions.
+
+\subsection{LLMs}
+
+\begin{wraptable}[10]{r}{6.9cm}\vspace*{-1.7\baselineskip}%
+\centering
+  \caption{LLM selection (size in parameters).}
+  \label{tab:llmselection}
+  \begin{tabular}{llc}
+    \hline
+    Model & Variant & Size \\
+    \hline
+    WizardLM%~\cite{xu2023wizardlm2023}
+    & \texttt{WizardLM-13B-V1.1} & 13\,B \\
+    Vicuna${}_{4k}$%~\cite{vicuna2023}
+    & \texttt{vicuna-13b-v1.3} & 13\,B \\
+    Vicuna${}_{16k}$%~\cite{vicuna2023}
+    & \texttt{vicuna-13b-v1.5-16k} & 13\,B \\
+    Falcon%~\cite{falcon40b-huggingface}
+    & \texttt{falcon-40b-instruct} & 40\,B \\
+    GALACTICA%~\cite{GALACTICA2022}
+    & \texttt{galactica-120b} & 120\,B \\
+    GPT-3.5%~\cite{Brown2020gpt3} 
+    & \texttt{text-davinci-003} & 175\,B \\
+    \hline
+    \end{tabular}
+\end{wraptable}
+
+For our LLM experiments we chose a variety of models, with sizes ranging from 13\,B to 175\,B parameters, as shown in Table~\ref{tab:llmselection}.
+% We specifically evaluate not only proprietary models restricted to API access, but also a open LLMs.
+We chose WizardLM~\cite{xu2023wizardlm2023} as it is meant to handle complex instructions, 
+Vicuna~\cite{vicuna2023} due to its performance relative to its size, 
+Falcon~\cite{falcon40b-huggingface} because of its alleged performance, 
+and GALACTICA~\cite{GALACTICA2022} because it was trained on scientific text.
+Vicuna${}_{16k}$ is a model extended using Position Interpolation~\cite{chen2023} based on Rotary Positional Embeddings~\cite{su2021}, which makes it the only model in our experiments with a sufficient context size for a few-shot evaluation.
+
+The models are run as follows. GPT-3.5 is accessed through its official API.
+% The total usage cost for all testing, prompt tuning, and the full evaluation runs sums up to 60\,USD.
+All open models are run on a high performance compute cluster.
+% using the API layer Basaran.\footnote{See \url{https://github.com/hyperonym/basaran/}.}
+Vicuna${}_{4k}$ and WizardLM are run on nodes with $4\times$NVIDIA Tesla V100. %(32\,GB).
+GALACTICA, Falcon, and Vicuna${}_{16k}$ are run on nodes with $4\times$NVIDIA A100. % (80\,GB).
+
+As a baseline, we use a JSON variant for each model, where the \texttt{[format]} and \texttt{[examples]} compontents of prompts use JSON, and compare it to the respective YAML version. All models are used with greedy decoding (temperature = 0) to ensure reproducibility.
+
+% Accordingly, only one completion is created per prompt. We evaluate the models on three levels. (1) Parsing success and format adherence, meaning if the produced JSON/YAML was parsable and according to the specified format, (2) hallucinations and scope adherence, where we measure hallucinated and out of scope entities, and (3) prediction performance in terms of precision, recall, and $\text{F}_1$ score.
+
+% TODO: consider explicitly mentioning that b/c the data set is new, there’s no
+
+\subsubsection{Results}
+
+% === Falcon_json ===
+% - exact -
+% entity_recognition_classification [%]: P: 37.1 R: 5.9 F1: 10.2
+% relation_extraction [%]: P: 0.0 R: 0.0 F1: 0.0
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 48.0 R: 7.7 F1: 13.3
+% relation_extraction [%]: P: 0.0 R: 0.0 F1: 0.0
+
+% === Falcon ===
+% - exact -
+% entity_recognition_classification [%]: P: 32.7 R: 14.2 F1: 19.8
+% relation_extraction [%]: P: 0.0 R: 0.0 F1: 0.0
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 40.6 R: 17.3 F1: 24.2
+% relation_extraction [%]: P: 0.0 R: 0.0 F1: 0.0
+
+% === GALACTICA_json ===
+% - exact -
+% entity_recognition_classification [%]: P: 25.9 R: 15.7 F1: 19.5
+% relation_extraction [%]: P: 0.1 R: 2.3 F1: 0.3
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 34.1 R: 18.4 F1: 23.9
+% relation_extraction [%]: P: 0.2 R: 3.1 F1: 0.4
+
+% === GALACTICA ===
+% - exact -
+% entity_recognition_classification [%]: P: 23.1 R: 19.5 F1: 21.1
+% relation_extraction [%]: P: 0.0 R: 0.8 F1: 0.1
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 31.7 R: 24.6 F1: 27.7
+% relation_extraction [%]: P: 0.1 R: 1.5 F1: 0.1
+
+% === WizardLM_json ===
+% - exact -
+% entity_recognition_classification [%]: P: 6.9 R: 11.3 F1: 8.6
+% relation_extraction [%]: P: 0.1 R: 0.8 F1: 0.1
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 8.6 R: 13.3 F1: 10.4
+% relation_extraction [%]: P: 0.1 R: 1.5 F1: 0.2
+
+% === WizardLM ===
+% - exact -
+% entity_recognition_classification [%]: P: 9.7 R: 35.6 F1: 15.3
+% relation_extraction [%]: P: 0.1 R: 1.5 F1: 0.1
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 12.6 R: 44.4 F1: 19.7
+% relation_extraction [%]: P: 0.2 R: 6.1 F1: 0.4
+
+% === Vicuna_json ===
+% - exact -
+% entity_recognition_classification [%]: P: 15.1 R: 9.3 F1: 11.5
+% relation_extraction [%]: P: 0.7 R: 3.8 F1: 1.2
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 18.5 R: 11.2 F1: 13.9
+% relation_extraction [%]: P: 0.8 R: 4.6 F1: 1.4
+
+% === Vicuna ===
+% - exact -
+% entity_recognition_classification [%]: P: 17.3 R: 31.5 F1: 22.3
+% relation_extraction [%]: P: 0.1 R: 0.8 F1: 0.1
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 20.7 R: 37.0 F1: 26.5
+% relation_extraction [%]: P: 0.1 R: 0.8 F1: 0.1
+
+% === GPT3_json ===
+% - exact -
+% entity_recognition_classification [%]: P: 27.9 R: 42.8 F1: 33.8
+% relation_extraction [%]: P: 5.4 R: 10.7 F1: 7.2
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 34.5 R: 51.7 F1: 41.4
+% relation_extraction [%]: P: 9.9 R: 19.8 F1: 13.2
+
+% === GPT3 ===
+% - exact -
+% entity_recognition_classification [%]: P: 34.0 R: 41.7 F1: 37.4
+% relation_extraction [%]: P: 5.8 R: 12.2 F1: 7.8
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 44.0 R: 51.0 F1: 47.3
+% relation_extraction [%]: P: 11.1 R: 23.7 F1: 15.1
+
+% === Vicuna_few-shot ===
+% - exact -
+% entity_recognition_classification [%]: P: 43.9 R: 44.1 F1: 44.0
+% relation_extraction [%]: P: 4.5 R: 9.9 F1: 6.1
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 53.1 R: 53.2 F1: 53.2
+% relation_extraction [%]: P: 7.2 R: 16.0 F1: 9.9
+
+% === Vicuna_few-shot_json ===
+% - exact -
+% entity_recognition_classification [%]: P: 34.4 R: 46.7 F1: 39.6
+% relation_extraction [%]: P: 0.8 R: 4.6 F1: 1.3
+
+% - partial_overlap -
+% entity_recognition_classification [%]: P: 41.0 R: 55.8 F1: 47.2
+% relation_extraction [%]: P: 2.1 R: 12.2 F1: 3.6
+
+% JSON → YAML (ER)
+% (6.7+10.9+9.6+1.6+3.6+0.4)/6
+% = 5,47
+% JSON → YAML (ER)
+% (0-1.1+0-0.2+0.6+4.8)/6
+% = 0,68
+
+\begin{table}[tb]
+  \centering
+  \caption{Prediction performance of LLM models. Subscripts (${}_{\Delta\pm n}$) show the delta in $\text{F}_1$ from JSON to YAML output of each model. Format: \textbf{best}, \underline{second}.}
+  \label{tab:llmeval}
+  \begin{tabular}{ll|ccc|ccc}
+    \hline
+    \multicolumn{2}{l|}{\textbf{Zero-shot}} &
+    \multicolumn{3}{c|}{Entity Recognition} &
+    \multicolumn{3}{c}{Relation Extraction} \\
+    \hline
+    Model & Output & P [\%] & R [\%] & $\text{F}_1$\,[\%] &
+                     P [\%] & R [\%] & $\text{F}_1$\,[\%] \\
+    \hline
+
+    \arrayrulecolor{lightgrey}\cline{1-2}\arrayrulecolor{black}
+    \multirow{2}{*}{WizardLM} &
+    JSON & 6.9 & 11.3 & 8.6
+              & 0.1 & 0.8 & 0.1 \\
+    \ & YAML & 9.7 & 35.6 &
+    \hphantom{${}_{\Delta\text{+6.7}}$}
+    15.3{\color{parametergreen}{${}_{\Delta\text{+6.7}}$}}
+              & 0.1 & 1.5 &
+    \hphantom{${}_{\Delta\text{+0.0}}$}
+    0.1{\color{contextgrey}{${}_{\Delta\text{+0.0}}$}}  \\
+    \arrayrulecolor{lightgrey}\cline{1-2}\arrayrulecolor{black}
+
+    \multirow{2}{*}{Vicuna${}_{4k}$} &
+    JSON & 15.1 & 9.3 & 11.5
+              & 0.7 & 3.8 & 1.2 \\
+    \ & YAML & 17.3 & 31.5 &
+    \hphantom{${}_{\Delta\text{+10.8}}$}
+    22.3{\color{parametergreen}{${}_{\Delta\text{+10.8}}$}}
+              & 0.0 & 0.8 &
+    \hphantom{${}_{\Delta\text{-1.1}}$}
+    0.1{\color{valuered}{${}_{\Delta\text{-1.1}}$}}  \\
+    \arrayrulecolor{lightgrey}\cline{1-2}\arrayrulecolor{black}
+
+    \multirow{2}{*}{Falcon} &
+    JSON & \textbf{37.1} & 5.9 & 10.2
+              & 0.0 & 0.0 & 0.0 \\
+    \ & YAML & 32.7 & 14.2 &
+    \hphantom{${}_{\Delta\text{+9.6}}$}
+    19.8{\color{parametergreen}{${}_{\Delta\text{+9.6}}$}}
+              & 0.0 & 0.0 &
+    \hphantom{${}_{\Delta\text{+0.0}}$}
+    0.0{\color{contextgrey}{${}_{\Delta\text{+0.0}}$}}  \\
+    \arrayrulecolor{lightgrey}\cline{1-2}\arrayrulecolor{black}
+
+    \multirow{2}{*}{GALACTICA} &
+    JSON & 25.9 & 15.7 & 19.5
+              & 0.1 & 2.3 & 0.3 \\
+    \ & YAML & 23.1 & 19.5 &
+    \hphantom{${}_{\Delta\text{+1.6}}$}
+    21.1{\color{parametergreen}{${}_{\Delta\text{+1.6}}$}}
+              & 0.0 & 0.8 &
+    \hphantom{${}_{\Delta\text{-0.2}}$}
+    0.1{\color{valuered}{${}_{\Delta\text{-0.2}}$}}  \\
+    \arrayrulecolor{lightgrey}\cline{1-2}\arrayrulecolor{black}
+
+    \multirow{2}{*}{GPT-3.5} &
+    JSON & 27.9 & \textbf{42.8} & \underline{33.8}
+              & \underline{5.4} & \underline{10.7} & \underline{7.2} \\
+    \ & YAML & \underline{34.0} & \underline{41.7} &
+    \hphantom{${}_{\Delta\text{+3.6}}$}
+    \textbf{37.4}{\color{parametergreen}{${}_{\Delta\text{+3.6}}$}}
+              & \textbf{5.8} & \textbf{12.2} &
+    \hphantom{${}_{\Delta\text{+0.6}}$}
+    \textbf{7.8}{\color{parametergreen}{${}_{\Delta\text{+0.6}}$}}  \\
+
+  \hline
+    \multicolumn{2}{l|}{\textbf{5-shot}} &
+    \multicolumn{3}{c|}{Entity Recognition} &
+    \multicolumn{3}{c}{Relation Extraction} \\
+  \hline
+
+    \multirow{2}{*}{Vicuna${}_{16k}$} &
+    JSON & \underline{34.4} & \underline{46.7} & \underline{39.6}
+              & \underline{0.8} & \underline{4.6} & \underline{1.3} \\
+    \ & YAML & \textbf{43.9} & \textbf{44.1} &
+    \hphantom{${}_{\Delta\text{+0.4}}$}
+    \textbf{44.0}{\color{parametergreen}{${}_{\Delta\text{+0.4}}$}}
+              & \textbf{4.5} & \textbf{9.9} &
+    \hphantom{${}_{\Delta\text{+4.8}}$}
+    \textbf{6.1}{\color{parametergreen}{${}_{\Delta\text{+4.8}}$}}  \\
+  \hline
+  \end{tabular}
+\end{table}
+
+In Table~\ref{tab:llmeval}, show the prediction performance of all models and prompt variants. Overall, LLM performance does not reach the level of our pre-trained models. For zero-shot, we observe the best performance with both GPT-3.5 variants, where YAML outperforms JSON (+3.6\% ER and +0.6\% RE in $\text{F}_1$ score). The second highest ER $\text{F}_1$ score by model is achieved by Vicuna${}_{4k}$ (22.3), despite its size being less than a 10th that of GPT-3.5. For RE, however, even the best model only reaches 7.8\%. With our few-shot approach, we are able to considerably improve performance between Vicuna models (+27\% ER and +6\% RE in $\text{F}_1$), surpassing the zero-shot performance of GPT-3.5 in ER.
+% Add a sentence here breaking down the few-shot improvements by grammar/ICL once available
+Lastly, we see that using YAML leads to better ER results accross all six models, with ER performance being comparable or improved as well.
+
+\subsubsection{Analysis}
+
+% --- YAML vs JSON ---
+% vicuna
+%   36/444 (8%) vs. 188 (42%) parsing errors
+%   0 vs. 82 (18%) coarse structure errors
+% wizard lm
+%   62/444 (14%) vs. 220 (50%) parsing errors
+%   0 vs. 9 (2%) coarse structure errors
+% text-davinci-003
+%   0/444 (14%) vs. 1 (0.2%) parsing errors
+%   0 vs. 0 coarse structure errors
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ref_params/format_eval_mix}
+  \caption{Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON (J) and YAML (Y).}
+  \label{fig:yamlVSjson}
+\end{figure}
+
+In Figure~\ref{fig:yamlVSjson} we show an analysis of the steps leading up to model prediction. Focussing first on the zero-shot models (upper five) we observe the following across the four plots from left to right. (a)~For three of five models, prompting for YAML leads to fewer parsing errors. (b)~Unwanted text around the extracted data is generated more/less by two models each. (c)~Hallucinated entities and (d)~out of scope entities appear overall slightly more often for in YAML compared to JSON. For our few shot approach (bottom model), we see that the use of a grammar (a, b)~prevents all output format issues. Furthermore (c)~hallucinated entities are reduced. (d)~Out of scope entities can not be evaluated, because our in-context examples lead to frequent omission of type information in the output.
+
+Through manual analysis, we find that ``entities not in the text'' can arise from unsolicited \LaTeX\ parsing by the LLM (e.g. ``\verb|\lambda|'' in text $\rightarrow$ ``$\lambda$'' in YAML). Prompting for \emph{verbatim} parameter/value strings did not mitigate this.
+%TODO: would be nice to add some analysis on the output length when using YAML/JSON and some thoughts as to why the one might work better w/ LLMs than the other (e.g.: YAML is shorter: fewer tokens to "get off track" / JSON mby easier for LLMs to decide when to end b/c of clear brackets instead of just indentation)
+
+% ... a few mentions of quantitative stuff based on format figs.,
+% mby look into parsing error msgs
+
+% does not know ``when to stop''
+
+% - saying “LaTeX Input Text” instead of just “Input Text” helped for some models
+
+% automatically changes LaTeX to unicode
+% - “\lambda _{\text{C}}” be output as “λC”
+%  - not mitigated by changing output “<parameter name>” to “<verbatim parameter name>”
+
+
+% \subsubsection{Application}
+% try to use LLM extracted data as extra training data for supervised model, but observe worse performance
+
+\section{Discussion}\label{sec:discussion}
+
+Our overall results, with a top performance of 79\% $\text{F}_1$ for ER and 39\% for RE, show that HyperPIE can be accomplished to a degree that yields sound results, but challenges still remain. Our novel data set enables further development of approaches from hereon. Our IE results on large-scale unannotated data give an indication of possible downstream analyses and applications. Here we see large potential for reproducibility research, faceted search, and recommendation.
+
+Our LLM evaluation shows that for IE tasks dealing with complex information, the choice of text based data serialization format can have a considerable impact on performance, even when using grammar based generation constrains. Additionally, we can see that in-context learning enabled by larger context sizes, as well as grammars 
+are an effective method to improve IE performance.
+%bear large potential for further improvements from hereon.
+%
+%\subsubsection{Limitations}
+
+\textbf{Limitations:} Our work considers HyperPIE from text. This is sensible for a focussed approach, but downstream applications could furthermore benefit from composite pipelines also targeting extraction from tables, source code, etc.
+Our work does not test transferability of methods to domains outside of ML related fields. It would require domain expertise to find useful definitions for hyperparameters in each respective domain.
+% Our LLM evaluation does not test fine-tuning, which we see as an important future addition.
+Lastly, our data and 
+experiments unfortunately are limited to English text only and don't cover other languages.
+
+% out of scope LLM predictions: annotation guidelines can be extensive and detailed, therefore hard to ``enforece'' incorporate in in-context learning scenario
+
+% ... focus on limitations of the ``solution'' to the problem presented
+
+% only text, no tables, figures, etc.
+% compare with additional fine-tuned models
+% investigate hyperparam info as reproducibility indicator more thoroughly
+% test transferability of methods (re component to measeval, YAML LLM to mat sci)
+% only in English
+
+
+
+
+\section{Conclusion}\label{sec:hyper-conclusion}
+
+%Automatic extraction of information from publication text is key to making scientific knowledge machine readable at a large scale.
+%The extracted information can, for example, facilitate academic search, decision making, and knowledge graph construction.
+%An important type of information not covered by existing approaches is hyperparameters.
+
+We formalize the novel ER+RE task HyperPIE and develop approaches for it, thereby expanding IE from scientific text to hyperparameter information. To this end, we create a manually labeled data set spanning various ML fields. In a supervised learning setting, we propose a BERT-based model that achieves an improvement of 29\% $\text{F}_1$ in RE compared to a state-of-the-art baseline. Using the model, we perform IE on a large amount of unannotated papers, and analyze patterns of hyperparameter reporting across ML disciplines. In a zero-/few-shot setting, we propose an LLM based approach using YAML for complex IE, achieving an average improvement of 5.5\% $\text{F}_1$ in ER over using JSON. We furthermore achieve large performance gains for LLMs using grammar based generation constrains and in-context learning. In future work, we plan to investigate fine-tuning LLMs, as well as additional practical use cases for data extracted from large publication corpora, such as knowledge graph construction.
+
+\section*{Author Contributions}  % cf. https://credit.niso.org/
+Tarek Saier: Conceptualization, Data curation, Formal analysis, Methodology, Software, Visualization, Writing -- original draft, Writing -- review \& editing. Mayumi Ohta: Conceptualization (support), Formal analysis (support), Methodology (support), Software (support), Writing -- original draft (support). Takuto Asakura: Conceptualization, Writing -- review \& editing. Michael F{\"a}rber: Writing -- review \& editing.

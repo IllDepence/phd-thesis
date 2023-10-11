@@ -1,0 +1,29 @@
+@startuml
+
+skinparam monochrome true
+skinparam shadowing false
+' skinparam linetype polyline
+' skinparam ranksep 1
+
+usecase "used for" as c2v #white;line:white;text:black
+usecase "used for" as v2p #white;line:white;text:black
+usecase "used for" as p2a #white;line:white;text:black
+usecase "used for" as p2a #white;line:white;text:black
+
+(context) -r- c2v
+c2v -r-> (value)
+(value) -r- v2p
+v2p -r-> (parameter)
+(parameter) -r- p2a
+p2a -r-> (research artifact)
+
+(context) .d- (surface form)
+(value) .d- (surface form)
+(parameter) .d- (surface form)
+(research artifact) .d- (surface form)
+
+c2v .u- (evidence)
+v2p .u- (evidence)
+p2a .u- (evidence)
+
+@enduml

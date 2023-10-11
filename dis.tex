@@ -139,6 +139,33 @@
 \usepackage{multirow}  % colspan/rowspan
 % - - - /references accross languages
 
+% - - - references with usage parameters
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{colortbl}
+\definecolor{artifactblue}{HTML}{0059A0}
+\definecolor{parametergreen}{HTML}{539A55}
+\definecolor{valuered}{HTML}{CF8369}
+\definecolor{contextgrey}{HTML}{A0A0A0}
+\definecolor{lightgrey}{HTML}{CFCFCF}
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{F7F7F7}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{cmnt}{magenta!60!black}
+
+\lstdefinelanguage{plain}{
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{cmnt}\ttfamily,
+    breakindent=0pt,
+}
+% - - - /references with usage parameters
+
 %% --------------------------------
 %% | Title page                   |
 %% --------------------------------
