@@ -513,12 +513,13 @@ Token level ER performance across entity classes (none, artifact, parameter, val
 % RE precision: 16.6 ± 16.1
 % RE recall: 29.8 ± 33.0
 % RE f1: 19.6 ± 18.0
-\begin{wraptable}[8]{r}{4cm}\vspace*{-0\baselineskip}%
-  \caption{Ablation study}
+\begin{table}
+  \centering
+  \caption[Ablation study results]{Ablation study results (model inputs are: T = BERT token embeddings, C = entity class embeddings, D = entity distance)}
   \label{tab:finetunedablation}
   \begin{tabular}{lccc}
     \hline
-    Used & P [\%] & R [\%] & $\text{F}_1$\,[\%] \\
+    Model inputs used & P [\%] & R [\%] & $\text{F}_1$\,[\%] \\
     \hline
     \textvisiblespace CD & 15.5 & 8.8 & 11.1 \\
     T\textvisiblespace D & 16.6 & 29.8 & 19.6 \\
@@ -526,16 +527,16 @@ Token level ER performance across entity classes (none, artifact, parameter, val
     TCD & \textbf{30.7} & \textbf{65.0} & \textbf{38.8} \\
     \hline
   \end{tabular}
-\end{wraptable}
+\end{table}
 
 To assess the impact of the different components in our RE model, we perform an ablation study with the same 5-fold cross-validation setup as above. In Table~\ref{tab:finetunedablation}, showing its results, we can see that removing the BERT token embeddings (T) results in the largest performance loss, followed by entity class embeddings (C) and entity distance (D). Removing any of the inputs results in worse predictions.
 
-\begin{wrapfigure}[11]{r}{3cm}\vspace*{-2\baselineskip}%
-  \includegraphics[width=3cm]{figures/ref_params/hyperparam_pos-crop}
-  \vspace{-0.6cm}
-  \caption{Mentioning position in papers.}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.3\linewidth]{figures/ref_params/hyperparam_pos-crop}
+  \caption{Frequency of hyperparameter mention positions in papers.}
   \label{fig:hyperparam_info_pos}
-\end{wrapfigure}
+\end{figure}
 
 % cs.LG: 0.35890524569769855
 % cs.CV: 0.41702606412900806
@@ -554,29 +555,29 @@ Measuing the correlation between $r_\text{hype}$ and $r_\text{code}$, we find th
 
 \subsection{LLMs}
 
-\begin{wraptable}[10]{r}{6.9cm}\vspace*{-1.7\baselineskip}%
+\begin{table}
 \centering
-  \caption[LLM selection]{LLM selection (size in parameters).}
+  \caption[LLM selection]{LLM selection (size in number of parameters).}
   \label{tab:llmselection}
   \begin{tabular}{llc}
     \hline
     Model & Variant & Size \\
     \hline
-    WizardLM%~\cite{xu2023wizardlm2023}
+    WizardLM~\cite{xu2023wizardlm2023}
     & \texttt{WizardLM-13B-V1.1} & 13\,B \\
-    Vicuna${}_{4k}$%~\cite{vicuna2023}
+    Vicuna${}_{4k}$~\cite{vicuna2023}
     & \texttt{vicuna-13b-v1.3} & 13\,B \\
-    Vicuna${}_{16k}$%~\cite{vicuna2023}
+    Vicuna${}_{16k}$~\cite{vicuna2023}
     & \texttt{vicuna-13b-v1.5-16k} & 13\,B \\
-    Falcon%~\cite{falcon40b-huggingface}
+    Falcon~\cite{falcon40b-huggingface}
     & \texttt{falcon-40b-instruct} & 40\,B \\
-    GALACTICA%~\cite{GALACTICA2022}
+    GALACTICA~\cite{GALACTICA2022}
     & \texttt{galactica-120b} & 120\,B \\
-    GPT-3.5%~\cite{Brown2020gpt3} 
+    GPT-3.5~\cite{Brown2020gpt3}
     & \texttt{text-davinci-003} & 175\,B \\
     \hline
     \end{tabular}
-\end{wraptable}
+\end{table}
 
 For our LLM experiments we chose a variety of models, with sizes ranging from 13\,B to 175\,B parameters, as shown in Table~\ref{tab:llmselection}.
 % We specifically evaluate not only proprietary models restricted to API access, but also a open LLMs.
