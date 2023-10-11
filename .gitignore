@@ -6,3 +6,5 @@
 *.swo
 *.~lock*
 out
+*.dummy
+*.orig
