@@ -283,7 +283,7 @@ Table~\ref{tab:prevlangs} shows the absolute number of reference section entries
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/ref_xling/relative_language_counts_across_time_mod_twocolumn.pdf}
-\caption{Relative number of documents citing Russian, Chinese, Japanese, German, and French works. Showing all aforementioned in the bottom right.} \label{fig:previntime}
+\caption[Relative number of documents citing Russian, Chinese, Japanese, German, and French works]{Relative number of documents citing Russian, Chinese, Japanese, German, and French works. Showing all aforementioned in the bottom right.} \label{fig:previntime}
 \end{figure}
 
 \begin{figure}[tb]
@@ -345,7 +345,7 @@ Table~\ref{tab:selfcit} shows that going by the strict metric, self-citation is 
 %\begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/ref_xling/citlang_to_author_aff_relative_crop.pdf}
-\caption{Geographic origin of cross-lingual citations to the ten most cited languages(relative count).} \label{fig:geo_rel}
+\caption{Geographic origin of cross-lingual citations to the ten most cited languages (relative count).} \label{fig:geo_rel}
 \end{figure}
 
 In this section we analyze the geographical origin of cross-lingual citations. As a measure for geographical origin we use the country in which a citing author's affiliation is located. We refer to a citation as being to a ``local language'' or of ``local origin'', if the cited document's language is the most commonly spoken language in the affiliation's location. An example of this would be a researcher affiliated with a research institution located in Russia, being the author of a paper in which they cite a publication written in Russian.
@@ -359,7 +359,7 @@ In Figure~\ref{fig:geo_rel} we show relative numbers per cited language. That is
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/ref_xling/citation_origin_local_vs_en.pdf}
-\caption{Geographic origin of cross-lingual citations (local vs. English speaking countries). Marker size (surface area) indicates number of citations.} \label{fig:geo_localvsen}
+\caption[Geographic origin of cross-lingual citations (local vs. English speaking countries)]{Geographic origin of cross-lingual citations (local vs. English speaking countries). Marker size (surface area) indicates number of citations.} \label{fig:geo_localvsen}
 \end{figure}
 
 In Figure~\ref{fig:geo_localvsen} we jointly visualize how ``locally'' cited each language in our corpus is (x-axis) compared to which portion of citations originate from English speaking countries (y-axis). Overall, we observe larger variation on the ``locality'' dimension (values ranging from 0 to 1 with a variance of 0.058) than on the ``from English speaking countries'' dimension (values from 0 to 0.67 with a variance of 0.026). Looking at non-Latin script languages, we can see that Cyrillic script languages (e.g., Russian and Ukrainian) are less often of local origin than Asian languages (Chinese, Japanese, Korean) or languages written in Arabic script (Persian\footnote{While most varieties of Persian are written in a version of the Arabic script, there also exists varieties written in Cyrillic script~\cite{Megerdoomian2008}.}). Narrowing down on above-mentioned three Asian languages, we observe that for Chinese the relative portion of citations from English-speaking countries (0.41) is more than double of the same measure for Japanese (0.19), which is more than triple the value for Korean (0.06). The comparatively high ratio for Chinese (not just among Asian languages but overall\footnote{The overall comparison has, however, to be done keeping the limitations described in Section~\ref{sec:ident} in mind.}) could be taken as an indication for two phenomena: first, an increased relevance of publications written in Chinese (i.e., a higher necessity to cite) and second, an increased rate of scholars able to read Chinese in English speaking country research institutions (i.e., a higher probability of the ability to cite).
@@ -438,7 +438,7 @@ Our evaluation results are shown in Table~\ref{tab:classdist}. On both SciCite a
 Implementation details for the model training can be found in Ap\-pen\-dix~\ref{app:classifcation}.
 
 \begin{table}[tb]
-\caption{Citation intent and sentiment classification results for cross-lingual, monolingual, and mixed in-text citations. (Values are the number of citations per class followed by the percentage in brackets.)}
+\caption[Citation intent and sentiment classification results for cross-lingual, monolingual, and mixed in-text citations]{Citation intent and sentiment classification results for cross-lingual, monolingual, and mixed in-text citations. (Values are the number of citations per class followed by the percentage in brackets.)}
  \label{tab:citationclassificationdist}
   \centering
   \begin{small}
@@ -475,7 +475,7 @@ Implementation details for the model training can be found in Ap\-pen\-dix~\ref{
 \begin{figure}[tb]
 \centering
 \includegraphics[width=\linewidth]{figures/ref_xling/cross_ling_citation_intent_arxive_categories.pdf}
-\caption{Comparison of citation intent distribution across arXiv categories for \textit{in-text x-ling} (left) and \textit{in-text mono} (right).} \label{fig:intentarxivcategories}
+\caption[Comparison of citation intent distribution across arXiv categories for \textit{in-text x-ling} and \textit{in-text mono}]{Comparison of citation intent distribution across arXiv categories for \textit{in-text x-ling} (left) and \textit{in-text mono} (right).} \label{fig:intentarxivcategories}
 \end{figure}
 
 \textsc{Classification Results}

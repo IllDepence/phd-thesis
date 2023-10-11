@@ -26,7 +26,7 @@ This chapter is based on the following publication.
 \begin{figure}[bt]
   \centering
   \includegraphics[width=\linewidth]{figures/ref_params/schema_visual_v3}
-  \caption{Illustration of hyperparameter information in a text example alongside the extracted entities and relations. Entity types are {\color{artifactblue}{research artifact}}, {\color{parametergreen}{parameter}}, {\color{valuered}{value}}, and {\color{contextgrey}{context}}. Relations are indicated by arrows.}
+  \caption[Illustration of hyperparameter information in a text example alongside the extracted entities and relations]{Illustration of hyperparameter information in a text example alongside the extracted entities and relations. Entity types are {\color{artifactblue}{research artifact}}, {\color{parametergreen}{parameter}}, {\color{valuered}{value}}, and {\color{contextgrey}{context}}. Relations are indicated by arrows.}
   \label{fig:schema-visual}
 \end{figure}
 
@@ -556,7 +556,7 @@ Measuing the correlation between $r_\text{hype}$ and $r_\text{code}$, we find th
 
 \begin{wraptable}[10]{r}{6.9cm}\vspace*{-1.7\baselineskip}%
 \centering
-  \caption{LLM selection (size in parameters).}
+  \caption[LLM selection]{LLM selection (size in parameters).}
   \label{tab:llmselection}
   \begin{tabular}{llc}
     \hline
@@ -718,7 +718,7 @@ As a baseline, we use a JSON variant for each model, where the \texttt{[format]}
 
 \begin{table}[tb]
   \centering
-  \caption{Prediction performance of LLM models. Subscripts (${}_{\Delta\pm n}$) show the delta in $\text{F}_1$ from JSON to YAML output of each model. Format: \textbf{best}, \underline{second}.}
+  \caption[Prediction performance of LLM models]{Prediction performance of LLM models. Subscripts (${}_{\Delta\pm n}$) show the delta in $\text{F}_1$ from JSON to YAML output of each model. Format: \textbf{best}, \underline{second}.}
   \label{tab:llmeval}
   \begin{tabular}{ll|ccc|ccc}
     \hline
@@ -824,7 +824,7 @@ Lastly, we see that using YAML leads to better ER results accross all six models
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\linewidth]{figures/ref_params/format_eval_mix}
-  \caption{Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON (J) and YAML (Y).}
+  \caption[Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON and YAML]{Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON (J) and YAML (Y).}
   \label{fig:yamlVSjson}
 \end{figure}
 

@@ -91,7 +91,7 @@ This data set has the following drawbacks \cite{Roy2016fixed,Faerber2018LREC}: T
 \begin{table}[tb]
  % \caption{Overview of existing data sets\\\small{(\#P.=Number of papers; Cit.\ cont.=Citation contexts; Ref.\ IDs=Reference IDs; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics)\\(\emph{extractable*} indicates that extraction might be error-prone due to papers only being available in PDF format)}}
  % NOTE: above is original caption, but does not compile in this document class
- \caption{Overview of existing data sets (\#P.=Number of papers; Cit.\ cont.=Citation contexts; Ref.\ IDs=Reference IDs; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics; extractable* indicates that extraction might be error-prone due to papers only being available in PDF format)}
+ \caption[Overview of existing data sets]{Overview of existing data sets (\#P.=Number of papers; Cit.\ cont.=Citation contexts; Ref.\ IDs=Reference IDs; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics; extractable* indicates that extraction might be error-prone due to papers only being available in PDF format)}
  \label{tab:existing-data-sets}
   \centering
   \begin{small}
@@ -309,7 +309,7 @@ Because not all documents referenced by arXiv papers are hosted on arXiv itself,
 To evaluate the validity of our reference resolution results, we take a random sample of 300 matched reference strings and manually check for each of them, if the correct record in the MAG was identified. This is done by viewing the reference string next to the matched MAG record and verifying, if the former actually refers to the latter.\footnote{Further details can be found at \url{https://github.com/IllDepence/unarXive/tree/master/doc/matching_evaluation}.} Given the 300 items, we observed 3 errors, giving us an accuracy estimate of 96\% at the worst, as shown in Table~\ref{tbl:confvals}. Table~\ref{tbl:mismatches} shows the three incorrectly identified documents. In all three cases the misidentified document's title is contained in the correct document's title, and there is a large or complete author overlap between correct and actual match. This shows that authors sometimes title follow-up work very similarly, which leads to hard to distinguish cases.
 
 \begin{table}[tb]
-  \caption{Confidence intervals for a sample size of 300 with 297 positive results as given by Wilson score interval and Jeffreys interval \cite{Brown2001}}
+  \caption[Confidence intervals for a sample size of 300]{Confidence intervals for a sample size of 300 with 297 positive results as given by Wilson score interval and Jeffreys interval \cite{Brown2001}}
   \label{tbl:confvals}
   \centering
   \begin{small}
@@ -355,14 +355,14 @@ For the 95\% of our data set, where citing as well as cited document have a MAG 
 \begin{figure}[tb]
   \centering
     \includegraphics[width=\textwidth]{figures/corpus/Fig5.pdf}
-  \caption{Composition of reference section coverage for all citing documents (cut off at 100 cited documents)}
+  \caption[Composition of reference section coverage for all citing documents]{Composition of reference section coverage for all citing documents (cut off at 100 cited documents)}
   \label{fig:citcomp}
 \end{figure}
 
 \begin{figure}[tb]
   \centering
     \includegraphics[width=\textwidth]{figures/corpus/Fig6.pdf}
-  \caption{Distribution of citing documents in terms of reference section size and their coverage in unarXive and MAG (cut off at 750 cited documents)}
+  \caption[Distribution of citing documents in terms of reference section size and their coverage in unarXive and MAG]{Distribution of citing documents in terms of reference section size and their coverage in unarXive and MAG (cut off at 750 cited documents)}
   \label{fig:citcount2balance}
 \end{figure}
 
@@ -378,7 +378,7 @@ Because the documents in unarXive span multiple scientific disciplines, interdis
 \begin{figure}
   \centering
     \includegraphics[width=0.97\textwidth]{figures/corpus/Fig7.pdf}
-  \caption{Citation flow by discipline for 15.9 million references. The number of citing and cited documents per discipline are plotted on the sides}
+  \caption[Citation flow by discipline for 15.9 million references]{Citation flow by discipline for 15.9 million references (the number of citing and cited documents per discipline are plotted on the sides)}
   \label{fig:sankey}
 \end{figure}
 
@@ -403,7 +403,7 @@ We first discuss the terms \emph{``integral''} and \emph{``syntactic''}, which a
 
 \begin{table}
 \centering
-    \caption{Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic (``\checkmark''=yes, ``x''=no, ``?''=unclear)}
+    \caption[Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic]{Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic (``\checkmark''=yes, ``x''=no, ``?''=unclear)}
     \label{tab:integralsyntactic}
 \begin{center}
     \begin{tabular}{llll|ll}
@@ -455,7 +455,7 @@ In the following we will analyze all three aspects (integral, syntactic, target 
 
 \begin{table}[tb]
 \centering
-  \caption{Listed per discipline is the number of citations in a sample of 300 that were labeled (1)~integral, (2)~syntactic, (3)~simultaneously integral and syntactic, (4)~target section specific}
+  \caption[Per discipline number of citations labeled integral, syntactic, imultaneously integral and syntactic, target section specific]{Per discipline number of citations labeled (1)~integral, (2)~syntactic, (3)~simultaneously integral and syntactic, (4)~target section specific (sample size = 300)}
   \label{tbl:integralsyntacticsecspec}
 \begin{small}
 \begin{tabular}{lrrrr}
@@ -500,7 +500,7 @@ Sentences including a target section specific citation often follow distinct and
 
 \begin{table}[tb]
 \centering
-  \caption{Occurrence of target section specific citations by discipline (pairs annotated as follows, \textsuperscript{\textdagger}:~Mathematics citing document, \textsuperscript{\textdaggerdbl}:~Mathematics cited document, \underline{X$\rightarrow$X}:~Citing and cited document are from the same discipline)}
+  \caption[Occurrence of target section specific citations by discipline]{Occurrence of target section specific citations by discipline (pairs annotated as follows, \textsuperscript{\textdagger}:~Mathematics citing document, \textsuperscript{\textdaggerdbl}:~Mathematics cited document, \underline{X$\rightarrow$X}:~Citing and cited document are from the same discipline)}
   \label{tbl:secref}
 \begin{small}
 \begin{tabular}{llrrr}
