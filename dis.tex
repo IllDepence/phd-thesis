@@ -102,27 +102,9 @@
 \definecolor{discussionpurp-bg}{RGB}{251,249,251}
 \definecolor{infogrey-box}{RGB}{163,163,163}
 \definecolor{infogrey-bg}{RGB}{250,250,250}
-\definecolor{rq-box}{RGB}{103,188,223}
-\definecolor{rq-bg}{RGB}{247,252,253}
-\definecolor{lightgreen}{RGB}{247,253,251}
-\definecolor{newgreen}{RGB}{7,94,70}
-\definecolor{bordergreen}{RGB}{101,223,190}
-% \newtcolorbox{infoboxframe}{sidebyside,
-%  colback=lightgreen,
-%  colframe=bordergreen,
-%  coltext=newgreen,
-%  boxrule=0.9pt,
-%  boxsep=5pt,
-%  arc=1pt,
-%  leftrule=5pt,
-%  left=3pt,
-%  lefthand width=10pt,
-%  sidebyside gap=13pt,
-%  lower separated=false,
-%  }
-% \newenvironment{infobox}{\begin{infoboxframe}\centering\LARGE\faFileTextO\tcblower}
-%                         {\end{infoboxframe}}
-\newtcolorbox{infobox-doc}{
+\definecolor{rqblue-box}{RGB}{103,188,223}
+\definecolor{rqblue-bg}{RGB}{247,252,253}
+\newtcolorbox{infobox-pub}{
     breakable,
     enhanced,
     arc=1pt,
@@ -132,7 +114,7 @@
     leftrule=36pt,
     overlay={%
      \begin{tcbclipframe}
-      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faFileText};
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=pubgreen-bg] at (frame.north west){\Large\faFileText};
      \end{tcbclipframe}
     }
 }
@@ -146,7 +128,7 @@
     leftrule=36pt,
     overlay={%
      \begin{tcbclipframe}
-      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faComments};
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=discussionpurp-bg] at (frame.north west){\Large\faComments};
      \end{tcbclipframe}
     }
 }
@@ -160,7 +142,7 @@
     leftrule=36pt,
     overlay={%
      \begin{tcbclipframe}
-      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faInfoCircle};
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=infogrey-bg] at (frame.north west){\Large\faInfoCircle};
      \end{tcbclipframe}
     }
 }
@@ -168,13 +150,13 @@
     breakable,
     enhanced,
     arc=1pt,
-    colback=rq-bg,
-    colframe=rq-box,
+    colback=rqblue-bg,
+    colframe=rqblue-box,
     coltext=black,
     leftrule=36pt,
     overlay={%
      \begin{tcbclipframe}
-      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faQuestionCircle};
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=rqblue-bg] at (frame.north west){\Large\faQuestionCircle};
      \end{tcbclipframe}
     }
 }
