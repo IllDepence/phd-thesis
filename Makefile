@@ -17,7 +17,7 @@ $(PDFTARGET): $(TEXFILE) $(BIBFILE)
 
 # quick build (runs pdflatex only once)
 quick:
-	pdflatex -interaction=nonstopmode -output-directory=$(OUTPUTDIR) $(TEXFILE)
+	pdflatex -output-directory=$(OUTPUTDIR) $(TEXFILE)
 
 # clean up but keep dis.pdf
 clean:

@@ -93,6 +93,105 @@
 
 \usepackage[hidelinks]{hyperref}
 
+% - - - intro
+\usepackage{fontawesome}
+\usepackage[most]{tcolorbox}
+\definecolor{pubgreen-box}{RGB}{112,214,167}
+\definecolor{pubgreen-bg}{RGB}{247,247,244}
+\definecolor{discussionpurp-box}{RGB}{181,145,180}
+\definecolor{discussionpurp-bg}{RGB}{251,249,251}
+\definecolor{infogrey-box}{RGB}{163,163,163}
+\definecolor{infogrey-bg}{RGB}{250,250,250}
+\definecolor{rq-box}{RGB}{103,188,223}
+\definecolor{rq-bg}{RGB}{247,252,253}
+\definecolor{lightgreen}{RGB}{247,253,251}
+\definecolor{newgreen}{RGB}{7,94,70}
+\definecolor{bordergreen}{RGB}{101,223,190}
+% \newtcolorbox{infoboxframe}{sidebyside,
+%  colback=lightgreen,
+%  colframe=bordergreen,
+%  coltext=newgreen,
+%  boxrule=0.9pt,
+%  boxsep=5pt,
+%  arc=1pt,
+%  leftrule=5pt,
+%  left=3pt,
+%  lefthand width=10pt,
+%  sidebyside gap=13pt,
+%  lower separated=false,
+%  }
+% \newenvironment{infobox}{\begin{infoboxframe}\centering\LARGE\faFileTextO\tcblower}
+%                         {\end{infoboxframe}}
+\newtcolorbox{infobox-doc}{
+    breakable,
+    enhanced,
+    arc=1pt,
+    colback=pubgreen-bg,
+    colframe=pubgreen-box,
+    coltext=black,
+    leftrule=36pt,
+    overlay={%
+     \begin{tcbclipframe}
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faFileText};
+     \end{tcbclipframe}
+    }
+}
+\newtcolorbox{infobox-discussion}{
+    breakable,
+    enhanced,
+    arc=1pt,
+    colback=discussionpurp-bg,
+    colframe=discussionpurp-box,
+    coltext=black,
+    leftrule=36pt,
+    overlay={%
+     \begin{tcbclipframe}
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faComments};
+     \end{tcbclipframe}
+    }
+}
+\newtcolorbox{infobox-info}{
+    breakable,
+    enhanced,
+    arc=1pt,
+    colback=infogrey-bg,
+    colframe=infogrey-box,
+    coltext=black,
+    leftrule=36pt,
+    overlay={%
+     \begin{tcbclipframe}
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faInfoCircle};
+     \end{tcbclipframe}
+    }
+}
+\newtcolorbox{infobox-q}{
+    breakable,
+    enhanced,
+    arc=1pt,
+    colback=rq-bg,
+    colframe=rq-box,
+    coltext=black,
+    leftrule=36pt,
+    overlay={%
+     \begin{tcbclipframe}
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=lightgreen] at (frame.north west){\Large\faQuestionCircle};
+     \end{tcbclipframe}
+    }
+}
+%\faBookmark       -- contribution
+%\faChain          -- link of some sort
+%\faTag            -- note
+%\faNavicon        -- general
+%\faSignal         -- improvement
+%\faGraduationCap  -- hypothesis?
+%\faUniversity     -- sth of significance
+%\faShield         -- protection
+%\faGroup          -- sth w/ community?
+%\faMap            -- sth w/ planning?
+%\faPlus           -- mby contribution, but also looks medical
+%\faThumbTack      -- slightly weird shape
+% - - - /intro
+
 % - - - corpus
 \usepackage{amsmath,amssymb}
 \usepackage{tabularx}
@@ -111,10 +210,10 @@
 % - - - /corpus
 
 % - - - reference coverage and granularity (unarXive 2022)
-\colorlet{punct}{red!60!black}
-\definecolor{background}{HTML}{F7F7F7}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{cmnt}{magenta!60!black}
+\colorlet{listingpunct}{red!60!black}
+\definecolor{listingbg}{HTML}{F7F7F7}
+\definecolor{listingdelim}{RGB}{20,105,176}
+\colorlet{listingcmnt}{magenta!60!black}
 
 \lstdefinelanguage{json}{
     basicstyle=\normalfont\ttfamily,
@@ -123,16 +222,16 @@
     showstringspaces=false,
     breaklines=true,
     frame=lines,
-    backgroundcolor=\color{background},
+    backgroundcolor=\color{listingbg},
     morecomment=[s]{/*}{*/},
-    commentstyle=\color{cmnt}\ttfamily,
+    commentstyle=\color{listingcmnt}\ttfamily,
     literate=
-     *{:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
+     *{:}{{{\color{listingpunct}{:}}}}{1}
+      {,}{{{\color{listingpunct}{,}}}}{1}
+      {\{}{{{\color{listingdelim}{\{}}}}{1}
+      {\}}{{{\color{listingdelim}{\}}}}}{1}
+      {[}{{{\color{listingdelim}{[}}}}{1}
+      {]}{{{\color{listingdelim}{]}}}}{1},
 }
 \usepackage{lscape}
 % - - - /reference coverage and granularity (unarXive 2022)
@@ -150,10 +249,9 @@
 \definecolor{valuered}{HTML}{CF8369}
 \definecolor{contextgrey}{HTML}{A0A0A0}
 \definecolor{lightgrey}{HTML}{CFCFCF}
-\colorlet{punct}{red!60!black}
-\definecolor{background}{HTML}{F7F7F7}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{cmnt}{magenta!60!black}
+\definecolor{listingbg}{HTML}{F7F7F7}
+\definecolor{listingdelim}{RGB}{20,105,176}
+\colorlet{listingcmnt}{magenta!60!black}
 
 \lstdefinelanguage{plain}{
     stepnumber=1,
@@ -161,9 +259,9 @@
     showstringspaces=false,
     breaklines=true,
     frame=lines,
-    backgroundcolor=\color{background},
+    backgroundcolor=\color{listingbg},
     morecomment=[s]{/*}{*/},
-    commentstyle=\color{cmnt}\ttfamily,
+    commentstyle=\color{listingcmnt}\ttfamily,
     breakindent=0pt,
 }
 % - - - /references with usage parameters
@@ -172,7 +270,7 @@
 %% | Title page                   |
 %% --------------------------------
 
-\title{Final Dissertation Title Which Will Probably Need Multiple Lines}
+\title{Data Mining and Information Extraction Methods for Large-Scale High Quality Representations of Scientific Publications}
 \author{Tarek Saier}
 \subject{}
 
