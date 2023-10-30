@@ -1,5 +1,6 @@
 *.bak
 *.bk
+*.log
 *.out
 *.sav
 *.swp

@@ -78,8 +78,14 @@
 %% --------------------------------
 
 %% Biber statt BibTeX, siehe README.md
-\usepackage[citestyle=numeric,style=numeric,backend=biber]{biblatex}
+\usepackage[citestyle=numeric,style=numeric,backend=biber,defernumbers=true]{biblatex}
 \addbibresource{bib/dis.bib}
+% Define a custom sorting scheme that sorts by year (earliest first), then name, then title
+\DeclareSortingScheme{ynt}{
+  \sort[direction=ascending]{\field{year}}
+  \sort{\field{name}}
+  \sort{\field{title}}
+}
 
 
 %% --------------------------------
@@ -332,7 +338,10 @@ von
 \input{chapters/conclusion}
 
 %% Add entry to the table of contents for the bibliography
-\printbibliography[heading=bibintoc]
+\begin{refcontext}[sorting=ynt]
+\printbibliography[keyword=own,heading=bibintoc,title={Bibliography of Publications}]
+\end{refcontext}
+\printbibliography[notkeyword=own,heading=bibintoc,title={Bibliography of References}]
 
 %% --------------------------------
 %% | Appendix                     |
