@@ -20,30 +20,31 @@ Explanations of concepts that are specific to the work presented in individual c
 %   -> structured representation of publication [meta]data that is the basis for (1) digital services in academia, (2) analyses, (3) ML model dev+evaluation
 
 ``Scholarly data'' is a term used to refer to data that represents academic publications or related concepts such as authors and their affiliations. It can coarsely be divided into metadata, which gives information \emph{about} publications, and data directly reflecting the \emph{content} of publications.
-
 As such, scholarly data is the basis for essentially everything that relies on digital processing of publications. The following are three key examples.
 \begin{enumerate}
     \item \textbf{Digital services} in academia such as search (e.g. Google Scholar\refurl{https://scholar.google.com/}{2023-11-06}, Semantic Scholar\refurl{https://www.semanticscholar.org/}{2023-11-06}), recommendation (e.g. Academia.edu\refurl{https://www.academia.edu/}{2023-11-06}, CORE Recommender\refurl{https://core.ac.uk/services/recommender}{2023-11-06}), and aggregation platforms (e.g. Papers With Code\refurl{https://paperswithcode.com/}{2023-11-06}, Scopus\refurl{https://www.scopus.com/}{2023-11-06}).  % TODO: consider adding whats bad if data incorrect
     \item \textbf{Analyses} such as bibliometric analyses across time, geographic regions, or institutions, as well as trend analyses and investigations into specific phenomena (e.g. citation inequity).
-    \item \textbf{Model development}, as ML models are trained and evaluated on scholarly data.
+    \item \textbf{Model development} such as the training and evaluation of transformer based large language models (LLMs) and well as task specific models (e.g. for recommender systems, impact prediction, or information extraction).
 \end{enumerate}
-
-digital services in academia, such as search and recommender systems, 
-
-\begin{figure}[bt]
-  \centering
-  \includegraphics[width=0.7\linewidth]{figures/foundations/scholarly_data_lifecycle_dummy}
-  \caption[Scholarly data lifecycle]{Scholarly data lifecycle (note: in text mention that for older publications it goes from some source to distribution on paper, and scholarly data then requires OCR on scanned documents)}
-  \label{fig:foundations-datalifecycle}
-\end{figure}
-
-in Figure~\ref{fig:foundations-datalifecycle}
-
 
 % - how is scholarly data generated
 %   -> to some degree manually (metadata provided by authors), everything else (structured representations of full-text, references, etc.) out of necessity automated
 % - what are the data sources and their peculiarities?
 %   -> (see fig 2.1; from 3 stages of publishing, overall visual first, some special treatment for some metadata (wrt. access and requiring authors to manually provide it)
+
+\begin{figure}[bt]
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/foundations/scholarly_data_lifecycle_dummy}
+  \caption[Scholarly data origins]{Scholarly data origins (note: in text mention that for older publications it goes from some source to distribution on paper, and scholarly data then requires OCR on scanned documents)}
+  \label{fig:foundations-datalifecycle}
+\end{figure}
+
+Because scholarly data is only a secondary product to the actual publications themselves, it is necessary to consider how the data comes into being. Figure~\ref{fig:foundations-datalifecycle} schematically shows the path of a publication from authorship to distribution, together with different stages from which scholarly data can emerge. It is essential to note that academic publications are, historically and at the time of writing still, primarily written by humans with human consumption in mind. As such, publications are primarily a visual medium, optimized for parsing by human vision and intelligence. Scholarly data, however, is intended for automated processing and therefore benefits, for example, from strict syntactic rules and no reliance on assumed background knowledge. As a consequence, the creation of scholarly data requires bridging between these two.
+
+Specifically, (sth sth retrospective IE has to happen b/c stuff is not explicit across the stages -- segue to formats)
+(additionally mention that some scholarly data is actually requested from authors and therefore manually generated, but that wouldn't scale for full-text content)
+(segue to formats and mention that focus will be put on LaTeX b/c of relevance to work introduced later)
+
 % - LaTeX; what is it, why is it not the end-all-be-all, and what endeavours have been there so far and are on the horizon of LaTeX development wrt. more structure and semantic information?
 %   -> brief history, used primarily in STEM fields, Turing complete, document classes and packages provide semantic macros that translate in to visual representation but authors can always chose to directly describe visual presentation rather than semantic meaning, some endeavours to allow for more semantics (scholarly data specific and from accessibility POV)
 % - What about other formats?
