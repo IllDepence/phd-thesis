@@ -99,9 +99,9 @@
     {#1}}
 
 
-%% --------------------------------
-%% | Additional packages          |
-%% --------------------------------
+%% ---------------------------------------
+%% | Additional packages and definitions |
+%% ---------------------------------------
 
 % - - - notes
 % - packages NOT TO USE
@@ -264,6 +264,19 @@
     breakindent=0pt,
 }
 % - - - /references with usage parameters
+
+
+%% --------------------------------
+%% | Custom commands              |
+%% --------------------------------
+
+% command URL references
+\newcommand{\refurl}[2]{%
+  \footnote{See \url{#1} {\color{contextgrey}[last accessed: #2]}.}%
+}
+\newcommand{\refurlinline}[2]{%
+  \url{#1} {\color{contextgrey}[last accessed: #2]}%
+}
 
 %% --------------------------------
 %% | Title page                   |

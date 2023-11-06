@@ -5,9 +5,9 @@ This chapter provides information on overarching as well as foundational concept
 
 \begin{enumerate}
     \item \textbf{Scholarly Data}\\
-        First, we give an overview of the academic publication ecosystem and its relation to the landscape of scholarly data. Understanding the parts involved and relations between them is helpful for understanding decisions made in the system design and method development of the approaches presented later on.
+        First, we give an overview of the academic publication ecosystem and its relation to the landscape of scholarly data. Understanding the parts involved and relations between them is helpful for understanding decisions made for the system design and method development of the approaches presented later on.
     \item \textbf{Data Mining \& Information Extraction}\\
-        Second, we present relevant evaluation metrics from the areas of data mining and information extraction. These are essential for understanding the research goals as well as the results that were achieved.
+        Second, we present relevant evaluation metrics from the areas of data mining and information extraction. These are essential for a quantification of the research goals as well as the results that were achieved.
 \end{enumerate}
 
 Explanations of concepts that are specific to the work presented in individual chapters, as well as an overview of state of the art approaches in the respective areas, are provided jointly with the approaches in Chapters \ref{chp:corpus}\,--\,\ref{chp:params}.
@@ -15,16 +15,20 @@ Explanations of concepts that are specific to the work presented in individual c
 \section{Scholarly Data}
 
 % What do I want to say and convey here?
+
 % - what's the general nature of scholarly data?
 %   -> structured representation of publication [meta]data that is the basis for (1) digital services in academia, (2) analyses, (3) ML model dev+evaluation
-% - how is scholarly data generated
-%   -> to some degree manually (metadata provided by authors), everything else (structured representations of full-text, references, etc.) out of necessity automated
-% - what are the data sources and their peculiarities?
-%   -> (see fig 2.1; from 3 stages of publishing, overall visual first, some special treatment for some metadata (wrt. access and requiring authors to manually provide it)
-% - LaTeX; what is it, why is it not the end-all-be-all, and what endeavours have been there so far and are on the horizon of LaTeX development wrt. more structure and semantic information?
-%   -> brief history, used primarily in STEM fields, Turing complete, document classes and packages provide semantic macros that translate in to visual representation but authors can always chose to directly describe visual presentation rather than semantic meaning, some endeavours to allow for more semantics (scholarly data specific and from accessibility POV)
-% - What about other formats?
-%   -> JATS is mighty, Word is XML, triple formats are used for metadata
+
+``Scholarly data'' is a term used to refer to data that represents academic publications or related concepts such as authors and their affiliations. It can coarsely be divided into metadata, which gives information \emph{about} publications, and data directly reflecting the \emph{content} of publications.
+
+As such, scholarly data is the basis for essentially everything that relies on digital processing of publications. The following are three key examples.
+\begin{enumerate}
+    \item \textbf{Digital services} in academia such as search (e.g. Google Scholar\refurl{https://scholar.google.com/}{2023-11-06}, Semantic Scholar\refurl{https://www.semanticscholar.org/}{2023-11-06}), recommendation (e.g. Academia.edu\refurl{https://www.academia.edu/}{2023-11-06}, CORE Recommender\refurl{https://core.ac.uk/services/recommender}{2023-11-06}), and aggregation platforms (e.g. Papers With Code\refurl{https://paperswithcode.com/}{2023-11-06}, Scopus\refurl{https://www.scopus.com/}{2023-11-06}).  % TODO: consider adding whats bad if data incorrect
+    \item \textbf{Analyses} such as bibliometric analyses across time, geographic regions, or institutions, as well as trend analyses and investigations into specific phenomena (e.g. citation inequity).
+    \item \textbf{Model development}, as ML models are trained and evaluated on scholarly data.
+\end{enumerate}
+
+digital services in academia, such as search and recommender systems, 
 
 \begin{figure}[bt]
   \centering
@@ -34,6 +38,16 @@ Explanations of concepts that are specific to the work presented in individual c
 \end{figure}
 
 in Figure~\ref{fig:foundations-datalifecycle}
+
+
+% - how is scholarly data generated
+%   -> to some degree manually (metadata provided by authors), everything else (structured representations of full-text, references, etc.) out of necessity automated
+% - what are the data sources and their peculiarities?
+%   -> (see fig 2.1; from 3 stages of publishing, overall visual first, some special treatment for some metadata (wrt. access and requiring authors to manually provide it)
+% - LaTeX; what is it, why is it not the end-all-be-all, and what endeavours have been there so far and are on the horizon of LaTeX development wrt. more structure and semantic information?
+%   -> brief history, used primarily in STEM fields, Turing complete, document classes and packages provide semantic macros that translate in to visual representation but authors can always chose to directly describe visual presentation rather than semantic meaning, some endeavours to allow for more semantics (scholarly data specific and from accessibility POV)
+% - What about other formats?
+%   -> JATS is mighty, Word is XML, triple formats are used for metadata
 
 Joanne Cohn sending around e-prints~\cite{Feder2021,Turner2012}
 
