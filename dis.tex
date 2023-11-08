@@ -270,13 +270,20 @@
 %% | Custom commands              |
 %% --------------------------------
 
-% command URL references
+% command for URL references
 \newcommand{\refurl}[2]{%
   \footnote{See \url{#1} {\color{contextgrey}[last accessed: #2]}.}%
 }
 \newcommand{\refurlinline}[2]{%
   \url{#1} {\color{contextgrey}[last accessed: #2]}%
 }
+
+% % command to print bibliography number of a bibtex key
+% \DeclareCiteCommand{\citnum}
+%   {}
+%   {\printfield{labelnumber}}
+%   {}
+%   {}
 
 %% --------------------------------
 %% | Title page                   |

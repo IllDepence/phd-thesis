@@ -46,35 +46,44 @@ Because scholarly data is only a secondary product to the actual publications th
 
 Figure~\ref{fig:foundations-datalifecycle} schematically shows the path of a publication from authorship to distribution, together with different stages from which scholarly data can emerge. It is essential to note that academic publications are, historically and at the time of writing still, primarily written by humans with human readership in mind. As such, publications are primarily a visual medium, optimized for parsing by human vision and intelligence. Scholarly data, however, is intended for automated processing and therefore benefits, for example, from strict syntactic rules and no reliance on assumed background knowledge. As a consequence, the creation of scholarly data requires bridging between the existing visual presentation and desired structural derivate.
 
-Specifically, this means that information which is not made explicit in publications needs to be retroactively added. For example, if a piece of text \textit{``[1-3]''} in a publication is expressing a value rage, or a citation for references 1 to 3. Because it would be impractical to require researchers to produce a detailed set of annotations in addition to all their publications,\footnote{An exception to this is basic metadata such as title, authors, and abstract, which are commonly requested to be filled into a form in plain text during the submission process of a manuscript.} the retroactive adding of information needs to be done automatically, i.e. by means of information extraction. An shown in Figure~\ref{fig:foundations-datalifecycle}, the information extraction can happen at any given stage of publication. At each stage, the nature of the available data and information is different. Accordingly, there are different benefits and challenges. In the following we will discuss these different types of data, beginning with \LaTeX\ as it is the most relevant to the presented work.
+Specifically, this means that information which is not made explicit in publications needs to be retroactively added. For example, if a piece of text \textit{``[1,3]''} in a publication is expressing an interval of real numbers, or a citation for references 1 and 3. Because it would be impractical to require researchers to produce a detailed set of annotations in addition to all their publications,\footnote{This can be seen as a case of the ``authoring problem'' challenging the semantic web community~\cite{Kohlhase2010}.}\textsuperscript{,}\footnote{An exception to this is basic metadata such as title, authors, and abstract, which are commonly requested to be filled into a form in plain text during the submission process of a manuscript.} the retroactive adding of information needs to be done automatically, i.e. by means of information extraction. An shown in Figure~\ref{fig:foundations-datalifecycle}, the information extraction can happen at any given stage of publication. At each stage, the nature of the available data and information is different. Accordingly, there are different benefits and challenges in each case. In the following, we will discuss these different types of data from an information extraction perspective, beginning with \LaTeX\ as it is the most relevant to the presented work.
 
 \subsubsection{Data Formats}
 
-\paragraph{\LaTeX}
-
-% The STM Report
-% SALT: Weaving the Claim Web
-
 % - LaTeX; what is it, why is it not the end-all-be-all, and what endeavours have been there so far and are on the horizon of LaTeX development wrt. more structure and semantic information?
 %   -> brief history, used primarily in STEM fields, Turing complete, document classes and packages provide semantic macros that translate in to visual representation but authors can always chose to directly describe visual presentation rather than semantic meaning, some endeavours to allow for more semantics (scholarly data specific and from accessibility POV)
+
+\paragraph{\LaTeX}
+is described as \textit{``a system for typesetting documents''}~\cite{Lamport1994}, or a \textit{``widely used language for describing the logical structure of [...] documents''}~\cite{Mittelbach2023}. At its core, \LaTeX\ provides functionalities to control the visual presentation of a document. These functionalities are combined by macros, which offer authors the means to structurally and semantically describe a document (e.g. \texttt{\textbackslash title\{\}} or \texttt{\textbackslash section\{\}}). This structural and semantic information---which gets lost when the \LaTeX\ source is compiled to PDF---
+% TODO: try to find an example of a common case where authors visually denote something instead of making it explicit by a fitting macro, where the result in the PDF is indistinguishable (also factoring in hyperref which makes footnote marks, references, citations, etc. clickable)
+%\texttt{\textbackslash footnote\{Example\}}\footnote{Example} an author could use \texttt{\textbackslash textsuperscript\{\thefootnote\}} creates a footnote mark\textsuperscript{\thefootnote} that, in PDF output, is visually indistinguishable from what is produced by \texttt{\textbackslash} 
+%\footnote{The translation of structural components into a visual presentation is dictated by the document classes and packages providing the macros. For example, a paper author placing text between \texttt{\textbackslash begin\{abstract\}} and \texttt{\textbackslash end\{abstract\}}, will find their abstract text prefaced with ``\textbf{Abstract.}'' and set with a reduced line width when using the document class \texttt{llncs}, whereas there will be no preface and an unchanged line width when using \texttt{acmart}.}
+is immensely beneficial for information extraction.
+However, \LaTeX\ documents are usually a mixture structural and presentation description, which introduces challenges~\cite{Stamerjohanns2008}.
+While there have been efforts to establish \LaTeX\ extensions for more rigorous semantic annotation in the document source~\cite{Krieg2004,Groza2007,Bless2023}, these have not been widely adapted so far.
+There are, however, efforts by The \LaTeX\ Project\refurl{https://www.latex-project.org/}{2023-11-08} itself to support semantic annotation natively in the future~\cite{Mittelbach2020,Mittelbach2023}.
+
+Regarding at the availability of \LaTeX\ sources, arXiv.org\refurl{https://arxiv.org/}{2023-11-08} provides open access to over 2 million papers uploaded by their authors. With its origin in physics in the 1990s~\cite{Feder2021,Ginsparg2011a}, gradual adoption in mathematics in the early 2000s, and rapid growth in computer science since the 2010s~\cite{Saier2023unarXive}, it now covers significant portions of the scientific literature in aforementioned three disciplines. Given the benefits for information extraction, \LaTeX\ sources from arXiv have been used for generating scholarly data on a small scale since at least 1998~\cite{Nanba1998}. Large-scale efforts started with a focus on mathematics in 2008~\cite{Stamerjohanns2008}. Complete conversions of the papers on arXiv.org into a scholarly data corpus including a citation network are comparatively new development with the unarXive corpus~\cite{Saier2020} presented in this dissertation, as well as S2ORC~\cite{Lo2020}.
+% Joanne Cohn sending around e-prints~\cite{Feder2021,Turner2012}
+% June 1991 meets Paul Ginsparg who then goes on to start arXiv~\cite{Ginsparg2011a,Ginsparg2011}
+
+% metadata dump since 2020(?) available on Kaggle~\cite{arxiv_kaggle_dataset}
+
 % - What about other formats?
 %   -> JATS is mighty, Word is XML, triple formats are used for metadata
 
-Joanne Cohn sending around e-prints~\cite{Feder2021,Turner2012}
-
-June 1991 meets Paul Ginsparg who then goes on to start arXiv~\cite{Ginsparg2011a,Ginsparg2011}
-
-arXiv used 1998 for scholarly IE~\cite{Nanba1998}
-
-Semantic annotation natively from \LaTeX\ in the works (w/ accessibility in mind)~\cite{Mittelbach2020}
-
-metadata dump since 2020(?) available on Kaggle~\cite{arxiv_kaggle_dataset}
-
 \paragraph{Word}
+documents (DOCX files\refurl{https://www.loc.gov/preservation/digital/formats/fdd/fdd000397.shtml}{2023-11-08}) are the second major data format commonly accepted by publishers for submitting manuscripts~\cite{Johnson2018stm}. Contrary to the \LaTeX\ approach of compilation from source files, documents are edited in an interactive ``What you see is what you get'' (WYSIWYG) editor.\refurl{https://www.microsoft.com/microsoft-365/word}{2023-11-08} While DOCX files are essentially ZIP compressed XML files and contain more explicit information then PDF derivates, there are no open repositories similar to arXiv.org that provide large quantities of paper's Word source files.  % open question: do publishers keep them?
 
-\paragraph{JATS XML}
+\paragraph{Journal Article Tag Suite}
+(JATS) is a standardized markup format for scientific publications based on XML~\cite{Huh2014}. As depicted in Figure~\ref{fig:foundations-datalifecycle}, JATS files are not directly created by researchers, but are rather an intermediate format used by publishers, from which they derive different presentation formats of publications, such as PDF and HTML. While JATS files provide semantically richer information than \LaTeX\ or Word source files, their generation can only partially be automated and requires human oversight. Regarding availability, the PubMed Central Open Access Subset\refurl{https://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/}{2023-11-06} (PMC OAS) provides over 3 million publications from the biomedical and life sciences domain in JATS XML format. While the JATS files of the PMC OAS have been used to generate a corpus of linked publications in the past~\cite{Gipp2015}, more up-to-date and widely used corpora have only used the PDF versions of the contained documents~\cite{Lo2020}.
 
 \paragraph{PDF}
+% TODO: find source of PDF being the most used medium for paper distribution and consumption
+% (couldn't find explicit source in The STM Report)
+is the most common distribution format for academic publications~\cite{Johnson2018stm} and accordingly, the largest open document collections are PDF files, such as CORE~\cite{core} with over 100 million documents.
+
+sth sth parsing efforts (GROBID~\cite{Lopez2009} (used by \refurl{https://github.com/allenai/s2orc-doc2json}{2023-11-08}, CERMINE~\cite{Tkaczyk2015}), but more error prone than source formats or JATS XML~\cite{Bast2017}.
 
 \paragraph{Triple Formats}
 RDF, Turtle, JSON-LD, ... (relevant for metadata)
