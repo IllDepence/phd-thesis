@@ -48,7 +48,9 @@ Figure~\ref{fig:foundations-datalifecycle} schematically shows the path of a pub
 
 Specifically, this means that information which is not made explicit in publications needs to be retroactively added. For example, if a piece of text \textit{``[1,3]''} in a publication is expressing an interval of real numbers, or a citation for references 1 and 3. Because it would be impractical to require researchers to produce a detailed set of annotations in addition to all their publications,\footnote{This can be seen as a case of the ``authoring problem'' challenging the semantic web community~\cite{Kohlhase2010}.}\textsuperscript{,}\footnote{An exception to this is basic metadata such as title, authors, and abstract, which are commonly requested to be filled into a form in plain text during the submission process of a manuscript.} the retroactive adding of information needs to be done automatically, i.e. by means of information extraction. An shown in Figure~\ref{fig:foundations-datalifecycle}, the information extraction can happen at any given stage of publication. At each stage, the nature of the available data and information is different. Accordingly, there are different benefits and challenges in each case. In the following, we will discuss these different types of data from an information extraction perspective, beginning with \LaTeX\ as it is the most relevant to the presented work.
 
-\subsubsection{Data Formats}
+\subsubsection{Types of Data Sources}
+
+Viable input formats for the creation of scholarly data differ in terms of the contained information, challenges for information extraction, availability, and use.
 
 % - LaTeX; what is it, why is it not the end-all-be-all, and what endeavours have been there so far and are on the horizon of LaTeX development wrt. more structure and semantic information?
 %   -> brief history, used primarily in STEM fields, Turing complete, document classes and packages provide semantic macros that translate in to visual representation but authors can always chose to directly describe visual presentation rather than semantic meaning, some endeavours to allow for more semantics (scholarly data specific and from accessibility POV)
@@ -81,24 +83,32 @@ documents (DOCX files\refurl{https://www.loc.gov/preservation/digital/formats/fd
 \paragraph{PDF}
 % TODO: find source of PDF being the most used medium for paper distribution and consumption
 % (couldn't find explicit source in The STM Report)
-is the most common distribution format for academic publications~\cite{Johnson2018stm} and accordingly, the largest open document collections are PDF files, such as CORE~\cite{core} with over 100 million documents.
+is the most common distribution format for academic publications~\cite{Johnson2018stm} and accordingly, the largest open document collections are PDF files, such as CORE~\cite{core} with over 100 million documents. The PDF format does provide optional functionalities to describe the logical structure of documents in addition to the visual presentation~\cite{ISO32000-2}. However, such annotation is not an established practice in academic publishing and, accordingly, information extraction methods have to resort to heuristic approaches based on the visually presented information only~\cite{Lopez2009,Nasar2018,Faerber202x}. This makes PDF a more error prone source than aforementioned source formats~\cite{Bast2017}.
 
-sth sth parsing efforts (GROBID~\cite{Lopez2009} (used by \refurl{https://github.com/allenai/s2orc-doc2json}{2023-11-08}, CERMINE~\cite{Tkaczyk2015}), but more error prone than source formats or JATS XML~\cite{Bast2017}.
-
-\paragraph{Triple Formats}
-RDF, Turtle, JSON-LD, ... (relevant for metadata)
-
-% document classes and packages provide semantic macros and translate them
-% into visual output, but user can at any time also use visual primitives
-% directly
+% \paragraph{Triple Formats}  % NOTE: note a ``source format'' from which scholarly data sets are created
+% RDF, Turtle, JSON-LD, ... (relevant for metadata)
 
 \subsubsection{Types of Scholarly Data}
 % What do I want to say and convey here?
+
+Conceptually, scholarly data can be divided two overarching categories: \emph{metadata} and \emph{document collections}~\cite{Nasar2018}. As a third category, we consider \emph{lined document collections}, which combine features of aforementioned two.
 
 % - what ``conceptual'' types of scholarly data are there?
 %   -> metadata, document collections, linked document collections (combining former two b/c metadata usually also means citations)
 % - what are current/established (``SOTA'') approaches/endeavors/projects
 %   -> ORKG (very semantic but not scalable yet), arXMLiv (math focus), S2ORC (PDF source), OpenAlex (very large, ...)
+
+\paragraph{Metadata}
+provides information \emph{about} publications, rather than reflecting their full-text content. The data partially originates in already structured form provided by authors, as it is queried by publishers during manuscript submission. This includes the title, authors, as well as the abstract. Different regarding the data's origin are bibliographic references, which are also often included in metadata sets. Here, it is necessary to extract the reference information from the document submitted by an author (e.g. \LaTeX\ or Word sources). Regarding accessibility, title and author information is generally shared freely. Abstracts and references may also be openly acceptable, but this is not always the case, as evidenced by the existence of the Initiative for Open Abstracts\refurl{https://i4oa.org/}{2023-11-09} and the Initiative for Open Citations.\refurl{https://i4oc.org/}
+
+Two examples of scholarly metadata sets are the following two. (1)~OpenAlex~\cite{openalex} contains data on over 200 M publications, their authors, affiliations, citation links, etc. Its data sources include PubMed, arXiv, academic publishers, and various institutional repositories.\refurl{https://api.openalex.org/sources}{2023-11-09} (2)~the Open Research Knowledge Graph~\cite{orkg1,orkg2} is a 
+\footnote{Data retrieved 2023-11-09 from \url{https://www.orkg.org/sparql}.}
+
+\paragraph{Document Collections}
+CORE, arXMLiv
+
+\paragraph{Linked Document Collections}
+unarXive, S2ORC
 
 \section{Data Mining \& Information Extraction}
 
