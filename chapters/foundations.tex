@@ -50,6 +50,31 @@ Specifically, this means that information which is not made explicit in publicat
 
 \subsubsection{Types of Data Sources}
 
+\begin{table}[tb]
+  \caption{Comparison of Document Formats}
+  \label{tab:document_formats}
+  \centering
+  \begin{small}
+    \begin{threeparttable}
+      \begin{tabular}{lcclc}
+        \toprule
+        Format & Doc Structure & Semantic & Open Availability & Disciplines \\
+        \midrule
+        LaTeX  & \checkmark    & partial\tnote{a}  & \checkmark~(arXiv)  & physics, math, CS \\
+        Word   & \checkmark    & partial\tnote{b}  & $\times$~(publisher internal & all\tnote{c} \\
+        JATS   & \checkmark    & \checkmark & \checkmark~(PMC OAS)   & biomedical \\
+        PDF    & $\times$      & $\times$   & \checkmark~(abundant)  & all  \\
+        \bottomrule
+      \end{tabular}
+      \begin{tablenotes}
+        \item[a] todo
+        \item[b] todo
+        \item[c] Primarily humanities and not so much STEM fields.
+      \end{tablenotes}
+    \end{threeparttable}
+  \end{small}
+\end{table}
+
 Viable input formats for the creation of scholarly data differ in terms of the contained information, challenges for information extraction, availability, and use.
 
 % - LaTeX; what is it, why is it not the end-all-be-all, and what endeavours have been there so far and are on the horizon of LaTeX development wrt. more structure and semantic information?
@@ -89,10 +114,32 @@ is the most common distribution format for academic publications~\cite{Johnson20
 % RDF, Turtle, JSON-LD, ... (relevant for metadata)
 
 \subsubsection{Types of Scholarly Data}
-% What do I want to say and convey here?
+
+\begin{table}[tb]
+  \caption{Overview of Different Data Types}
+  \label{tab:data_types}
+  \centering
+  \begin{small}
+    \begin{threeparttable}
+      \begin{tabular}{lclc}
+        \toprule
+        Data Type                  & Contains                             & Size\tnote{a} & Examples \\
+        \midrule
+        Metadata                   & Title, Author, Citations, etc.       & \(10^8\)              & OpenAlex, ORKG \\
+        Document Collections       & Full-text                            & \(10^8\)              & CORE, arXMLiv \\
+        Linked Doc. Collections    & Full-text + citation network         & \(10^7\)              & unarXive, S2ORC \\
+        \bottomrule
+      \end{tabular}
+      \begin{tablenotes}
+        \item[a] Order of publications covered by large representatives of each type
+      \end{tablenotes}
+    \end{threeparttable}
+  \end{small}
+\end{table}
 
 Conceptually, scholarly data can be divided two overarching categories: \emph{metadata} and \emph{document collections}~\cite{Nasar2018}. As a third category, we consider \emph{lined document collections}, which combine features of aforementioned two.
 
+% What do I want to say and convey here?
 % - what ``conceptual'' types of scholarly data are there?
 %   -> metadata, document collections, linked document collections (combining former two b/c metadata usually also means citations)
 % - what are current/established (``SOTA'') approaches/endeavors/projects
@@ -101,14 +148,18 @@ Conceptually, scholarly data can be divided two overarching categories: \emph{me
 \paragraph{Metadata}
 provides information \emph{about} publications, rather than reflecting their full-text content. The data partially originates in already structured form provided by authors, as it is queried by publishers during manuscript submission. This includes the title, authors, as well as the abstract. Different regarding the data's origin are bibliographic references, which are also often included in metadata sets. Here, it is necessary to extract the reference information from the document submitted by an author (e.g. \LaTeX\ or Word sources). Regarding accessibility, title and author information is generally shared freely. Abstracts and references may also be openly acceptable, but this is not always the case, as evidenced by the existence of the Initiative for Open Abstracts\refurl{https://i4oa.org/}{2023-11-09} and the Initiative for Open Citations.\refurl{https://i4oc.org/}
 
-Two examples of scholarly metadata sets are the following two. (1)~OpenAlex~\cite{openalex} contains data on over 200 M publications, their authors, affiliations, citation links, etc. Its data sources include PubMed, arXiv, academic publishers, and various institutional repositories.\refurl{https://api.openalex.org/sources}{2023-11-09} (2)~the Open Research Knowledge Graph~\cite{orkg1,orkg2} is a 
-\footnote{Data retrieved 2023-11-09 from \url{https://www.orkg.org/sparql}.}
 
-\paragraph{Document Collections}
-CORE, arXMLiv
+Two examples of scholarly metadata sets are the following. (1)~OpenAlex~\cite{openalex} contains data on over 200\,M publications, their authors, affiliations, citation links, etc. Its data sources include PubMed, arXiv, academic publishers, and various institutional repositories.%\refurl{https://api.openalex.org/sources}{2023-11-09} 
+ (2)~The Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} provides information on over 28\,k\footnote{28.020 entities of type \texttt{http://orkg.org/orkg/class/Paper} as of 2023-11-09. Determined via the ORKG SPARQL endpoint at \url{https://www.orkg.org/sparql}.} publications, their contributions, research problems addressed etc. For its data, the ORKG is largely reliant on manual or semi-automated data entry.
+
+\paragraph{Document Collections} provide access to publications' full-text content. Because of this, they are reliant on open access publications as a data source. Furthermore, the documents either need to be licensed in a way that allows (re-)distribution, or access to the collection itself needs to be restricted accordingly. Because there are documents sources in different formats (see Figure~\ref{fig:foundations-datalifecycle}), document collections derived from them take different forms. While some are primarily aggregates of openly accessible PDFs(and therefore can also be seen as a data source), such as CORE~\cite{core}, others are the result of an involved generation process. An example for the latter is arXMLiv~\cite{arXMLiv}, which is an XML conversion of the papers on arXiv, comprising 1.6 M documents in its most recent version.
+
+In order to use a document collection for applications involving citation information, the it has to be jointly used with a suitable set of citation metadata. This requires (1)~the citation metadata to cover the documents within the collection, and (2)~the availability of identifiers (such as DOIs) or some matching procedure.  % NOTE: could also mention that citations information is then limited to that among the documents in the collection. *not* covered are all citations where the collection documents are the citing paper --- b/c citation relations aren't that ``self contained''
 
 \paragraph{Linked Document Collections}
-unarXive, S2ORC
+are document collections that, in addition to the document contents, include a citation network. This means, that in addition to the requirements for creating a document collection, their generation involves the additional step of linking the references in the documents' reference sections. Commonly, this furthermore involves linking in-text citations to their respective references, to provide for more fine-grained citation information.
+
+Two representatives of linked document collections are the following. (1)~unarXive~\cite{Saier2020} is generated from the \LaTeX\ sources on arXiv, comprising 2 M documents in its most recent version. Being generated from arXiv, it covers physics, mathematics, and computer science publications. S2ORC~\cite{Lo2020} is generated from PDF files of various sources such as PubMed and publishers' websites, and contains over 12 M documents. The publications covered are primarily from die fields of medicine and biology, followed by physics, mathematics, and computer science.
 
 \section{Data Mining \& Information Extraction}
 
