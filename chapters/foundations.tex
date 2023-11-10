@@ -184,37 +184,43 @@ To get a performance estimate, the model is applied on inputs, for which the des
 
 \subsubsection{Basic Concepts}
 
-\paragraph{Confusion Matrix}
+For the scope of the works presented in this dissertation, model predictions as well as ground truths can be regarded as labels. Accordingly, comparisons in an evaluation are between predicted labels and ground truth labels.
+
+\paragraph{Confusion Matrix} The most basic elements in a comparison between predicted labels and ground truth labels can be arranged in a so called \emph{confusion matrix}, as shown below for a binary classification.
 
 \begin{equation*}
 \begin{array}{cc|cc}
-    & \ & \multicolumn{2}{c}{\text{Actual}} \\
+    & \ & \multicolumn{2}{c}{\text{Ground Truth Label}} \\
     & \ & \text{Positive} & \text{Negative} \\
     \hline
-    \multirow{2}{*}{Predicted} & \text{Positive} & \text{True Positives (TP)} & \text{False Positives (FP)} \\
+    \multirow{2}{*}{Predicted Label} & \text{Positive} & \text{True Positives (TP)} & \text{False Positives (FP)} \\
      & \text{Negative} & \text{False Negatives (FN)} & \text{True Negatives (TN)} \\
 \end{array}
 \end{equation*}
 
+Based on the TP, FP, FN and TN, different metrics can be calculated.
 
-\paragraph{Accuracy}
+\paragraph{Accuracy} expresses the overall ratio of correct predictions in an evaluation, calculated over both the correct positive, and the correct negative predictions.
 
 \begin{equation*}
 \text{Accuracy (ACC)} = \frac{\text{TP + TN}}{\text{TP + TN + FP + FN}}
 \end{equation*}
 
-\paragraph{Precision}
+Accuracy is informative in evaluations where the labels are balanced, but of limited information value when this is not the case. In such cases, the metrics precision and recall should be regarded.
+
+\paragraph{Precision} expresses for the set of positive predictions, what ratio of these was made correctly.
 
 \begin{equation*}
 \text{Precision (P)} = \frac{\text{TP}}{\text{TP + FP}}
 \end{equation*}
 
-
-\paragraph{Recall}
+\paragraph{Recall} expresses for the set of ground truth positives, what ratio of these was correctly predicted positive.
 
 \begin{equation*}
 \text{Recall (R)} = \frac{\text{TP}}{\text{TP + FN}}
 \end{equation*}
+
+Achieving a good precision and recall with a model is always a trade-off. This can be illustrated by the fact that a model which always predicts a positive label will achieve a perfect recall of 1.\footnote{Formally, always predicting a positive label ensures $\text{FN} = 0$, which means $\text{R} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{TP} + 0} = \frac{\text{TP}}{\text{TP}} = 1$.} Because then all ground truth positives will be predicted correctly, but in turn all ground truth negatives will be predicted incorrectly.
 
 \paragraph{F-measure}
 
