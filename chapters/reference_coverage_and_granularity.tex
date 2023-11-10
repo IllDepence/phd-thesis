@@ -24,7 +24,7 @@ However, reference linking methods\footnote{We use ``link[ing/ed] references'' w
 
 We see the reason for this lack in linked references in two key shortcomings of current methods.
 First, references are linked using simple string similarity measures that are often relying \emph{only} on publications' title and author information (which is not always contained in references; see Figure~\ref{fig:hardmatch}). %Note: maybe add sth. along the lines of “relying on title (and mby authors) is deemed sufficient”
-Second, references are exclusively linked to a target collection of paper records---usually a large metadata set like DBLP\footnote{See \url{https://dblp.org/}.} or OpenAlex\footnote{See \url{https://openalex.org/}.}, or a set of IDs like DOIs or PMIDs. This means references to literature which is not contained in the target collection, as well as to non-source items~\cite{Chi2014}, cannot be linked (see ``?'' markers in Figure~\ref{fig:approach}).
+Second, references are exclusively linked to a target collection of paper records---usually a large metadata set like DBLP\refurl{https://dblp.org/}{2023-11-10} or OpenAlex\refurl{https://openalex.org/}{2023-11-10}, or a set of IDs like DOIs or PMIDs. This means references to literature which is not contained in the target collection, as well as to non-source items~\cite{Chi2014}, cannot be linked (see ``?'' markers in Figure~\ref{fig:approach}).
 
 \begin{figure}[tb]
   \centering
@@ -55,13 +55,13 @@ In summary, we make the following contributions.
 \begin{itemize}
     \item We propose a blocking-based approach for matching bibliographic references that is independent of a target collection of paper records.
     \item We perform a large-scale evaluation showing that our approach results in a manifold increase in high quality reference links.
-    \item We make our data and code publicly available.\footnote{See \url{https://github.com/IllDepence/ulite2022}.}
+    \item We make our data and code publicly available.\refurl{https://github.com/IllDepence/ulite2022}{2023-11-10}
 \end{itemize}
 
 \subsection{Related Work}
 Blocking-based approaches have been used in the domain of scholarly data, though to the best of our knowledge not for bibliographic references. We therefore report on (1) exemplary uses of blocking in the scholarly domain for entities other than references, and (2) approaches to linking bibliographic references using methods other than blocking.
 
-Simonini et al.~\cite{Simonini2016blast} develop BLAST (Blocking with Loosely-Aware Schema Techniques) which adapts Locality-Sensitive Hashing. Among data sets from other domains, they also evaluate their approach for the task of linking 2,600 DBLP paper records to the ACM\footnote{See \url{https://dl.acm.org/}.} and Google Scholar.\footnote{See \url{https://scholar.google.com/}.} 
+Simonini et al.~\cite{Simonini2016blast} develop BLAST (Blocking with Loosely-Aware Schema Techniques) which adapts Locality-Sensitive Hashing. Among data sets from other domains, they also evaluate their approach for the task of linking 2,600 DBLP paper records to the ACM\refurl{https://dl.acm.org/}{2023-11-10} and Google Scholar.\refurl{https://scholar.google.com/}{2023-11-10} 
 Sefid~\cite{Sefid2019} proposes several models to match paper records utilizing the papers' title, header, and citation information. The models are evaluated in three scenarios matching 1,000 paper records from CiteSeer$^x$~\cite{CiteSeerX2019} to IEEE, DBLP, and Web of Science.
 Lastly, Färber et al.~\cite{FaerberLin2022} detect duplicates among 243 million author records in the Microsoft Academic Knowledge Graph~\cite{MAKG} and evaluate their approach using ORCiD IDs.
 
@@ -83,7 +83,7 @@ Our approach consists of the following three steps: (1) \emph{pre-processing} to
 %Our approach consists of the following three steps: (1)~\emph{pre-processing} to convert references into a normalized, structured format, (2)~\emph{blocking} to allow us to process large amounts of references, and (3)~\emph{matching} to determine references that refer to the same publication. Conceptually the steps operate on the level of (1)~single entities, (2)~blocks (sets of entities or entity pairs), and (3)~entity pairs. Below the steps are explained in more detail.
 
 \paragraph{Pre-processing}
-References as they appear in papers are hard to match for several reasons, such as the variety of citation styles, variants of author names, venue abbreviations, sparsity of information, and typing errors~\cite{Christen2012} (see Figure~\ref{fig:hardmatch}). To mitigate these issues, we pre-process references in three steps: first, we apply GROBID's~\cite{Lopez2009} reference string parsing module,\footnote{See \url{https://grobid.readthedocs.io/en/latest/Grobid-service/\#apiprocesscitation}.}\footnote{GROBID was chosen according to the results of~\cite{Tkaczyk2018}.} then we expand journal and conference abbreviations, and lastly all strings are lowercased and Unicode normalized. For the abbreviation expansion we use a mapping for 47.6k journal titles provided by JabRef\footnote{See \url{https://github.com/JabRef/abbrv.jabref.org}.} and 2.6k conference titles crawled from various web sources. Following~\cite{Koo2011} we select seven reference fields for the blocking step: title, author, year, volume, journal, booktitle, and pages.
+References as they appear in papers are hard to match for several reasons, such as the variety of citation styles, variants of author names, venue abbreviations, sparsity of information, and typing errors~\cite{Christen2012} (see Figure~\ref{fig:hardmatch}). To mitigate these issues, we pre-process references in three steps: first, we apply GROBID's~\cite{Lopez2009} reference string parsing module,\refurl{https://grobid.readthedocs.io/en/latest/Grobid-service/\#apiprocesscitation}{2023-11-10}\textsuperscript{,}\footnote{GROBID was chosen according to the results of~\cite{Tkaczyk2018}.} then we expand journal and conference abbreviations, and lastly all strings are lowercased and Unicode normalized. For the abbreviation expansion we use a mapping for 47.6k journal titles provided by JabRef\refurl{https://github.com/JabRef/abbrv.jabref.org}{2023-11-10} and 2.6k conference titles crawled from various web sources. Following~\cite{Koo2011} we select seven reference fields for the blocking step: title, author, year, volume, journal, booktitle, and pages.
 
 \paragraph{Blocking}
 %Blocking is an essential technique in the field of ER~\cite{Papadakis2020survey} used to reduce the number of necessary one-to-one comparisons in or between large data sets. 
@@ -250,7 +250,7 @@ In Table~\ref{tab:newlinks} we show on the level of papers, references, and in-t
 % # - in-text markers:    23,707 vs 227,454 -> 9.59 times of linked 
 
 \paragraph{Manual Evaluation}
-To assess the quality of our newly linked references, we take a random sample of 500 reference comparisons from the matching procedure and manually verify if our approach correctly labeled each pair as a match or non-match. This is done by inspecting both original reference strings (prior to pre-processing) and determining whether they refer to the same publication or not. Because in some disciplines such as physics it is common to see references without a title given, this process involves looking up and verifying publications' details online.\footnote{For further details see \url{https://github.com/IllDepence/ulite2022/tree/master/5_manual_evaluation}.} Examples of two reference pairs are shown in Figure~\ref{fig:hardmatch}. Comparing our predicted matches with the manually established ground truth, we measure a precision of 93.20\% and a recall of 79.34\%. Accordingly the F1-score is 85.71\%.
+To assess the quality of our newly linked references, we take a random sample of 500 reference comparisons from the matching procedure and manually verify if our approach correctly labeled each pair as a match or non-match. This is done by inspecting both original reference strings (prior to pre-processing) and determining whether they refer to the same publication or not. Because in some disciplines such as physics it is common to see references without a title given, this process involves looking up and verifying publications' details online.\footnote{For further details see \refurlinline{https://github.com/IllDepence/ulite2022/tree/master/5_manual_evaluation}.} Examples of two reference pairs are shown in Figure~\ref{fig:hardmatch}. Comparing our predicted matches with the manually established ground truth, we measure a precision of 93.20\% and a recall of 79.34\%. Accordingly the F1-score is 85.71\%.
 This shows us that our newly established links are of good quality, suggesting our approach facilitates the creation of more accurate scholarly data and, accordingly, higher quality analyses and downstream applications based scholarly data sets.
 %This shows us that most of our newly established links are correct and that the number of missed links is (false negatives) is not very high.\footnote{Note that, due to the nature of our evaluation, the recall value concerns comparisons \emph{within} blocks. This means further missing links for matching references which were not placed together in any block can exist. An evaluation is unfortunately only feasible using comparisons within blocks rather than any random pairs of references in the corpus, because in the latter case the chances are very low that a random sample contains any reference pairs which were considered after blocking.}
 
@@ -287,7 +287,7 @@ Tarek Saier: Conceptualization, Data curation (support), Formal analysis, Invest
 % Large-scale data sets on scholarly publications are the basis for a variety of bibliometric analyses and natural language processing (NLP) applications. Especially data sets derived from publication's \emph{full-text} have recently gained attention.
 % While several such data sets already exist, we see key shortcomings in terms of their domain and time coverage, citation network completeness, and representation of full-text content.
 % To address these points, we propose a new version of the data set unarXive.
-% We base our data processing pipeline and output format on two existing data sets, and improve on each of them. Our resulting data set comprises 1.9 M publications spanning multiple disciplines and 32 years. It furthermore has a more complete citation network than its predecessors and retains a richer representation of document structure as well as non-textual publication content such as mathematical notation. In addition to the data set, we provide ready-to-use training/test data for citation recommendation and IMRaD classification. All data and source code is publicly available at \url{https://github.com/IllDepence/unarXive}.
+% We base our data processing pipeline and output format on two existing data sets, and improve on each of them. Our resulting data set comprises 1.9 M publications spanning multiple disciplines and 32 years. It furthermore has a more complete citation network than its predecessors and retains a richer representation of document structure as well as non-textual publication content such as mathematical notation. In addition to the data set, we provide ready-to-use training/test data for citation recommendation and IMRaD classification. All data and source code is publicly available at \refurlinline{https://github.com/IllDepence/unarXive}{2023-111-10}.
 % \end{abstract}
 
 \subsection{Introduction}
@@ -409,7 +409,7 @@ S2ORC (PDF)~\cite{Lo2020} is second in size and, while not directly comparable d
 unarXive 2020~\cite{Saier2020} has the second highest citation network completeness in direct comparison, but lacks structured content.
 
 The bottom part of the table are data sets with both document structure preserved and structured mathematical notation.
-S2ORC (\LaTeX)~\cite{Lo2020} is a discontinued\footnote{Last release including the \LaTeX\ subset is 2019-09-28, see \url{https://github.com/allenai/s2orc} (accessed 2023/02/12).} subset of S2ORC and has a limited citation network, 
+S2ORC (\LaTeX)~\cite{Lo2020} is a discontinued\footnote{Last release including the \LaTeX\ subset is 2019-09-28, see \refurlinline{https://github.com/allenai/s2orc}{2023-02-12}.} subset of S2ORC and has a limited citation network, 
 arXMLiv~\cite{arXMLiv} offers the highest level of structure but no citation network, and 
 SciXGen~\cite{chen2021-scixgen} is limited in size.
 The PMC-OAS~\refurl{https://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/}{2023-11-06} is comparable to unarXive 2022 in size and structure, but has a partial and mixed citation network.
@@ -429,7 +429,7 @@ Regarding both S2ORC (\LaTeX) and unarXive 2020, we don't just copy, but also im
 Conceptually, our overall data set creation process can be broken down into two major steps, namely document parsing and reference linking, In the following these are described in more detail.
 
 \subsubsection{Document Parsing}
-To convert the \LaTeX\ source of a paper into a format that is well suited for NLP applications and analyses, we follow S2ORC (\LaTeX) and unarXive 2020 and perform the following three steps. First, we flatten the paper's \LaTeX\ source into a single \texttt{.tex} document using latexpand.\footnote{See \url{https://ctan.org/pkg/latexpand}.} Next, we use the tool Tralics\footnote{See \url{https://www-sop.inria.fr/marelle/tralics/}.} to convert the \LaTeX\ source into XML. In the last step, we create an easy to handle JSON structure from the XML.
+To convert the \LaTeX\ source of a paper into a format that is well suited for NLP applications and analyses, we follow S2ORC (\LaTeX) and unarXive 2020 and perform the following three steps. First, we flatten the paper's \LaTeX\ source into a single \texttt{.tex} document using latexpand.\refurl{https://ctan.org/pkg/latexpand}{2023-11-10} Next, we use the tool Tralics\refurl{https://www-sop.inria.fr/marelle/tralics/}{2023-11-10} to convert the \LaTeX\ source into XML. In the last step, we create an easy to handle JSON structure from the XML.
 
 We adapt and extend the JSON structure of S2ORC as shown in Table~\ref{tab:formext}. Adding paper metadata facilitates easier analyses (e.g. for specific or across disciplines). Including information on section numbers and types reflects the document structure more closely (e.g. the nesting structure is not lost). Retaining URLs from embedded links helps with reference linking (see Section~\ref{sec:reflink}).
 
@@ -497,7 +497,7 @@ To add a citation network to the data set, bibliographical references---which at
 
 \paragraph{Parsing} unarXive 2020 utilizes the tool Neural Parscit~\cite{neuralparscit} for reference parsing and furthermore uses a heuristic procedure to determine identifiers such as DOIs or arXiv IDs found within reference string. We use GROBID~\cite{Lopez2009}, a more commonly used and actively developed tool. Additionally, we extend the identifier determination heuristics to be more robust and versatile by refining matching patterns and extending them to more citation styles.
 
-\paragraph{Matching} unarXive 2020 matches references to paper records in the Microsoft Academic Graph (MAG)~\cite{Sinha2015MAG}, which is no longer publicly available. Instead of the MAG, we use OpenAlex~\cite{openalex}, the MAG's open successor provided by the nonprofit organization OurResearch.\footnote{See \url{https://ourresearch.org/}.} Chosing OpenAlex allows us to also match references to recent papers, which would not be contained in legacy versions of the MAG. Additionally, the fact that OpenAlex paper records contain a variety of identifiers (e.g. DOI and PubMed ID) facilitates combined and comparative analyses of our data with others. Furthermore, OpenAlex has been deemed better suited for bibliographic analyses than the MAG~\cite{openalex-vs-mag}.
+\paragraph{Matching} unarXive 2020 matches references to paper records in the Microsoft Academic Graph (MAG)~\cite{Sinha2015MAG}, which is no longer publicly available. Instead of the MAG, we use OpenAlex~\cite{openalex}, the MAG's open successor provided by the nonprofit organization OurResearch.\refurl{https://ourresearch.org/}{2023-11-10} Chosing OpenAlex allows us to also match references to recent papers, which would not be contained in legacy versions of the MAG. Additionally, the fact that OpenAlex paper records contain a variety of identifiers (e.g. DOI and PubMed ID) facilitates combined and comparative analyses of our data with others. Furthermore, OpenAlex has been deemed better suited for bibliographic analyses than the MAG~\cite{openalex-vs-mag}.
 
 % if we need scientific foundation for the decision to choose OpenAlex:
 % a recent research comparing MAG's and OpenAlex suitability for bibliometric work concludes: " OpenAlex seems to be more suited for bibliometric analyses than MAG"
@@ -604,12 +604,12 @@ Due to its similarities in structure and contained information, unarXive 2022 is
 Given a piece of text and a citation-marker position, the task of content based citation recommendation entails identifying publications which are suitable to cite in the given text at the given position~\cite{Bhagavatula2018,Faerber2020a}. Large full-text corpora of publications with a citation network provide a rich source for supervision of machine learning (ML) models for this task. That is, human made citations are used as training examples, or for evaluating models in a citation re-prediction setting.
 From the premissively licensed papers in our data set we use all in-text citation markers with a linked reference cited at least three times, to allow splitting into train, dev, and test data.
 The result is 2.5 M items consisting of (1) a paragraph and citation marker position (model input), and (2) the ID of the cited document (desired model output). % maybe add some stats on # of cited docs, etc.
-% The data is available at \url{https://huggingface.co/datasets/saier/unarXive_citrec}.
+% The data is available at \refurlinline{https://huggingface.co/datasets/saier/unarXive_citrec}.
 
 \paragraph{IMRaD Classification}
 Scientific publications are usually structured into sections commonly summarized as ``Introduction, Methods, Results, and Discussion'' (IMRaD). Classifying sections of scientific text into these four classes is done, for example, in fine-grained citation classification. % ---to answer, for example, if a publication was cited as background information in the introduction, or as an influence on the methodology in the methods section.
 Because conventions differ between disciplines, we prepare data for this task for computer science papers only. To aforementioned four classes we add the common ``Related Work'' section as a fifth class. From the premissively licensed computer science papers in our data, we use those that are unambiguously assignable to one of the five classes. The result is 530~k items consisting of (1) the paragraph text (model input), and (2) the class (desired model output). An exemplary application scenario for a model trained on this data is a paper writing assistant that can detect parts in a manuscript, which might be better placed in a different section (e.g. discussion rather than results).
-% The data is available at \url{https://huggingface.co/datasets/saier/unarXive_imrad_clf}.
+% The data is available at \refurlinline{https://huggingface.co/datasets/saier/unarXive_imrad_clf}{2023-11-10}.
 
 
 % 277388 CS papers
@@ -637,18 +637,24 @@ Under consideration of the FAIR principles, we chose the following well establis
 
 \begin{itemize}
     \item The \textbf{data set} is distributed on \texttt{Zenodo}.\\
-        $\rightarrow$\url{https://doi.org/10.5281/zenodo.7752615} (open subset)\\
-        $\rightarrow$\url{https://doi.org/10.5281/zenodo.7752754} (full)\\
+        \begin{small}
+        $\rightarrow$\refurlinline{https://doi.org/10.5281/zenodo.7752615}{2023-11-10} (open subset)\\
+        $\rightarrow$\refurlinline{https://doi.org/10.5281/zenodo.7752754}{2023-11-10} (full)\\
+        \end{small}
         In accordance with the licensing terms of our source data, we share our data set in two versions.\\
         (1) The subset generated from permissively licensed source data (165 k publications, 9\%) is openly accessible.\\
-        (2) The full data set, generated partially from source data under arXiv.org's ``non-exclusive license to distribute,''\footnote{See \url{http://arxiv.org/licenses/nonexclusive-distrib/1.0/}.} is accessible through Zenodo's ``restricted access'' policy, %\footnote{See \url{https://about.zenodo.org/policies/}.}
+        (2) The full data set, generated partially from source data under arXiv.org's ``non-exclusive license to distribute,''\refurl{http://arxiv.org/licenses/nonexclusive-distrib/1.0/}{2023-11-10} is accessible through Zenodo's ``restricted access'' policy,\refurl{https://about.zenodo.org/policies/}{2023-11-10}
 making it possible to grant access to the data on request given the intended use is in accordance with the license terms.
     \item The \textbf{NLP task data} is provided on the \texttt{Hugging Face Hub}.\\
-        $\rightarrow$\url{https://huggingface.co/datasets/saier/unarXive_citrec}\\
-        $\rightarrow$\url{https://huggingface.co/datasets/saier/unarXive_imrad_clf}\\
+        \begin{small}
+        $\rightarrow$\refurlinline{https://hf.co/datasets/saier/unarXive_citrec}{2023-11-10}\\
+        $\rightarrow$\refurlinline{https://hf.co/datasets/saier/unarXive_imrad_clf}{2023-11-10}\\
+        \end{small}
         This facilitates easy access and use by the NLP community.
     \item The \textbf{source code} for creating the data set is shared on \texttt{GitHub} under the MIT License.\\
-        $\rightarrow$\url{https://github.com/IllDepence/unarXive}\\
+        \begin{small}
+        $\rightarrow$\refurlinline{https://github.com/IllDepence/unarXive}{2023-11-10}\\
+        \end{small}
         Sharing the code openly and permissively licensed allows anyone to freely modify and extend the code to their needs. This makes, for example, integration into other NLP projects such as benchmarks and frameworks possible.
 \end{itemize}
 
@@ -657,7 +663,7 @@ We propose unarXive 2022, a data set generated from 1.9 M \LaTeX\ paper sources 
 
 With our data set we provide data for two NLP tasks, content based citation recommendation and IMRaD classification, to facilitate its usage. We furthermore distribute our work under consideration of the FAIR principles, sharing it through well established channels and permissively licensed, thereby ensuring proper accessibility, easy use, and possibilities for adaption and extension.
 
-We plan to incrementally update our data set with new arXiv.org submissions. For future developments, we note the importance of mathematical notation in academic publications, as reflected by recent SemEval tasks in 2021 and 2022~\cite{semeval21_task8,semeval22_task12}. Similar to existing projects,\footnote{See \url{https://github.com/PierreSenellart/theoremkb}.} we plan to investigate novel analyses and applications based on the combination of our data set's citation network and structured mathematical notation.
+We plan to incrementally update our data set with new arXiv.org submissions. For future developments, we note the importance of mathematical notation in academic publications, as reflected by recent SemEval tasks in 2021 and 2022~\cite{semeval21_task8,semeval22_task12}. Similar to existing projects,\refurl{https://github.com/PierreSenellart/theoremkb}{2023-11-10} we plan to investigate novel analyses and applications based on the combination of our data set's citation network and structured mathematical notation.
 
 % Possible addition: \cite{Meuschke2023} -> PDF extraction still struggles w/ mathematical notation across the board, so mathematical notation is not only important but also hard to get by
 
