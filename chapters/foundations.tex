@@ -5,12 +5,12 @@ This chapter provides information on overarching as well as foundational concept
 
 \begin{enumerate}
     \item \textbf{Scholarly Data}\\
-        First, we give an overview of the academic publication ecosystem and its relation to the landscape of scholarly data. Understanding the parts involved and relations between them is helpful for understanding decisions made for the system design and method development of the approaches presented later on.
+        First, we give an overview of the academic publication ecosystem and its relation to the landscape of scholarly data. Understanding the parts involved and relations between them is helpful for understanding decisions made for the system design and method development of the approaches presented later on. Based on the overview, we additionally highlight the current state-of-the-art.
     \item \textbf{Data Mining \& Information Extraction}\\
-        Second, we present relevant concepts from the areas of data mining and information extraction. These are essential for a quantification of the research goals as well as the results that were achieved.
+        Second, we present essential concepts from the areas of data mining and information extraction. These are needed for the quantification of the research goals as well as the results that are presented later on.
 \end{enumerate}
 
-Explanations of concepts that are specific to the work presented in individual chapters, as well as an overview of state of the art approaches in the respective areas, are provided jointly with the approaches in Chapters \ref{chp:corpus}\,--\,\ref{chp:params}.
+Explanations of concepts that are specific to the work presented in individual chapters, as well as a focussed view on state-of-the-art approaches in the respective areas, are provided jointly with the approaches in Chapters \ref{chp:corpus}\,--\,\ref{chp:params}.
 
 \section{Scholarly Data}
 
@@ -131,7 +131,7 @@ is the most common distribution format for academic publications~\cite{Johnson20
         \bottomrule
       \end{tabular}
       \begin{tablenotes}
-        \item[a] Order of publications covered by large representatives of each type
+        \item[a] Order of publications covered by largest representatives of each type
       \end{tablenotes}
     \end{threeparttable}
   \end{small}
@@ -152,7 +152,7 @@ provides information \emph{about} publications, rather than reflecting their ful
 Two examples of scholarly metadata sets are the following. (1)~OpenAlex~\cite{openalex} contains data on over 200\,M publications, their authors, affiliations, citation links, etc. Its data sources include PubMed, arXiv, academic publishers, and various institutional repositories.%\refurl{https://api.openalex.org/sources}{2023-11-09} 
  (2)~The Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} provides information on over 28\,k\footnote{28.020 entities of type \texttt{http://orkg.org/orkg/class/Paper} as of 2023-11-09. Determined via the ORKG SPARQL endpoint at \url{https://www.orkg.org/sparql}.} publications, their contributions, research problems addressed etc. For its data, the ORKG is largely reliant on manual or semi-automated data entry.
 
-\paragraph{Document Collections} provide access to publications' full-text content. Because of this, they are reliant on open access publications as a data source. Furthermore, the documents either need to be licensed in a way that allows (re-)distribution, or access to the collection itself needs to be restricted accordingly. Because there are documents sources in different formats (see Figure~\ref{fig:foundations-datalifecycle}), document collections derived from them take different forms. While some are primarily aggregates of openly accessible PDFs(and therefore can also be seen as a data source), such as CORE~\cite{core}, others are the result of an involved generation process. An example for the latter is arXMLiv~\cite{arXMLiv}, which is an XML conversion of the papers on arXiv, comprising 1.6 M documents in its most recent version.
+\paragraph{Document Collections} provide access to publications' full-text content. Because of this, they are reliant on open access publications as a data source. Furthermore, the documents either need to be licensed in a way that allows (re-)distribution, or access to the collection itself needs to be restricted accordingly. Because there are documents sources in different formats (see Figure~\ref{fig:foundations-datalifecycle}), document collections derived from them take different forms. While some are primarily aggregates of openly accessible PDFs (and therefore can also be seen as a data source), such as CORE~\cite{core}, others are the result of an involved generation process. An example for the latter is arXMLiv~\cite{arXMLiv}, which is an XML conversion of the papers on arXiv, comprising 1.6 M documents in its most recent version.
 
 In order to use a document collection for applications involving citation information, the it has to be jointly used with a suitable set of citation metadata. This requires (1)~the citation metadata to cover the documents within the collection, and (2)~the availability of identifiers (such as DOIs) or some matching procedure.  % NOTE: could also mention that citations information is then limited to that among the documents in the collection. *not* covered are all citations where the collection documents are the citing paper --- b/c citation relations aren't that ``self contained''
 
@@ -160,6 +160,9 @@ In order to use a document collection for applications involving citation inform
 are document collections that, in addition to the document contents, include a citation network. This means, that in addition to the requirements for creating a document collection, their generation involves the additional step of linking the references in the documents' reference sections. Commonly, this furthermore involves linking in-text citations to their respective references, to provide for more fine-grained citation information.
 
 Two representatives of linked document collections are the following. (1)~unarXive~\cite{Saier2020} is generated from the \LaTeX\ sources on arXiv, comprising 2 M documents in its most recent version. Being generated from arXiv, it covers physics, mathematics, and computer science publications. S2ORC~\cite{Lo2020} is generated from PDF files of various sources such as PubMed and publishers' websites, and contains over 12 M documents. The publications covered are primarily from die fields of medicine and biology, followed by physics, mathematics, and computer science.
+
+% \subsection{State-of-the-Art}
+% TODO: put SOTA here? would need to compare by some criteria, which should be introduced in data quality section below ... so, as third section in foundations chapter mby?
 
 \section{Data Mining \& Information Extraction}
 
@@ -175,6 +178,8 @@ The work presented in this dissertation involves both data mining, the process o
 
 \subsection{Data Quality}
 
+TODO
+
 % - mby sync w/ four quality criteria
 
 \subsection{Model Evaluation}
@@ -186,19 +191,35 @@ To get a performance estimate, the model is applied on inputs, for which the des
 
 For the scope of the works presented in this dissertation, model predictions as well as ground truths can be regarded as labels. Accordingly, comparisons in an evaluation are between predicted labels and ground truth labels.
 
-\paragraph{Confusion Matrix} The most basic elements in a comparison between predicted labels and ground truth labels can be arranged in a so called \emph{confusion matrix}, as shown below for a binary classification.
+\paragraph{Confusion Matrix} The most basic elements in a comparison between predicted labels and actual (ground truth) labels can be arranged in a \emph{confusion matrix}, as shown below for a binary classification with labels Positive (Pos.) and Negative (Neg.).
 
-\begin{equation*}
-\begin{array}{cc|cc}
-    & \ & \multicolumn{2}{c}{\text{Ground Truth Label}} \\
-    & \ & \text{Positive} & \text{Negative} \\
-    \hline
-    \multirow{2}{*}{Predicted Label} & \text{Positive} & \text{True Positives (TP)} & \text{False Positives (FP)} \\
-     & \text{Negative} & \text{False Negatives (FN)} & \text{True Negatives (TN)} \\
-\end{array}
-\end{equation*}
+\begin{center}
+{    % for making group where "\makegapedcells" is valid
+\makegapedcells
+\begin{tabular}{cc|cc}
+\multicolumn{2}{c}{}
+            &   \multicolumn{2}{c}{Predicted} \\
+    &       &   Pos. &   Neg.            \\
+    \cline{2-4}
+\multirow{2}{*}{\rotatebox[origin=c]{90}{Actual}}
+    & Pos.  & TP    & FN                \\
+    & Neg.  & FP    & TN                \\
+    \cline{2-4}
+    \end{tabular}
+ }
+\end{center}
 
-Based on the TP, FP, FN and TN, different metrics can be calculated.
+% \begin{equation*}
+% \begin{array}{cc|cc}
+%     & \ & \multicolumn{2}{c}{\text{Ground Truth Label}} \\
+%     & \ & \text{Positive} & \text{Negative} \\
+%     \hline
+%     \multirow{2}{*}{Predicted Label} & \text{Positive} & \text{True Positives (TP)} & \text{False Positives (FP)} \\
+%      & \text{Negative} & \text{False Negatives (FN)} & \text{True Negatives (TN)} \\
+% \end{array}
+% \end{equation*}
+
+Based on the True Positives (TP), False Positives (FP), False Negatives (FN) and True Negatives (TN), different metrics can be calculated.
 
 \paragraph{Accuracy} expresses the overall ratio of correct predictions in an evaluation, calculated over both the correct positive, and the correct negative predictions.
 
@@ -220,13 +241,16 @@ Accuracy is informative in evaluations where the labels are balanced, but of lim
 \text{Recall (R)} = \frac{\text{TP}}{\text{TP + FN}}
 \end{equation*}
 
-Achieving a good precision and recall with a model is always a trade-off. This can be illustrated by the fact that a model which always predicts a positive label will achieve a perfect recall of 1.\footnote{Formally, always predicting a positive label ensures $\text{FN} = 0$, which means $\text{R} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{TP} + 0} = \frac{\text{TP}}{\text{TP}} = 1$.} Because then all ground truth positives will be predicted correctly, but in turn all ground truth negatives will be predicted incorrectly.
+Achieving a good precision and recall with a model is always a trade-off. This can be illustrated by the fact that a model which always predicts a positive label will achieve a perfect recall of 1.\footnote{Always predicting a positive label ensures $\text{FN} = 0$, which means $\text{R} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{TP} + 0} = \frac{\text{TP}}{\text{TP}} = 1$.} Because then all ground truth positives will be predicted correctly, but in turn all ground truth negatives will be predicted incorrectly.
 
-\paragraph{F-measure}
+\paragraph{F-score}
+is a means to quantify precision and recall in a single value. Its general form, $\text{F}_\beta$, allows to put more weight on either the precision or recall. Setting $\beta$ to 1 gives the $\text{F}_1$, which is the harmonic mean of precision and recall.
 
 \begin{equation*}
-\text{F1-Score (F1)} = \frac{2 \cdot \text{P} \cdot \text{R}}{\text{P + R}}
+\text{$\text{F}_1$-score ($\text{F}_1$)} = \frac{2 \cdot \text{P} \cdot \text{R}}{\text{P + R}}
 \end{equation*}
+
+Precision, recall and, $\text{F}_1$-score are the typical metrics to assess and compare approaches to the information extraction tasks covered in this dissertation. In the following section, task specific considerations regarding model evaluation are discussed.
 
 % part | task | metrics
 % - unarXive20 | parsing | success rate
@@ -239,11 +263,27 @@ Achieving a good precision and recall with a model is always a trade-off. This c
 
 \subsubsection{Task Specific Considerations}
 
+Here we briefly present considerations regarding the evaluation of models for specific tasks. Detailed discussions can be found in the respective chapters.
+
 \paragraph{Reference Linking}
+
+The task of linking references aims to identify for a bibliographic reference, which publication it is referring to. The task is necessary, because references in available data sources (PDF, \LaTeX, etc.) are first and foremost just ambiguous character strings, as they do not unanimously follow a single, rigorously defined format. Furthermore, identifying the referenced publication presupposes a given set of distinct publications from which to identify one. In an idealized model world, this ``target set'' encompasses everything that was ever references. Practically though, the target set is a finite set of publication records acquired from some data source. For the evaluation of reference linking models this has the following consequence.
+
+If a reference can not be linked to the target set, it stands to question if
+\begin{itemize}
+    \item (a) the reference publication \emph{is} part of the target set, but the matching model failed to identify it.
+    \item (b) the reference publication \emph{is not} part of the target set, and the matching model correctly determined that none of the publications in the target set is the correct match.
+\end{itemize}
+
+Because of this ...
 
 \paragraph{Entity Recognition}
 
 \paragraph{Relation Extraction}
+
+\subsubsection{Bibliographic Note}
+
+A more extensive introduction to the above and related concepts can be found in the literature~\cite{Aggarwal2018}.
 
 % - reference linking
 %   - can only check if predicted link is correct (TP/TP+FP = prection)
