@@ -182,6 +182,10 @@ TODO
 
 % - mby sync w/ four quality criteria
 
+quality assessment of S2ORC~\cite{Wu2022doceng}
+
+notion of ``good enough'' data quality in scientometrics~\cite{Strotmann2015}
+
 \subsection{Model Evaluation}
 
 Model evaluation is what's guiding the development and assessment of approaches to computational problems. For example, when developing a machine learning approach to a classification problem, it is of interest to compare the approach to existing ones. In essence, a model evaluation results in a performance estimate. This is because the model performance can not be known in advance for every possible input, so only an estimate based on a set of realistic inputs can be attained.
@@ -266,8 +270,7 @@ Precision, recall and, $\text{F}_1$-score are the typical metrics to assess and 
 Here we briefly present considerations regarding the evaluation of models for specific tasks. Detailed discussions can be found in the respective chapters.
 
 \paragraph{Reference Linking}
-
-The task of linking references aims to identify for a bibliographic reference, which publication it is referring to. The task is necessary, because references in available data sources (PDF, \LaTeX, etc.) are first and foremost just ambiguous character strings, as they do not unanimously follow a single, rigorously defined format. Furthermore, identifying the referenced publication presupposes a given set of distinct publications from which to identify one. In an idealized model world, this ``target set'' encompasses everything that was ever references. Practically though, the target set is a finite set of publication records acquired from some data source. For the evaluation of reference linking models this has the following consequence.
+is a task that aims to identify for a bibliographic reference, which publication it is referring to. The task is necessary because references in available data sources (PDF, \LaTeX, etc.) are first and foremost just ambiguous character strings, as they do not unanimously follow a single, rigorously defined format. Furthermore, identifying the referenced publication presupposes a given set of distinct publications (a ``target set'') from which to identify one. In an idealized model world, this target set encompasses everything that was ever referenced. Practically though, the target set is a finite set of publication records acquired from some data source. For the evaluation of reference linking models, this leads to the following consideration.
 
 If a reference can not be linked to the target set, it stands to question if
 \begin{itemize}
@@ -275,18 +278,30 @@ If a reference can not be linked to the target set, it stands to question if
     \item (b) the reference publication \emph{is not} part of the target set, and the matching model correctly determined that none of the publications in the target set is the correct match.
 \end{itemize}
 
-Because of this ...
+As a consequence, the recall of a reference linking model (i.e. the ratio of successfully matched references) is influenced both by the model performance \emph{and} the selection of target set. The precision (i.e. the correctness ratio of matched references) can be understood as is.
 
 \paragraph{Entity Recognition}
+is the task of identifying entities mentioned in a text.\footnote{It is also referred to as ``Named Entity Recognition'' (NER). The term ``Named Entity Recognition and Classification'' (NERC) is sometimes used to distinguish it from only identifying mentions without assigning an entity type. Similarly, ``Named Entity Recognition and Disambiguation'' (NERD) means entities are furthermore disambiguated, which usually is done by linking to a knowledge graph.}
+A key consideration regarding the evaluation of entity recognition models is whether to require \emph{exact matches} of entity mention spans (strict), or whether to also consider \emph{partial matches} (loose). For example, if a text mentions the ``Directory of Open Access Journals'' and a model only identifies ``Directory of Open Access'', this can be seen as either incorrect (strict) or correct (loose). Another consideration is whether a evaluation scheme requires the model, in addition to identifying entity mentions, to also determine each entity's type, which is common practice. The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Goyal2018}.
+
+% TODO: adjust s.t. there are some considerations form which some consequence follows
 
 \paragraph{Relation Extraction}
+has to goal of determining the relations between entities mentioned in a text. It can be posed as a classification task on entity pairs. That is, for each possible combination of two entities $a$ and $b$ in a document, the task is to determine a relation label for $(a, b)$, where ``no relation'' is among the possibilities. A further distinction can be made by defining a ``none of the above'' (NOTA) label, which means the two entities \emph{are} in a relation, but there is not fitting label in the set of labels defined by the task~\cite{Bassignana2022}. % could also mention directed vs undirected relations -> strict vs loose evaluation
+Relation extraction, as described above, is evaluated on an \emph{entity level}, while the text based on which relations get determined contains entity \emph{mentions}. To illustrate this, consider the following text.
+
+\begin{quote}
+\textit{``The Directory of Open Access Journals (DOAJ) currently indexes over 20k journals. Lars Bj{\o}rnshauge, who founded the DOAJ 20 years ago, is happy about that.''}
+\end{quote}
+
+The relation [Lars~Bj{\o}rnshauge]\,$\xrightarrow[]{\text{\texttt\tiny founded}}$[DOAJ] exists between two entities. The second sentence it the text with entity mentions \textit{``Lars~Bj{\o}rnshauge''} and \textit{``DOAJ''} can be regarded as the \emph{relation evidence}. The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Nasar2021}.
 
 \subsubsection{Bibliographic Note}
 
-A more extensive introduction to the above and related concepts can be found in the literature~\cite{Aggarwal2018}.
+A more general and extensive introduction to the above and related concepts, with extensive pointers to further literature, can be found in~\cite{Aggarwal2018}.
 
 % - reference linking
-%   - can only check if predicted link is correct (TP/TP+FP = prection)
+%   - can only check if predicted link is correct (TP/TP+FP = precision)
 %   - can't check if no match is b/c not in target collection or really missed match (no FN/TN info)
 % - NER
 %   - 
