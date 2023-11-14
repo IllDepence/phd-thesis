@@ -175,20 +175,47 @@ S2ORC~\cite{Lo2020}, and unarXive~\cite{Saier2020}. unarXive is generated from t
 
 % (failed) attempt at a segue: The creation of large-scale scholarly data, as described in the previous section, requires the processing of some form of source data. ...
 
-The work presented in this dissertation involves both data mining, the process of ``discovering useful patterns and trends in large data sets''~\cite{Larose2014}, and information extraction, the process of ``converting unstructured text into a structured representation''~\cite{Aggarwal2018}. In the following, we therefore introduce relevant concepts with respect to (1)~data quality, and (2)~the evaluation of information extraction models.
+The work presented in this dissertation aims to improve the quality of scholarly data, and involves both data mining, the process of ``discovering useful patterns and trends in large data sets''~\cite{Larose2014}, and information extraction, the process of ``converting unstructured text into a structured representation''~\cite{Aggarwal2018}. In the following, we therefore introduce relevant concepts with respect to (1)~data quality, and (2)~the evaluation of information extraction models.
 
 \subsection{Data Quality}
 
-Data quality is widely seen as context specific, and accordingly defined in a very general, quantitative way as ``fitness for use''~\cite{Strong1997,Juran1999}.
+Data quality is commonly understood as being context specific. In a very general, quantitative way, data quality is accordingly defined as ``fitness for use''~\cite{Strong1997,Juran1999}. Meaningful metrics for data quality in the context of scholarly data can therefore be derived by considering its use.
+Historically, the dominant use of scholarly data is found in bibliometric and scientometric analyses~\cite{Garfield1964,Mingers2015}, such as impact or performance analysis and trend detection. The focus in that case lies on the citation network. % NOTE: also involves the aspect of author disambiguation
+More recently, with the continuing rise of open access publishing and advances in NLP, additional areas of significant use have been established. These are training ML models~\cite{Gudivada2017}, and analyses of publications' full-text content~\cite{Jurgens2018,Lahav2022}. While the citation network remains a key focus area for scholarly data use~\cite{Wu2022doceng}, recent usage patterns additionally put importance on accurate and structured representations of the publication content.
+
+% focus "areas"
+% - citation network
+% = full-text representation
+
+% quality "requirement"(?)
+% - Lauscher2018: need very high
+% - Strotmann2015: crucial for global, more forgiving for local
+
+% ...
+
+% aspects
+% - volume          -> timeliness + completeness
+% - completeness    "
+% - correctness     -> accuracy
+% - granularity
+
+% further aspects
+% - relevance
+% - accuracy
+% - timeliness
+% - comparability
+% - completeness
+
+%   ~\cite{Herzog2007}
+%   - Regarding data quality: "The seven most commonly cited properties are (1) relevance, (2) accuracy, (3) timeliness, (4) accessibility and clarity of results, (5) comparability, (6) coherence, and (7) completeness."
+%   - "For this book, we are primarily concerned with five of these properties: relevance, accuracy, timeliness, comparability, and completeness"
+
+notion of ``good enough'' data quality in scientometrics~\cite{Strotmann2015}
+linking references is a complex task, and quality requirements for scientometrics might warrant doing it semi-automatically w/ a human in the loop~\cite{Lauscher2018}
 
 quality assessment of S2ORC~\cite{Wu2022doceng} (showcase quantitative assessments of document linking and conflation quality of S2ORC)
 
 data quality considerations for ML~\cite{Gudivada2017} (mention bias)
-
-notion of ``good enough'' data quality in scientometrics~\cite{Strotmann2015}
-
-
-idea: granularity mby new quality criterion needed nowadays b/c of open access and increased importance of research artifacts (and therefore data on it)
 
 \subsection{Model Evaluation}
 
