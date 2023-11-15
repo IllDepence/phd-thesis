@@ -167,21 +167,33 @@ S2ORC~\cite{Lo2020}, and unarXive~\cite{Saier2020}. unarXive is generated from t
 
 \section{Data Mining \& Information Extraction}
 
-% What do I want to say and convey here?
-% - 
+% What do I want to say and convey here? (TODO: integrate in text)
+% - Data Quality: defining goal and assessment of results wrt. scholarly data produced
+% - Model Evaluation: assessment of extraction models
 
 % ``Data Mining is the process of discovering useful patterns and trends in large data sets.''~\cite{Larose2014}
 % Information Extraction the process of ``converting unstructured text into a structured representation''~\cite{Aggarwal2018}
 
-% (failed) attempt at a segue: The creation of large-scale scholarly data, as described in the previous section, requires the processing of some form of source data. ...
-
-The work presented in this dissertation aims to improve the quality of scholarly data, and involves both data mining, the process of ``discovering useful patterns and trends in large data sets''~\cite{Larose2014}, and information extraction, the process of ``converting unstructured text into a structured representation''~\cite{Aggarwal2018}. In the following, we therefore introduce relevant concepts with respect to (1)~data quality, and (2)~the evaluation of information extraction models.
+The work presented in this dissertation aims to improve the quality of scholarly data, and involves both data mining, the process of ``discovering useful patterns and trends in large data sets''~\cite{Larose2014}, and information extraction, the process of ``converting unstructured text into a structured representation''~\cite{Aggarwal2018}. In the following, we therefore provide background information regarding (1)~data quality, and (2)~the evaluation of information extraction models. Based on the considerations and concepts introduced, the goals and results of the work presented in the following chapters can be quantitatively assessed.
 
 \subsection{Data Quality}
 
+% Side note: could mention that bibliometrics/scientometrics/science of science is also concerned w/ other aspects not covered below, but these are not ``(big) data driven''
+
 Data quality is commonly understood as being context specific. In a very general, quantitative way, data quality is accordingly defined as ``fitness for use''~\cite{Strong1997,Juran1999}. Meaningful metrics for data quality in the context of scholarly data can therefore be derived by considering its use.
-Historically, the dominant use of scholarly data is found in bibliometric and scientometric analyses~\cite{Garfield1964,Mingers2015}, such as impact or performance analysis and trend detection. The focus in that case lies on the citation network. % NOTE: also involves the aspect of author disambiguation
-More recently, with the continuing rise of open access publishing and advances in NLP, additional areas of significant use have been established. These are training ML models~\cite{Gudivada2017}, and analyses of publications' full-text content~\cite{Jurgens2018,Lahav2022}. While the citation network remains a key focus area for scholarly data use~\cite{Wu2022doceng}, recent usage patterns additionally put importance on accurate and structured representations of the publication content.
+
+Historically, the dominant use of scholarly data is found in bibliometric and scientometric analyses~\cite{Garfield1964,Mingers2015}, such as impact or performance analysis and trend detection. The focus of use in that case lies on the citation network. % NOTE: also involves the aspect of author disambiguation
+More recently, with the continuing rise of open access publishing and advances in NLP, additional areas of significant use have been established. These are training ML models~\cite{Gudivada2017}, and analyses of publications' full-text content~\cite{Jurgens2018,Lahav2022}. While the citation network remains a key focus area for scholarly data use~\cite{Wu2022doceng}, recent usage patterns additionally put importance on structured representations of the publication content.
+
+Key dimensions of data quality are (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, and (5)~completeness~\cite{Herzog2007}. Based on these general dimensions and aforementioned focus areas of scholarly data use, quality criteria for scholarly data can be derived.
+
+\begin{enumerate}
+    \item \textbf{Relevance} is a quality dimension heavily dependent on the data's intended use. As scholarly data is used to gain insight on a particular aspect of academia (e.g. a certain field, practice, institution or individual), the data needs to cover that aspect to a sufficient degree. For example, for a comparison of mathematical formula usage in STEM fields, the data used has to cover a representative portion of publications from various fields in STEM. Accordingly, we can derive the quality criterion of $\rightarrow$\,\textit{representative coverage}.
+    \item \textbf{Accuracy} as a quality dimension raises the question of how accurate scholarly data has to be, for meaningful usage. Previous research proposes that for ``local analyses'' (e.g. node degrees in a citation network) 80\% correct data can already allow for reasonable insight, but for ``global analyses'' (e.g. rankings) at least 90\% correctness should be aimed for~\cite{Strotmann2015}. Others have argued that quality requirements in scientometrics are high enough to warrant the cost of requiring a ``human in the loop'' approach to data generation~\cite{Lauscher2018}. Given these considerations, we can derive the criterion of $\rightarrow$\,\textit{hight accuracy}.
+    \item \textbf{Timeliness} with regard to scholarly data is crucial in cases where the underlying reality of the research object changes quickly. This is the case, for example, in paper recommendation, where everything published after the recommender model's training data simply can not be recommended. In other cases, like ...$\rightarrow$\,\textit{}.
+    \item \textbf{Comparability} $\rightarrow$\,\textit{}.
+    \item \textbf{Completeness} $\rightarrow$\,\textit{}.
+\end{enumerate}
 
 % focus "areas"
 % - citation network
