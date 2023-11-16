@@ -180,54 +180,70 @@ The work presented in this dissertation aims to improve the quality of scholarly
 
 % Side note: could mention that bibliometrics/scientometrics/science of science is also concerned w/ other aspects not covered below, but these are not ``(big) data driven''
 
-Data quality is commonly understood as being context specific. In a very general, quantitative way, data quality is accordingly defined as ``fitness for use''~\cite{Strong1997,Juran1999}. Meaningful metrics for data quality in the context of scholarly data can therefore be derived by considering its use.
+Data quality is commonly understood as being context specific. In a very general, quantitative way, data quality is accordingly defined as ``fitness for use''~\cite{Strong1997,Juran1999}. Meaningful metrics for data quality in the context of scholarly data can therefore be derived by considering its use. Because existing literature on scholarly data quality only considers specific use cases and offers no systematic consideration of the topic~\cite{Strotmann2015,Lauscher2018}, we present a structured, more encompassing perspective in the following.
+
+\subsubsection{Data Quality in the Context of Scholarly Data}
 
 Historically, the dominant use of scholarly data is found in bibliometric and scientometric analyses~\cite{Garfield1964,Mingers2015}, such as impact or performance analysis and trend detection. The focus of use in that case lies on the citation network. % NOTE: also involves the aspect of author disambiguation
-More recently, with the continuing rise of open access publishing and advances in NLP, additional areas of significant use have been established. These are training ML models~\cite{Gudivada2017}, and analyses of publications' full-text content~\cite{Jurgens2018,Lahav2022}. While the citation network remains a key focus area for scholarly data use~\cite{Wu2022doceng}, recent usage patterns additionally put importance on structured representations of the publication content.
+More recently, with the continuing rise of open access publishing and advances in NLP, additional areas of significant use have been established. These are training ML models~\cite{Gudivada2017}, and analyses of publications' full-text content~\cite{Jurgens2018,Lahav2022}. While the citation network remains a key focus area for scholarly data use~\cite{Wu2022doceng}, these recent usage patterns additionally put importance on structured representations of the publication content.
 
-Key dimensions of data quality most commonly cited in the literature are (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, and (5)~completeness~\cite{Herzog2007}. Based on these general dimensions and aforementioned focus areas of scholarly data use, quality criteria for scholarly data can be derived.
+Key dimensions of data quality most commonly cited in the literature are (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, and (5)~completeness~\cite{Herzog2007}. Based on these general dimensions and aforementioned focus areas of scholarly data use, quality criteria for scholarly data can be derived, as shown in Table~\ref{tab:scholdataquali}. In the following, we discuss the five dimensions with regard to scholarly data, as well as the quality criteria derived based on the focus areas of use.
+
+\begin{table}[tb]
+  \caption{Scholarly Data Quality Criteria}
+  \label{tab:scholdataquali}
+  \centering
+  \begin{small}
+    \begin{threeparttable}
+      \begin{tabular}{lll}  % p{9.7cm}
+        \toprule
+        General Dimension & Focus\tnote{a} & Specific Criterion\\
+        \midrule
+        \multirow{2}{*}{Relevance} & CN & Representative coverage of publications in target area \\
+        \ & SDR & Inclusion of relevant content types (text, formulae, tables, etc.) \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Accuracy} & CN & Correctly linked references \\
+        \ & SDR & Noise-free full-text content \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{(both)} & \multirow{2}{*}{Coverage of recent publications} \\
+        \ & \ & \ \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Comparability} & CN & Use of established document identifiers (DOI, PubMed ID, etc.) \\
+        \ & SDR & Fine-granular, specifically typed content representation \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Completeness} & CN & All references in included publications successfully linked \\
+        \ & SDR & No sections or content missing (appendices, formulae, etc.) \\
+        \bottomrule
+      \end{tabular}
+      \begin{tablenotes}
+        \item[a] Focus are of use (CN = Citation Network, SDR = Structured Document Representation)
+      \end{tablenotes}
+    \end{threeparttable}
+  \end{small}
+\end{table}
 
 \begin{enumerate}
-    \item \textbf{Relevance} is a quality dimension heavily dependent on the data's intended use. As scholarly data is used to gain insight on particular aspects of academia (e.g. a certain field, practice, institution or individual), the data needs to cover that aspect to a sufficient degree in order to be relevant. For example, for a comparison of mathematical formula usage in STEM fields, the data used has to cover a representative portion of publications from various fields in STEM. Accordingly, we can derive the quality criterion of $\rightarrow$\,\textit{representative coverage}.  % generalization: volume (the more publications, the more general coverage)
-    \item \textbf{Accuracy} as a quality dimension raises the question of how accurate scholarly data has to be for meaningful usage. Previous research proposes that for ``local analyses'' (e.g. node degrees in a citation network) 80\% correct data can already allow for reasonable insight, but for ``global analyses'' (e.g. rankings) at least 90\% correctness should be aimed for~\cite{Strotmann2015}. Others have argued that quality requirements in scientometrics are high enough to warrant the cost of requiring a ``human in the loop'' approach to data generation~\cite{Lauscher2018}. Given these considerations, we can derive the general criterion of $\rightarrow$\,\textit{hight accuracy}.  % argument for LaTeX
-    \item \textbf{Timeliness} with regard to scholarly data is crucial if the underlying reality of the research object changes quickly. In cases like training of a model for parsing bibliographic references, recent data is likely not needed, as citation styles don't change rapidly.  However, for tasks like paper recommendation, everything published after the recommender model's training data simply can not be recommended. For ``general purpose'' scholarly data we can therefore derive the quality criterion $\rightarrow$\,\textit{sufficient recency}.  % argument for continuous generation (possible w/ unarXive code, not implemented though; also: matching to target set more easily updatable than clustering)
-    \item \textbf{Comparability} as a quality criterion is of importance to enable the combined of use of data sets. In other words, items in the data set should be clearly identified. In the case of scholarly data, this calls for determining the persistent identifiers (DOI, ORCiD, and ROR~\cite{Meadows2019}) of items of interest. Accordingly, following from comparability is the requirement $\rightarrow$\,\textit{use of persistent identifiers}.
-    \item \textbf{Completeness} is the quality that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data (references, sections(?), ...)$\rightarrow$\,\textit{}.
+    \item \textbf{Relevance} is a quality dimension heavily dependent on the data's intended use. As scholarly data is used to gain insight on particular aspects of academia (e.g. a certain field, practice, institution or individual), the data needs to cover that aspect to a sufficient degree in order to be relevant. For citation based analyses, this means a representative portion of publications from the studied disciplines, time span, languages, etc. has to be covered. On the level of document representations, it is important that relevant content types are included. For example, for a comparison of mathematical formula usage in publications, the data has to contain publications' full-text \emph{including} pieces and sections of mathematical notation.  % generalization: volume (the more publications, the more general coverage)
+    \item \textbf{Accuracy} regarding the citation network means, that references should be correctly linked to the publications they are referencing. For document representations, accuracy entails that text content should be free of noise. As described in the previous sections, both of these are non-trivial due to the sources scholarly data relies on. Regarding the question of how accurate scholarly data has to be for meaningful usage, previous research proposes that for ``local analyses'' (e.g. node degrees in a citation network) 80\% correct data can already allow for reasonable insight, but for ``global analyses'' (e.g. rankings) at least 90\% correctness should be aimed for~\cite{Strotmann2015}. Others have argued that quality requirements in scientometrics are high enough to warrant the cost of requiring a ``human in the loop'' approach to data generation~\cite{Lauscher2018}.  % argument for LaTeX
+    \item \textbf{Timeliness} with regard to scholarly data is crucial if the underlying reality of the research object changes quickly. In cases like training a model for parsing bibliographic references, recent data is likely not needed, as citation styles don't change rapidly.  However, for tasks like paper recommendation, everything published after the recommender model's training data simply can not be recommended. For ``general purpose'' scholarly data we can therefore derive the quality criterion $\rightarrow$\,\textit{sufficient recency}.  % argument for continuous generation (possible w/ unarXive code, not implemented though; also: matching to target set more easily updatable than clustering)
+    \item \textbf{Comparability} as a quality criterion is of importance to enable the combined use of data sets. In other words, items in the data set should be clearly identified. In the case of scholarly data, this calls for determining the persistent identifiers (e.g. DOI, ORCiD, and ROR~\cite{Meadows2019}) of items of interest. Following from comparability is therefore the quality requirement $\rightarrow$\,\textit{use of persistent identifiers}.
+    \item \textbf{Completeness} of data means that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data, there are practical boundaries to simply aiming for including everything ever published (e.g. closed access publications and distribution rights). On the level of a publication record, however, it makes sense to strive for completeness of metadata (e.g. not missing author information) and complete coverage of references (i.e. not missing any references in the citation network). Based on this, we can formulate the quality criterion $\rightarrow$\,\textit{completeness of metadata and reference data}.
 \end{enumerate}
 
-% focus "areas"
-% - citation network
-% = full-text representation
+In short, quality criterion especially relevant for scholarly data are as follows.
 
-% quality "requirement"(?)
-% - Lauscher2018: need very high
-% - Strotmann2015: crucial for global, more forgiving for local
-
-% ...
-
-% aspects
+% Colloquium aspects
 % - volume          -> timeliness + completeness
 % - completeness    "
 % - correctness     -> accuracy
 % - granularity
 
-% further aspects
+% Herzog2007
 % - relevance
 % - accuracy
 % - timeliness
 % - comparability
 % - completeness
-
-%   ~\cite{Herzog2007}
-%   - Regarding data quality: "The seven most commonly cited properties are (1) relevance, (2) accuracy, (3) timeliness, (4) accessibility and clarity of results, (5) comparability, (6) coherence, and (7) completeness."
-%   - "For this book, we are primarily concerned with five of these properties: relevance, accuracy, timeliness, comparability, and completeness"
-
-notion of ``good enough'' data quality in scientometrics~\cite{Strotmann2015}
-linking references is a complex task, and quality requirements for scientometrics might warrant doing it semi-automatically w/ a human in the loop~\cite{Lauscher2018}
-
-quality assessment of S2ORC~\cite{Wu2022doceng} (showcase quantitative assessments of document linking and conflation quality of S2ORC)
-
-data quality considerations for ML~\cite{Gudivada2017} (mention bias)
 
 \subsection{Model Evaluation}
 
