@@ -50,15 +50,18 @@ Specifically, this means that information which is not made explicit in publicat
 
 \subsubsection{Types of Data Sources}
 
+Viable input formats for the creation of scholarly data differ in terms of the contained information, challenges for information extraction, availability, and use.
+These are discussed in the following, with Table~\ref{tab:document_formats} providing an overview.
+
 \begin{table}[tb]
-  \caption{Comparison of Document Formats}
+  \caption{Comparison of Scholarly Data Sources}
   \label{tab:document_formats}
   \centering
   \begin{small}
     \begin{threeparttable}
       \begin{tabular}{lcclc}
         \toprule
-        Format & Doc Structure & Semantic & Open Availability & Disciplines \\
+        Source & Doc Structure & Semantic & Open Availability & Disciplines \\
         \midrule
         LaTeX  & \checkmark    & partial\tnote{a}  & \checkmark~(arXiv)  & physics, math, CS \\
         Word   & \checkmark    & partial\tnote{b}  & $\times$~(publisher internal & all\tnote{c} \\
@@ -67,15 +70,13 @@ Specifically, this means that information which is not made explicit in publicat
         \bottomrule
       \end{tabular}
       \begin{tablenotes}
-        \item[a] todo
-        \item[b] todo
+        \item[a] Semantic to some degree by use of named macros (e.g. \texttt{\textbackslash title\{\}} or \texttt{\textbackslash section\{\}}), but usage not enforced by format.
+        \item[b] Semantic to the extent that the DOCX (Office Open XML) schema describes the document structure, but dependent on authors' usage of respective Word features.
         \item[c] Primarily humanities and not so much STEM fields.
       \end{tablenotes}
     \end{threeparttable}
   \end{small}
 \end{table}
-
-Viable input formats for the creation of scholarly data differ in terms of the contained information, challenges for information extraction, availability, and use.
 
 % - LaTeX; what is it, why is it not the end-all-be-all, and what endeavours have been there so far and are on the horizon of LaTeX development wrt. more structure and semantic information?
 %   -> brief history, used primarily in STEM fields, Turing complete, document classes and packages provide semantic macros that translate in to visual representation but authors can always chose to directly describe visual presentation rather than semantic meaning, some endeavours to allow for more semantics (scholarly data specific and from accessibility POV)
@@ -115,17 +116,20 @@ is the most common distribution format for academic publications~\cite{Johnson20
 
 \subsubsection{Types of Scholarly Data}
 
+Conceptually, scholarly data can be divided two overarching categories: \emph{metadata} and \emph{document collections}~\cite{Nasar2018}. As a third category, we consider \emph{lined document collections}, which combine features of aforementioned two.
+We briefly introduce each of the three and provide an overview in Table~\ref{tab:data_types}.
+
 \begin{table}[tb]
-  \caption{Overview of Different Data Types}
+  \caption{Overview of Scholarly Data Types}
   \label{tab:data_types}
   \centering
   \begin{small}
     \begin{threeparttable}
       \begin{tabular}{lclc}
         \toprule
-        Data Type                  & Contains                             & Size\tnote{a} & Examples \\
+        Type                       & Contents                             & Size\tnote{a} & Examples \\
         \midrule
-        Metadata                   & Title, Author, Citations, etc.       & \(10^8\)              & OpenAlex, ORKG \\
+        Metadata                   & Title, author, citations, etc.       & \(10^8\)              & OpenAlex, ORKG \\
         Document Collections       & Full-text                            & \(10^8\)              & CORE, arXMLiv \\
         Linked Doc. Collections    & Full-text + citation network         & \(10^7\)              & unarXive, S2ORC \\
         \bottomrule
@@ -136,8 +140,6 @@ is the most common distribution format for academic publications~\cite{Johnson20
     \end{threeparttable}
   \end{small}
 \end{table}
-
-Conceptually, scholarly data can be divided two overarching categories: \emph{metadata} and \emph{document collections}~\cite{Nasar2018}. As a third category, we consider \emph{lined document collections}, which combine features of aforementioned two.
 
 % What do I want to say and convey here?
 % - what ``conceptual'' types of scholarly data are there?
@@ -199,20 +201,20 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
         \toprule
         General Dimension & Focus\tnote{a} & Specific Criterion\\
         \midrule
-        \multirow{2}{*}{Relevance} & CN & Representative coverage of publications in target area \\
-        \ & SDR & Inclusion of relevant content types (text, formulae, tables, etc.) \\
+        \multirow{2}{*}{Relevance} & CN & \textbf{C1} Representative coverage of publications in target area \\
+        \ & SDR & \textbf{C2} Inclusion of relevant content types (text, formulae, tables, etc.) \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Accuracy} & CN & Correctly linked references \\
-        \ & SDR & Noise-free full-text content \\
+        \multirow{2}{*}{Accuracy} & CN & \textbf{C3} Correctly linked references \\
+        \ & SDR & \textbf{C4} Noise-free full-text content \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{(both)} & \multirow{2}{*}{Coverage of recent publications} \\
+        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{(both)} & \multirow{2}{*}{\textbf{C5} Coverage of recent publications} \\
         \ & \ & \ \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Comparability} & CN & Use of established document identifiers (DOI, PubMed ID, etc.) \\
-        \ & SDR & Fine-granular, specifically typed content representation \\
+        \multirow{2}{*}{Comparability} & CN & \textbf{C6} Use of established document identifiers (DOI, PubMed ID, etc.) \\
+        \ & SDR & \textbf{C7} Fine-granular, specifically typed content representation \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Completeness} & CN & All references of included publications successfully linked \\
-        \ & SDR & No sections or content missing (appendices, formulae, etc.) \\
+        \multirow{2}{*}{Completeness} & CN & \textbf{C8} All references of included publications successfully linked \\
+        \ & SDR & \textbf{C9} No sections or content missing (appendices, formulae, etc.) \\
         \bottomrule
       \end{tabular}
       \begin{tablenotes}
@@ -230,7 +232,8 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
     \item \textbf{Completeness} of data means that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data, there are practical boundaries to simply aiming for including everything ever published (e.g. closed access publications and distribution rights). It is reasonable, however, to strive for a complete citation network, i.e. that all entries in the reference section of a given publication are successfully linked. For a structured document representation, completeness means that no parts of the content or types of content are missing (e.g. appendices, formulae, etc.). % could also mention metadata (e.g. not missing author information)
 \end{enumerate}
 
-Scholarly data provided specifically for a narrowly defined use case naturally ...
+Based on these considerations, and the resulting quality criteria \textbf{C1\,--\,C9} presented in Table~\ref{tab:scholdataquali} a quantitative view on the goal of the presented work (enabling higher quality scholarly data) and achieved results is possible. In the following section we present the tools to quantitatively assess the information extraction models that enable the improved scholarly data.
+% Scholarly data provided specifically for a narrowly defined use case naturally ...
 
 \subsection{Model Evaluation}
 
