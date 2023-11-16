@@ -211,7 +211,7 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
         \multirow{2}{*}{Comparability} & CN & Use of established document identifiers (DOI, PubMed ID, etc.) \\
         \ & SDR & Fine-granular, specifically typed content representation \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Completeness} & CN & All references in included publications successfully linked \\
+        \multirow{2}{*}{Completeness} & CN & All references of included publications successfully linked \\
         \ & SDR & No sections or content missing (appendices, formulae, etc.) \\
         \bottomrule
       \end{tabular}
@@ -225,25 +225,12 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
 \begin{enumerate}
     \item \textbf{Relevance} is a quality dimension heavily dependent on the data's intended use. As scholarly data is used to gain insight on particular aspects of academia (e.g. a certain field, practice, institution or individual), the data needs to cover that aspect to a sufficient degree in order to be relevant. For citation based analyses, this means a representative portion of publications from the studied disciplines, time span, languages, etc. has to be covered. On the level of document representations, it is important that relevant content types are included. For example, for a comparison of mathematical formula usage in publications, the data has to contain publications' full-text \emph{including} pieces and sections of mathematical notation.  % generalization: volume (the more publications, the more general coverage)
     \item \textbf{Accuracy} regarding the citation network means, that references should be correctly linked to the publications they are referencing. For document representations, accuracy entails that text content should be free of noise. As described in the previous sections, both of these are non-trivial due to the sources scholarly data relies on. Regarding the question of how accurate scholarly data has to be for meaningful usage, previous research proposes that for ``local analyses'' (e.g. node degrees in a citation network) 80\% correct data can already allow for reasonable insight, but for ``global analyses'' (e.g. rankings) at least 90\% correctness should be aimed for~\cite{Strotmann2015}. Others have argued that quality requirements in scientometrics are high enough to warrant the cost of requiring a ``human in the loop'' approach to data generation~\cite{Lauscher2018}.  % argument for LaTeX
-    \item \textbf{Timeliness} with regard to scholarly data is crucial if the underlying reality of the research object changes quickly. In cases like training a model for parsing bibliographic references, recent data is likely not needed, as citation styles don't change rapidly.  However, for tasks like paper recommendation, everything published after the recommender model's training data simply can not be recommended. For ``general purpose'' scholarly data we can therefore derive the quality criterion $\rightarrow$\,\textit{sufficient recency}.  % argument for continuous generation (possible w/ unarXive code, not implemented though; also: matching to target set more easily updatable than clustering)
-    \item \textbf{Comparability} as a quality criterion is of importance to enable the combined use of data sets. In other words, items in the data set should be clearly identified. In the case of scholarly data, this calls for determining the persistent identifiers (e.g. DOI, ORCiD, and ROR~\cite{Meadows2019}) of items of interest. Following from comparability is therefore the quality requirement $\rightarrow$\,\textit{use of persistent identifiers}.
-    \item \textbf{Completeness} of data means that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data, there are practical boundaries to simply aiming for including everything ever published (e.g. closed access publications and distribution rights). On the level of a publication record, however, it makes sense to strive for completeness of metadata (e.g. not missing author information) and complete coverage of references (i.e. not missing any references in the citation network). Based on this, we can formulate the quality criterion $\rightarrow$\,\textit{completeness of metadata and reference data}.
+    \item \textbf{Timeliness} with regard to scholarly data is crucial if the underlying reality of the research object changes quickly. In cases like training a model for parsing bibliographic references, recent data is likely not needed, as citation styles don't change rapidly.  However, for tasks like paper recommendation, everything published after the recommender model's training data simply can not be recommended. Accordingly the coverage of recent publications is desirable.  % TODO: mention that ``timely'' depends on publications as a primary object of consideration, and therefore distinguishing between CN and SDR does not make sense  % argument for continuous generation (possible w/ unarXive code, not implemented though; also: matching to target set more easily updatable than clustering)
+    \item \textbf{Comparability} as a quality criterion is of importance to enable the combined use of data sets. In other words, items in the data set should be clearly identified. In the case of scholarly data, this calls for determining the persistent identifiers (e.g. DOI, ORCiD, and ROR~\cite{Meadows2019}) of items of interest. For the citation network specifically, this means providing document identifiers. Regarding a structured document representation, comparability of contents can be facilitated by providing a fine-grained, typed content representation---for example, by representing a publications' text structured into sections, subsections, etc.
+    \item \textbf{Completeness} of data means that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data, there are practical boundaries to simply aiming for including everything ever published (e.g. closed access publications and distribution rights). It is reasonable, however, to strive for a complete citation network, i.e. that all entries in the reference section of a given publication are successfully linked. For a structured document representation, completeness means that no parts of the content or types of content are missing (e.g. appendices, formulae, etc.). % could also mention metadata (e.g. not missing author information)
 \end{enumerate}
 
-In short, quality criterion especially relevant for scholarly data are as follows.
-
-% Colloquium aspects
-% - volume          -> timeliness + completeness
-% - completeness    "
-% - correctness     -> accuracy
-% - granularity
-
-% Herzog2007
-% - relevance
-% - accuracy
-% - timeliness
-% - comparability
-% - completeness
+Scholarly data provided specifically for a narrowly defined use case naturally ...
 
 \subsection{Model Evaluation}
 
