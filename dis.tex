@@ -117,6 +117,8 @@
 \definecolor{pubgreen-bg}{RGB}{247,247,244}
 \definecolor{discussionpurp-box}{RGB}{181,145,180}
 \definecolor{discussionpurp-bg}{RGB}{251,249,251}
+\definecolor{progressblue-box}{RGB}{147,159,181}
+\definecolor{progressblue-bg}{RGB}{250,252,252}
 \definecolor{infogrey-box}{RGB}{163,163,163}
 \definecolor{infogrey-bg}{RGB}{250,250,250}
 \definecolor{rqblue-box}{RGB}{103,188,223}
@@ -146,6 +148,20 @@
     overlay={%
      \begin{tcbclipframe}
       \node[anchor=center, xshift=19pt, yshift=-18pt, text=discussionpurp-bg] at (frame.north west){\Large\faComments};
+     \end{tcbclipframe}
+    }
+}
+\newtcolorbox{infobox-progress}{
+    breakable,
+    enhanced,
+    arc=1pt,
+    colback=progressblue-bg,
+    colframe=progressblue-box,
+    coltext=black,
+    leftrule=36pt,
+    overlay={%
+     \begin{tcbclipframe}
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=discussionpurp-bg] at (frame.north west){\Large\faBarChart};
      \end{tcbclipframe}
     }
 }

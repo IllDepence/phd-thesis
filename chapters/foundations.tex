@@ -19,6 +19,12 @@ Explanations of concepts that are specific to the work presented in individual c
 % - what's the general nature of scholarly data?
 %   -> structured representation of publication [meta]data that is the basis for (1) digital services in academia, (2) analyses, (3) ML model dev+evaluation
 
+%                 (TODO)
+% TODO: define ``scholarly data'' more clearly
+%       - what's special about it?
+%       - difference to e.g. patents, news, etc.?
+%                 (TODO)
+
 The term ``Scholarly data'' is used to refer to data that represents academic publications or related concepts, such as authors and their affiliations. It can coarsely be divided into data directly reflecting the \emph{content} of publications, and metadata, which gives information \emph{about} publications.
 As such, scholarly data is the basis for essentially everything that relies on digital processing of publications. The following are three key examples.
 \begin{enumerate}
@@ -178,7 +184,7 @@ S2ORC~\cite{Lo2020}, and unarXive~\cite{Saier2020}. unarXive is generated from t
 
 The work presented in this dissertation aims to improve the quality of scholarly data, and involves both data mining, the process of ``discovering useful patterns and trends in large data sets''~\cite{Larose2014}, and information extraction, the process of ``converting unstructured text into a structured representation''~\cite{Aggarwal2018}. In the following, we therefore provide background information regarding (1)~data quality, and (2)~the evaluation of information extraction models. Based on the considerations and concepts introduced, the goals and results of the work presented in the following chapters can be quantitatively assessed.
 
-\subsection{Data Quality}
+\subsection{Data Quality}\label{sec:foundations-dataquality}
 
 % Side note: could mention that bibliometrics/scientometrics/science of science is also concerned w/ other aspects not covered below, but these are not ``(big) data driven''
 
@@ -199,7 +205,7 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
     \begin{threeparttable}
       \begin{tabular}{lll}  % p{9.7cm}
         \toprule
-        General Dimension & Focus\tnote{a} & Specific Criterion\\
+        Dimension & Focus\tnote{a} & Specific Criterion\\
         \midrule
         \multirow{2}{*}{Relevance} & CN & \textbf{C1} Representative coverage of publications in target area \\
         \ & SDR & \textbf{C2} Inclusion of relevant content types (text, formulae, tables, etc.) \\
@@ -207,7 +213,7 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
         \multirow{2}{*}{Accuracy} & CN & \textbf{C3} Correctly linked references \\
         \ & SDR & \textbf{C4} Noise-free full-text content \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{(both)} & \multirow{2}{*}{\textbf{C5} Coverage of recent publications} \\
+        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{(both\tnote{b}~\,)} & \multirow{2}{*}{\textbf{C5} Coverage of recent publications} \\
         \ & \ & \ \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
         \multirow{2}{*}{Comparability} & CN & \textbf{C6} Use of established document identifiers (DOI, PubMed ID, etc.) \\
@@ -219,6 +225,7 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
       \end{tabular}
       \begin{tablenotes}
         \item[a] Focus are of use (CN = Citation Network, SDR = Structured Document Representation)
+        \item[b] Bundled together because the timeliness of a publication's content (SDR focus), is bound to the timeliness of the of publication itself (CN focus). In other words, parts of the document don't change independently after publication.
       \end{tablenotes}
     \end{threeparttable}
   \end{small}
@@ -232,8 +239,32 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
     \item \textbf{Completeness} of data means that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data, there are practical boundaries to simply aiming for including everything ever published (e.g. closed access publications and distribution rights). It is reasonable, however, to strive for a complete citation network, i.e. that all entries in the reference section of a given publication are successfully linked. For a structured document representation, completeness means that no parts of the content or types of content are missing (e.g. appendices, formulae, etc.). % could also mention metadata (e.g. not missing author information)
 \end{enumerate}
 
-Based on these considerations, and the resulting quality criteria \textbf{C1\,--\,C9} presented in Table~\ref{tab:scholdataquali} a quantitative view on the goal of the presented work (enabling higher quality scholarly data) and achieved results is possible. In the following section we present the tools to quantitatively assess the information extraction models that enable the improved scholarly data.
+Based on these considerations, and the resulting quality criteria \textbf{C1\,--\,C9} presented in Table~\ref{tab:scholdataquali} a quantitative view on the goal of the presented work (enabling higher quality scholarly data) and achieved results is possible.
 % Scholarly data provided specifically for a narrowly defined use case naturally ...
+For each chapter, we present a summary box as the one shown below.\footnote{Result indicator (``Res.'') \textbf{+}: SOTA/improvement/etc. (see explanation), =: equal to previous, $\circ$: not considered.}
+
+\begin{infobox-progress}
+      \textbf{Scholarly Data Quality Contributions - [Example]}\vspace{0.5em}
+
+      \begin{tabular}{cp{11.3cm}}
+        \toprule
+        Crit. & Explanation \\
+        %Crit.\footnote{Quality criterion (see Table~\ref{tab:scholdataquali}} & Res.\footnote{Result\\\textbf{+}: SOTA/improvement/etc. (see explanation)\\=: equal to previous\\$\circ$: not considered.} & Explanation \\
+        \midrule
+        \textbf{C1} & Improvement of relevance, by adding ... to the citation network. \\
+        \textbf{C2} & Improvement of relevance, by adding ... to the document representation. \\
+        ... & ... \\
+        \textbf{C9} & Improvement of completeness of document representation, by .... \\
+        \bottomrule
+      \end{tabular}
+
+      % \vspace{1em}
+      % \begin{footnotesize}
+      % \textbf{Lagend:}~~\textbf{+}: SOTA/improvement~~{\color{contextgrey}|}~~=: equal to previous~~{\color{contextgrey}|}~~$\circ$: not considered
+      % \end{footnotesize}
+\end{infobox-progress}
+
+In the following section we present the tools to quantitatively assess the information extraction models that enable the improved scholarly data.
 
 \subsection{Model Evaluation}
 

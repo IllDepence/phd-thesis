@@ -8,95 +8,25 @@ This chapter is based on the following publication.
 \end{infobox-pub}
 
 \section{Overview}
+In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
 
-\begin{table}[h]
-  \caption{Scholarly Data Quality Contributions - \cite{Saier2020}}
-  \label{tab:scholdataquali_corpus}
-  \centering
-  \begin{small}
-    \begin{threeparttable}
-      \begin{tabular}{ccl}
+\begin{infobox-progress}
+      \textbf{Scholarly Data Quality Contributions - \cite{Saier2020}}\vspace{0.5em}
+
+      \begin{tabular}{cp{11.3cm}}
         \toprule
-        Crit.\tnote{a} & Res.\tnote{b} & Explanation \\
+        Crit. & Explanation \\
         \midrule
-        \textbf{C1} & {\large\textbf{+}} & Representative coverage in physics, mathematics, CS \\
-        \textbf{C2} & $\circ$ & Primary focus on text content \\
-        \textbf{C3} & {\large\textbf{+}} & $>96$\% accuracy in reference matching \\
-        \textbf{C4} & {\large\textbf{+}} & Low noise due to using \LaTeX\ as data source \\
-        \textbf{C5} & {\large\textbf{+}} & Publications until end of most recent full year \\
-        \textbf{C6} & {\large\textbf{+}} & Provides MAG and arXiv IDs; DOIs in linked MAG \\
-        \textbf{C7} & $\circ$ & Not considered at this stage \\
-        \textbf{C8} & {\large\textbf{+}} & 42.6\% reference matching success rate \\
-        \textbf{C9} & {\large\textbf{+}} & Full-text included \\
+        \textbf{C1} & Representative coverage in physics, mathematics, CS \\
+        \textbf{C3} & $>96$\% accuracy in reference matching \\
+        \textbf{C4} & Low noise due to using \LaTeX\ as data source \\
+        \textbf{C5} & Publications until end of most recent full year \\
+        \textbf{C6} & Provides MAG and arXiv IDs; DOIs in linked MAG \\
+        \textbf{C8} & 42.6\% reference matching success rate (SOTA) \\
+        \textbf{C9} & Full-text included \\
         \bottomrule
       \end{tabular}
-      \begin{tablenotes}
-        \item[a] Quality criterion (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations})
-        \item[b] Result\\\textbf{+} = SOTA/improvement/etc. (see explanation)\\$\circ$ = Not considered
-      \end{tablenotes}
-    \end{threeparttable}
-  \end{small}
-\end{table}
-
-\begin{table}[h]
-  \caption{Scholarly Data Quality Contributions}
-  \label{tab:scholdataquali_corpus}
-  \centering
-  \begin{small}
-    \begin{threeparttable}
-      \begin{tabular}{lccccc}
-        \toprule
-        % TODO: check if some of the =s should be \circs
-        \ & \ & \multicolumn{4}{c}{Publication\tnote{a}} \\
-        Quality Dimension & Quality Criterion\tnote{b} & \cite{Saier2020} & \cite{Saier2022ULITE,Saier2023unarXive} & \cite{Saier2020xling,Saier2021} & \cite{Saier2023hyperpie} \\
-        \midrule
-        \multirow{2}{*}{Relevance} & \textbf{C1} & {\large\textbf{+}} & = & {\large\textbf{+}} & = \\
-         & \textbf{C2} & $\circ$ & {\large\textbf{+}} & = & {\large\textbf{+}} \\
-        \multirow{2}{*}{Accuracy} & \textbf{C3} & {\large\textbf{+}} & = & = & = \\
-         & \textbf{C4} & {\large\textbf{+}} & = & = & = \\
-        Timeliness & \textbf{C5} & {\large\textbf{+}} & {\large\textbf{+}} & = & = \\
-        \multirow{2}{*}{Comparability} & \textbf{C6} & {\large\textbf{+}} & {\large\textbf{+}} & = & = \\
-         & \textbf{C7} & $\circ$ & {\large\textbf{+}} & = & {\large\textbf{+}} \\
-        \multirow{2}{*}{Completeness} & \textbf{C8} & {\large\textbf{+}} & {\large\textbf{+}} & {\large\textbf{+}} & = \\
-         & \textbf{C9} & {\large\textbf{+}} & {\large\textbf{+}} & = & = \\
-        \bottomrule
-      \end{tabular}
-      \begin{tablenotes}
-        \item[a] Values are result indicators\\\textbf{+}: SOTA/improvement/etc.\\=: equal to previous\\$\circ$: not considered\\Explanations of results can be found in the respective chapters
-        \item[b] See Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}
-      \end{tablenotes}
-    \end{threeparttable}
-  \end{small}
-\end{table}
-
-% \begin{table}[h]
-%   \caption{Scholarly Data Quality Contributions - \cite{Saier2020}/Ch.\ref{chp:corpus}}
-%   \label{tab:scholdataquali_corpus}
-%   \centering
-%   \begin{small}
-%     \begin{threeparttable}
-%       \begin{tabular}{ccl}  % p{9.7cm}
-%         \toprule
-%         Crit.\tnote{a} & Res.\tnote{b} & Explanation \\
-%         \midrule
-%         \textbf{C1} & \ding{73} & Representative coverage in physics, mathematics, CS \\
-%         \textbf{C2} & $\circ$ & Primary focus on text content \\
-%         \textbf{C3} & {\large\textbf{+}} & $>96$\% accuracy in reference matching \\
-%         \textbf{C4} & \textbf{+} & Low noise due to using \LaTeX\ as data source \\
-%         \textbf{C5} & \textbf{+} & Publications until end of most recent full year \\
-%         \textbf{C6} & \textbf{+} & Provides MAG and arXiv IDs; DOIs in linked MAG \\
-%         \textbf{C7} & $\circ$ & Not considered at this stage \\
-%         \textbf{C8} & \ding{72} & 42.6\% reference matching success rate \\
-%         \textbf{C9} & \textbf{+} & Full-text included \\
-%         \bottomrule
-%       \end{tabular}
-%       \begin{tablenotes}
-%         \item[a] Quality criterion (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations})
-%         \item[b] Result (\ding{72} = new SOTA, \ding{73} = on par with SOTA, \textbf{+} high/suitable (cases in which no direct, quantitative comparison exists), $\circ$ = other)
-%       \end{tablenotes}
-%     \end{threeparttable}
-%   \end{small}
-% \end{table}
+\end{infobox-progress}
 
 % \begin{abstract}
 % In recent years, scholarly data sets have been used for various purposes, such as paper recommendation, citation recommendation, citation context analysis, and citation context-based document summarization. 
