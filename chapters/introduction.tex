@@ -54,7 +54,7 @@ In this way, the existence of digital representations of publications also provi
 Similarly, decision processes in academia, such as the evaluation of institutions or researchers, is enabled by scholarly data through performance indicators. In this way, it provides a means for hiring and funding decisions.
 In other words, scholarly data is a vital resource for decision making in academia on the individual as well as organisational level.
 
-The quality of decisions made based on scholarly data, naturally, hinges on the quality of the scholarly data itself. Missing citation links in the data, for example, might cause researchers to overlook relevant related work, or a funding body under-evaluating an institution. Recalling that the creation of scholarly data is a challenging and error prone process, it stands to reason that efforts to improve scholarly data quality are a worthwhile endeavor. Based on these considerations, the overarching objective pursued in this dissertation is the development of methods for creating high quality scholarly data.
+The quality of decisions made based on scholarly data, naturally, hinges on the quality of the scholarly data itself. Missing citation links in the data, for example, might cause researchers to overlook relevant related work, or a funding body under-evaluating an institution. Recalling that the creation of scholarly data is a challenging and error prone process, it stands to reason that efforts to improve scholarly data quality are a worthwhile endeavor. Based on these considerations, the overarching objective pursued in this dissertation is the development of methods for creating high-quality scholarly data.
 
 % * not only is my research addressing the now pressing and increasing issue of an increasing rate of publication
 % * it also tackles blind spots the have been left unaddressed for long (x-ling)
@@ -68,20 +68,20 @@ The quality of decisions made based on scholarly data, naturally, hinges on the 
 %         but rather by more structured, derivative representations of publications''
 %     -> publications authored by humans for humans -> scholarly data secondary/derivate
 %     => concretization: derive structured representation from publications
-%   - ``high quality''
+%   - ``high-quality''
 %     -> briefly touch upon what's laid out in foundation chapter
-%     => concretization: high quality = fitness for use
+%     => concretization: high-quality = fitness for use
 % - (maybe even narrow down to reference focus, maybe *even* more to LaTeX based)
 % - give example
 
-To define a clear problem statement, we need to take a closer look at what ``creating high quality scholarly data'' entails. As briefly laid out above, scholarly data is a derivate product of publications. This is due to the fact that, for the time being, scientific publications are written by humans for humans. Because the product of this process is not well suited for digital processing \emph{as is}, scholarly data is created as a derivate based on publications. To make this feasible on a large scale, the creation has to be automated.
+To define a clear problem statement, we need to take a closer look at what ``creating high-quality scholarly data'' entails. As briefly laid out above, scholarly data is a derivate product of publications. This is due to the fact that, for the time being, scientific publications are written by humans for humans. Because the product of this process is not well suited for digital processing \emph{as is}, scholarly data is created as a derivate based on publications. To make this feasible on a large scale, the creation has to be automated.
 
 From this we can follow that for our intents and purposes, ``creating scholarly data'' is
 \begin{quote}
 \emph{An automated process that takes as input human made scientific publications, and produces as output a derivate representation of the input that is suitable for digital processing}.
 \end{quote}
 
-This leaves the question of what ``suitable for digital processing'' and aforementioned ``high quality'' entail. We discuss this aspect in detail in Chapter~\ref{chp:foundations}. In short, suitability and quality depend on the intended use and therefore, very generally speaking, mean \emph{fitness for use}. This means that a more specific and concrete definition of scholarly data quality can be grounded in considerations of how scholarly data is used. We elaborate on this in Section~\ref{sec:foundations-dataquality}.
+This leaves the question of what ``suitable for digital processing'' and aforementioned ``high-quality'' entail. We discuss this aspect in detail in Chapter~\ref{chp:foundations}. In short, suitability and quality depend on the intended use and therefore, very generally speaking, mean \emph{fitness for use}. This means that a more specific and concrete definition of scholarly data quality can be grounded in considerations of how scholarly data is used. We elaborate on this in Section~\ref{sec:foundations-dataquality}.
 
 \section{Challenges}
 
@@ -112,6 +112,28 @@ Developing a process as described above is challenging for several reasons.
     \item \textbf{Multi-Linguality} While English currently is the de facto academic lingua franca~\cite{Montgomery2013}, science is a global endeavor meaning that scientific publications are written in various languages. Accordingly, the creation of scholarly data can entail the challenges that come with processing multi-lingual text.
     \item \textbf{Specialized Content} The fact that scientific publications address highly specialized topics, means that they are likely to contain both specialized terminology, as well as specialized notation. Both of these aspects result in further challenges in processing their natural language contents.
 \end{enumerate}
+
+Some of the aspects mentioned above are common for NLP tasks in general, such as semantic ambiguity. However, in their entirety, these challenges set the task apart from other areas, such as approaches concerned with news articles, which contain less specialized language, and websites, where the source material is more structured by nature. Rather close to above challenges is the processing of patents. However, patents also contain legal jargon, which is generally not the case for scientific publications.\footnote{The similarity between scientific publications and patents regarding the nature of their content, purpose, and requirements for automated processing, are likely the reason that some platforms, such as Google Scholar, handle both. (The search interface at \refurlinline{https://scholar.google.com/}{2023-11-22} includes a filter option ``include patents''.)}
+
+% differences to patents: nature of the language technical and legal (as opposed to scientific)
+
+\section{Research Gap}
+
+This dissertation is not the first, and will certainly also not be the last, research endeavor with the objective the develop methods for the creation of high-quality scholarly data. In the following we provide a high-level overview of existing work and similar projects, and position our work in relation to it.
+
+% others'
+% - ORKG
+% - OpenAlex(?)
+% - Crossref(?)
+% - CiteSeer
+% - S2ORC
+
+% limitations
+% - 
+
+% USPs of presented work
+% - 
+
 
 %Measuring the Evolution of a Scientific Field through Citation Frames~~\cite{Jurgens2018} (usable here (or in HyperPIE chapter) for extra justification of focus on parameters of used artifacts)
 
