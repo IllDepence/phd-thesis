@@ -119,7 +119,20 @@ Some of the aspects mentioned above are common for NLP tasks in general, such as
 
 \section{Research Gap}
 
-This dissertation is not the first, and will certainly also not be the last, research endeavor with the objective the develop methods for the creation of high-quality scholarly data. In the following we provide a high-level overview of existing work and similar projects, and position our work in relation to it.
+This dissertation is not the first, and will certainly also not be the last, research endeavor with the objective the develop methods for the creation of high-quality scholarly data. To position our work in relation to existing approaches, we highlight the high-level research gaps tackled by this dissertation in the following. More detailed descriptions can be found in the respective chapters later on.
+
+\begin{enumerate}
+    \item \textbf{Citation Network} Several of the most prevalent use cases for scholarly data hinge on the interlinking of publications through citations. This includes a large amount of bibliometric analyses, scientometrics, as well as the study of citation networks in the general context of graphs (e.g. in graph neural network evaluations). Despite this, not much focus is put on the quality of citation networks in scholarly data. The much used data set CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, for example, takes the approach of clustering references and publications, but there is no assessment of the citation network's completeness---i.e., what proportion of references of a paper can successfully be linked to the cited document. The more recently introduced data set S2ORC~\cite{Lo2020}---more specifically, it's \LaTeX subset---provides an investigation into the proportion of successfully matched references, but only achieves to successfully match 31.1\% of references. Improvements regarding citation network quality are presented in Chapters~\ref{chp:corpus} and \ref{chp:covgran}.
+    \item \textbf{Anglocentrism} In the past years, there as been a growing awareness of non-English language content in various areas of NLP~\cite{Dabre2020,Yu2022,Ramesh2023}. However, in research concerned with scientific publications, as well as available data sets covering scientific publications, there still is a major lack of coverage of non-English documents~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019,MartinMartin2021}. As a consequence, research results are of limited validity. Improvements regarding the consideration of non-English publications are presented in Chapter~\ref{chp:xling}.
+    \item \textbf{Research Artifacts} To an increasing degree research is driven by curated data sets and algorithmic processing techniques such as machine learning methods and models (``research artifacts''). This development can, for example, be observed in the field of NLP, which has undergone a shift towards ``rapid discovery science'', characterized by a high consensus on research topics, methods and technologies~\cite{Jurgens2018}. Further signs of the growing importance of research artifacts are, for example, the launch of both Google Dataset Search\refurl{https://datasetsearch.research.google.com/}{2023-11-24} and Papers With Code\refurl{https://paperswithcode.com/}{2023-11-24} in 2018, as well as the gradual establishment of data citations~\cite{Kratz2015}.
+% GDS 2018: https://doi.org/10.1038/d41586-018-06201-x
+% PwC 2018: https://web.archive.org/web/20220513185917/https://www.reddit.com/r/MachineLearning/comments/8t0l40/p_papers_with_code_the_latest_machine_learning/
+Despite these developments, efforts to include structured representations of research artifacts in scholarly data are limited. Some work in this direction exists, most notably SciERC~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, but it only covers a shallow representation of research artifacts. Improvements regarding a more fine-granular coverage of research artifacts is presented in Chapter~\ref{chp:params}.
+
+\end{enumerate}
+
+% per chapter: cit network, xling, params
+% other: cleanliness/precision (but arXMLiv), automation (only compared to ORKG), ...
 
 % others'
 % - ORKG
@@ -127,6 +140,12 @@ This dissertation is not the first, and will certainly also not be the last, res
 % - Crossref(?)
 % - CiteSeer
 % - S2ORC
+
+% The Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} provides information on over 28\,k publications, their contributions, research problems addressed etc. For its data, the ORKG is largely reliant on manual or semi-automated data entry.
+
+% CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, generated from PDF files of various sources, over 10\,M documents, from various fields including medicine and biology, physics, mathematics, and computer science.
+
+% S2ORC~\cite{Lo2020}, generated from PDF files of various sources, over 12\,M documents, from various fields including medicine and biology, physics, mathematics, and computer science.
 
 % limitations
 % - 
