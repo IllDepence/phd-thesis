@@ -59,7 +59,7 @@ The quality of decisions made based on scholarly data, naturally, hinges on the 
 % * not only is my research addressing the now pressing and increasing issue of an increasing rate of publication
 % * it also tackles blind spots the have been left unaddressed for long (x-ling)
 
-\section{Problem Statement}
+\section{Research Objective}\label{sec:intro-researchobj}
 
 % What do I want to say and convey here?
 % - make approached problem more concrete
@@ -74,14 +74,23 @@ The quality of decisions made based on scholarly data, naturally, hinges on the 
 % - (maybe even narrow down to reference focus, maybe *even* more to LaTeX based)
 % - give example
 
-To define a clear problem statement, we need to take a closer look at what ``creating high-quality scholarly data'' entails. As briefly laid out above, scholarly data is a derivate product of publications. This is due to the fact that, for the time being, scientific publications are written by humans for humans. Because the product of this process is not well suited for digital processing \emph{as is}, scholarly data is created as a derivate based on publications. To make this feasible on a large scale, the creation has to be automated.
+To define our research objective, we need to take a closer look at what ``creating high-quality scholarly data'' entails. As briefly laid out above, scholarly data is a derivate product of publications. This is due to the fact that, for the time being, scientific publications are written by humans for humans. Because the product of this process is not well suited for digital processing \emph{as is}, scholarly data is created as a derivate based on publications. To make this feasible on a large scale, the creation has to be automated.
 
-From this we can follow that for our intents and purposes, ``creating scholarly data'' is
-\begin{quote}
-\emph{An automated process that takes as input human made scientific publications, and produces as output a derivate representation of the input that is suitable for digital processing}.
-\end{quote}
+Accordingly, we can define our research objective as follows.
 
-This leaves the question of what ``suitable for digital processing'' and aforementioned ``high-quality'' entail. We discuss this aspect in detail in Chapter~\ref{chp:foundations}. In short, suitability and quality depend on the intended use and therefore, very generally speaking, mean \emph{fitness for use}. This means that a more specific and concrete definition of scholarly data quality can be grounded in considerations of how scholarly data is used. We elaborate on this in Section~\ref{sec:foundations-dataquality}.
+\begin{infobox-objective}
+\textbf{Research Objective}\\
+Develop an automated process that takes as input scientific publications, and produces as output a high-quality derivate representation of the publications suitable for digital processing.
+\end{infobox-objective}
+
+This leaves the question of what ``high-quality'' and ``suitable for digital processing'' entail. We discuss this aspect in detail in Chapter~\ref{chp:foundations}. In short, data quality depends on the intended use and therefore, very generally speaking, means \emph{fitness for use}. Quantitatively it can be assessed along the following five dimensions~\cite{Herzog2007}.
+
+\begin{infobox-progress}
+      \textbf{Data Quality Dimensions}\\
+       (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, (5)~completeness
+\end{infobox-progress}
+
+A more specific and concrete definition of scholarly data quality along these dimensions can be grounded in considerations of how scholarly data is used. We elaborate on this in Section~\ref{sec:foundations-dataquality}.
 
 \section{Challenges}
 
@@ -119,17 +128,18 @@ Some of the aspects mentioned above are common for NLP tasks in general, such as
 
 \section{Research Gap}
 
-This dissertation is not the first, and will certainly also not be the last, research endeavor with the objective the develop methods for the creation of high-quality scholarly data. To position our work in relation to existing approaches, we highlight the high-level research gaps tackled by this dissertation in the following. More detailed descriptions can be found in the respective chapters later on.
+This dissertation is not the first, and will certainly also not be the last research endeavor with the objective the develop methods for the creation of high-quality scholarly data. To position our work in relation to existing approaches, we highlight the research gaps addressed by this dissertation below. More detailed accounts regarding each area can be found in the respective chapters later on.
 
 \begin{enumerate}
     \item \textbf{Citation Network} Several of the most prevalent use cases for scholarly data hinge on the interlinking of publications through citations. This includes a large amount of bibliometric analyses, scientometrics, as well as the study of citation networks in the general context of graphs (e.g. in graph neural network evaluations). Despite this, not much focus is put on the quality of citation networks in scholarly data. The much used data set CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, for example, takes the approach of clustering references and publications, but there is no assessment of the citation network's completeness---i.e., what proportion of references of a paper can successfully be linked to the cited document. The more recently introduced data set S2ORC~\cite{Lo2020}---more specifically, it's \LaTeX subset---provides an investigation into the proportion of successfully matched references, but only achieves to successfully match 31.1\% of references. Improvements regarding citation network quality are presented in Chapters~\ref{chp:corpus} and \ref{chp:covgran}.
-    \item \textbf{Anglocentrism} In the past years, there as been a growing awareness of non-English language content in various areas of NLP~\cite{Dabre2020,Yu2022,Ramesh2023}. However, in research concerned with scientific publications, as well as available data sets covering scientific publications, there still is a major lack of coverage of non-English documents~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019,MartinMartin2021}. As a consequence, research results are of limited validity. Improvements regarding the consideration of non-English publications are presented in Chapter~\ref{chp:xling}.
-    \item \textbf{Research Artifacts} To an increasing degree research is driven by curated data sets and algorithmic processing techniques such as machine learning methods and models (``research artifacts''). This development can, for example, be observed in the field of NLP, which has undergone a shift towards ``rapid discovery science'', characterized by a high consensus on research topics, methods and technologies~\cite{Jurgens2018}. Further signs of the growing importance of research artifacts are, for example, the launch of both Google Dataset Search\refurl{https://datasetsearch.research.google.com/}{2023-11-24} and Papers With Code\refurl{https://paperswithcode.com/}{2023-11-24} in 2018, as well as the gradual establishment of data citations~\cite{Kratz2015}.
+    \item \textbf{Anglocentrism} In the past years, there as been a growing awareness of non-English language content in various areas of NLP~\cite{Dabre2020,Yu2022,Ramesh2023}. However, in research concerned with scientific publications, as well as in available data sets covering scientific publications, there still is a major lack of coverage of non-English documents~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019,MartinMartin2021}. As a consequence, research results are of limited validity. Improvements regarding the inclusion and analysis of non-English publications are presented in Chapter~\ref{chp:xling}.
+    \item \textbf{Research Artifacts} To an increasing degree research is driven by curated data sets and algorithmic processing techniques such as machine learning methods and models (``research artifacts''). This development can, for example, be observed in the field of NLP, which has undergone a shift towards ``rapid discovery science'', characterized by a high consensus on research topics, methods and technologies~\cite{Jurgens2018}. Further signs of the growing importance of research artifacts are, for example, the launch of both Google Dataset Search\refurl{https://datasetsearch.research.google.com/}{2023-11-24} and Papers With Code\refurl{https://paperswithcode.com/}{2023-11-24} in 2018, as well as the gradual adoption of data citations~\cite{Kratz2015}.
 % GDS 2018: https://doi.org/10.1038/d41586-018-06201-x
 % PwC 2018: https://web.archive.org/web/20220513185917/https://www.reddit.com/r/MachineLearning/comments/8t0l40/p_papers_with_code_the_latest_machine_learning/
-Despite these developments, efforts to include structured representations of research artifacts in scholarly data are limited. Some work in this direction exists, most notably SciERC~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, but it only covers a shallow representation of research artifacts. Improvements regarding a more fine-granular coverage of research artifacts is presented in Chapter~\ref{chp:params}.
-
+Despite these developments, efforts to include structured representations of research artifacts in scholarly data are limited. Some work in this direction exists, most notably SciERC~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, but it only covers a shallow representation of research artifacts. Improvements regarding a more fine-granular coverage of research artifacts are presented in Chapter~\ref{chp:params}.
 \end{enumerate}
+
+In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, and will be tracked along the dissertation at the beginning of each chapter.
 
 % per chapter: cit network, xling, params
 % other: cleanliness/precision (but arXMLiv), automation (only compared to ORKG), ...
@@ -156,49 +166,63 @@ Despite these developments, efforts to include structured representations of res
 
 %Measuring the Evolution of a Scientific Field through Citation Frames~~\cite{Jurgens2018} (usable here (or in HyperPIE chapter) for extra justification of focus on parameters of used artifacts)
 
-\begin{infobox-pub}
-\textbf{Publication} \fullcite{Saier2020}
-\end{infobox-pub}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-\begin{infobox-discussion}
-\textbf{Discussion} This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information?
-\end{infobox-discussion}
+% \begin{infobox-pub}
+% \textbf{Publication} \fullcite{Saier2020}
+% \end{infobox-pub}
 
-\begin{infobox-info}
-\textbf{Remark} This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information?
-\end{infobox-info}
+% \begin{infobox-discussion}
+% \textbf{Discussion} This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information?
+% \end{infobox-discussion}
 
-\begin{infobox-q}
-\textbf{RQ1} How can the completeness of the citation network in scholarly data sets be improved?
-\end{infobox-q}
+% \begin{infobox-info}
+% \textbf{Remark} This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information?
+% \end{infobox-info}
 
-\begin{infobox-progress}
-      \begin{tabular}{ccl}
-        \toprule
-        Crit.\tnote{a} & Res.\tnote{b} & Explanation \\
-        \midrule
-        \textbf{C1} & {\large\textbf{+}} & Representative coverage in physics, mathematics, CS \\
-        \textbf{C2} & $\circ$ & Primary focus on text content \\
-        \textbf{C3} & {\large\textbf{+}} & $>96$\% accuracy in reference matching \\
-        \textbf{C4} & {\large\textbf{+}} & Low noise due to using \LaTeX\ as data source \\
-        \textbf{C5} & {\large\textbf{+}} & Publications until end of most recent full year \\
-        \textbf{C6} & {\large\textbf{+}} & Provides MAG and arXiv IDs; DOIs in linked MAG \\
-        \textbf{C7} & $\circ$ & Not considered at this stage \\
-        \textbf{C8} & {\large\textbf{+}} & 42.6\% reference matching success rate \\
-        \textbf{C9} & {\large\textbf{+}} & Full-text included \\
-        \bottomrule
-      \end{tabular}
-\end{infobox-progress}
+% \begin{infobox-progress}
+%       \begin{tabular}{ccl}
+%         \toprule
+%         Crit.\tnote{a} & Res.\tnote{b} & Explanation \\
+%         \midrule
+%         \textbf{C1} & {\large\textbf{+}} & Representative coverage in physics, mathematics, CS \\
+%         \textbf{C2} & $\circ$ & Primary focus on text content \\
+%         \textbf{C3} & {\large\textbf{+}} & $>96$\% accuracy in reference matching \\
+%         \textbf{C4} & {\large\textbf{+}} & Low noise due to using \LaTeX\ as data source \\
+%         \textbf{C5} & {\large\textbf{+}} & Publications until end of most recent full year \\
+%         \textbf{C6} & {\large\textbf{+}} & Provides MAG and arXiv IDs; DOIs in linked MAG \\
+%         \textbf{C7} & $\circ$ & Not considered at this stage \\
+%         \textbf{C8} & {\large\textbf{+}} & 42.6\% reference matching success rate \\
+%         \textbf{C9} & {\large\textbf{+}} & Full-text included \\
+%         \bottomrule
+%       \end{tabular}
+% \end{infobox-progress}
 
-\section{Research Questions}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-Research questions are provided as a guidance to the reader, giving a high-level perspective on the insights provided by the publications making up this dissertation.
+% \section{Research Questions}
+
+% Research questions are provided as a guidance to the reader, giving a high-level perspective on the insights provided by the publications making up this dissertation.
+
 % RQ "formulas":
 % Q: "How can <goal> be achieved? A: "<proposed method>"
 % Q: "How can <proposed method aspect> be leveraged to achieve <goal>? A: "<proposed method>"
 % Q: "What's the nature of <analysis object>?" A: "<analysis result>
 
+%\section{Outline and Contributions}
 \section{Contributions}
+
+The work presented in this dissertation makes the following contributions.
+
+\textbf{Linked Scholarly Data Corpus from \LaTeX} \Blindtext[1]
+
+\textbf{Inter-Reference Blocking} \Blindtext[1]
+
+\textbf{Fine-Granular Scholarly Data from \LaTeX} \Blindtext[1]
+
+\textbf{Information Extraction for Hyperparameter Information} \Blindtext[1]
+
+\section{Overview of Publications}
 
 \begin{table}[tb]
 \centering
@@ -222,7 +246,7 @@ Research questions are provided as a guidance to the reader, giving a high-level
     \end{tabular}
 \end{table}
 
-The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or the most up-to-date ranking if the latter is not listed. For workshops, the rank of the conference at which the workshop is hosted is shown.} For each of the publications, detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective section.
+The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or the most up-to-date ranking if the latter is not listed. For workshops, the rank of the conference at which the workshop is hosted is shown.} For each of the publications, detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective chapter.
 
 \begin{table}[tb]
 \centering

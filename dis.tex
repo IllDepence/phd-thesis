@@ -121,8 +121,8 @@
 \definecolor{progressblue-bg}{RGB}{250,252,252}
 \definecolor{infogrey-box}{RGB}{163,163,163}
 \definecolor{infogrey-bg}{RGB}{250,250,250}
-\definecolor{rqblue-box}{RGB}{103,188,223}
-\definecolor{rqblue-bg}{RGB}{247,252,253}
+\definecolor{objblue-box}{RGB}{103,188,223}
+\definecolor{objblue-bg}{RGB}{247,252,253}
 \newtcolorbox{infobox-pub}{
     breakable,
     enhanced,
@@ -179,17 +179,17 @@
      \end{tcbclipframe}
     }
 }
-\newtcolorbox{infobox-q}{
+\newtcolorbox{infobox-objective}{
     breakable,
     enhanced,
     arc=1pt,
-    colback=rqblue-bg,
-    colframe=rqblue-box,
+    colback=objblue-bg,
+    colframe=objblue-box,
     coltext=black,
     leftrule=36pt,
     overlay={%
      \begin{tcbclipframe}
-      \node[anchor=center, xshift=19pt, yshift=-18pt, text=rqblue-bg] at (frame.north west){\Large\faQuestionCircle};
+      \node[anchor=center, xshift=19pt, yshift=-18pt, text=objblue-bg] at (frame.north west){\Large\faCrosshairs};
      \end{tcbclipframe}
     }
 }
