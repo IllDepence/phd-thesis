@@ -92,7 +92,7 @@ This leaves the question of what ``high-quality'' and ``suitable for digital pro
 
 A more specific and concrete definition of scholarly data quality along these dimensions can be grounded in considerations of how scholarly data is used. We elaborate on this in Section~\ref{sec:foundations-dataquality}.
 
-\section{Challenges}
+\section{Challenges}\label{sec:intro-challenges}
 
 % What do I want to say and convey here?
 % - (TODO: look at foundations part and see if challenges are laid out clearly already)
@@ -126,7 +126,7 @@ Some of the aspects mentioned above are common for NLP tasks in general, such as
 
 % differences to patents: nature of the language technical and legal (as opposed to scientific)
 
-\section{Research Gap}
+\section{Research Gap}\label{sec:intro-gap}
 
 This dissertation is not the first, and will certainly also not be the last research endeavor with the objective the develop methods for the creation of high-quality scholarly data. To position our work in relation to existing approaches, we highlight the research gaps addressed by this dissertation below. More detailed accounts regarding each area can be found in the respective chapters later on.
 
@@ -209,22 +209,39 @@ In addressing above limitations, we alleviate the state of scholarly data. This 
 % Q: "How can <proposed method aspect> be leveraged to achieve <goal>? A: "<proposed method>"
 % Q: "What's the nature of <analysis object>?" A: "<analysis result>
 
-%\section{Outline and Contributions}
-\section{Contributions}
+\section{Outline and Contributions}
 
-The work presented in this dissertation makes the following contributions.
+The contributions made across the works tackling the challenges and limitations outlined in Sections \ref{sec:intro-challenges} and \ref{sec:intro-gap} represent the main part of this dissertation. Together with the subsequent and final chapter they make up the remainder of the document, which is structured as follows.
 
-\textbf{Linked Scholarly Data Corpus from \LaTeX} \Blindtext[1]
+\begin{itemize}
+    \item Chapter~\ref{chp:foundations} - \textbf{Foundations}
+    \item Chapter~\ref{chp:corpus} - \textbf{Corpus}
+    \item Chapter~\ref{chp:covgran} - \textbf{Reference Coverage and Granularity}
+    \item Chapter~\ref{chp:xling} - \textbf{References Across Languages}
+    \item Chapter~\ref{chp:params} - \textbf{References with Usage Parameters}
+    \item Chapter~\ref{chp:conclusion} - \textbf{Conclusion}
+\end{itemize}
 
-\textbf{Inter-Reference Blocking} \Blindtext[1]
+In Chapter~\ref{chp:foundations}, Foundations, we introduce overarching and foundational concepts related to scholarly data as well as data mining and information extraction. The provided information is conducive to understanding (1)~decisions made in the system design and method development of the approaches discussed later on, and (2)~the quantification of the research goals and achieved results.
 
-\textbf{Fine-Granular Scholarly Data from \LaTeX} \Blindtext[1]
+Chapters~\ref{chp:corpus} to \ref{chp:params} represent the main contributions of the work presented in this dissertation. Specifically, these are:
 
-\textbf{Information Extraction for Hyperparameter Information} \Blindtext[1]
+\textbf{A Linked Document Scholarly Data Corpus from \LaTeX} With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate. The work achieves improvements across all five data quality dimensions.
+
+\textbf{Inter-Reference Blocking and Fine-Granular Text Representation} Building upon \emph{unarXive}, we present in Chapter~\ref{chp:covgran} advancements in two areas. First, regarding the citation network, we develop a inter-reference blocking and matching method that significantly increases matched references as well as bibliographic couplings, and achieve a new state-of-the-art matching success rate. Second, we present an improved conversion method for \LaTeX\ source files leading to fine-granularly structured document representations. % Consider putting a sentences regarding the updated unarXive here, comparing it to S2ORC (mentioning that S2ORC (LaTeX) pipeline is based on unarXive)
+In total, the work presented achieves data quality improvements in terms of relevance, timeliness, comparability, and completeness.
+
+\textbf{Detection and Large-Scale Analysis of Cross-Lingual Citations} Using the \emph{unarXive} corpus, we present in Chapter~\ref{chp:xling} a method to reliably identify cross-lingual citations in English publications. Based on this, we conduct the so far largest analysis of this type of citation. Where previous studies of comparable setting only looked at hundreds of documents, our study includes over one million publications. Analysing cross-lingual citations' prevalence, usage, and impact, we identify trends over time as well as challenges. The work results in improvements in the citation network's relevance and comparability.
+
+\textbf{Information Extraction for Hyperparameter Information} To further improve the granularity of the full-text representations in \emph{unarXive}, we develop in Chapter~\ref{chp:params} information extraction methods for research artifacts and their usage parameters. In doing so, we enable the study of parameter use and reporting patterns across time and scientific disciplines. The extracted information furthermore bears potential for use in automated reproduction. The developed methods achieve an improvement over strong baselines. Regarding data quality, the work represents improvements regarding the document representation in the dimensions relevance and comparability.
+
+The dissertation concludes in Chapter~\ref{chp:conclusion} with an overarching discussion of the results attained, impact of the work so far, and an outlook.
 
 \section{Overview of Publications}
 
-\begin{table}[tb]
+The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or the most up-to-date ranking if the latter is not listed. For workshops, the rank of the conference at which the workshop is hosted is shown.} For each of the publications, detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective chapter.
+
+\begin{table}[h]
 \centering
   \caption{Overview of publications reused in this dissertation.}
   \label{tab:primarypublicationoverview}
@@ -246,9 +263,9 @@ The work presented in this dissertation makes the following contributions.
     \end{tabular}
 \end{table}
 
-The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or the most up-to-date ranking if the latter is not listed. For workshops, the rank of the conference at which the workshop is hosted is shown.} For each of the publications, detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective chapter.
+Additional publications (co-)authored leading up to and during the research period which are not a direct part of this dissertation, but nevertheless informed the overall research trajectory, are listed in Table~\ref{tab:secondarypublicationoverview}. Especially \cite{Saier2019} and \cite{Krause2021}, which constitute the results of the master's thesis preceding the doctoral research period, paved the way for this dissertation.
 
-\begin{table}[tb]
+\begin{table}[h]
 \centering
   \caption{Overview of secondary publications not reused in this dissertation.}
   \label{tab:secondarypublicationoverview}
@@ -267,20 +284,3 @@ The contributions in this dissertation have been published in peer-reviewed inte
     \hline
     \end{tabular}
 \end{table}
-
-Additional publications (co-)authored leading up to and during the research period which are not a direct part of this dissertation, but nevertheless informed the overall research trajectory, are listed in Table~\ref{tab:secondarypublicationoverview}. Especially \cite{Saier2019} and \cite{Krause2021}, which constitute the results of the master's thesis preceding the doctoral research period, paved the way for this dissertation.
-
-\section{Outline}
-\Blindtext[1]
-
-% unarXive
-% |  |  |
-% |  |  v
-% |  |  blocking
-% |  v
-% |  unarXive22
-% v       |
-% xling   v
-% |      Hyperpie
-% v
-% xling+
