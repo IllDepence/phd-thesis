@@ -11,6 +11,10 @@ This chapter is based on the following publications.
 \end{infobox-pub}
 
 \section{Overview}
+In this chapter, we introduce improvements for out corpus creation methodology in two areas.
+First, we present in Section~\ref{sec:covgran-blocking} a blocking and matching method applied on the set of references in a corpus. With this matched references as well as bibliographic couplings can significantly be increased. % Furthermore, it removes the reliance of a ...
+Second, we present in Section~\ref{sec:covgran-ux22} an improved conversion method for \LaTeX\ source files, and with it an update of the \emph{unarXive} corpus. The improved corpus creation method enables fine-granularly structured document representations, and achieves a new state-of-the-art reference matching success rate.\footnote{After the publication of our initial corpus creation methodology in \cite{Saier2020} (see Chapter~\ref{chp:corpus}), the now widely used corpus S2ORC~\cite{Lo2020} adapted our document conversion methodology for the \LaTeX\ subset of their data set. While they do not achieve a reference matching success rate as high as ours, they made advances regarding the structured document representation. With the work presented in this chapter, we follow and improve upon their example, establishing a fine-granular structured document representation for the \emph{unarXive} corpus.}
+
 In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
 
 \begin{infobox-progress}
@@ -34,7 +38,7 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 % \end{abstract}
 
 % \section{A Blocking-Based Approach to Enhance Large-Scale Reference Linking}
-\section{Reference Linking by Inter-Reference Blocking}
+\section{Reference Linking by Inter-Reference Blocking}\label{sec:covgran-blocking}
 
 \subsection{Introduction}
 % % Motivation
@@ -304,7 +308,7 @@ Tarek Saier: Conceptualization, Data curation (support), Formal analysis, Invest
 
 
 % \section{unarXive 2022: All arXiv Publications Pre-Processed for NLP, Including Structured Full-Text and Citation Network}
-\section{Reference \& Text Granularity - a Corpus Update}
+\section{Reference \& Text Granularity - a Corpus Update}\label{sec:covgran-ux22}
 
 % \begin{abstract}
 % Large-scale data sets on scholarly publications are the basis for a variety of bibliometric analyses and natural language processing (NLP) applications. Especially data sets derived from publication's \emph{full-text} have recently gained attention.
