@@ -122,7 +122,7 @@ Developing a process as described above is challenging for several reasons.
     \item \textbf{Specialized Content} The fact that scientific publications address highly specialized topics, means that they are likely to contain both specialized terminology, as well as specialized notation. Both of these aspects result in further challenges in processing their natural language contents.
 \end{enumerate}
 
-Some of the aspects mentioned above are common for NLP tasks in general, such as semantic ambiguity. However, in their entirety, these challenges set the task apart from other areas, such as approaches concerned with news articles, which contain less specialized language, and websites, where the source material is more structured by nature. Rather close to above challenges is the processing of patents. However, patents also contain legal jargon, which is generally not the case for scientific publications.\footnote{The similarity between scientific publications and patents regarding the nature of their content, purpose, and requirements for automated processing, are likely the reason that some platforms, such as Google Scholar, handle both. (The search interface at \refurlinline{https://scholar.google.com/}{2023-11-22} includes a filter option ``include patents''.)}
+Some of the aspects mentioned above are common for NLP tasks in general, such as semantic ambiguity. However, in their entirety, these challenges set the task apart from other areas, such as approaches concerned with news articles, which contain less specialized language, and websites, where the source material is more structured by nature. Rather close to above challenges is the processing of patents. However, patents also contain legal jargon, which is generally not the case for scientific publications.\footnote{The similarity between scientific publications and patents regarding the nature of their content, purpose, and requirements for automated processing, are likely the reason that some platforms, such as Google Scholar, handle both within a single system. The search interface at \refurlinline{https://scholar.google.com/}{2023-11-22}, for example, includes a filter option ``include patents''.}
 
 % differences to patents: nature of the language technical and legal (as opposed to scientific)
 
@@ -224,9 +224,9 @@ The contributions made across the works tackling the challenges and limitations 
 
 In Chapter~\ref{chp:foundations}, Foundations, we introduce overarching and foundational concepts related to scholarly data as well as data mining and information extraction. The provided information is conducive to understanding (1)~decisions made in the system design and method development of the approaches discussed later on, and (2)~the quantification of the research goals and achieved results.
 
-Chapters~\ref{chp:corpus} to \ref{chp:params} represent the main contributions of the work presented in this dissertation. Specifically, these are:
+Chapters~\ref{chp:corpus} to \ref{chp:params} make up the main contributions of the work presented in this dissertation. Specifically, these are:
 
-\textbf{A Linked Document Scholarly Data Corpus from \LaTeX} With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate. The work achieves improvements across all five data quality dimensions.
+\textbf{A Linked Document Scholarly Data Corpus from \LaTeX} With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate. The work achieves improvements across all five data quality dimensions.
 
 \textbf{Inter-Reference Blocking and Fine-Granular Text Representation} Building upon \emph{unarXive}, we present in Chapter~\ref{chp:covgran} advancements in two areas. First, regarding the citation network, we develop a inter-reference blocking and matching method that significantly increases matched references as well as bibliographic couplings, and achieve a new state-of-the-art matching success rate. Second, we present an improved conversion method for \LaTeX\ source files leading to fine-granularly structured document representations. % Consider putting a sentences regarding the updated unarXive here, comparing it to S2ORC (mentioning that S2ORC (LaTeX) pipeline is based on unarXive)
 In total, the work presented achieves data quality improvements in terms of relevance, timeliness, comparability, and completeness.
@@ -263,7 +263,7 @@ The contributions in this dissertation have been published in peer-reviewed inte
     \end{tabular}
 \end{table}
 
-Additional publications (co-)authored leading up to and during the research period which are not a direct part of this dissertation, but nevertheless informed the overall research trajectory, are listed in Table~\ref{tab:secondarypublicationoverview}. Especially \cite{Saier2019} and \cite{Krause2021}, which constitute the results of the master's thesis preceding the doctoral research period, paved the way for this dissertation.
+Additional publications (co-)authored leading up to and during the research period which are not a direct part of this dissertation, but nevertheless informed the overall research trajectory, are listed in Table~\ref{tab:secondarypublicationoverview}.
 
 \begin{table}[h]
 \centering
@@ -284,3 +284,5 @@ Additional publications (co-)authored leading up to and during the research peri
     \hline
     \end{tabular}
 \end{table}
+
+Especially \cite{Saier2019} and \cite{Krause2021}, which constitute the results of the master's thesis preceding the doctoral research period, paved the way for this dissertation.
