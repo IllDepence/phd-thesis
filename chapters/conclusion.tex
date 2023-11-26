@@ -1,20 +1,35 @@
 \chapter{Conclusion}
 \label{chp:conclusion}
 
-\section{Conclusion}
+\section{Summary}
 
-% \begin{table}[h]
-%   \caption{Scholarly Data Quality Contributions}
-%   \label{tab:scholdataquali_corpus}
-%   \centering
-%   \begin{small}
-%     \begin{threeparttable}
+This dissertation set out to to alleviate the state of scholarly data. In order to achieve this, the following research objective was set.
+
+\begin{infobox-objective}
+\textbf{Research Objective}\\
+Develop an automated process that takes as input scientific publications, and produces as output a high-quality derivate representation of the publications suitable for digital processing.
+\end{infobox-objective}
+
+Criteria for high-quality were defined across the following dimensions.\footnote{See Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations} for the list of criteria.}
+
+\begin{infobox-progress}
+      \textbf{Data Quality Dimensions}\\
+       (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, (5)~completeness
+\end{infobox-progress}
+
+To achieve this, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of of linked, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
+In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete citation network. The updated procedure furthermore enabled more fine-granular document representations. %``Reference Coverage and Granularity''
+In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we found a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact. %``References Across Languages''
+Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found difference in parameter reporting patterns across several disciplines. %``References with Usage Parameters''
+
+The presented work makes the following contributions towards the research objective.
+
 \begin{infobox-progress}
       \textbf{Scholarly Data Quality Contributions - Overview}\vspace{0.5em}
 
       \begin{tabular}{lccccc}
         \toprule
-        Quality Dimension & Quality Criterion\tnote{b} & \cite{Saier2020} & \cite{Saier2022ULITE,Saier2023unarXive} & \cite{Saier2020xling,Saier2021} & \cite{Saier2023hyperpie} \\
+        Quality Dimension & Quality Criterion\tnote{b} & \multicolumn{4}{c}{Contribution} \\
         \midrule
         \multirow{2}{*}{Relevance} & \textbf{C1} & {\large\textbf{+}} & = & {\large\textbf{+}} & $\circ$ \\
          & \textbf{C2} & $\circ$ & {\large\textbf{+}} & $\circ$ & {\large\textbf{+}} \\
@@ -29,6 +44,10 @@
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
         \multirow{2}{*}{Completeness} & \textbf{C8} & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
          & \textbf{C9} & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
+        \midrule
+        \midrule
+        \multicolumn{2}{r}{Chapter} & \ref{chp:corpus} & \ref{chp:covgran} & \ref{chp:xling} & \ref{chp:params} \\
+        \multicolumn{2}{r}{Publication} & \cite{Saier2020} & \cite{Saier2022ULITE,Saier2023unarXive} & \cite{Saier2020xling,Saier2021} & \cite{Saier2023hyperpie} \\
         \bottomrule
       \end{tabular}
 
@@ -39,16 +58,12 @@
       =: equal to previous\\
       $\circ$: not considered.
       \end{footnotesize}
-      % \begin{tablenotes}
-      %   \item[a] Values are result indicators\\\textbf{+}: SOTA/improvement/etc.\\=: equal to previous\\$\circ$: not considered\\Explanations of results can be found in the respective chapters
-      %   \item[b] See Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}
-      % \end{tablenotes}
-    % \end{threeparttable}
-  % \end{small}
-% \end{table}
 \end{infobox-progress}
 
+\section{Conclusion}
+
 Consider giving an overview of the impact the presented work had so far (see colloquium presentation).
+
 
 \section{Outlook}
 Always look on the bright side of life.
