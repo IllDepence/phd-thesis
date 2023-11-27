@@ -17,7 +17,15 @@ Criteria for high-quality were defined across the following dimensions.\footnote
        (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, (5)~completeness
 \end{infobox-progress}
 
-To achieve this, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of of linked, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
+To focus the efforts of improving scholarly data quality, three areas were identified in which scholarly data particularly has limitations.
+
+\begin{enumerate}
+    \item Completeness of the \textbf{citation network}
+    \item Coverage of \textbf{non-English content}
+    \item Structured representation of \textbf{research artifacts}
+\end{enumerate}
+
+To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of of linked, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
 In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete citation network. The updated procedure furthermore enabled more fine-granular document representations. %``Reference Coverage and Granularity''
 In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we found a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact. %``References Across Languages''
 Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found difference in parameter reporting patterns across several disciplines. %``References with Usage Parameters''
@@ -64,6 +72,26 @@ The presented work makes the following contributions towards the research object
 
 Consider giving an overview of the impact the presented work had so far (see colloquium presentation).
 
+\begin{itemize}
+    \item \textbf{Methodology}
+    \begin{itemize}
+        \item Document Parsing Methodology~\cite{Lo2020}
+    \end{itemize}
+    \item \textbf{Model dev/eval}
+    \begin{itemize}
+        \item Citation Recommendation~\cite{Citcom2021}~(\cite{Saier2019,HybridCite2020})
+        \item Citation Analysis~\cite{Veneri2022,Xue2021,}~(\cite{Saier2020xling,Saier2021})
+        \item Finding Hidden Citations~\cite{Meng2023}
+        \item Document Retrieval~\cite{Parisot2022}
+        \item Researcher Profile Embeddings~\cite{Mochihashi2023}
+        \item Reference Linking~(\cite{Saier2022ULITE})
+    \end{itemize}
+    \item \textbf{Dataset extension}
+    \begin{itemize}
+        \item Link Prediction~(\cite{Saier2023cocon})
+        \item NER+RE~(\cite{Saier2023hyperpie})
+    \end{itemize}
+\end{itemize}
 
 \section{Outlook}
 Always look on the bright side of life.
