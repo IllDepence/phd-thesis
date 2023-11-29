@@ -68,7 +68,7 @@ The presented work makes the following contributions towards the research object
       \end{footnotesize}
 \end{infobox-progress}
 
-\section{Conclusion}
+\section{Discussion}
 
 Structured representations of scientific publications bear immense potential for efficiency gains in academia, as well as offering a remedy for the information overflow scientists are faced with.
 Our current ``digital record of science'', however, is limited in various ways. This not only prevents faster progress, but also means decisions based on current scholarly data can be flawed and analysis results faulty.
@@ -104,14 +104,20 @@ In this dissertation, we made significant progress in all three aforementioned a
 
 Compared to other efforts with the goal to create high-quality scholarly data, our work particularly stands out through the combination of three key aspects. (1) Accurate, fine-granular document representations, (2) a citation network, and (3) applicability on a large scale due to being automated. The closest related work, S2ORC~\cite{Lo2020}, predominantly uses PDF data and therefore does not provide the same level of granularity (e.g. mathematical notation) and is more prone to noise. arXMLiv~\cite{arXMLiv}, while providing accurate, fine-granular document representations, lacks a citation network. Lastly, the Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} relies on manual or only semi-automated adding of data, and is therefore lacking in scale.
 
-Our work using \LaTeX\ as the starting point, however, also comes as a price. While theoretically \LaTeX\ is suitable to write papers in any field, it is not commonly used in certain areas, such as the humanities. Practically speaking, a representative portion of publications is available as \LaTeX\ sources in physics, mathematics, and computer science---those found on arXiv.org. In other areas, such as the life sciences, large quantities of publications in JATS XML format are available. However, their supply relies on manual efforts provided by publishers. In disciplines other that the aforementioned, only PDFs are available. This means in turn that currently efforts operating on PDF files, such as S2ORC, are more widely applicable. Our work in the focus areas citation network, non-English content, and research artifacts---presented in Chapters~\ref{chp:covgran}, \ref{chp:xling} and \ref{chp:params} respectively---is not reliant on \LaTeX\ though, meaning that given suitable input, they
-
 % TODO: consider discussing arXiv being a preprint server and the level of difference between preprints on arXiv and their published counterpart
 
 % Note that in other contexts the term ``scholarly data'' can have a broader meaning than just ``structured representations of scientific publications''. For example, it can also include data on research institutions or funding bodies, without necessitating the context of a publication.
 
 \section{Outlook}
 
+We conclude with a brief look at viable next developments based progress achieved with this dissertation, as well as potential future developments in scientific publishing in general and what they would mean for the presented work.
+
+% extension to more input formats
+Our work takes publications' \LaTeX\ source files from arXiv.org as the starting point. Because \LaTeX\ provides a certain level of explicit document structure and semantic information, a natural extension would be to replicate our work on the JATS XML publications of the PubMed Central Open Access Subset. This would widen the scope of the results attained, namely by adding life sciences to the already covered disciplines of physics, mathematics, and computer science. In disciplines other that the aforementioned, however, only PDFs are available at a large scale the time of writing. An extension to PDF input would likely come with challenges regarding structured document representations. However, our work in the focus \emph{areas citation network}, \emph{non-English content}, and \emph{research artifacts}---presented in Chapters~\ref{chp:covgran}, \ref{chp:xling} and \ref{chp:params} respectively---is not reliant on \LaTeX\ as a starting point. This means, given suitable input, application on PDF based document collections is unlikely to pose difficulties.
+
+% the future of input formats
+There are efforts by The \LaTeX\ Project to support semantic annotation natively in the future~\cite{Mittelbach2020,Mittelbach2023}.
+
+% the futer of publishing
 Bigger picture, publishing as a whole (e.g. paper as unit of publication micropublications~\cite{Raciti2018})
-There are, however, efforts by The \LaTeX\ Project\refurl{https://www.latex-project.org/}{2023-11-08} itself to support semantic annotation natively in the future~\cite{Mittelbach2020,Mittelbach2023}.
 
