@@ -17,7 +17,7 @@ Criteria for high-quality were defined across the following dimensions.\footnote
        (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, (5)~completeness
 \end{infobox-progress}
 
-To focus the efforts of improving scholarly data quality, three areas were identified in which scholarly data particularly has limitations.
+To focus the efforts of improving scholarly data quality, three areas were identified in which scholarly data based on existing work particularly has limitations.
 
 \begin{enumerate}
     \item Completeness of the \textbf{citation network}
@@ -25,8 +25,8 @@ To focus the efforts of improving scholarly data quality, three areas were ident
     \item Structured representation of \textbf{research artifacts}
 \end{enumerate}
 
-To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of of linked, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
-In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete citation network. The updated procedure furthermore enabled more fine-granular document representations. %``Reference Coverage and Granularity''
+To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of of interlinked, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
+In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete, state-of-the-art citation network. The updated procedure furthermore enabled more fine-granular document representations, which in turn made the subsequent work in Chapter~\ref{chp:params} possible. %``Reference Coverage and Granularity''
 In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we found a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact. %``References Across Languages''
 Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found difference in parameter reporting patterns across several disciplines. %``References with Usage Parameters''
 
@@ -70,28 +70,42 @@ The presented work makes the following contributions towards the research object
 
 \section{Conclusion}
 
-Consider giving an overview of the impact the presented work had so far (see colloquium presentation).
+Structured representations of scientific publications bear immense potential for efficiency gains in academia, as well as offering a remedy for the information overflow scientists are faced with.
+Our current ``digital record of science'', however, is limited in various ways. This only hinders progress, but also means decisions based on current scholarly data might be flawed and analysis results faulty.
+Particularly, the \emph{citation networks} is scholarly data are incomplete, \emph{non-English content} is often not covered, and increasingly relevant \emph{research artifacts} are not available as structured data.
+
+In this dissertation, we made significant progress in all of the three areas, as laid out in the previous section. With this, we achieved comprehensive improvements of data quality, as determined across the dimensions of relevance, accuracy, timeliness, comparability, and completeness. Furthermore, the presented work already made an impact on the research fields concerned with scholarly data and the study of publications. Below, we give a brief account of ideas and results from this dissertation permeating into and being used in the research community.
 
 \begin{itemize}
-    \item \textbf{Methodology}
+    \item Use of \textbf{methodology}
     \begin{itemize}
-        \item Document Parsing Methodology~\cite{Lo2020}
+        \item In~\cite{Lo2020} Lo et al. use our corpus creation methodology presented in ~\cite{Saier2020} for the \LaTeX\ subset of their S2ORC data set.
     \end{itemize}
-    \item \textbf{Model dev/eval}
+    \item Use for \textbf{model development and evaluation}
     \begin{itemize}
-        \item Citation Recommendation~\cite{Citcom2021}~(\cite{Saier2019,HybridCite2020})
-        \item Citation Analysis~\cite{Veneri2022,Xue2021,}~(\cite{Saier2020xling,Saier2021})
-        \item Finding Hidden Citations~\cite{Meng2023}
+        \item Meyer et al. use the \emph{unarXive} data set for the development and evaluation of a citation recommendation model in~\cite{Citcom2021}. %~(\cite{Saier2019,HybridCite2020})
         \item Document Retrieval~\cite{Parisot2022}
         \item Researcher Profile Embeddings~\cite{Mochihashi2023}
-        \item Reference Linking~(\cite{Saier2022ULITE})
+        %\item Reference Linking~(\cite{Saier2022ULITE})
     \end{itemize}
-    \item \textbf{Dataset extension}
+    \item Use for \textbf{analyses}
+    \begin{itemize}
+        \item In~\cite{Veneri2022} Veneri et al. investigate how astronomers cite other research fields.
+        \item Xue analyses in~\cite{Xue2021} semantic shifts of the contexts in which works are cited. %~(\cite{Saier2020xling,Saier2021})
+        \item Meng et al. present in~\cite{Meng2023} an analysis of omitted citations of works that have become common knowledge --- so called ``obliteration by incorporation''.
+    \end{itemize}
+    \item Use for \textbf{data set integration/extension}
     \begin{itemize}
         \item Link Prediction~(\cite{Saier2023cocon})
-        \item NER+RE~(\cite{Saier2023hyperpie})
+        %\item NER+RE~(\cite{Saier2023hyperpie})
     \end{itemize}
 \end{itemize}
 
+Compared to other efforts (ORKG, etc.)
+
+Bigger picture, publishing as a whole (e.g. paper as unit of publication micropublications~\cite{Raciti2018})
+
 \section{Outlook}
 Always look on the bright side of life.
+
+LaTeX improvments
