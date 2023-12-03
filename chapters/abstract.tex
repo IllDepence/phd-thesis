@@ -1,22 +1,22 @@
 \selectlanguage{english}
 \Abstract{}
 % motivation
-Machine-readable representations of scientific publications are the foundation of vital digital systems in academia.
-They capture information about publications' contents and interconnections, thereby enabling, informing, and accelerating processes such as academic search, decision making, and large-scale bibliographic analyses.
-The usefulness of these services and validity of insights gained, naturally hinges on the quality of the representations.
-Resulting opportunities and risks are especially large in rapidly evolving areas of research, such as machine learning, where researchers and decision makers are reliant on information aggregation to keep up with the increased rate of publication and progress.
+Scientific publications are written by humans \emph{for humans}.
+However, vital infrastructure in academia relies on the processing of publications \emph{by computers}.
+For example, academic search engines and performance indicators, which are indispensable for literature review and decision making, require machine-readable representations of publications.
+Bridging the gap from a medium \emph{for humans} to something suitable for processing \emph{by computers} is a challenging and error-prone process.
 
 % gap
-However, existing methods for the creation of data representing publications, and by extension the data they produce, are limited in various ways. Specifically, there are shortcomings regarding documents' interconnections, language coverage, and content representation granularity. For example, widely used data sets have highly incomplete citation networks, are limited to publications written in English, or fail to accurately capture mathematical notation. As a consequence, applications and research building on this data are of limited scope and validity.
+Existing methods for the creation of data representing publications, and by extension the data they produce, are limited in various ways. Specifically, there are shortcomings regarding documents' interconnections, language coverage, and content representation granularity. For example, widely used data sets have highly incomplete citation networks, are limited to publications written in English, or fail to accurately capture mathematical notation. As a consequence, applications and research building on this data are of limited scope and validity.
 
 % solution
-To address these issues, we present a set of data mining and information extraction approaches that enable the creation of machine-readable publication corpora more complete, extensive, and of finer granularity than previously available. We quantify our contributions to data quality along the dimensions relevance, accuracy, timeliness, comparability, and completeness, and achieve improvements across all of them.
+To address these issues, we present a set of data mining and information extraction approaches that enable the creation of machine-readable publication corpora more complete, extensive, and of finer granularity than previously available. We quantify our contributions to better data quality along the dimensions relevance, accuracy, timeliness, comparability, and completeness, and achieve improvements across all of them.
 
 In particular, we present the following.
 As the foundation of our research, we introduce a method for creating a large-scale corpus of linked, full-text documents from publications' \LaTeX\ sources.
 Utilizing the resulting corpus, we further present approaches yielding advances in three areas.
-First, we demonstrate improvements of the completeness of citation networks though the use of a blocking and matching method, as well as improvements to the granularity of document representations.
-Second, we show advances in the language coverage of document interconnections through a large-scale analysis of cross-lingual citations.
+First, we demonstrate improvements in the completeness of citation networks though the use of a blocking and matching method, as well as improvements in the granularity of document representations.
+Second, we show advances in the language coverage of document interconnections through identifying and analyzing cross-lingual citations.
 Third, we present information extraction approaches for fine-granular representations of research artifacts and their parameters.
 
 % summary
