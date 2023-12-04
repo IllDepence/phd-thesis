@@ -162,7 +162,7 @@ To determine which references within a block refer to the same publications, we 
 We use a large corpus of scholarly publications to perform two types of evaluations. (1)~A large-scale evaluation utilizing the corpus' existing reference links as ground truth, and (2)~a manual evaluation to also assess the correctness of newly created reference links. In the following, we describe the data used, evaluations performed, and results obtained.
 
 \paragraph{Data}
-For our evaluation we use the data set unarXive~\cite{Saier2020}. We chose this data set over similar data sets such as S2ORC~\cite{Lo2020}, because it not only contains paper's full text with annotated in-text citation markers, but also a dedicated database of all raw references in plain text. From unarXive we sample the 300,000 most recent references to conduct our evaluation. The 300,000 references originate from 9,917 papers from the disciplines of physics (7,347), mathematics (1,686), computer science (789), and other STEM fields (95). The publications cited through the references cover publication years from 1743 up to 2020. Four examples of references used in the evaluation are shown in Figure~\ref{fig:hardmatch}.
+For our evaluation we use the data set unarXive~\cite{Saier2020}. We chose this data set over similar data sets such as S2ORC~\cite{Lo2020}, because it not only contains paper's full-text with annotated in-text citation markers, but also a dedicated database of all raw references in plain text. From unarXive we sample the 300,000 most recent references to conduct our evaluation. The 300,000 references originate from 9,917 papers from the disciplines of physics (7,347), mathematics (1,686), computer science (789), and other STEM fields (95). The publications cited through the references cover publication years from 1743 up to 2020. Four examples of references used in the evaluation are shown in Figure~\ref{fig:hardmatch}.
 
 % \paragraph{Result}
 % As a first step, token blocking generates 116,826 blocks in total with a minimum size of 2 and a maximum size of 70,372. 
@@ -286,8 +286,8 @@ To improve the quality of reference linking in large scholarly data sets, we pro
 Key limitations of the work presented are (1)~the size and discipline coverage of the evaluation corpus, (2)~the usage of a comparatively basic blocking technique, and (3)~the lack of a thorough evaluation of time performance.
 
 In the future we want to address these points by expanding our work through using more advanced blocking methods such as progressive blocking~\cite{Simonini2019,Galhotra2021}, using larger evaluation corpora such as the whole unarXive data set, including data from more diverse disciplines such as the humanities, and evaluating the time performance of our approach.
-%Because in our evaluation corpus references are linked to in-text citation markers in the paper full texts, we furthermore plan to explore possible application scenarios using the full text such as citation context analysis for non-source items.
-Because references in our evaluation corpus are linked to in-text citation markers, we furthermore plan to explore application scenarios utilizing the paper full texts. %, such as citation context analysis for non-source items.
+%Because in our evaluation corpus references are linked to in-text citation markers in the paper full-text, we furthermore plan to explore possible application scenarios using the full-text such as citation context analysis for non-source items.
+Because references in our evaluation corpus are linked to in-text citation markers, we furthermore plan to explore application scenarios utilizing the paper full-text. %, such as citation context analysis for non-source items.
 
 % Discussion:
 % - Limitations:
