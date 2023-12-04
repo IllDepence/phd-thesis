@@ -352,38 +352,6 @@ Key aspects of such data sets are (1)~basic measures such as quality, size, and 
 
 Across these key aspects, we see significant shortcomings in currently available data sets, as shown in Table~\ref{tab:comparison}. For example, (1)~limited size (SciXGen), (2)~omission of a citation network (arXMLiv), and (3)~no or limited handling of mathematical notation (S2ORC, unarXive 2020).
 
-\begin{landscape}
-\begin{table}
-  % \caption{
-  %   Comparison of large data sets derived from paper full-texts\\
-  %   {\footnotesize\normalfont
-  %    $^\dagger$Cit. network completeness is reported is two ways. ``general'': the whole data set; not directly comparable. ``compare'': for arXiv.org data from 1991--2020; directly comparable.\\
-  %    $^\ddagger$References in the PMC-OAS are partially linked to a mixed set of IDs (PubMed, MEDLINE, DOI)~\cite{Gipp2015}. Therefore there is no single, comprehensive number for its completeness.
-  %   }
-  %  }
-  \caption[Comparison of large data sets derived from paper full-texts]{Comparison of large data sets derived from paper full-texts ($^\dagger$Cit. network completeness is reported is two ways. ``general'': the whole data set; not directly comparable. ``compare'': for arXiv.org data from 1991--2020; directly comparable. $^\ddagger$References in the PMC-OAS are partially linked to a mixed set of IDs (PubMed, MEDLINE, DOI)~\cite{Gipp2015}. Therefore there is no single, comprehensive number for its completeness.}
-  \label{tab:comparison}
-  \begin{tabular}{lccccccccc}
-    \toprule
-    \ & \multicolumn{2}{c}{Source} & \multicolumn{2}{c}{\hphantom{wi}Citation Network$^\dagger$} & \multicolumn{2}{c}{Structured} & \ & \ & \ \\
-    Data Set & Data & Format & general & compare & Doc. & Math. & \# Docs & Disciplines & Purpose \\
-    \midrule
-    CORE~\cite{core} & multiple & PDF & 0\% & - & $\times$ & $\times$ & $>$100 M & various & general NLP \\
-    S2ORC (PDF)~\cite{Lo2020} & multiple & PDF & 69.4\% & - & \checkmark & $\times$ & 12 M & various & general NLP \\
-    % (19.3+6.8)/(27.8+21.9) = 53% overall, 69.4% GROBID parses, 31.1% LaTeX parses
-    unarXive 2020~\cite{Saier2020} & arXiv.org & \LaTeX & 42.6\% & 42.6\% & $\times$ & $\times$ & 1.2 M & phys., maths, CS & general NLP \\
-    \midrule
-    S2ORC (\LaTeX)~\cite{Lo2020} & arXiv.org & \LaTeX & 31.1\% & 31.1\% & \checkmark & \checkmark & 1.5 M & phys., maths, CS & general NLP \\
-    arXMLiv~\cite{arXMLiv} & arXiv.org & \LaTeX & 0\% & 0\% & \checkmark & \checkmark & 1.6 M & phys., maths, CS & maths linguistics \\
-    SciXGen~\cite{chen2021-scixgen} & arXiv.org & \LaTeX & 41.6\% & - & \checkmark & \checkmark & 205 k & CS & text generation \\
-    PMC-OAS\textsuperscript{13} & PubMed & XML & mixed$^\ddagger$ & - & \checkmark & \checkmark & \textbf{3.3 M} & \textbf{biomedical} & not NLP specific \\  % TODO: make sure this footnotemark still is correct in the end, or convert the table to a threeparttable with its own tablenotes
-    \textbf{unarXive 2022} (ours) & arXiv.org & \LaTeX & 44.4\% & \textbf{44.4\%} & \textbf{\checkmark} & \textbf{\checkmark} & \textbf{1.9 M} & \textbf{phys., maths, CS} & general NLP \\
-    % 0.4441 for 1991—2022, 0.4438 for 1991–2020
-    \bottomrule
-  \end{tabular}
-\end{table}
-\end{landscape}
-
 % NOTES
 %
 % S2ORC (PDF) math
@@ -425,6 +393,40 @@ Apart from the data set itself, we furthermore provide ready-to-use training and
     \item We provide ready-to-use training/test data for the development and evaluation of approaches to two NLP tasks, namely citation recommendation and IMRaD classification.
     \item We distribute our data in accordance to the FAIR principles~\cite{Wilkinson2016} and share our source code freely available under a permissive license.
 \end{itemize}
+
+\afterpage{  % - - - start of afterpage
+\begin{landscape}
+\begin{table}
+  % \caption{
+  %   Comparison of large data sets derived from paper full-texts\\
+  %   {\footnotesize\normalfont
+  %    $^\dagger$Cit. network completeness is reported is two ways. ``general'': the whole data set; not directly comparable. ``compare'': for arXiv.org data from 1991--2020; directly comparable.\\
+  %    $^\ddagger$References in the PMC-OAS are partially linked to a mixed set of IDs (PubMed, MEDLINE, DOI)~\cite{Gipp2015}. Therefore there is no single, comprehensive number for its completeness.
+  %   }
+  %  }
+  \caption[Comparison of large data sets derived from paper full-texts]{Comparison of large data sets derived from paper full-texts ($^\dagger$Cit. network completeness is reported is two ways. ``general'': the whole data set; not directly comparable. ``compare'': for arXiv.org data from 1991--2020; directly comparable. $^\ddagger$References in the PMC-OAS are partially linked to a mixed set of IDs (PubMed, MEDLINE, DOI)~\cite{Gipp2015}. Therefore there is no single, comprehensive number for its completeness.}
+  \label{tab:comparison}
+  \begin{tabular}{lccccccccc}
+    \toprule
+    \ & \multicolumn{2}{c}{Source} & \multicolumn{2}{c}{\hphantom{wi}Citation Network$^\dagger$} & \multicolumn{2}{c}{Structured} & \ & \ & \ \\
+    Data Set & Data & Format & general & compare & Doc. & Math. & \# Docs & Disciplines & Purpose \\
+    \midrule
+    CORE~\cite{core} & multiple & PDF & 0\% & - & $\times$ & $\times$ & $>$100 M & various & general NLP \\
+    S2ORC (PDF)~\cite{Lo2020} & multiple & PDF & 69.4\% & - & \checkmark & $\times$ & 12 M & various & general NLP \\
+    % (19.3+6.8)/(27.8+21.9) = 53% overall, 69.4% GROBID parses, 31.1% LaTeX parses
+    unarXive 2020~\cite{Saier2020} & arXiv.org & \LaTeX & 42.6\% & 42.6\% & $\times$ & $\times$ & 1.2 M & phys., maths, CS & general NLP \\
+    \midrule
+    S2ORC (\LaTeX)~\cite{Lo2020} & arXiv.org & \LaTeX & 31.1\% & 31.1\% & \checkmark & \checkmark & 1.5 M & phys., maths, CS & general NLP \\
+    arXMLiv~\cite{arXMLiv} & arXiv.org & \LaTeX & 0\% & 0\% & \checkmark & \checkmark & 1.6 M & phys., maths, CS & maths linguistics \\
+    SciXGen~\cite{chen2021-scixgen} & arXiv.org & \LaTeX & 41.6\% & - & \checkmark & \checkmark & 205 k & CS & text generation \\
+    PMC-OAS\textsuperscript{13} & PubMed & XML & mixed$^\ddagger$ & - & \checkmark & \checkmark & \textbf{3.3 M} & \textbf{biomedical} & not NLP specific \\  % TODO: make sure this footnotemark still is correct in the end, or convert the table to a threeparttable with its own tablenotes
+    \textbf{unarXive 2022} (ours) & arXiv.org & \LaTeX & 44.4\% & \textbf{44.4\%} & \textbf{\checkmark} & \textbf{\checkmark} & \textbf{1.9 M} & \textbf{phys., maths, CS} & general NLP \\
+    % 0.4441 for 1991—2022, 0.4438 for 1991–2020
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{landscape}
+}  % - - - end of afterpage
 
 \subsection{Related Work}
 
