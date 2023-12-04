@@ -46,11 +46,11 @@ Scholarly data is becoming increasingly important and with it its quality and co
 
 % Problem
 %However, in current data sets providing interlinked publications, only around half of the references contained in the original papers are linked\footnote{We use ``link[ing/ed] references'' w.r.t. to connections to cited papers rather than in-text citation markers.} to the cited publications~\cite{Lo2020,Saier2020}. This lack in coverage is especially affecting references to non-English publications~\cite{Saier2021}, which are in general underrepresented in scholarly data~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019} along with publications in the humanities~\cite{Colavizza2019,Kellsey2004}.
-However, reference linking methods\footnote{We use ``link[ing/ed] references'' w.r.t. to connections to cited papers rather than in-text citation markers.} described in the literature are only able to link around half of the references contained in the original papers to the cited publications~\cite{Lo2020,Saier2020}. This lack in coverage is especially affecting references to non-English publications~\cite{Saier2021}, which are in general underrepresented in scholarly data~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019} along with publications in the humanities~\cite{Colavizza2019,Kellsey2004}.
+However, reference linking methods\footnote{In the following, we use ``link[ing/ed] references'' to refer to connections to cited papers rather than in-text citation markers.} described in the literature are only able to link around half of the references contained in the original papers to the cited publications~\cite{Lo2020,Saier2020}. This lack in coverage is especially affecting references to non-English publications~\cite{Saier2021}, which are in general underrepresented in scholarly data~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019} along with publications in the humanities~\cite{Colavizza2019,Kellsey2004}.
 
 We see the reason for this lack in linked references in two key shortcomings of current methods.
 First, references are linked using simple string similarity measures that are often relying \emph{only} on publications' title and author information (which is not always contained in references; see Figure~\ref{fig:hardmatch}). %Note: maybe add sth. along the lines of “relying on title (and mby authors) is deemed sufficient”
-Second, references are exclusively linked to a target collection of paper records---usually a large metadata set like DBLP\refurl{https://dblp.org/}{2023-11-10} or OpenAlex\refurl{https://openalex.org/}{2023-11-10}, or a set of IDs like DOIs or PMIDs. This means references to literature which is not contained in the target collection, as well as to non-source items~\cite{Chi2014}, cannot be linked (see ``?'' markers in Figure~\ref{fig:approach}).
+Second, references are exclusively linked to a target collection of paper records---usually a large metadata set like DBLP\refurl{https://dblp.org/}{2023-11-10} or OpenAlex,\refurl{https://openalex.org/}{2023-11-10} or a set of IDs like DOIs or PMIDs. This means references to literature which is not contained in the target collection, as well as to non-source items~\cite{Chi2014}, cannot be linked (see ``?'' markers in Figure~\ref{fig:approach}).
 
 \begin{figure}[tb]
   \centering
@@ -62,7 +62,7 @@ Second, references are exclusively linked to a target collection of paper record
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\linewidth]{figures/ref_covgran/approach_withblocking_10pvar.pdf}
-  \caption[Schematic depiction of the use case]{Schematic depiction of the use case. A corpus of full text papers, where some references are already linked to a target collection (blue), and some are not (orange, pink, green). At \textbf{(1)} we apply our blocking and matching approach to identify all references that point to the same publication. In doing so, we establish new links in the form of \textbf{(2)} bibliographic coupling and \textbf{(3)} links to the target collection.}
+  \caption[Schematic depiction of the use case]{Schematic depiction of the use case. A corpus of full-text papers, where some references are already linked to a target collection (blue), and some are not (orange, pink, green). At \textbf{(1)} we apply our blocking and matching approach to identify all references that point to the same publication. In doing so, we establish new links in the form of \textbf{(2)} bibliographic coupling and \textbf{(3)} links to the target collection.}
   \label{fig:approach}
 \end{figure}
 
