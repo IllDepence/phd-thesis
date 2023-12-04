@@ -33,7 +33,7 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 % \begin{abstract}
 % In recent years, scholarly data sets have been used for various purposes, such as paper recommendation, citation recommendation, citation context analysis, and citation context-based document summarization. 
 % The evaluation of approaches to such tasks and their applicability in real-world scenarios heavily depend on the used data set. However, existing scholarly data sets are limited in several regards. 
-% In this paper, we propose a new data set based on all publications from all scientific disciplines available on arXiv.org. Apart from providing the papers' plain text, in-text citations were annotated via global identifiers. Furthermore, citing and cited publications were linked to the Microsoft Academic Graph, providing access to rich metadata. Our data set consists of over one million documents and 29.2 million citation contexts. The data set, which is made freely available for research purposes, not only can enhance the future evaluation of research paper-based and citation context-based approaches, but also serve as a basis for new ways to analyze in-text citations, as we show prototypically in this article.
+% In this paper, we propose a new data set based on all publications from all scientific disciplines available on arXiv.org. Apart from providing the papers' plain text, in-text citations were annotated via global identifiers. Furthermore, citing and cited publications were linked to the Microsoft Academic Graph, providing access to rich metadata. Our data set consists of over one million documents and 29.2 million citation contexts. The data set, which is made freely available for research purposes, not only can enhance the future evaluation of research paper-based and citation context-based approaches, but also serve as a basis for new ways to analyze in-text citations, as we show prototypically in this chapter.
 % \end{abstract}
 
 \section{Introduction}
@@ -95,7 +95,7 @@ Furthermore, (sophisticated) deep learning approaches, as they are also widely u
 % overall
 Overall, we argue that with our data set we can significantly bring the state of the art of big scholarly data one step forward.
 
-We make the following contributions in this paper:
+We make the following contributions in this chapter:
 \begin{enumerate}
     \item We propose a large, interlinked scholarly data set with papers' full texts, annotated in-text citations, and links to rich metadata. We describe its creation process in detail and provide both the data as well as the creation process implementation to the public. 
     \item We manually evaluate the validity of our reference links on a sample of 300 references, thereby providing insight into our citation network's quality.
@@ -104,7 +104,7 @@ We make the following contributions in this paper:
     \item We analyze the likelihood with which in-text citations in our data set refer to specific parts of a cited document depending on the discipline of the citing \emph{and} cited document. Such an analysis is only possible with word level precision citation marker positions annotated in full text \emph{and} metadata on citing as well as cited documents. The analysis therefore can showcase the practicability of our data set.
 \end{enumerate}
 
-The paper is structured as follows: After outlining related data sets in Section~\ref{sec:related-work}, we describe in Section~\ref{sec:data-set-creation} how we created our data set. This is followed by statistics and key figures in Section~\ref{sec:statistics}. In Section~\ref{sec:evaluation-validity-and-coverage}, we evaluate the validity and coverage of our reference links. Section~\ref{sec:analysis} is dedicated to the analysis of the citation flow and the contexts within our data set. We conclude in Section~\ref{sec:conclusion} with a summary and an outlook.
+The remainder of the chapter is structured as follows: After outlining related data sets in Section~\ref{sec:related-work}, we describe in Section~\ref{sec:data-set-creation} how we created our data set. This is followed by statistics and key figures in Section~\ref{sec:statistics}. In Section~\ref{sec:evaluation-validity-and-coverage}, we evaluate the validity and coverage of our reference links. Section~\ref{sec:analysis} is dedicated to the analysis of the citation flow and the contexts within our data set. We conclude in Section~\ref{sec:conclusion} with a summary and an outlook.
 
 \section{Existing Data Sets}
 \label{sec:related-work}
@@ -583,7 +583,7 @@ Our five criteria  outlined in the beginning, namely \emph{size}, \emph{cleanlin
 \section{Conclusion}
 \label{sec:conclusion}
 
-Evaluating and applying approaches to research paper-based and citation-based tasks typically requires large, high-quality, citation-annotated, interlinked data sets. In this paper, we proposed a new data set with over one million papers' full texts, 29.2 million annotated citations, and 29.2 million extracted citation contexts (of three sentences each), ready to be used by researchers and practitioners.
+Evaluating and applying approaches to research paper-based and citation-based tasks typically requires large, high-quality, citation-annotated, interlinked data sets. In this chapter, we proposed a new data set with over one million papers' full texts, 29.2 million annotated citations, and 29.2 million extracted citation contexts (of three sentences each), ready to be used by researchers and practitioners.
 We provide the data set and the implementation for creating the data set from arXiv source files online for further usage.
 
 For the future, we plan to use the data set for a variety of tasks. Among others, we will develop a citation recommendation system based on all arXiv papers. Furthermore, we plan to perform additional analyses on citations and citation contexts across scientific disciplines, and to use the differences in citing behavior for enhanced citation recommendation.
