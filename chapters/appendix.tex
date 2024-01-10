@@ -1,6 +1,6 @@
 \chapter{Appendix}
 
-\section{Geographic origin of all cited non-English languages}\label{sec:apndx_geo}
+\section{Geographic origin of all cited non-English languages}\label{app:geo_origin}
 
 In Figure~\ref{fig:geo_full} we show the geographic origin of cross-lingual citations in relative terms per cited language (i.e., the numbers of each \emph{row} add up to 1). The distinct diagonal of the matrix and the horizontal line for affiliations in English speaking countries reflect the fact that most cross-lingual citations are either to a local language or originate from an English speaking country. Among cited languages with a low number of total occurrences we can furthermore see a few cases showing unusual distributions, such as a single citation to Macedonian from an author affiliated with a Polish institution, or citations to Icelandic, where a single one originates from Iceland, while the remaining nine originate from institutions in countries where Japanese (3), Italian (1), and Swedish (5) are the most common language.
 
@@ -10,8 +10,7 @@ In Figure~\ref{fig:geo_full} we show the geographic origin of cross-lingual cita
 \caption{Geographic origin of cross-lingual citations (relative count).} \label{fig:geo_full}
 \end{figure*}
 
-\section{Citation Intent and Sentiment Classification}
-\label{app:classifcation}
+\section{Citation Intent and Sentiment Classification}\label{app:classifcation}
 
 For the model training of both citation intent classification and citation sentiment classification, we fine-tune SciBERT uncased\footnote{See \url{https://huggingface.co/allenai/scibert_scivocab_uncased}.} using the following model configuration shown in Table~\ref{tab:modelconf}.
 
@@ -53,7 +52,7 @@ For determining the citation intent, we use the train, validation, and test spli
 
 
 
-\section{HyperPIE Implementation Details}\label{sec:implementation-details}
+\section{HyperPIE Implementation Details}\label{app:hyperpie-implementation-details}
 
 \paragraph{Fine-Tuned Models:}
 We obtain the source code of PL-Marker from the author's GitHub repository\footnote{See \url{https://github.com/thunlp/PL-Marker/}.}. To make it work with our entity and relation schema, we extended the source code in \texttt{run\_acener.py} and \texttt{run\_re.py}. A patch file with all changes is provided in our code share. Our own RE model is a FFNN implemented with 4 hidden layers, each with ReLU activation and dimensions 300, 100, 25 and 2 respectively. All fine-tuned models are trained and evaluated on a local server with a GeForce RTX 3090 (24\,GB).
@@ -103,10 +102,9 @@ Only produce output in the YAML format specified above. Output no additional tex
 Output:
 \end{lstlisting}
 
-For few-shot prompting, we employed 4bit quantization and called \texttt{llama-cpp-python}\footnote{See \url{https://github.com/abetlen/llama-cpp-python/}.} API based on \texttt{llama.cpp}\footnote{See \url{https://github.com/ggerganov/llama.cpp/}.} backend with CUDA multi-GPU acceleration. Besides the disabled temperature parameter to ensure the deterministic decoding, we rely on the default generation setup in \texttt{llama.cpp}: half precision = enabled, repetition penalty = 1.1.
-
-
-Listing~\ref{lst:fewshotprompt} depicts an example of a few-shot prompt.
+For few-shot prompting, we employed 4\,bit quantization and used the \texttt{llama-cpp-python}\footnote{See \url{https://github.com/abetlen/llama-cpp-python/}.} API. % based on \texttt{llama.cpp}\footnote{See \url{https://github.com/ggerganov/llama.cpp/}.} backend with CUDA multi-GPU acceleration.
+We use the default generation setup in \texttt{llama.cpp}
+with parameters: temperature = 0, half precision = enabled, and repetition penalty = 1.1. A few-shot prompt example is shown in Listing~\ref{lst:fewshotprompt}.
 
 \begin{lstlisting}[language=plain,caption=Prompt example.,label=lst:fewshotprompt,breaklines=true,captionpos=b,frame=single,showlines=true,basicstyle=\tiny\ttfamily]
 ### Instruction:
@@ -183,10 +181,7 @@ We use AdamW with a learning rate ($\alpha$) of 1e-3 for /* [...] */
 ```
 \end{lstlisting}
 
-We omitted \texttt{type: dataset/model/method/loss function/regularization technique} field in the examples because we don't have this information in the gold annotation. As a consequence, the model outputs also tend to skip this attribute.
-
-% add BNF grammer, too??
-
+In the examples given in the few-shot prompts, we omitted the field \texttt{type: dataset/\allowbreak model/\allowbreak method/\allowbreak loss function/\allowbreak regularization technique}, because this information is not part of the gold annotation. As a consequence, the model outputs also tend to skip this attribute.
 
 % \chapter{Bappendix}
 

@@ -51,14 +51,14 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 
 % - - - - - Why is structured information about hyperparams important? - - - - -
 
-Models capable of extracting fine-grained information from publications can make scientific knowledge machine readable at a large scale.
-Aggregated, such information can fuel platforms like Papers with Code\footnote{See \url{https://paperswithcode.com/}.} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, facilitating academic search, recommendation,  and reproducibility.
+Models capable of extracting fine-grained information from publications can make scientific knowledge machine-readable at a large scale.
+Aggregated, such information can fuel platforms like Papers with Code\footnote{See \url{https://paperswithcode.com/}.} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, and thereby facilitate academic search, recommendation,  and reproducibility.
 %Potential for impact is especially large in rapidly progressing areas of research, such as machine learning (ML) and related fields. Platforms aggregating extracted information, like Papers with Code~\cite{paperswithcode} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, allow researchers to quickly gain insights into state-of-the-art approaches, reproduce others' work, and find papers relevant to their research.
 Accordingly, a variety of approaches for information extraction~(IE) from scientific text have been proposed~\cite{luan2018scierc,Jain2020scirex,semeval21_task8,semeval22_task12,Dunn2022}.  % / such as ...
 
 % - - - - - What are key shortcomings of current research? (research gap)
 
-However, to the best of our knowledge, no approaches exist for the extraction of structured information on hyperparameter use.
+However, to the best of our knowledge, no approaches exist for the extraction of structured information on hyperparameter use from publications.
 That is, information on \emph{with which parameters} researchers use methods and data. We refer to this information as ``hyperparameter information'' (see Fig.~\ref{fig:schema-visual}).
 %That is, information on not just what methods and data researchers use, but specifically \emph{with which parameters} they use them. We refer to this information as ``hyperparameter information'' (see Fig.~\ref{fig:schema-visual}).
 Hyperparameter information is important for several reasons. (1)~First, its existence in a paper is an indicator for reproducibility~\cite{Radd2019} and, when extracted automatically, can improve automated reproduction of results~\cite{sethi2018}. (2)~Second, in aggregate it can inform on both conventions in a field as well as trends over time. (3)~Lastly, it enables more fine-grained paper representations benefiting downstream applications based on document similarity, such as recommendation and search. %
@@ -78,7 +78,7 @@ For LLMs, we develop an approach leveraging YAML output for structured data extr
 Using our best performing model, we extract hyperparameter information from 
 15,000 unannotated papers, and analyze patterns across ML disciplines of how authors report hyperparameters.
 %unannotated papers and find that it correlates with external reproducibility indicators, measured through interaction on GitHub with the papers' shared code.
-All our data and source code is made publicly available.\footnote{See \url{https://anonymous.4open.science/r/hyperpie}.}
+All our data and source code is made publicly available.\footnote{See \url{https://github.com/IllDepence/hyperpie}.}
 %
 % - - - - - List of contributions, shared data, etc. (name numbers, facts, links to data, etc.) - - - - -
 %
@@ -92,7 +92,7 @@ In summary, we make the following contributions.
 %    \item To test the soundness of our model's predictions outside of the new evaluation data set, we investigate and affirm correlation with external reproducibility indicators.
 \end{enumerate}
 
-In the remainder of the paper we first discuss related work in Section~\ref{sec:refwork}. We then define the HyperPIE task and describe our data set construction in Section~\ref{sec:hyperpie}. This is followed by the description of our BERT- and LLM-based methods in Section~\ref{sec:methods}. In Section~\ref{sec:experiments} we describe our experiments and results. We conclude with a discussion of results and and overall summary in Sections~\ref{sec:discussion} and \ref{sec:hyper-conclusion}.
+In the remainder of this chapter we first discuss related work in Section~\ref{sec:refwork}. We then define the HyperPIE task and describe our data set construction in Section~\ref{sec:hyperpie}. This is followed by the description of our BERT- and LLM-based methods in Section~\ref{sec:methods}. In Section~\ref{sec:experiments} we describe our experiments and results. We conclude with a discussion of results and and overall summary in Sections~\ref{sec:discussion} and \ref{sec:hyper-conclusion}.
 
 
 \section{Related Work}\label{sec:refwork}
@@ -111,10 +111,7 @@ In the remainder of the paper we first discuss related work in Section~\ref{sec:
 
 % mby short intro paragraph regarding domain specificity
 
-% TODO: continue here shortening related work section
-% if possible shift focus from papers to methods/concepts/model types/trends/...
-
-Named entity recognition (NER) and RE from publications in ML and related fields have been tackled by SciERC~\cite{luan2018scierc} and subsequently SciREX~\cite{Jain2020scirex}. The scope considered are methods, tasks, data sets, and evaluation metrics. Proposed methods for the task utilize BiLSTMs, BERT and SciBERT~\cite{Beltagy2019}. With both approaches, there is a partial overlap in entity types to our task, as we also extract methods and data sets. The key difference arises though the nature of parameters and values we relate them to, and the challenges in extracting those as briefly laid out in the introduction.
+Named entity recognition (NER) and RE from publications in ML and related fields have been tackled by SciERC~\cite{luan2018scierc} and subsequently SciREX~\cite{Jain2020scirex}. The entity types considered are methods, tasks, data sets, and evaluation metrics. Proposed methods for the task utilize BiLSTMs, BERT and SciBERT~\cite{Beltagy2019}. With both approaches, there is a partial overlap in entity types to our task, as we also extract methods and data sets. The key difference arises though the parameter and value entities we cover, which are a challenge in part due to their varied forms of notation (e.g. $\alpha$\,/\,alpha, or $0.001$\,/\,$1\times 10^{-3}$ / 1e-3).
 
 IE models aiming to relate natural language to numerical values and mathematical symbols have been introduced at SemEval 2021 Task 8~\cite{semeval21_task8} and SemEval 2022 Task 12~\cite{semeval22_task12} respectively. Most of the proposed models base their processing of natural language on BERT or SciBERT. To handle numbers and symbols rendered in \LaTeX, as well as to accomplish RE between entity types with highly regular writing conventions (e.g. numbers and units such as ``5 ms''), rule-based approaches or dedicated smaller neural networks are commonly used.
 
@@ -142,10 +139,21 @@ to extract material, value, and unit information from sentences of material scie
 % - extract data on sentence level
 % - perform conversation w/ model
 
-An approach for IE of more complex information is proposed by Dunn et al.~\cite{Dunn2022}. They use GPT-3.5 to extract material information from materials chemistry papers. Given the hierarchical nature of the information to be extracted, the authors find simple output formats insufficient. To overcome this, they prompt the model to output the data in JSON format.%\footnote{See \url{https://www.json.org/}.}
+An approach for IE of more complex information is proposed by Dunn et al.~\cite{Dunn2022}. They use GPT-3.5 to extract material information from materials chemistry papers. Given the hierarchical nature of the information to be extracted, the authors find simple output formats insufficient. To overcome this, they prompt the model to output the data in JSON format.\footnote{See \url{https://www.json.org/}.}
 
-Given hyperparameter information also is hierarchical (see Fig.~\ref{fig:schema-visual}), we adopt prompting LLMs to output data in a text based data serialization format. Different from the related work introduced above, we do not limit our experiments to API access based closed source LLMs, but also evaluate various open LLMs, because we recognize the importance of contributing efforts to the advancement of the more transparent, accountable, and reproducibility friendly side of this new and rapidly evolving area of research~\cite{Liesenfeld2023}.
-
+Given hyperparameter information also is hierarchical (see Fig.~\ref{fig:schema-visual}), we adopt prompting LLMs to output data in a text based data serialization format. Different from the related work introduced above, we do not limit our experiments to API access based closed source LLMs, but also evaluate various open LLMs, because we recognize the importance of contributing efforts to the advancement of the more transparent, accountable, and reproducibility friendly side of this new and rapidly evolving area of research~\cite{Liesenfeld2023}.\\
+\\
+% hyperparam IE from structured sources
+% - Baudart2020 - hyperparameter extraction form documentation
+%   - Mining Python docstrings to extract hyperparameter schemas including constraints
+%   - relies on regularity of docstrings
+%   - relies on existence of methods __init__, fit, and predict/transform
+%   - use two hand-crafted CNL grammars
+% - RakAmnouykit2021 - hyperparameter constraint extraction from code
+%   - argue that above (using docstrings) is too vague
+%   - focus on Python and sklearn
+%   - use static analysis
+Besides IE from scientific publications, there have been efforts to extract hyperparameter schemata and constraints from Python docstrings~\cite{Baudart2020} using CNL grammars~\cite{Kuhn2014}, and from Python code~\cite{RakAmnouykit2021} using static analysis. Compared to our task setting, these rely on a known context (e.g. a \texttt{fit} method) and operate on constrained input (generated docstrings and source code instead).
 
 \section{Hyperparameter Information Extraction}\label{sec:hyperpie}
 
@@ -197,7 +205,7 @@ Furthermore, we specifically consider IE from text, and not from tables, graphs,
 Because HyperPIE is a novel task, we cannot rely on existing data sets for training and evaluating our approaches. We therefore create a new data set by manually annotating papers. As our data source we chose unarXive~\cite{Saier2023unarXive}, because it includes paper full-texts and, most importantly, retains mathematical notation as \LaTeX. This is crucial because parsing such notation from PDFs is prone to noise, which would be problematic for our parameter and value entities.  % reference would be nice here (Bast2017 focus is on text only)
 
 % cs.LG, cs.CL, cs.CV, cs.DL = 143,203 papers (number from get_plaintext_paras.py)
-To ensure we cover a wide variety of artifacts and discipline specific writing conventions, we use papers from multiple ML related fields. Specifically, these are Machine Learning (ML), Computation and Language (CL), Computer Vision (CV), and Digital Libraries (DL), which make up 143,203 papers in unarXive.%\footnote{The respective arXiv categories are cs.LG, cs.CL, cs.AI, and cs.DL. See \url{https://arxiv.org/category_taxonomy} for a more detailed description.}
+To ensure we cover a wide variety of artifacts and discipline specific writing conventions, we use papers from multiple ML related fields. Specifically, these are Machine Learning (ML), Computation and Language (CL), Computer Vision (CV), and Digital Libraries (DL), which make up 143,203 papers in unarXive.\footnote{The respective arXiv categories are cs.LG, cs.CL, cs.AI, and cs.DL. See \url{https://arxiv.org/category_taxonomy} for a more detailed description.}
 
 We base our annotation guidelines on the widely used ACL RD-TEC guideline\footnote{See \url{http://pars.ie/publications/papers/pre-prints/acl-rd-tec-guidelines-ver2.pdf}.}~\cite{Qasemizadeh2016}. To make sure our resulting annotations are able to properly capture how authors report hyperparameters in text, we perform two annotation rounds: (1) an initial exploratory round, the results of which are used to refine the annotation guidelines and inform later model development, and (2) the main annotation round, the results of which constitute our data set used for model training and evaluation. In the following, both steps are described in more detail.
 
@@ -283,10 +291,7 @@ Based on above observations % on (1) the length of text segments reporting hyper
 we determine the unit of annotation for the final round to be one paragraph (on average 563.4 characters long in our corpus), as it is sufficient to capture hyperparameters being reported.
 %can safely set the unit of annotation for the final round to be one paragraph.\footnote{The average paragraph length for the whole paper corpus is 563.4 characters.}
 
-The inter annotator agreement (IAA, reported as Cohen's kappa) of the text segments annotated by both annotators is 0.867 for entities and 0.737 for relations %\footnote{Measured by the character level entity class and character level relation target span agreement respectively.}
-(strong to almost perfect agreement) which is compares favorably to SciERC~\cite{luan2018scierc} with an IAA of 0.769 for entities and 0.678 for relations.
-
-% TODO: compare IAA kappa score with SciERC (entities 76.9\%, relation extraction 67.8\% and co-reference 63.8\%)
+The inter annotator agreement (IAA, reported as Cohen's kappa) of the text segments annotated by both annotators is 0.867 for entities and 0.737 for relations\footnote{Measured by the character level entity class and character level relation target span agreement respectively.} (strong to almost perfect agreement) which is compares favorably to SciERC~\cite{luan2018scierc} with an IAA of 0.769 for entities and 0.678 for relations.
 
 % initial investigation stats
 
@@ -393,26 +398,27 @@ Drawing from techniques used in previous work approaching other IE tasks, we inv
 \end{enumerate}
 
 % We find that for (1) the higher number of steps leads to more points of potential errors being introduced and then propagated, and an overall less robust pipeline. In the case of (2) and (4) we see frequent changes in the reproduced annotated text posing significant challenges in making use of the output. Accordingly, we use prompt type (3) for our approach.
-We find (1) to lead to problems with errors propagation along steps, and with (2) and (4) we frequently see alterations in the reproduced text. Accordingly, we use prompt type (3) for our approach---specifying a data serialization format in the prompt.
+We find (1) to lead to problems with errors propagation along steps. With (2) and (4) we frequently see alterations in the reproduced text. Accordingly, we use prompt type (3) for our approach---specifying a data serialization format in the prompt.
 While existing work uses the JSON format for this~\cite{Dunn2022}, we use YAML, as it is less prone to ``delimiter collision'' problems due to its minimal requirements for structural characters.\footnote{See \url{https://yaml.org/spec/1.2.2/}.} 
 In doing so, we expect to avoid problems with LLM output not being parsable. Our overall LLM approach looks as follows.
 %
 % Because YAML primarily relies on outline indentation for structure, it is especially resistant to delimiter collision. (https://en.wikipedia.org/wiki/YAML#Indented_delimiting | https://en.wikipedia.org/wiki/Delimiter#Delimiter_collision)
 %
 
-\textbf{Zero-shot:} We build our zero-shot prompts from the following consecutive components: \texttt{[task]\allowbreak[input text]\allowbreak[format]\allowbreak[completion prefix]}
-% An example is shown in Appendix~\ref{sec:implementation-details}.
-In \texttt{[task]} we specify the information to extract, i.e. research artifacts, their parameters, etc. \texttt{[input text]} is the paragraph from which to extract the information. \texttt{[format]} defines the output YAML schema. \texttt{[completion prefix]} is a piece of text that directly precedes the LLM's output, such as \textit{``ASSISTANT:~''}.
+\subsubsection{Zero-shot} We build our zero-shot prompts from the following consecutive components: \texttt{[task]\allowbreak[input text]\allowbreak[format]\allowbreak[completion prefix]}.
+An example is shown in Appendix~\ref{app:hyperpie-implementation-details}.
+In \texttt{[task]} we specify the information to extract, i.e. research artifacts, their parameters, etc. \texttt{[input text]} is the paragraph from which to extract the information. \texttt{[format]} defines the output YAML schema.\footnote{Examples can be found at \url{https://github.com/IllDepence/hyperpie}.} \texttt{[completion prefix]} is a piece of text that directly precedes the LLM's output, such as \textit{``ASSISTANT:~''}.
 %
 % Also: in case of maximum output length being reached, “fixing” is trivial by removing last (potentially incomplete line), whereas fixing JSON to make it parsable is more involved (need matching delimiters
 %
-To then generate predictions based on LLM output, we pass it to a standard YAML parser after cleansing (e.g. removing text around the YAML block).
+To generate predictions based on LLM output, we pass it to a standard YAML parser after cleansing (e.g. removing text around the YAML block).
 %
 % To generate predictions based on the LLM output, we parse the YAML output\footnote{Note that this is not a custom procedure but means simply using the YAML parsing functionality in a programming languages standard library (in our case Python).} after cleansing (e.g. removing unwanted text before or after the YAML block) and transform it into the format used in the evaluation or downstream application.
 %
-For each used LLM model, we individually perform prompt tuning. Here we determine, for example, if a model gives better results when the \texttt{[completion prefix]} includes the beginning of the serialized output data (e.g, ``\texttt{-{}-{}-\allowbreak\textbackslash n\allowbreak text\_\allowbreak contains\_\allowbreak entities: }'') of if this leads to a deterioration in output quality.
+For each used LLM model, we individually perform prompt tuning. Here we determine, for example, if a model gives better results when the \texttt{[completion prefix]} includes the beginning of the serialized output (e.g., ``\texttt{-{}-{}-\allowbreak\textbackslash n\allowbreak text\_\allowbreak contains\_\allowbreak entities:}'') or if this leads to a deterioration in output quality.
 
-\textbf{Few-shot:} Our few shot approach makes the following adjustments to the method described above. Prompts additionally include a component \texttt{[examples]}, which are valid input output pairs sampled by their similarity to the input text. Specifically, for an input text from a document X, we sample the 5 most similar paragraphs from all ground truth documents excluding X. As these examples can be confused with the input text, we place it after the examples, resulting in the structure \texttt{[task]\allowbreak[format]\allowbreak[examples]\allowbreak[input text]\allowbreak[completion prefix]}.
+\subsubsection{Few-shot} Our few-shot approach makes the following adjustments to the method described above. Prompts additionally include a component \texttt{[examples]}, which are valid input output pairs sampled by their cosine similarity to the input text. Specifically, for an input text from a document X, we sample the five most similar paragraphs from all ground truth documents excluding X. As these examples can be confused with the input text, we re-position the input text to appear \emph{after} the examples. The resulting prompt structure we use for our few-shot approach is as follows: \texttt{[task]\allowbreak[format]\allowbreak[examples]\allowbreak[input text]\allowbreak[completion prefix]}.
+An example is shown in Appendix~\ref{app:hyperpie-implementation-details}.
 
 LLMs reaching a sufficient context size for a few-shot approach to our task are a recent development. We can therefore additionally make use of other recently added capabilities. Specifically, we make use of generation constrains via a gBNF grammar\footnote{See \url{https://github.com/ggerganov/llama.cpp/pull/1773}.} to enforce LLM output according to our data scheme, allowing us to mitigate parsing errors.
 
@@ -433,10 +439,10 @@ We use PL-Marker, the currently best performing model on SciERC, as our baseline
 % (possible example for difference: token “5-fold” w/ only “5” annotated as value)
 Models are trained and evaluated using 5-fold cross validation (3 folds training, 1 dev, 1 test).
 %
-% We also experiment with splitting the data into folds obtained by sampling whole papers (i.e. the complete set of paragraphs of each paper) rather than individual paragraphs. We do this to ensure a realistic evaluation setting and prevent, for example, directly subsequent paragraphs of a paper being split up into training and testing data. This has the side effect that class distributions across the 10 evaluation runs vary considerably---in other words, some folds contain considerably fewer entities and/or relations to extract than others. As a consequence, model performance varies between splits, leading to high standard deviations in the evalution metrics.
+% We also experiment with splitting the data into folds obtained by sampling whole papers (i.e. the complete set of paragraphs of each paper) rather than individual paragraphs. We do this to ensure a realistic evaluation setting and prevent, for example, directly subsequent paragraphs of a paper being split up into training and testing data. This has the side effect that class distributions across the 10 evaluation runs vary considerably---in other words, some folds contain considerably fewer entities and/or relations to extract than others. As a consequence, model performance varies between splits, leading to high standard deviations in the evaluation metrics.
 %
-We train the ER component of PL-Marker as done in~\cite{Ye2022}, using \textit{scibert-scivocab-uncased} as the encoder, Adam as the optimizer, a learning rate of 2e-5, and for 50 epochs. The PL-Marker RE component is trained using \textit{bert-base-uncased}, Adam, a learning rate of 2e-5, and for 10 epochs. Our own RE component also uses \textit{bert-base-uncased}, Adam as the optimizer, and is trained with a learning rate of 1e-3 for 90 epochs.
-Models are trained and evaluated on a single GeForce RTX 3090. % (24\,GB).
+We train the ER component of PL-Marker as done in~\cite{Ye2022}, using \textit{scibert-scivocab-uncased} as the encoder, Adam as the optimizer, a learning rate of 2e-5, and 50 training epochs. Regarding the two RE components we compare, the PL-Marker RE component is trained using \textit{bert-base-uncased}, Adam, a learning rate of 2e-5, and 10 training epochs. Our own RE component also uses \textit{bert-base-uncased}, Adam as the optimizer, and is trained with a learning rate of 1e-3 for 90 epochs.\footnote{The two RE models we compare require different learning rates and number of training epochs, because their architecture varies significantly.}
+The models are trained and evaluated on a server with a single GeForce~RTX~3090 (24\,GB).\footnote{More extensive implementation details can be found in Appendix~\ref{app:hyperpie-implementation-details}.}
 
 % run_acener.py
 % learning_rate 2e-5
@@ -511,8 +517,6 @@ Mean ER performance is 81.5, 76.8, and 79.0 (P, R, $\text{F}_1$). For RE, the pr
 % (labels = none, artifact, parameter, value, context)
 % $\text{F}_1$ scores to be 98.5\%, 77.8\%, 47.9\%, 84.4\%, 0\%
 
-Token level ER performance across entity classes (none, artifact, parameter, value, context) is at 98.5\%, 77.8\%, 47.9\%, 84.4\%, 0\% $\text{F}_1$. That is, the model does predict contexts and struggles with parameters, but artifacts and values are predicted reliably. For our RE model, we observe that value-parameter relations are more reliably predicted than parameter-artifact relations.
-
 % ### with everything
 % RE precision: 30.7 ± 11.1
 % RE recall: 65.0 ± 32.4
@@ -548,7 +552,7 @@ Token level ER performance across entity classes (none, artifact, parameter, val
   \end{tabular}
 \end{table}
 
-To assess the impact of the different components in our RE model, we perform an ablation study with the same 5-fold cross-validation setup as above. In Table~\ref{tab:finetunedablation}, showing its results, we can see that removing the BERT token embeddings (T) results in the largest performance loss, followed by entity class embeddings (C) and entity distance (D). Removing any of the inputs results in worse predictions.
+Token level ER performance across entity classes (none, artifact, parameter, value, context) is at 98.5\%, 77.8\%, 47.9\%, 84.4\%, 0\% $\text{F}_1$. That is, the model does not predict contexts and struggles with parameters, but artifacts and values are predicted reliably. For our RE model, we observe that value-parameter relations are more reliably predicted than parameter-artifact relations.
 
 \begin{figure}
   \centering
@@ -562,19 +566,21 @@ To assess the impact of the different components in our RE model, we perform an 
 % cs.CL: 0.36408882082695254
 % cs.DL: 0.06666666666666667
 
+To assess the impact of the different components in our RE model, we perform an ablation study with the same 5-fold cross-validation setup as above. In Table~\ref{tab:finetunedablation}, showing its results, we can see that removing the BERT token embeddings (T) results in the largest performance loss, followed by entity class embeddings (C) and entity distance (D). Removing any of the inputs results in worse predictions.
+
 Finally, we apply our full model to a random sample of 15,000 papers. Analyzing the results, we find hyperparameters (artifact, parameter, value triples) are reported in 36\% of ML papers, 42\% of CV papers, 36\% of CL papers, and 7\% of DL papers. In Figure~\ref{fig:hyperparam_info_pos} we further look at the distribution of the information across the length of papers (excluding DL as not being representative). We can see a clear tendency towards the latter half of papers.
 
-\subsubsection{Application}
+% \subsubsection{Application}
 
-We train a final ER+RE model on all annotated data and use it to extract hyperparameter information from a random sample of 15,000 papers. To test the soundness of the extracted information, we test its predictive strength for the re-use of code shared with each paper. Our method assumes that re-use of code is an indicator for reproducibility. For hyperparameter reporting, this has been shown in previous work~\cite{Radd2019}.
+% We train a final ER+RE model on all annotated data and use it to extract hyperparameter information from a random sample of 15,000 papers. To test the soundness of the extracted information, we test its predictive strength for the re-use of code shared with each paper. Our method assumes that re-use of code is an indicator for reproducibility. For hyperparameter reporting, this has been shown in previous work~\cite{Radd2019}.
 
-We operationalize the two measures as follows. $r_\text{hype} =$ amount of hyperparameter information, measured as the number of extracted value-parameter, parameter-artifact, and value-parameter-artifact relation ``chains''. $r_\text{code} =$ code re-use, measured as the number of GitHub forks and closed issues, normalized by the number of stars. Normalization is done to control for the influence of author and affiliation renownedness.
+% We operationalize the two measures as follows. $r_\text{hype} =$ amount of hyperparameter information, measured as the number of extracted value-parameter, parameter-artifact, and value-parameter-artifact relation ``chains''. $r_\text{code} =$ code re-use, measured as the number of GitHub forks and closed issues, normalized by the number of stars. Normalization is done to control for the influence of author and affiliation renownedness.
 
-Measuing the correlation between $r_\text{hype}$ and $r_\text{code}$, we find the Pearson correlation coefficient to be 0.x (p=0.00y), a (weak/moderate/strong) positive correlation that is statistically relevant. We interpret our finding as an indicator that the hyperparameter information extracted by our model is sound, but note that additional testing is necessary to draw more definitive conclusions.
+% Measuing the correlation between $r_\text{hype}$ and $r_\text{code}$, we find the Pearson correlation coefficient to be 0.x (p=0.00y), a (weak/moderate/strong) positive correlation that is statistically relevant. We interpret our finding as an indicator that the hyperparameter information extracted by our model is sound, but note that additional testing is necessary to draw more definitive conclusions.
 
 \subsection{LLMs}
 
-\begin{table}
+\begin{table}[tb]
 \centering
   \caption[LLM selection]{LLM selection (size in number of parameters).}
   \label{tab:llmselection}
@@ -610,10 +616,10 @@ The models are run as follows. GPT-3.5 is accessed through its official API.
 % The total usage cost for all testing, prompt tuning, and the full evaluation runs sums up to 60\,USD.
 All open models are run on a high performance compute cluster.
 % using the API layer Basaran.\footnote{See \url{https://github.com/hyperonym/basaran/}.}
-Vicuna${}_{4k}$ and WizardLM are run on nodes with $4\times$NVIDIA Tesla V100. %(32\,GB).
-GALACTICA, Falcon, and Vicuna${}_{16k}$ are run on nodes with $4\times$NVIDIA A100. % (80\,GB).
+Vicuna${}_{4k}$ and WizardLM are run on nodes with $4\times$NVIDIA Tesla V100 (32\,GB).
+GALACTICA, Falcon, and Vicuna${}_{16k}$ are run on nodes with $4\times$NVIDIA A100 (80\,GB).\footnote{More extensive implementation details can be found in Appendix~\ref{app:hyperpie-implementation-details}.}
 
-As a baseline, we use a JSON variant for each model, where the \texttt{[format]} and \texttt{[examples]} compontents of prompts use JSON, and compare it to the respective YAML version. All models are used with greedy decoding (temperature = 0) to ensure reproducibility.
+As a baseline, we use a JSON variant for each model, where the \texttt{[format]} and \texttt{[examples]} compontents of prompts use JSON, and compare it to the respective YAML version. All models are used with greedy decoding (temperature = 0) for the sake of reproducibility.
 
 % Accordingly, only one completion is created per prompt. We evaluate the models on three levels. (1) Parsing success and format adherence, meaning if the produced JSON/YAML was parsable and according to the specified format, (2) hallucinations and scope adherence, where we measure hallucinated and out of scope entities, and (3) prediction performance in terms of precision, recall, and $\text{F}_1$ score.
 
@@ -848,9 +854,9 @@ Lastly, we see that using YAML leads to better ER results accross all six models
   \label{fig:yamlVSjson}
 \end{figure}
 
-In Figure~\ref{fig:yamlVSjson} we show an analysis of the steps leading up to model prediction. Focussing first on the zero-shot models (upper five) we observe the following across the four plots from left to right. (a)~For three of five models, prompting for YAML leads to fewer parsing errors. (b)~Unwanted text around the extracted data is generated more/less by two models each. (c)~Hallucinated entities and (d)~out of scope entities appear overall slightly more often for in YAML compared to JSON. For our few shot approach (bottom model), we see that the use of a grammar (a, b)~prevents all output format issues. Furthermore (c)~hallucinated entities are reduced. (d)~Out of scope entities can not be evaluated, because our in-context examples lead to frequent omission of type information in the output.
+In Figure~\ref{fig:yamlVSjson} we show an analysis of the steps leading up to model prediction. Focussing first on the zero-shot models (upper five) we observe the following across the four plots from left to right. (a)~For three of five models, prompting for YAML leads to fewer parsing errors. (b)~Unwanted text around the extracted data is generated more/less by two models each. (c)~Hallucinated entities and (d)~out of scope entities appear overall slightly more often for in YAML compared to JSON. For our few-shot approach (bottom model), we see that the use of a grammar (a, b)~prevents all output format issues. Furthermore (c)~hallucinated entities are reduced. (d)~Out of scope entities can not be evaluated, because our in-context examples lead to frequent omission of type information in the output.
 
-Through manual analysis, we find that ``entities not in the text'' can arise from unsolicited \LaTeX\ parsing by the LLM (e.g. ``\verb|\lambda|'' in text $\rightarrow$ ``$\lambda$'' in YAML). Prompting for \emph{verbatim} parameter/value strings did not mitigate this.
+Through manual analysis we identify a common cause for parsing errors in JSON output to be boolean values (e.g. for ``\texttt{text\_\allowbreak contains\_\allowbreak entities:}'') being copied by the LLM as ``true/false'' from the promt. We furthermore find that ``entities not in the text'' can arise from unsolicited \LaTeX\ parsing by the LLM (e.g. ``\verb|\lambda|'' in text $\rightarrow$ ``$\lambda$'' in YAML). Prompting for \emph{verbatim} parameter/value strings does not mitigate this.
 %TODO: would be nice to add some analysis on the output length when using YAML/JSON and some thoughts as to why the one might work better w/ LLMs than the other (e.g.: YAML is shorter: fewer tokens to "get off track" / JSON mby easier for LLMs to decide when to end b/c of clear brackets instead of just indentation)
 
 % ... a few mentions of quantitative stuff based on format figs.,
@@ -870,19 +876,17 @@ Through manual analysis, we find that ``entities not in the text'' can arise fro
 
 \section{Discussion}\label{sec:discussion}
 
-Our overall results, with a top performance of 79\% $\text{F}_1$ for ER and 39\% for RE, show that HyperPIE can be accomplished to a degree that yields sound results, but challenges still remain. Our novel data set enables further development of approaches from hereon. Our IE results on large-scale unannotated data give an indication of possible downstream analyses and applications. Here we see large potential for reproducibility research, faceted search, and recommendation.
+Our overall results, with a top performance of 79\% $\text{F}_1$ for entity recognition and 39\% $\text{F}_1$ for relation extraction, show that extraction of hyperparameter information from scientific text can be accomplished to a degree that yields sound results. There are, however, challenges that remain, such as more reliable entity recognition of parameters and contexts, as well as more reliable relation extraction in general. Our novel data set enables further development of approaches from hereon. Our IE results on large-scale unannotated data give an indication of possible downstream analyses and applications. Here we see large potential for reproducibility research, faceted search, and recommendation.
 
-Our LLM evaluation shows that for IE tasks dealing with complex information, the choice of text based data serialization format can have a considerable impact on performance, even when using grammar based generation constrains. Additionally, we can see that in-context learning enabled by larger context sizes, as well as grammars 
-are an effective method to improve IE performance.
-%bear large potential for further improvements from hereon.
-%
-%\subsubsection{Limitations}
+Our LLM evaluation shows that for IE tasks dealing with complex information, the choice of text based data serialization format can have a considerable impact on performance, even when using grammar based generation constrains. Additionally, we can see that in-context learning enabled by larger context sizes, as well as grammars, are an effective method to improve IE performance.
 
-\textbf{Limitations:} Our work considers HyperPIE from text. This is sensible for a focussed approach, but downstream applications could furthermore benefit from composite pipelines also targeting extraction from tables, source code, etc.
-Our work does not test transferability of methods to domains outside of ML related fields. It would require domain expertise to find useful definitions for hyperparameters in each respective domain.
-% Our LLM evaluation does not test fine-tuning, which we see as an important future addition.
-Lastly, our data and 
-experiments unfortunately are limited to English text only and don't cover other languages.
+\subsubsection{Limitations}
+
+(1)~Our work considers HyperPIE from text. This is sensible for a focussed approach, but downstream applications could furthermore benefit from composite pipelines also targeting extraction from tables, source code, etc.
+(2)~We do not test transferability of methods to domains outside of ML related fields. It would require domain expertise to find useful definitions for hyperparameters in each respective domain.
+(3)~Our LLM evaluation does not cover fine-tuning. Presupposing the existence of a large enough training data set, this would be a valuable addition the overall investigation.
+(4)~Defining our YAML/JSON output format hierarchically means that only values associated with parameters and parameters associated with artifacts can be extracted.
+(5)~Lastly, our data and experiments unfortunately are limited to English text only and do not cover other languages.
 
 % out of scope LLM predictions: annotation guidelines can be extensive and detailed, therefore hard to ``enforece'' incorporate in in-context learning scenario
 
@@ -899,11 +903,26 @@ experiments unfortunately are limited to English text only and don't cover other
 
 \section{Conclusion}\label{sec:hyper-conclusion}
 
-%Automatic extraction of information from publication text is key to making scientific knowledge machine readable at a large scale.
+%Automatic extraction of information from publication text is key to making scientific knowledge machine-readable at a large scale.
 %The extracted information can, for example, facilitate academic search, decision making, and knowledge graph construction.
 %An important type of information not covered by existing approaches is hyperparameters.
 
 We formalize the novel ER+RE task HyperPIE and develop approaches for it, thereby expanding IE from scientific text to hyperparameter information. To this end, we create a manually labeled data set spanning various ML fields. In a supervised learning setting, we propose a BERT-based model that achieves an improvement of 29\% $\text{F}_1$ in RE compared to a state-of-the-art baseline. Using the model, we perform IE on a large amount of unannotated papers, and analyze patterns of hyperparameter reporting across ML disciplines. In a zero-/few-shot setting, we propose an LLM based approach using YAML for complex IE, achieving an average improvement of 5.5\% $\text{F}_1$ in ER over using JSON. We furthermore achieve large performance gains for LLMs using grammar based generation constrains and in-context learning. In future work, we plan to investigate fine-tuning LLMs, as well as additional practical use cases for data extracted from large publication corpora, such as knowledge graph construction.
 
+% outlook points
+% - try fine-tuning LLMs
+
+% extracted information can be used to extend existing knowledge bases like ORKG or PwC
+
 \section*{Author Contributions}  % cf. https://credit.niso.org/
-Tarek Saier: Conceptualization, Data curation, Formal analysis, Methodology, Software, Visualization, Writing -- original draft, Writing -- review \& editing. Mayumi Ohta: Conceptualization (support), Formal analysis (support), Methodology (support), Software (support), Writing -- original draft (support). Takuto Asakura: Conceptualization, Writing -- review \& editing. Michael F{\"a}rber: Writing -- review \& editing.
+Tarek Saier: Conceptualization, Data curation, Formal analysis, Methodology, Software, Visualization, Writing -- original draft, Writing -- review \& editing. Mayumi Ohta: Conceptualization (LLM few-shot), Formal analysis (LLM few-shot), Methodology (LLM few-shot), Software (LLM few-shot), Writing -- original draft (support). Takuto Asakura: Conceptualization, Writing -- review \& editing. Michael F{\"a}rber: Writing -- review \& editing.
+
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+\section*{Acknowledgements}
+This work was partially supported by the German Federal Ministry of Education and Research (BMBF) via [KOM,BI], a Software Campus project (01IS17042).
+The authors acknowledge support by the state of Baden-W{\"u}rttemberg through bwHPC.
+We thank Nicholas Popovic for extensive feedback on the experiment design and prompt engineering. We thank Tarek Gaddour for feedback during the annotation scheme development, and Xiao Ning for input during early model development.
