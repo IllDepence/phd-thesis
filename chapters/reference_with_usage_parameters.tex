@@ -52,7 +52,7 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 % - - - - - Why is structured information about hyperparams important? - - - - -
 
 Models capable of extracting fine-grained information from publications can make scientific knowledge machine-readable at a large scale.
-Aggregated, such information can fuel platforms like Papers with Code\footnote{See \url{https://paperswithcode.com/}.} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, and thereby facilitate academic search, recommendation,  and reproducibility.
+Aggregated, such information can fuel platforms like Papers with Code\refurl{https://paperswithcode.com/}{2024-01-10} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, and thereby facilitate academic search, recommendation,  and reproducibility.
 %Potential for impact is especially large in rapidly progressing areas of research, such as machine learning (ML) and related fields. Platforms aggregating extracted information, like Papers with Code~\cite{paperswithcode} and the Open Research Knowledge Graph~\cite{orkg1,orkg2}, allow researchers to quickly gain insights into state-of-the-art approaches, reproduce others' work, and find papers relevant to their research.
 Accordingly, a variety of approaches for information extraction~(IE) from scientific text have been proposed~\cite{luan2018scierc,Jain2020scirex,semeval21_task8,semeval22_task12,Dunn2022}.  % / such as ...
 
@@ -78,7 +78,7 @@ For LLMs, we develop an approach leveraging YAML output for structured data extr
 Using our best performing model, we extract hyperparameter information from 
 15,000 unannotated papers, and analyze patterns across ML disciplines of how authors report hyperparameters.
 %unannotated papers and find that it correlates with external reproducibility indicators, measured through interaction on GitHub with the papers' shared code.
-All our data and source code is made publicly available.\footnote{See \url{https://github.com/IllDepence/hyperpie}.}
+All our data and source code is made publicly available.\refurl{https://github.com/IllDepence/hyperpie}{2024-01-10}
 %
 % - - - - - List of contributions, shared data, etc. (name numbers, facts, links to data, etc.) - - - - -
 %
@@ -139,7 +139,7 @@ to extract material, value, and unit information from sentences of material scie
 % - extract data on sentence level
 % - perform conversation w/ model
 
-An approach for IE of more complex information is proposed by Dunn et al.~\cite{Dunn2022}. They use GPT-3.5 to extract material information from materials chemistry papers. Given the hierarchical nature of the information to be extracted, the authors find simple output formats insufficient. To overcome this, they prompt the model to output the data in JSON format.\footnote{See \url{https://www.json.org/}.}
+An approach for IE of more complex information is proposed by Dunn et al.~\cite{Dunn2022}. They use GPT-3.5 to extract material information from materials chemistry papers. Given the hierarchical nature of the information to be extracted, the authors find simple output formats insufficient. To overcome this, they prompt the model to output the data in JSON format.\refurl{https://www.json.org/}{2024-01-10}
 
 Given hyperparameter information also is hierarchical (see Fig.~\ref{fig:schema-visual}), we adopt prompting LLMs to output data in a text based data serialization format. Different from the related work introduced above, we do not limit our experiments to API access based closed source LLMs, but also evaluate various open LLMs, because we recognize the importance of contributing efforts to the advancement of the more transparent, accountable, and reproducibility friendly side of this new and rapidly evolving area of research~\cite{Liesenfeld2023}.\\
 \\
@@ -205,9 +205,9 @@ Furthermore, we specifically consider IE from text, and not from tables, graphs,
 Because HyperPIE is a novel task, we cannot rely on existing data sets for training and evaluating our approaches. We therefore create a new data set by manually annotating papers. As our data source we chose unarXive~\cite{Saier2023unarXive}, because it includes paper full-texts and, most importantly, retains mathematical notation as \LaTeX. This is crucial because parsing such notation from PDFs is prone to noise, which would be problematic for our parameter and value entities.  % reference would be nice here (Bast2017 focus is on text only)
 
 % cs.LG, cs.CL, cs.CV, cs.DL = 143,203 papers (number from get_plaintext_paras.py)
-To ensure we cover a wide variety of artifacts and discipline specific writing conventions, we use papers from multiple ML related fields. Specifically, these are Machine Learning (ML), Computation and Language (CL), Computer Vision (CV), and Digital Libraries (DL), which make up 143,203 papers in unarXive.\footnote{The respective arXiv categories are cs.LG, cs.CL, cs.AI, and cs.DL. See \url{https://arxiv.org/category_taxonomy} for a more detailed description.}
+To ensure we cover a wide variety of artifacts and discipline specific writing conventions, we use papers from multiple ML related fields. Specifically, these are Machine Learning (ML), Computation and Language (CL), Computer Vision (CV), and Digital Libraries (DL), which make up 143,203 papers in unarXive.\footnote{The respective arXiv categories are cs.LG, cs.CL, cs.AI, and cs.DL. See \refurlinline{https://arxiv.org/category_taxonomy}{2024-01-10} for a more detailed description.}
 
-We base our annotation guidelines on the widely used ACL RD-TEC guideline\footnote{See \url{http://pars.ie/publications/papers/pre-prints/acl-rd-tec-guidelines-ver2.pdf}.}~\cite{Qasemizadeh2016}. To make sure our resulting annotations are able to properly capture how authors report hyperparameters in text, we perform two annotation rounds: (1) an initial exploratory round, the results of which are used to refine the annotation guidelines and inform later model development, and (2) the main annotation round, the results of which constitute our data set used for model training and evaluation. In the following, both steps are described in more detail.
+We base our annotation guidelines on the widely used ACL RD-TEC guideline\refurl{https://web.archive.org/web/20220120204209/http://pars.ie/publications/papers/pre-prints/acl-rd-tec-guidelines-ver2.pdf}{2024-01-10}~\cite{Qasemizadeh2016}. To make sure our resulting annotations are able to properly capture how authors report hyperparameters in text, we perform two annotation rounds: (1) an initial exploratory round, the results of which are used to refine the annotation guidelines and inform later model development, and (2) the main annotation round, the results of which constitute our data set used for model training and evaluation. In the following, both steps are described in more detail.
 
 \subsubsection{Initial Annotation Round}\label{sec:exploreannot}
 
@@ -314,7 +314,7 @@ In our main annotation round we annotate whole papers (paragraph by paragraph) i
 
 Similar to related work~\cite{Jain2020scirex}, we use Papers with Code as an external knowledge base to pre-annotate entity candidates to make the annotation process more efficient. In a similar fashion, we use annotator's previously annotated entity mentions for pre-annotation. Pre-annotated text spans are, as the name suggests, set automatically, but need to be checked by annotators manually.
 
-Through this process we annotate 444 paragraphs, which contain 1,971 entities and 614 relations. The entity class distribution is 1,134 research artifacts, 131 parameters, 662 values, and 44 contexts. The annotation data is provided in a JSON structure as shown in Figure~\ref{fig:schema-visual}, as well as in the W3C Web Annotation Data Model\footnote{See \url{https://www.w3.org/TR/annotation-model/}.} to facilitate easy re-use and compatibility with existing systems.
+Through this process we annotate 444 paragraphs, which contain 1,971 entities and 614 relations. The entity class distribution is 1,134 research artifacts, 131 parameters, 662 values, and 44 contexts. The annotation data is provided in a JSON structure as shown in Figure~\ref{fig:schema-visual}, as well as in the W3C Web Annotation Data Model\refurl{https://www.w3.org/TR/annotation-model/}{2024-01-10} to facilitate easy re-use and compatibility with existing systems.
 
 % 444 annotated paragraphs
 % 1,971 entities
@@ -399,7 +399,7 @@ Drawing from techniques used in previous work approaching other IE tasks, we inv
 
 % We find that for (1) the higher number of steps leads to more points of potential errors being introduced and then propagated, and an overall less robust pipeline. In the case of (2) and (4) we see frequent changes in the reproduced annotated text posing significant challenges in making use of the output. Accordingly, we use prompt type (3) for our approach.
 We find (1) to lead to problems with errors propagation along steps. With (2) and (4) we frequently see alterations in the reproduced text. Accordingly, we use prompt type (3) for our approach---specifying a data serialization format in the prompt.
-While existing work uses the JSON format for this~\cite{Dunn2022}, we use YAML, as it is less prone to ``delimiter collision'' problems due to its minimal requirements for structural characters.\footnote{See \url{https://yaml.org/spec/1.2.2/}.} 
+While existing work uses the JSON format for this~\cite{Dunn2022}, we use YAML, as it is less prone to ``delimiter collision'' problems due to its minimal requirements for structural characters.\refurl{https://yaml.org/spec/1.2.2/}{2024-01-10} 
 In doing so, we expect to avoid problems with LLM output not being parsable. Our overall LLM approach looks as follows.
 %
 % Because YAML primarily relies on outline indentation for structure, it is especially resistant to delimiter collision. (https://en.wikipedia.org/wiki/YAML#Indented_delimiting | https://en.wikipedia.org/wiki/Delimiter#Delimiter_collision)
@@ -407,7 +407,7 @@ In doing so, we expect to avoid problems with LLM output not being parsable. Our
 
 \subsubsection{Zero-shot} We build our zero-shot prompts from the following consecutive components: \texttt{[task]\allowbreak[input text]\allowbreak[format]\allowbreak[completion prefix]}.
 An example is shown in Appendix~\ref{app:hyperpie-implementation-details}.
-In \texttt{[task]} we specify the information to extract, i.e. research artifacts, their parameters, etc. \texttt{[input text]} is the paragraph from which to extract the information. \texttt{[format]} defines the output YAML schema.\footnote{Examples can be found at \url{https://github.com/IllDepence/hyperpie}.} \texttt{[completion prefix]} is a piece of text that directly precedes the LLM's output, such as \textit{``ASSISTANT:~''}.
+In \texttt{[task]} we specify the information to extract, i.e. research artifacts, their parameters, etc. \texttt{[input text]} is the paragraph from which to extract the information. \texttt{[format]} defines the output YAML schema. \texttt{[completion prefix]} is a piece of text that directly precedes the LLM's output, such as \textit{``ASSISTANT:~''}.
 %
 % Also: in case of maximum output length being reached, “fixing” is trivial by removing last (potentially incomplete line), whereas fixing JSON to make it parsable is more involved (need matching delimiters
 %
@@ -420,7 +420,7 @@ For each used LLM model, we individually perform prompt tuning. Here we determin
 \subsubsection{Few-shot} Our few-shot approach makes the following adjustments to the method described above. Prompts additionally include a component \texttt{[examples]}, which are valid input output pairs sampled by their cosine similarity to the input text. Specifically, for an input text from a document X, we sample the five most similar paragraphs from all ground truth documents excluding X. As these examples can be confused with the input text, we re-position the input text to appear \emph{after} the examples. The resulting prompt structure we use for our few-shot approach is as follows: \texttt{[task]\allowbreak[format]\allowbreak[examples]\allowbreak[input text]\allowbreak[completion prefix]}.
 An example is shown in Appendix~\ref{app:hyperpie-implementation-details}.
 
-LLMs reaching a sufficient context size for a few-shot approach to our task are a recent development. We can therefore additionally make use of other recently added capabilities. Specifically, we make use of generation constrains via a gBNF grammar\footnote{See \url{https://github.com/ggerganov/llama.cpp/pull/1773}.} to enforce LLM output according to our data scheme, allowing us to mitigate parsing errors.
+LLMs reaching a sufficient context size for a few-shot approach to our task are a recent development. We can therefore additionally make use of other recently added capabilities. Specifically, we make use of generation constrains via a gBNF grammar\refurl{https://github.com/ggerganov/llama.cpp/pull/1773}{2024-01-10} to enforce LLM output according to our data scheme, allowing us to mitigate parsing errors.
 
 \section{Experiments}\label{sec:experiments}
 

@@ -12,7 +12,7 @@ In Figure~\ref{fig:geo_full} we show the geographic origin of cross-lingual cita
 
 \section{Citation Intent and Sentiment Classification}\label{app:classifcation}
 
-For the model training of both citation intent classification and citation sentiment classification, we fine-tune SciBERT uncased\footnote{See \url{https://huggingface.co/allenai/scibert_scivocab_uncased}.} using the following model configuration shown in Table~\ref{tab:modelconf}.
+For the model training of both citation intent classification and citation sentiment classification, we fine-tune SciBERT uncased\refurl{https://huggingface.co/allenai/scibert_scivocab_uncased}{2024-01-10} using the following model configuration shown in Table~\ref{tab:modelconf}.
 
 \begin{table}
 \caption{Model configuration used for training}
@@ -48,14 +48,14 @@ For the model training of both citation intent classification and citation senti
   \end{small}
 \end{table}
 
-For determining the citation intent, we use the train, validation, and test split provided by the SciCite data set\footnote{See \url{https://huggingface.co/datasets/scicite}.} (train: 74\%, val: 8.3\%, test: 16.9\%). For citation sentiment, we split the Athar data set into train, validation, and test sets into 80\%, 10\%, and 10\%, respectively.
+For determining the citation intent, we use the train, validation, and test split provided by the SciCite data set\refurl{https://huggingface.co/datasets/scicite}{2024-01-10} (train: 74\%, val: 8.3\%, test: 16.9\%). For citation sentiment, we split the Athar data set into train, validation, and test sets into 80\%, 10\%, and 10\%, respectively.
 
 
 
 \section{HyperPIE Implementation Details}\label{app:hyperpie-implementation-details}
 
 \paragraph{Fine-Tuned Models:}
-We obtain the source code of PL-Marker from the author's GitHub repository\footnote{See \url{https://github.com/thunlp/PL-Marker/}.}. To make it work with our entity and relation schema, we extended the source code in \texttt{run\_acener.py} and \texttt{run\_re.py}. A patch file with all changes is provided in our code share. Our own RE model is a FFNN implemented with 4 hidden layers, each with ReLU activation and dimensions 300, 100, 25 and 2 respectively. All fine-tuned models are trained and evaluated on a local server with a GeForce RTX 3090 (24\,GB).
+We obtain the source code of PL-Marker from the author's GitHub repository\refurl{https://github.com/thunlp/PL-Marker/}{2024-01-10}. To make it work with our entity and relation schema, we extended the source code in \texttt{run\_acener.py} and \texttt{run\_re.py}. A patch file with all changes is provided in our code share. Our own RE model is a FFNN implemented with 4 hidden layers, each with ReLU activation and dimensions 300, 100, 25 and 2 respectively. All fine-tuned models are trained and evaluated on a local server with a GeForce RTX 3090 (24\,GB).
 
 %  % MLPClassifier(
 %  % hidden_layer_sizes=(300, 100, 25, 2),
@@ -68,11 +68,11 @@ We obtain the source code of PL-Marker from the author's GitHub repository\footn
 %  % verbose=verbose
 
 \paragraph{LLMs:}
-GPT-3.5 was accessed through the official API. The total usage cost for all testing, prompt tuning, and the full evaluation runs sums up to 60\,USD. In zero-shot setting, all open models are run on a high performance compute cluster using the API layer Basaran.\footnote{See \url{https://github.com/hyperonym/basaran/}.} Vicuna and WizardLM  are run on nodes with $4\times$ NVIDIA Tesla V100 (32\,GB). GALACTICA and Falcon are run with half precision on nodes with $4\times$ NVIDIA A100 (80\,GB).
+GPT-3.5 was accessed through the official API. The total usage cost for all testing, prompt tuning, and the full evaluation runs sums up to 60\,USD. In zero-shot setting, all open models are run on a high performance compute cluster using the API layer Basaran.\refurl{https://github.com/hyperonym/basaran/}{2024-01-10} Vicuna and WizardLM  are run on nodes with $4\times$ NVIDIA Tesla V100 (32\,GB). GALACTICA and Falcon are run with half precision on nodes with $4\times$ NVIDIA A100 (80\,GB).
 
 A zero-shot prompt example is shown in Listing~\ref{lst:promptexample}.
 
-\begin{lstlisting}[language=plain,caption=Prompt example.,label=lst:promptexample,breaklines=true,captionpos=b,frame=single,showlines=true,basicstyle=\tiny\ttfamily]
+\begin{lstlisting}[language=plain,caption=Zero-shot prompt example.,label=lst:promptexample,breaklines=true,captionpos=b,frame=single,showlines=true,basicstyle=\tiny\ttfamily]
 In the context of machine learning and related fields, what (if any) are the entities (datasets, models, methods, loss functions, regularization techniques) mentioned in the LaTeX Input Text below? What (if any) are their parameters and values?
 
 [LaTeX Input Text start]
@@ -102,11 +102,11 @@ Only produce output in the YAML format specified above. Output no additional tex
 Output:
 \end{lstlisting}
 
-For few-shot prompting, we employed 4\,bit quantization and used the \texttt{llama-cpp-python}\footnote{See \url{https://github.com/abetlen/llama-cpp-python/}.} API. % based on \texttt{llama.cpp}\footnote{See \url{https://github.com/ggerganov/llama.cpp/}.} backend with CUDA multi-GPU acceleration.
+For few-shot prompting, we employed 4\,bit quantization and used the \texttt{llama-cpp-python}\refurl{https://github.com/abetlen/llama-cpp-python/}{2024-01-10} API. % based on \texttt{llama.cpp}\footnote{See \url{https://github.com/ggerganov/llama.cpp/}.} backend with CUDA multi-GPU acceleration.
 We use the default generation setup in \texttt{llama.cpp}
 with parameters: temperature = 0, half precision = enabled, and repetition penalty = 1.1. A few-shot prompt example is shown in Listing~\ref{lst:fewshotprompt}.
 
-\begin{lstlisting}[language=plain,caption=Prompt example.,label=lst:fewshotprompt,breaklines=true,captionpos=b,frame=single,showlines=true,basicstyle=\tiny\ttfamily]
+\begin{lstlisting}[language=plain,caption=Few-shot prompt example.,label=lst:fewshotprompt,breaklines=true,captionpos=b,frame=single,showlines=true,basicstyle=\tiny\ttfamily]
 ### Instruction:
 In the context of machine learning and related fields, what (if any) are the entities (datasets, models, methods, loss functions, regularization techniques) mentioned in the LaTeX Input Text below? What (if any) are their parameters and values?
 
