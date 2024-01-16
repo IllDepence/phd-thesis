@@ -3,7 +3,7 @@
 
 \section{Summary}
 
-This dissertation set out to to alleviate the state of scholarly data. In order to achieve this, the following research objective was set.
+This dissertation set out to alleviate the state of scholarly data. In order to achieve this, the following research objective was set.
 
 \begin{infobox-objective}
 \textbf{Research Objective}\\
@@ -17,18 +17,21 @@ Criteria for high-quality were defined across the following dimensions.\footnote
        (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, (5)~completeness
 \end{infobox-progress}
 
-To focus the efforts of improving scholarly data quality, three areas were identified in which scholarly data based on existing work particularly has limitations.
+To focus the efforts of improving scholarly data quality, we identified three areas in which scholarly data based on existing work particularly has limitations (see also Section \ref{sec:intro-gap}).
 
 \begin{enumerate}
-    \item Completeness of the \textbf{citation network}
-    \item Coverage of \textbf{non-English content}
-    \item Structured representation of \textbf{research artifacts}
+    \item \textbf{Citation Network}\\
+          Lacking completeness of the network connecting publications through citations
+    \item \textbf{Anglocentrism}\\
+          Lacking coverage of non-English publications in data used in approaches
+    \item \textbf{Research Artifacts}\\
+           Lack of structured representation of research artifacts mentioned in publications
 \end{enumerate}
 
-To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of of interlinked, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
+To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of interlinked, annotated, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
 In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete, state-of-the-art citation network. The updated procedure furthermore enabled more fine-granular document representations, which in turn made the subsequent work in Chapter~\ref{chp:params} possible. %``Reference Coverage and Granularity''
-In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we found a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact. %``References Across Languages''
-Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found difference in parameter reporting patterns across several disciplines. %``References with Usage Parameters''
+In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we developed a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact. %``References Across Languages''
+Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found differences in parameter reporting patterns across several disciplines. %``References with Usage Parameters''
 
 The presented work makes the following contributions towards the research objective.
 
@@ -91,9 +94,9 @@ In this dissertation, we made significant progress in all three aforementioned a
     \end{itemize}
     \item Use for \textbf{analyses}
     \begin{itemize}
-        \item In~\cite{Veneri2022} Veneri et al.\ investigate how astronomers cite other research fields.
-        \item Xue analyses in~\cite{Xue2021} semantic shifts of the contexts in which works are cited. %~(\cite{Saier2020xling,Saier2021})
-        \item Meng et al.\ present in~\cite{Meng2023} an analysis of omitted citations of works that have become common knowledge --- so called ``obliteration by incorporation''.
+        \item In~\cite{Veneri2022} Veneri et al.\ use our data to investigate how astronomers cite other research fields.
+        \item Xue uses our data to analyse in~\cite{Xue2021} semantic shifts of the contexts in which works are cited. %~(\cite{Saier2020xling,Saier2021})
+        \item Meng et al.\ use our data in~\cite{Meng2023} for an analysis of omitted citations of works that have become common knowledge --- so called ``obliteration by incorporation''.
     \end{itemize}
     % \item Use for \textbf{data set integration/extension}
     %\begin{itemize}  % TODO: add if Chen paper is ready in time

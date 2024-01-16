@@ -87,7 +87,7 @@ Table \ref{tbl:allthestats} gives an overview of the proposed data set. Note tha
 Thus, we argue that it is considerably large, fulfilling criterion (1). By using publications' \LaTeX{} source files and developing a highly accurate transformation method that converts \LaTeX{} to plain text, we can resolve issue (2). Besides the pure papers' content, in-text citations are annotated directly in the text via global identifiers, thereby covering aspect (3). As far as possible, (citing and cited) documents are linked to the Microsoft Academic Graph \cite{Sinha2015MAG} (cf. item (4)). This enables us to use the arXiv paper content in combination with the metadata in the MAG, which, as of February 2019, contains data on 213 million publications along with metadata about researchers, venues, and fields of study. Our data set also fulfills constraint (5) as all disciplines covered in arXiv are included. This enables researchers to analyze papers from several disciplines and to compare approaches using scholarly data across disciplines.
 
 % Aspect/benefit #1:
-Considering the application of our data set, we argue, that it not only can be used as a new large data set for evaluating paper-based and citation-based approaches with unlimited citation context lengths (since the publications' full-text is available),
+Considering the application of our data set, we argue that it not only can be used as a new large data set for evaluating paper-based and citation-based approaches with unlimited citation context lengths (since the publications' full-text is available),
 % Aspect/benefit #2:
 but also be a basis for novel ways of paper analytics within bibliometrics and scientometrics. For instance, based on the citation contexts and the citing and cited papers' metadata in the MAG, analyses on biases in the writing and citing behavior of researchers---e.g. related to authors' affiliation~\cite{Reingewertz2018} or documents' language~\cite{Liang2013,Liu2018}---can be performed.
 %% Aspect/benefit #3:
@@ -117,22 +117,22 @@ This data set has the following drawbacks \cite{Roy2016fixed,Faerber2018LREC}: T
 \begin{table}[tb]
  % \caption{Overview of existing data sets\\\small{(\#P.=Number of papers; Cit.\ cont.=Citation contexts; Ref.\ IDs=Reference IDs; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics)\\(\emph{extractable*} indicates that extraction might be error-prone due to papers only being available in PDF format)}}
  % NOTE: above is original caption, but does not compile in this document class
- \caption[Overview of existing data sets]{Overview of existing data sets (\#P.=Number of papers; Cit.\ cont.=Citation contexts; Ref.\ IDs=Reference IDs; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics; extractable* indicates that extraction might be error-prone due to papers only being available in PDF format)}
+ \caption[Overview of existing data sets]{Overview of existing data sets (\#Papers=Number of papers; Cit.\ contexts=Citation contexts; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics; extractable* indicates that extraction might be error-prone due to papers only being available in PDF format)}
  \label{tab:existing-data-sets}
   \centering
   \begin{small}
  \begin{threeparttable}
  \begin{tabular}{llllll}
  \toprule
-   Data set & \#P. & Cit. cont. & Scope & Full text & Ref. IDs \\
+   Data set & \#\,Papers & Cit. contexts & Scope & Full text & Reference IDs \\
    \midrule
    % capital Ms and lowercase ks (supposed to be like that)
-   CiteSeerX \cite{Caragea2014}/RefSeer \cite{Huang2015fixed} &  1M & 400 chars & (all) & no & no \\
-   PubMed Central OAS\tnote{a} & 2.3M & extractable & BM/LS & yes & mixed \\
-   Scholarly Dataset 2 \cite{Sugiyama2015} & 100k & extractable* & CS & yes & no \\
-   arXiv CS \cite{Faerber2018LREC}   &  90k & 1 sentence & CS & yes & DBLP \\
-   ACL-ARC \cite{Bird2008ACLARC} & 11k & extractable* & CS/CL & yes & no \\
-   ACL-AAN \cite{Radev2013} & 18k & extractable* & CS/CL & yes & no  \\
+   CiteSeerX \cite{Caragea2014}/RefSeer \cite{Huang2015fixed} &  1.0\,M & 400 characters & (all) & no & no \\
+   PubMed Central OAS\tnote{a} & 2.3\,M & extractable & BM/LS & yes & mixed \\
+   Scholarly Dataset 2 \cite{Sugiyama2015} & 0.1\,M & extractable* & CS & yes & no \\
+   arXiv CS \cite{Faerber2018LREC}   &  0.09\,M & 1 sentence & CS & yes & DBLP \\
+   ACL-ARC \cite{Bird2008ACLARC} & 0.01\,M & extractable* & CS/CL & yes & no \\
+   ACL-AAN \cite{Radev2013} & 0.02\,M & extractable* & CS/CL & yes & no  \\
    \bottomrule
  \end{tabular}
  \begin{tablenotes}
@@ -431,7 +431,7 @@ We first discuss the terms \emph{``integral''} and \emph{``syntactic''}, which a
 
 \begin{table}
 \centering
-    \caption[Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic]{Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic (``\checkmark''=yes, ``x''=no, ``?''=unclear)}
+    \caption[Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic]{Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic (``\checkmark''=yes, ``$\times$''=no, ``?''=unclear)}
     \label{tab:integralsyntactic}
 \begin{center}
     \begin{tabular}{llll|ll}
@@ -440,15 +440,15 @@ We first discuss the terms \emph{``integral''} and \emph{``syntactic''}, which a
     \ & \ & \ & \ & \ & \ \\
     Context excerpt (citation marker {\color{UniBlue}highlighted}) & \multicolumn{3}{c|}{\textbf{integral}} & \multicolumn{2}{l}{\textbf{syntactic}} \\
     \midrule
-    ``Swales {\color{UniBlue}(1990)} has argued that ...''                 & \checkmark & \checkmark & \checkmark & x & ? \\
-    ``{\color{UniBlue}Swales (1990)} has argued that ...''                 & \checkmark & \checkmark & x & \checkmark & \checkmark \\
-    ``Swales {\color{UniBlue}[73]} has argued that ...''                   & \checkmark & \checkmark & \checkmark & x & x \\
-    ``Swales has argued that ... {\color{UniBlue}[73]}''                   & \checkmark & \checkmark & \checkmark & x & x \\
-    ``It has been argued {\color{UniBlue}(Swales, 1990)} that ...''        & x & x & x & x & x \\
-    ``It has been argued {\color{UniBlue}[73]} that ...''                  & x & x & x & x & x \\
-    ``According to {\color{UniBlue}(Swales, 1990)} it is ...''             & ? & ? & x & \checkmark & \checkmark \\
-    ``According to {\color{UniBlue}[73]} it is ...''                       & x & x & x & \checkmark & \checkmark \\
-    ``... has been shown (see {\color{UniBlue}(Swales, 1990)}).''          & x & x & x & \checkmark & x \\
+    ``Swales {\color{UniBlue}(1990)} has argued that ...''                 & \checkmark & \checkmark & \checkmark & $\times$ & ? \\
+    ``{\color{UniBlue}Swales (1990)} has argued that ...''                 & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark \\
+    ``Swales {\color{UniBlue}[73]} has argued that ...''                   & \checkmark & \checkmark & \checkmark & $\times$ & $\times$ \\
+    ``Swales has argued that ... {\color{UniBlue}[73]}''                   & \checkmark & \checkmark & \checkmark & $\times$ & $\times$ \\
+    ``It has been argued {\color{UniBlue}(Swales, 1990)} that ...''        & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ \\
+    ``It has been argued {\color{UniBlue}[73]} that ...''                  & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ \\
+    ``According to {\color{UniBlue}(Swales, 1990)} it is ...''             & ? & ? & $\times$ & \checkmark & \checkmark \\
+    ``According to {\color{UniBlue}[73]} it is ...''                       & $\times$ & $\times$ & $\times$ & \checkmark & \checkmark \\
+    ``... has been shown (see {\color{UniBlue}(Swales, 1990)}).''          & $\times$ & $\times$ & $\times$ & \checkmark & $\times$ \\
     \bottomrule
     \end{tabular}
 \end{center}
@@ -490,7 +490,7 @@ In the following we will analyze all three aspects (integral, syntactic, target 
 \toprule
    Discipline & Integral & Syntactic & Integral+Syntactic & Target Section Specific \\
    \midrule
-   CS & 23 & 88 & 1 & 5 \\
+   Computer Science & 23 & 88 & 1 & 5 \\
    Mathematics & 48 & 200 & 13 & 17 \\
    Physics & 12 & 80 & 2 & 4 \\
    Other & 14 & 113 & 1 & 7 \\
