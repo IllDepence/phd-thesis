@@ -18,7 +18,7 @@ Today, scientific publications are predominantly authored, distributed, consumed
 
 % There lies enormous potential in a digital record of science. But realizing this potential
 
-The historical baggage manifesting itself in the PDF files we read, share, and author, poses significant challenges to realizing the full potential of a digital record of science. While digital services in academia such as search and recommendation do exist, they are powered not by publications themselves, but rather by more structured, derivative representations of publications. The same holds for analyses of publications. The creation of such structured representations %/derivates?
+The historical baggage manifesting itself in the PDF files we read, share, and author, poses significant challenges to realizing the full potential of a digital record of science. While digital services in academia such as search and recommendation do exist, they are powered not by publications themselves, but rather by more structured, derivative representations of publications. The same holds for analyses of publications (see Figure~\ref{fig:introduction-structreps}). Creating such structured representations %/derivates?
 is challenging and error-prone, leading to a risk of subpar services and erroneous analyses. This dissertation represents an effort to tackle this challenge and alleviate the quality of structured representations of scientific publications.
 
 % (random alliteration: structured surrogates of academic archives)
@@ -26,6 +26,13 @@ is challenging and error-prone, leading to a risk of subpar services and erroneo
 % - b/c of discrepancy between current form and what would be even better for digital dissemination and use (e.g. more structured), structured derivates of publications that enable digital services are of limited quality
 % - historical baggage in part b/c still meant for human consumption
 % - gap(?) between “pure” digital form and current form hinders more efficient use in digital services surrounding publications and academia
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{figures/introduction/structured_representations_of_publucations}
+  \caption[test]{Visualisation of publications, their structured representations, and their use.}
+  \label{fig:introduction-structreps}
+\end{figure}
 
 \section{Motivation}
 
@@ -239,7 +246,7 @@ The dissertation concludes in Chapter~\ref{chp:conclusion} with an overarching d
 
 \section{Overview of Publications}
 
-The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or, if not available, the most up-to-date prior ranking. For workshops, the rank of the conference at which the workshop is hosted is shown.} For each of the publications, detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective chapter.
+The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or, if not available, the most up-to-date prior ranking. For workshops, the rank of the conference at which the workshop is hosted is shown.} For all publications in Table~\ref{tab:primarypublicationoverview} the author of this dissertation is the first and corresponding author. Detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective chapter.
 
 \begin{table}[h]
 \caption{Overview of publications reused in this dissertation.}
@@ -249,17 +256,17 @@ The contributions in this dissertation have been published in peer-reviewed inte
   \begin{threeparttable}
   \begin{tabular}{crllllr}
     \toprule
-    Chapter & Venue & Year & Type & Length & Rank\tnote{a} & Ref \\
+    Chapter & Venue & Rank\tnote{a} & Type & Year & Length & Ref \\
     \midrule
-    3 & Scientometrics & 2020 & Journal & Full & SJR Q1 & \cite{Saier2020} \\
+    3 & Scientometrics & SJR Q1 & Journal & 2020 & Full & \cite{Saier2020} \\
     \arrayrulecolor{lightgrey}\cline{1-7}
-    \multirow{2}{*}{4} & ULITE@JCDL & 2022 & Workshop & Full & Core A* & \cite{Saier2022ULITE} \\
-    \ & JCDL & 2023 & Conference & Short & Core A* & \cite{Saier2023unarXive} \\
+    \multirow{2}{*}{4} & ULITE@JCDL & Core A* & Workshop & 2022 & Full & \cite{Saier2022ULITE} \\
+    \ & JCDL & Core A* & Conference & 2023 & Short & \cite{Saier2023unarXive} \\
     \arrayrulecolor{lightgrey}\cline{1-7}
-    \multirow{2}{*}{5} & ICADL & 2020 & Conference & Full & Core A & \cite{Saier2020xling} \\
-    \ & IJDL & 2022 & Journal & Full & SJR Q2 & \cite{Saier2021} \\
+    \multirow{2}{*}{5} & ICADL & Core A & Conference & 2020 & Full & \cite{Saier2020xling} \\
+    \ & IJDL & SJR Q2 & Journal & 2022 & Full & \cite{Saier2021} \\
     \arrayrulecolor{lightgrey}\cline{1-7}\arrayrulecolor{black}
-    6 & ECIR & 2024 & Conference & Full & Core A & \cite{Saier2023hyperpie} \\
+    6 & ECIR & Core A & Conference & 2024 & Full & \cite{Saier2023hyperpie} \\
     \bottomrule
   \end{tabular}
   \begin{tablenotes}
@@ -308,19 +315,20 @@ Additional publications (co-)authored leading up to and during the research peri
   \begin{threeparttable}
   \begin{tabular}{rlllclr}
     \hline
-    Venue & Year & Type & Length & Author Pos. & Rank\tnote{a} & Ref. \\
+    Venue & Rank\tnote{a} & Type      & Year & Length & Pos.\tnote{b} & Ref. \\
     \hline
-    BIR@ECIR & 2019 & Workshop & Full & 1 of 2 & Core A & \cite{Saier2019} \\
-    ECIR & 2020 & Conference & Full & 1 of 3 & Core A & \cite{Saier2020a} \\
-    SDP@NAACL & 2021 & Workshop & Short & 3 of 4 & Core A & \cite{Krause2021} \\
-    SDU@AAAI & 2022 & Workshop & Full & 2 of 3 & Core A* & \cite{Shapiro2022} \\
-    BIR@ECIR & 2022 & Workshop & Full & 4 of 5 & Core A & \cite{Faerber2022bir} \\
-    JCDL & 2022 & Conference & Full & 3 of 3 & Core A* & \cite{Nishioka2022} \\
-    JCDL & 2023 & Conference & Short & 1 of 3 & Core A* & \cite{Saier2023cocon} \\
+    BIR@ECIR  & Core A  & Workshop    & 2019 & Full   & 1 of 2 & \cite{Saier2019} \\
+    ECIR      & Core A  & Conference  & 2020 & Full   & 1 of 3 & \cite{Saier2020a} \\
+    SDP@NAACL & Core A  & Workshop    & 2021 & Short  & 3 of 4 & \cite{Krause2021} \\
+    SDU@AAAI  & Core A* & Workshop    & 2022 & Full   & 2 of 3 & \cite{Shapiro2022} \\
+    BIR@ECIR  & Core A  & Workshop    & 2022 & Full   & 4 of 5 & \cite{Faerber2022bir} \\
+    JCDL      & Core A* & Conference  & 2022 & Full   & 3 of 3 & \cite{Nishioka2022} \\
+    JCDL      & Core A* & Conference  & 2023 & Short  & 1 of 3 & \cite{Saier2023cocon} \\
     \hline
     \end{tabular}
     \begin{tablenotes}
       \item[a] Venue rank in publication year (or closest prior). For workshops, the rank of the hosting conference is shown.
+      \item[b] Author position.
     \end{tablenotes}
     \end{threeparttable}
     % \end{small}
