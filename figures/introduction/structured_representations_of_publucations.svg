@@ -328,11 +328,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="85.760928"
-     inkscape:cy="58.897855"
+     inkscape:zoom="4"
+     inkscape:cx="161.59557"
+     inkscape:cy="10.412527"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g5487"
      showgrid="false"
      inkscape:window-width="1918"
      inkscape:window-height="1059"
@@ -354,7 +354,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -469,15 +469,15 @@
            y="363.6131" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.25449467px;line-height:1em;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.33817419"
-           x="-44.248501"
-           y="365.49036"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.93811023px;line-height:1em;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.29071653"
+           x="-44.306053"
+           y="365.21408"
            id="text5447"><tspan
              sodipodi:role="line"
              id="tspan5445"
-             x="-44.248501"
-             y="365.49036"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.33817419">PDF</tspan></text>
+             x="-44.306053"
+             y="365.21408"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.29071653">Paper</tspan></text>
       </g>
     </g>
     <path
