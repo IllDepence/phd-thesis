@@ -328,9 +328,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="128.05235"
-     inkscape:cy="44.642381"
+     inkscape:zoom="2"
+     inkscape:cx="85.760928"
+     inkscape:cy="58.897855"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -482,24 +482,24 @@
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.30000001;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutL-3)"
-       d="m -43.430145,364.94489 h 23.652948"
+       d="m -44.091605,364.94489 h 23.652948"
        id="path5583"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.76388884px;line-height:1em;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-31.840462"
+       x="-32.501926"
        y="364.09409"
        id="text7175"><tspan
          sodipodi:role="line"
          id="tspan7173"
-         x="-31.840462"
+         x="-32.501926"
          y="364.09409"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';stroke-width:0.26458332">extract structured data</tspan></text>
     <g
        id="g7226"
-       transform="translate(0.61870635,-0.26458335)">
+       transform="translate(-0.04275195,-0.26458335)">
       <path
          sodipodi:nodetypes="ccscccsccccccscccccscccccscc"
          inkscape:connector-curvature="0"
@@ -532,7 +532,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.30000001;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker7585-2-8)"
-       d="m -0.69053308,364.94489 c 8.38527238,0 7.19607688,-10e-6 14.05182408,-10e-6"
+       d="m -2.3441789,364.94489 c 8.3852724,0 8.8497227,-10e-6 15.7054699,-10e-6"
        id="path5583-9-6-2"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -574,13 +574,13 @@
        id="rect10615-4"
        width="13.451578"
        height="3.7891843"
-       x="-16.029831"
+       x="-17.08815"
        y="364.85049"
        ry="0.86366516"
        rx="0.859896" />
     <g
        id="g11036"
-       transform="translate(6.2177076,-0.09313402)">
+       transform="translate(5.1593748,-0.09313402)">
       <circle
          style="fill:#2098a4;fill-opacity:1;stroke-width:0.61301845"
          cx="-13.259138"
@@ -612,7 +612,7 @@
     </g>
     <g
        id="g11029"
-       transform="matrix(0.98712722,0,0,0.98712722,-6.2279524,4.8402793)">
+       transform="matrix(0.98712722,0,0,0.98712722,-7.2862852,4.8402793)">
       <path
          id="path4840-9-7-4-9"
          d="m -6.8681066,363.86937 h -0.934453 c -0.07742,0 -0.140157,0.0627 -0.140157,0.14013 0,0.0774 0.06274,0.14013 0.140157,0.14013 h 0.934453 c 0.07743,0 0.140172,-0.0627 0.140172,-0.14013 0,-0.0774 -0.06274,-0.14013 -0.140172,-0.14013 z"
@@ -658,18 +658,40 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.76388884px;line-height:1em;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-9.2671223"
+       x="-10.325457"
        y="366.27145"
        id="text7175-9-5"><tspan
          sodipodi:role="line"
          id="tspan7173-4-6"
-         x="-9.2671223"
+         x="-10.325457"
          y="366.27145"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">structured</tspan><tspan
          sodipodi:role="line"
-         x="-9.2671223"
+         x="-10.325457"
          y="368.03534"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
          id="tspan10745-1">representation</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.76388884px;line-height:1em;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="0.10229325"
+       y="364.09409"
+       id="text7175-1"><tspan
+         sodipodi:role="line"
+         id="tspan7173-5"
+         x="0.10229325"
+         y="364.09409"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';stroke-width:0.26458332">basis</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.76388884px;line-height:1em;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-0.098977014"
+       y="366.81406"
+       id="text7175-1-9"><tspan
+         sodipodi:role="line"
+         id="tspan7173-5-8"
+         x="-0.098976977"
+         y="366.81406"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Linux Biolinum O';-inkscape-font-specification:'Linux Biolinum O Bold';stroke-width:0.26458332">for</tspan></text>
   </g>
 </svg>
