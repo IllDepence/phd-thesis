@@ -115,7 +115,7 @@ Accordingly, we can define our research objective as follows.
 Develop an automated process that takes as input scientific publications, and produces as output a high-quality derivative representation of the publications, suitable for digital processing.
 \end{infobox-objective}
 
-This leaves the question of what ``high-quality'' and ``suitable for digital processing'' entail. We discuss this aspect in detail in Chapter~\ref{chp:foundations}. In short, data quality depends on the intended use and therefore, very generally speaking, means \emph{fitness for use}. Quantitatively it can be assessed along the following five dimensions~\cite{Herzog2007}.
+This leaves the question of what ``high-quality'' and ``suitable for digital processing'' entail. We discuss this aspect in detail in Chapter~\ref{chp:foundations}. In short, data quality depends on the intended use and therefore, generally speaking, means \emph{fitness for use}. Quantitatively, data quality is most commonly assessed along the following five dimensions~\cite{Herzog2007}.
 
 \begin{infobox-progress}
       \textbf{Data Quality Dimensions}\\
@@ -128,11 +128,11 @@ The five dimensions can briefly be described as as follows.
     \item \textbf{Relevance} measures the extent to which the data is connected to its intended use.
     \item \textbf{Accuracy} is concerned with how error-free the data is.
     \item \textbf{Timeliness} expresses to which degree the data is current enough.
-    \item \textbf{Comparability} quantifies how well the data is comparable to other data, e.g. though the existence of lack of common identifiers.
+    \item \textbf{Comparability} quantifies how well the data is comparable to other data, e.g. due to the existence of common identifiers.
     \item \textbf{Completeness} is a measure for the rate of missing records, and the rate of missing data elements within records.
 \end{enumerate}
 
-A more specific and concrete definition of scholarly data quality along these dimensions can be grounded in considerations of how scholarly data is used. We elaborate on this in Section~\ref{sec:foundations-dataquality}.
+We elaborate on this in Section~\ref{sec:foundations-dataquality}, where we derive specific quality criteria for scholarly data across these dimensions, grounded in considerations of how scholarly data is used.
 
 \section{Challenges}\label{sec:intro-challenges}
 
@@ -158,14 +158,13 @@ Developing an automated process to generate high-quality scholarly data as laid 
 
 \textit{Relevant} scholarly data is challenging to attain especially for two reasons. First, common use cases such as bibliographic analyses require a large \textbf{volume of data} (often millions of documents) in order to yield meaningful results. This leads to challenges in terms of processing efficiency, robustness, and fault tolerance. Second, relevant content of scientific literature is of \textbf{multiple modalities}, such as natural language text, mathematical notation, figures, etc. This necessitates the use of either a combination of multiple, specialized processing approaches, or a highly generalizable processing approach.
 
-\textit{Accurate} scholarly data proves difficult to obtain, because, as described earlier, scientific publications are created \textbf{for human consumption} and therefore presuppose visual parsing by a system with relevant background knowledge. The latter point furthermore means there is a challenge of \textbf{information sparsity}. In other words, there are significant challenges in bridging the gap between a human-oriented medium and machine-readable data.
+\textit{Accurate} scholarly data proves difficult to obtain, because, as described earlier, scientific publications are created \textbf{for human consumption} and therefore presuppose visual parsing by a system with relevant background knowledge. The latter point furthermore means there is a challenge of \textbf{information sparsity}. In other words, there are significant challenges in bridging the gap between a human-oriented medium and machine-readable data. Furthermore, the contents of scientific publications pose a challenge due to their \textbf{specialized content}. Because scientific publications address highly specialized topics, they are likely to contain both specialized terminology, as well as specialized notation. Both of these aspects result in further challenges in processing their natural language contents.
 
 \textit{Timely} scholarly data can be difficult to realize especially in areas of research that have a high \textbf{publishing rate}. This is because integrating the data derived from newly published work into an existing corpus can necessitate (re-)processing steps across of the entire corpus. This in turn leads to challenges in processing efficiency.
 
-\textit{Comparable} scholarly data poses a challenge, because of an \textbf{ambiguity of labels}. For example, approaches and resources in computer science are often referred to by ambiguous names or acronyms, such as the language model ``BERT''~\cite{devlin2019} or the ``iris'' data set~\cite{Fisher1936}. Similarly, literature references can be ambiguous no unique identifier such as a digital object identifier (DOI) is not present. In such cases, the accurate identification of what is referred to is challenging.
+\textit{Comparable} scholarly data poses a challenge, because of an \textbf{ambiguity of labels}. For example, approaches and resources in computer science are often referred to by ambiguous names or acronyms, such as the language model ``BERT''~\cite{devlin2019} or the ``iris'' data set~\cite{Fisher1936}. Similarly, literature references can be ambiguous when no unique identifier such as a digital object identifier (DOI) is given. In each of these cases, it is challenging to accurately identify what is being referred, which is important for the creation of structured data representations.
 
-\textit{Complete} scholarly data is challenging to obtain multiple reasons. First, similar to the dimension of relevance, the \textbf{multiple modalities} contained in scientific literature render the task of completely representing publication's content in data difficult. Second, literature references turn the target of data processing into an \textbf{unbounded domain}. This is because, even for a constrained set of publications, it is practically infeasible for for a process generating scholarly data to guarantee access to everything possibly referenced by these publications.
-
+\textit{Complete} scholarly data is challenging to obtain multiple reasons. First, similar to the dimension of relevance, the \textbf{multiple modalities} contained in scientific literature render the task of completely representing publication's content in data difficult. Second, literature references turn the target of data processing into an \textbf{unbounded domain}. This is because, even for a constrained set of publications, it is practically infeasible for for a process generating scholarly data to guarantee access to everything possibly referenced by these publications. Lastly, there is a challenge of \textbf{multi-linguality}. While English currently is the de facto academic lingua franca~\cite{Montgomery2013}, science is a global endeavor meaning that scientific publications are written in various languages. Accordingly, the creation of scholarly data can entail the challenges that come with processing multi-lingual text.
  
 
 % \begin{enumerate}
@@ -176,7 +175,7 @@ Developing an automated process to generate high-quality scholarly data as laid 
 %     \item \textbf{Specialized Content} The fact that scientific publications address highly specialized topics, means that they are likely to contain both specialized terminology, as well as specialized notation. Both of these aspects result in further challenges in processing their natural language contents.
 % \end{enumerate}
 
-Some of the aspects mentioned above are common for NLP tasks in general, such as semantic ambiguity. However, in their entirety, these challenges set the task apart from other areas, such as approaches concerned with news articles, which contain less specialized language, and websites, where the source material is more structured in nature. Rather close to above challenges is the processing of patents. However, patents also contain legal jargon, which is generally not the case for scientific publications.\footnote{The similarity between scientific publications and patents regarding the nature of their content, purpose, and requirements for automated processing, are likely the reason that some platforms, such as Google Scholar, handle both within a single system. The search interface at \refurlinline{https://scholar.google.com/}{2023-11-22}, for example, includes a filter option ``include patents''.}
+To various degrees, some of the aspects mentioned above apply to several other tasks in natural language processing (NLP), such as an ambiguity of labels. However, in their entirety, these challenges set the creation of scholarly data apart from other areas. For example, approaches concerned with news articles contain less specialized content, and in the case of websites the source material is more structured in nature. Rather close to above challenges is the processing of patents. However, patents also contain legal jargon, which is generally not the case for scientific publications.\footnote{The similarity between scientific publications and patents regarding the nature of their content, purpose, and requirements for automated processing, are likely the reason that some platforms, such as Google Scholar, handle both within a single system. The search interface at \refurlinline{https://scholar.google.com/}{2023-11-22}, for example, includes a filter option ``include patents''.}
 
 % differences to patents: nature of the language technical and legal (as opposed to scientific)
 
