@@ -69,7 +69,7 @@ These are discussed in the following, with Table~\ref{tab:document_formats} prov
         Source & Doc Structure & Semantic & Open Availability & Disciplines \\
         \midrule
         LaTeX  & \checkmark    & partial\tnote{a}  & \checkmark~(arXiv)  & physics, math, CS \\
-        Word   & \checkmark    & partial\tnote{b}  & $\times$~(publisher internal & all\tnote{c} \\
+        Word   & \checkmark    & partial\tnote{b}  & $\times$~(publisher internal) & all\tnote{c} \\
         JATS   & \checkmark    & \checkmark & \checkmark~(PMC OAS)   & biomedical \\
         PDF    & $\times$      & $\times$   & \checkmark~(abundant)  & all  \\
         \bottomrule
@@ -122,7 +122,7 @@ is the most common distribution format for academic publications~\cite{Johnson20
 \subsubsection{Types of Scholarly Data}
 
 Conceptually, scholarly data can be divided two overarching categories: \emph{metadata} and \emph{document collections}~\cite{Nasar2018}. As a third category, we consider \emph{linked document collections}, which combine features of aforementioned two.
-We briefly introduce each of the three and provide an overview in Table~\ref{tab:data_types}.
+We briefly introduce each of the three types in the following. An overview by type can be found in Table~\ref{tab:data_types}, while a summary of representative data sets for each type is shown in Table~\ref{tab:scholarly_data_sets}.
 
 \begin{table}[tb]
   \caption{Overview of Scholarly Data Types}
@@ -146,6 +146,40 @@ We briefly introduce each of the three and provide an overview in Table~\ref{tab
   \end{small}
 \end{table}
 
+\begin{table}[tb]
+  \caption{Overview of Scholarly Data Sets}
+  \label{tab:scholarly_data_sets}
+  \centering
+  \begin{small}
+    \begin{threeparttable}
+      \begin{tabular}{llrl}
+        \toprule
+        Type & Data Set       & \# Docs          & Main Sources \\
+        \midrule
+        \multirow{2}{*}{Metadata}
+             & OpenAlex       & >\,200,000,000     & PubMed, arXiv, publishers \\
+        \    & ORKG           & >\,28,000          & Manual/semi-automated input \\
+        \midrule
+        \multirow{2}{*}{Document Collection}
+             & CORE           & >\,140,000,000     & Open access repositories \\
+        \    & arXMLiv        & >\,1,600,000       & arXiv \\
+        \midrule
+        \multirow{4}{*}{Linked Doc. Collection}
+             & S2ORC (full)   & >\,12,000,000      & PubMed, arXiv, publishers \\
+             & CiteSeerX      & >\,10,000,000      & PubMed, publishers \\
+        %\    & PMC OAS        & >\,3,300,000       & PubMed \\ in this context a data source
+        \    & unarXive       & >\,1,900,000       & arXiv \\
+        \    & S2ORC (\LaTeX) & >\,1,500,000       & arXiv \\
+        \    & SciXGen        & >\,200,000         & arXiv \\
+        \bottomrule
+      \end{tabular}
+      % \begin{tablenotes}
+      % CORE @ 143M: "CORE provides access to an estimated 143M free to read full text research papers with 36M full texts hosted directly by CORE" (https://core.ac.uk/data, 2024/01/27)
+      % \end{tablenotes}
+    \end{threeparttable}
+  \end{small}
+\end{table}
+
 % What do I want to say and convey here?
 % - what ``conceptual'' types of scholarly data are there?
 %   -> metadata, document collections, linked document collections (combining former two b/c metadata usually also means citations)
@@ -153,11 +187,10 @@ We briefly introduce each of the three and provide an overview in Table~\ref{tab
 %   -> ORKG (very semantic but not scalable yet), arXMLiv (math focus), S2ORC (PDF source), OpenAlex (very large, ...)
 
 \paragraph{Metadata}
-provides information \emph{about} publications, rather than reflecting their full-text content. The data partially originates in already structured form provided by authors, as it is queried by publishers during manuscript submission. This includes the title, authors, as well as the abstract. Different regarding the data's origin are bibliographic references, which are also often included in metadata sets. Here, it is necessary to extract the reference information from the document submitted by an author (e.g. \LaTeX\ or Word sources). Regarding accessibility, title and author information is generally shared freely. Abstracts and references may also be openly acceptable, but this is not always the case, as evidenced by the existence of the Initiative for Open Abstracts\refurl{https://i4oa.org/}{2023-11-09} and the Initiative for Open Citations.\refurl{https://i4oc.org/}
-
+provides information \emph{about} publications, rather than reflecting their full-text content. The data partially originates in already structured form provided by authors, as it is queried by publishers during manuscript submission. This includes the title, authors, as well as the abstract. Different regarding the data's origin are bibliographic references, which are also often included in metadata sets. Here, it is necessary to extract the reference information from the document submitted by an author (e.g. \LaTeX\ or Word sources). Regarding accessibility, title and author information is generally shared freely. Abstracts and references may also be openly acceptable, but this is not always the case, as evidenced by the existence of the Initiative for Open Abstracts\refurl{https://i4oa.org/}{2023-11-09} and the Initiative for Open Citations.\refurl{https://i4oc.org/}{2023-11-09}
 
 Two examples of scholarly metadata sets are the following. (1)~OpenAlex~\cite{openalex} contains data on over 200\,M publications, their authors, affiliations, citation links, etc. Its data sources include PubMed, arXiv, academic publishers, and various institutional repositories.%\refurl{https://api.openalex.org/sources}{2023-11-09} 
- (2)~The Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} provides information on over 28\,k\footnote{28.020 entities of type \texttt{http://orkg.org/orkg/class/Paper} as of 2023-11-09. Determined via the ORKG SPARQL endpoint at \url{https://www.orkg.org/sparql}.} publications, their contributions, research problems addressed etc. For its data, the ORKG is largely reliant on manual or semi-automated data entry.
+ (2)~The Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} provides information on over 28\,k publications,\footnote{28.020 entities of type \texttt{http://orkg.org/orkg/class/Paper} as of 2023-11-09. Determined via the ORKG SPARQL endpoint at \url{https://www.orkg.org/sparql}.} their contributions, research problems addressed etc. For its data, the ORKG is largely reliant on manual or semi-automated data entry.
 
 \paragraph{Document Collections} provide access to publications' full-text content. Because of this, they are reliant on open access publications as a data source. Furthermore, the documents either need to be licensed in a way that allows (re-)distribution, or access to the collection itself needs to be restricted accordingly. Because there are documents sources in different formats (see Figure~\ref{fig:foundations-datalifecycle}), document collections derived from them take different forms. While some are primarily aggregates of openly accessible PDFs (and therefore can also be seen as a data source), such as CORE~\cite{core}, others are the result of an involved generation process. An example for the latter is arXMLiv~\cite{arXMLiv}, which is an XML conversion of the papers on arXiv, comprising 1.6 M documents in its most recent version.
 
@@ -166,8 +199,9 @@ In order to use a document collection for applications involving citation inform
 \paragraph{Linked Document Collections}
 are document collections that, in addition to the document contents, include a citation network. This means, that in addition to the requirements for creating a document collection, their generation involves the additional step of linking the references in the documents' reference sections. Commonly, this furthermore involves linking in-text citations to their respective references, to provide for more fine-grained citation information.
 
-Representatives of linked document collections are CiteSeerX~\cite{Wu2015,Wu2016,Patel2021},  % Wu2015: original publication, Wu2016: data sources & pipeline details, Patel2021: most recent size number (10+ M)
-S2ORC~\cite{Lo2020}, and unarXive~\cite{Saier2020}. unarXive is generated from the \LaTeX\ sources on arXiv, comprising 2\,M documents in its most recent version. Being generated from arXiv, it covers physics, mathematics, and computer science publications. CiteSeerX and S2ORC are both generated from PDF files of various sources, such as PubMed and publishers' websites, and contain over 10\,M and 12\,M documents respectively. The publications covered are from various fields including medicine and biology, physics, mathematics, and computer science.
+Representatives of linked document collections are CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, % Wu2015: original publication, Wu2016: data sources & pipeline details, Patel2021: most recent size number (10+ M)
+S2ORC~\cite{Lo2020}, unarXive~\cite{Saier2020}, and SciXGen~\cite{chen2021-scixgen}.
+unarXive and SciXGen are generated from \LaTeX\ sources on arXiv, and comprise about 2\,M and 200\,k documents respectively. unarXive, covering all of arXiv, covers physics, mathematics, and computer science publications. SciXGen, on the other hand, only includes computer science. CiteSeerX and S2ORC are both generated from PDF files of various sources, such as PubMed and publishers' websites, and contain over 10\,M and 12\,M documents respectively. The publications covered are from various fields including medicine and biology, physics, mathematics, and computer science.
 
 % \subsection{State-of-the-Art}
 % TODO: put SOTA here? would need to compare by some criteria, which should be introduced in data quality section below ... so, as third section in foundations chapter mby?
