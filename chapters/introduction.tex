@@ -134,6 +134,18 @@ The five dimensions can briefly be described as as follows.
 
 We elaborate on this in Section~\ref{sec:foundations-dataquality}, where we derive specific quality criteria for scholarly data across these dimensions, grounded in considerations of how scholarly data is used.
 
+% Side note: in ORKG paper “Analysing the requirements for an Open Research Knowledge Graph: use cases, quality requirements, and construction strategies”:
+% research questions:
+% 1. [...] (user interface)
+% 2. ontologies
+%     1. Which granularity of information is needed?  (-> comparability)
+%     2. To what degree is domain specialisation needed?  (-> relevance?)
+% 3. instance data requirements
+%     1. Which completeness is sufficient for the instance data?  (-> completeness)
+%     2. Which correctness is sufficient for the instance data?  (-> accuracy)
+%     3. Which approaches (human vs. machine) are suitable to populate the ORKG?
+
+
 \section{Challenges}\label{sec:intro-challenges}
 
 % What do I want to say and convey here?
@@ -158,7 +170,7 @@ Developing an automated process to generate high-quality scholarly data as laid 
 
 \textit{Relevant} scholarly data is challenging to attain especially for two reasons. First, common use cases such as bibliographic analyses require a large \textbf{volume of data} (often millions of documents) in order to yield meaningful results. This leads to challenges in terms of processing efficiency, robustness, and fault tolerance. Second, relevant content of scientific literature is of \textbf{multiple modalities}, such as natural language text, mathematical notation, figures, etc. This necessitates the use of either a combination of multiple, specialized processing approaches, or a highly generalizable processing approach.
 
-\textit{Accurate} scholarly data proves difficult to obtain, because, as described earlier, scientific publications are created \textbf{for human consumption} and therefore presuppose visual parsing by a system with relevant background knowledge. The latter point furthermore means there is a challenge of \textbf{information sparsity}. In other words, there are significant challenges in bridging the gap between a human-oriented medium and machine-readable data. Furthermore, the contents of scientific publications pose a challenge due to their \textbf{specialized content}. Because scientific publications address highly specialized topics, they are likely to contain both specialized terminology, as well as specialized notation. Both of these aspects result in further challenges in processing their natural language contents.
+\textit{Accurate} scholarly data proves difficult to obtain, because, as described earlier, scientific publications are created for human consumption, and therefore presuppose visual parsing by a system with relevant background knowledge, which leads to a challenge of \textbf{information sparsity}. In other words, it is difficult to bridge the gap between a human-oriented medium and machine-readable data. Furthermore, the contents of scientific publications pose a challenge for accuracy due to their \textbf{specialized content}. Because scientific publications address highly specialized topics, they are likely to contain both specialized terminology, as well as specialized notation. Both of these aspects result in further challenges in processing their natural language contents.
 
 \textit{Timely} scholarly data can be difficult to realize especially in areas of research that have a high \textbf{publishing rate}. This is because integrating the data derived from newly published work into an existing corpus can necessitate (re-)processing steps across of the entire corpus. This in turn leads to challenges in processing efficiency.
 
@@ -181,15 +193,24 @@ To various degrees, some of the aspects mentioned above apply to several other t
 
 \section{Research Gap}\label{sec:intro-gap}
 
-This dissertation is not the first, and will certainly also not be the last research endeavor with the objective the develop methods for the creation of high-quality scholarly data. To position our work in relation to existing approaches, we below highlight the research gaps addressed by this dissertation. More detailed accounts regarding each area can be found in the respective chapters later on.
+% - volume of data (-> need efficient, robust, fault tolerant processing)
+% - multiple modalities (-> need highly generalizable or multiple processing approaches)
+% - information sparsity (-> need to bridge gap from visual medium to structured data)
+% - specialized content (-> need sophisticated NLP)
+% - publishing rate (-> need to frequently update datasets?)
+% - ambiguity of labels (-> need ID'ed stuff, need sophisticated NLP)
+% - unbounded domain (-> need to cover lots of additional data?)
+% - multi-linguality (-> need sophisticated NLP?)
+
+This dissertation is not the first research endeavor with the objective the develop methods for the creation of high-quality scholarly data. Prior approaches exist and, accordingly, have grappled with the challenges laid out in the previous section. However, there are three key areas in which we see particular shortcomings in existing work. Together, they make up the research gap addressed by this dissertation, as described in the following. % More detailed accounts regarding each area can be found in the respective chapters later on.
 
 \begin{enumerate}
-    \item \textbf{Citation Network} Several of the most prevalent use cases for scholarly data hinge on the interlinking of publications through citations. This includes a large amount of bibliometric analyses, scientometrics, as well as the study of citation networks in the general context of graphs (e.g. in graph neural network evaluations). Despite this, not much focus is put on the quality of citation networks in scholarly data. The much used data set CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, for example, takes the approach of clustering references and publications, but there is no assessment of the citation network's completeness---i.e., what proportion of references of a paper can successfully be linked to the cited document. The more recently introduced data set S2ORC~\cite{Lo2020}---more specifically, it's \LaTeX\ subset---provides an investigation into the proportion of successfully matched references, but only achieves to successfully match 31.1\% of references. Improvements regarding citation network quality are presented in Chapters~\ref{chp:corpus} and \ref{chp:covgran}.
-    \item \textbf{Anglocentrism} In the last years, there as been a growing awareness of non-English language content in various areas of NLP~\cite{Dabre2020,Yu2022,Ramesh2023}. However, in research concerned with scientific publications, as well as in available data sets covering scientific publications, there still is a major lack of coverage of non-English documents~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019,MartinMartin2021}. As a consequence, research results are of limited validity. Improvements regarding the inclusion and analysis of non-English publications are presented in Chapter~\ref{chp:xling}.
+    \item \textbf{Citation Network} Several of the most prevalent use cases for scholarly data hinge on the interlinking of publications through citations. This includes uses cases such as bibliometric analyses, scientometrics, as well as the study of citation networks as a type of graph (e.g. in graph neural network evaluations). Despite this importance, not much focus seems to be put on the quality of citation networks in scholarly data. The much used data set CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, for example, takes the approach of clustering references and publications, but there is no assessment of the citation network's completeness---i.e., what proportion of references of a paper can successfully be linked to the cited document. The more recently introduced data set S2ORC~\cite{Lo2020}---more specifically, it's \LaTeX\ subset---provides an investigation into the proportion of successfully matched references, but only achieves to successfully match 31.1\% of references. Improvements regarding citation network are presented in Chapters~\ref{chp:corpus} and \ref{chp:covgran}. The results presented there entail improvements across all five data quality dimensions.
+    \item \textbf{Anglocentrism} In the last years, there as been a growing awareness of non-English language content in various areas of NLP~\cite{Dabre2020,Yu2022,Ramesh2023}. However, in research concerned with scientific publications, as well as in available data sets covering scientific publications, there still is a major lack of coverage of non-English documents~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019,MartinMartin2021}. As a consequence, research results are of limited validity. Improvements regarding the inclusion and analysis of non-English publications are presented in Chapter~\ref{chp:xling}. The presented work entails improvements in the data quality dimensions relevance and comparability.
     \item \textbf{Research Artifacts} To an increasing degree research is driven by curated data sets and algorithmic processing techniques such as machine learning methods and models (``research artifacts''). This development can, for example, be observed in the field of NLP, which has undergone a shift towards ``rapid discovery science'', characterized by a high consensus on research topics, methods and technologies~\cite{Jurgens2018}. Further signs of the growing importance of research artifacts are, for example, the launch of both Google Dataset Search\refurl{https://datasetsearch.research.google.com/}{2023-11-24} and Papers With Code\refurl{https://paperswithcode.com/}{2023-11-24} in 2018, as well as the gradual adoption of data citations~\cite{Kratz2015}.
 % GDS 2018: https://doi.org/10.1038/d41586-018-06201-x
 % PwC 2018: https://web.archive.org/web/20220513185917/https://www.reddit.com/r/MachineLearning/comments/8t0l40/p_papers_with_code_the_latest_machine_learning/
-Despite these developments, efforts to include structured representations of research artifacts in scholarly data are limited. Some work in this direction exists, most notably SciERC~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, but it only covers a shallow representation of research artifacts. Improvements regarding a more fine-granular coverage of research artifacts are presented in Chapter~\ref{chp:params}.
+Despite these developments, efforts to include structured representations of research artifacts in scholarly data are limited. Some work in this direction exists, most notably SciERC~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, but it only covers a shallow representation of research artifacts. Improvements regarding a more fine-granular coverage of research artifacts are presented in Chapter~\ref{chp:params}. Similar to anglocentrism, the work presented entails improvements in the data quality dimensions relevance and comparability.
 \end{enumerate}
 
 In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, and will be tracked along the dissertation at the beginning of each chapter.
@@ -264,7 +285,7 @@ In addressing above limitations, we alleviate the state of scholarly data. This 
 
 \section{Outline and Contributions}
 
-The contributions made across the works tackling the challenges and limitations outlined in Sections \ref{sec:intro-challenges} and \ref{sec:intro-gap} represent the main part of this dissertation. Together with the subsequent and final chapter they make up the remainder of the document, which is structured as follows.
+The contributions made across the works tackling the challenges and research gaps outlined in Sections \ref{sec:intro-challenges} and \ref{sec:intro-gap} represent the main part of this dissertation. Together with the subsequent and final chapter they make up the remainder of the document, which is structured as follows.
 
 \begin{itemize}
     \item Chapter~\ref{chp:foundations} - \textbf{Foundations}
@@ -279,14 +300,24 @@ In Chapter~\ref{chp:foundations}, Foundations, we introduce overarching and foun
 
 Chapters~\ref{chp:corpus} to \ref{chp:params} make up the main contributions of the work presented in this dissertation. Specifically, these are:
 
-\textbf{Linked Document Scholarly Data Corpus Creation from \LaTeX} With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate. The work achieves improvements across all five data quality dimensions.
+\textbf{Linked Document Scholarly Data Corpus Creation from \LaTeX} With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate.
+This contribution lays the foundation for the subsequent research conducted for this dissertation, and primarily addresses the research gap \emph{citation network}.
+The work presented achieves improvements across all five data quality dimensions.
 
 \textbf{Inter-Reference Blocking and Fine-Granular Text Representation} Building upon \emph{unarXive}, we present in Chapter~\ref{chp:covgran} advancements in two areas. First, regarding the citation network, we develop a inter-reference blocking and matching method that significantly increases matched references as well as bibliographic couplings, and achieve a new state-of-the-art matching success rate. Second, we present an improved conversion method for \LaTeX\ source files leading to fine-granularly structured document representations. % Consider putting a sentences regarding the updated unarXive here, comparing it to S2ORC (mentioning that S2ORC (LaTeX) pipeline is based on unarXive)
+This contribution addresses the research gap \emph{citation network}, and furthermore lays the foundation for the research presented in Chapter 6 (see below).
 In total, the work presented achieves data quality improvements in terms of relevance, timeliness, comparability, and completeness.
 
-\textbf{Detection and Large-Scale Analysis of Cross-Lingual Citations} Using the \emph{unarXive} corpus, we present in Chapter~\ref{chp:xling} a method to reliably identify cross-lingual citations in English publications. Based on this, we conduct the so far largest analysis of this type of citation. Where previous studies of comparable setting only looked at hundreds of documents, our study includes over one million publications. Analysing cross-lingual citations' prevalence, usage, and impact, we identify trends over time as well as challenges. The work results in improvements in the citation network's relevance and comparability.
+\textbf{Detection and Large-Scale Analysis of Cross-Lingual Citations} Using the \emph{unarXive} corpus, we present in Chapter~\ref{chp:xling} a method to reliably identify cross-lingual citations in English publications. Based on this, we conduct the so far largest analysis of this type of citation. Where previous studies of comparable setting only looked at hundreds of documents, our study includes over one million publications. Analysing cross-lingual citations' prevalence, usage, and impact, we identify trends over time as well as challenges.
+This contribution addresses the research gap \emph{anglocentrism}.
+The work results in data quality improvements in %the citation network's
+terms of 
+relevance and comparability.
 
-\textbf{Information Extraction for Hyperparameter Information} To further improve the granularity of the full-text representations in \emph{unarXive}, we develop in Chapter~\ref{chp:params} information extraction methods for research artifacts and their usage parameters. In doing so, we enable the study of parameter use and reporting patterns across time and scientific disciplines. The extracted information furthermore bears potential for use in automated reproduction. The developed methods achieve an improvement over strong baselines. Regarding data quality, the work represents improvements regarding the document representation in the dimensions relevance and comparability.
+\textbf{Information Extraction for Hyperparameter Information} To further improve the granularity of the full-text representations in \emph{unarXive}, we develop in Chapter~\ref{chp:params} information extraction methods for research artifacts and their usage parameters. In doing so, we enable the study of parameter use and reporting patterns across time and scientific disciplines. The extracted information furthermore bears potential for use in automated reproduction. The developed methods achieve an improvement over strong baselines.
+This contribution addresses the research gap \emph{research artifacts}.
+Regarding data quality, the work represents improvements %regarding the document representation
+in the data quality dimensions relevance and comparability.
 
 The dissertation concludes in Chapter~\ref{chp:conclusion} with an overarching discussion of the results attained, impact of the work so far, and an outlook.
 
