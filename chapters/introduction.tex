@@ -124,13 +124,13 @@ This leaves the question of what ``high-quality'' and ``suitable for digital pro
 
 The five dimensions can briefly be described as as follows.
 
-\begin{enumerate}
-    \item \textbf{Relevance} measures the extent to which the data is connected to its intended use.
-    \item \textbf{Accuracy} is concerned with how error-free the data is.
-    \item \textbf{Timeliness} expresses to which degree the data is current enough.
-    \item \textbf{Comparability} quantifies how well the data is comparable to other data, e.g. due to the existence of common identifiers.
-    \item \textbf{Completeness} is a measure for the rate of missing records, and the rate of missing data elements within records.
-\end{enumerate}
+\begin{dqlist}
+    \item $\mathbf{Q_{rel}}$: \textit{Relevance} quantifies how well the data is connected to its intended use.
+    \item $\mathbf{Q_{acc}}$: \textit{Accuracy} is concerned with how error-free the data is.
+    \item $\mathbf{Q_{tim}}$: \textit{Timeliness} expresses to which degree the data is current enough.
+    \item $\mathbf{Q_{coy}}$: \textit{Comparability} measures the extent to which the data is comparable to other \hphantom{$\mathbf{Q_{coy}}$: }data, e.g. due to the existence of common identifiers.
+    \item $\mathbf{Q_{cos}}$: \textit{Completeness} is a measure for the rate of missing records, and the rate of \hphantom{$\mathbf{Q_{cos}}$: }missing data elements within records.
+\end{dqlist}
 
 We elaborate on this in Section~\ref{sec:foundations-dataquality}, where we derive specific quality criteria for scholarly data across these dimensions, grounded in considerations of how scholarly data is used.
 
@@ -191,7 +191,7 @@ To various degrees, some of the aspects mentioned above apply to several other t
 
 % differences to patents: nature of the language technical and legal (as opposed to scientific)
 
-\section{Research Gap}\label{sec:intro-gap}
+\section{Research Gap and Tasks}\label{sec:intro-gap}
 
 % - volume of data (-> need efficient, robust, fault tolerant processing)
 % - multiple modalities (-> need highly generalizable or multiple processing approaches)
@@ -202,7 +202,9 @@ To various degrees, some of the aspects mentioned above apply to several other t
 % - unbounded domain (-> need to cover lots of additional data?)
 % - multi-linguality (-> need sophisticated NLP?)
 
-This dissertation is not the first research endeavor with the objective the develop methods for the creation of high-quality scholarly data. Prior approaches exist and, accordingly, have grappled with the challenges laid out in the previous section. However, there are three key areas in which we see particular shortcomings in existing work. Together, they make up the research gap addressed by this dissertation, as described in the following. % More detailed accounts regarding each area can be found in the respective chapters later on.
+This dissertation is not the first research endeavor with the objective the develop methods for the creation of high-quality scholarly data. Prior approaches exist and, accordingly, have grappled with the challenges laid out in the previous section. However, there are three key areas in which we see particular shortcomings in existing work. Together, they make up the research gap addressed by this dissertation, and are described in the following.
+% More detailed accounts regarding each area can be found in the respective chapters later on.
+Based on the identified shortcomings, we then formulate our research tasks.
 
 \begin{enumerate}
     \item \textbf{Citation Network} Several of the most prevalent use cases for scholarly data hinge on the interlinking of publications through citations. This includes uses cases such as bibliometric analyses, scientometrics, as well as the study of citation networks as a type of graph (e.g. in graph neural network evaluations). Despite this importance, not much focus seems to be put on the quality of citation networks in scholarly data. The much used data set CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, for example, takes the approach of clustering references and publications, but there is no assessment of the citation network's completeness---i.e., what proportion of references of a paper can successfully be linked to the cited document. The more recently introduced data set S2ORC~\cite{Lo2020}---more specifically, it's \LaTeX\ subset---provides an investigation into the proportion of successfully matched references, but only achieves to successfully match 31.1\% of references.
@@ -220,6 +222,16 @@ Improvements regarding a more fine-granular coverage of research artifacts are p
 \end{enumerate}
 
 In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, and will be tracked along the dissertation at the beginning of each chapter.
+
+\paragraph{Research Tasks}
+Based on the research gap identified above, we formulate the following four research tasks as sub-points to our overarching research objective (see Section~\ref{sec:intro-researchobj}).
+
+\begin{rtlist}
+    \item Base Methodology - identify or establish a base methodology for generating a large-scale high quality scholarly data set, on par with or exceeding existing data sets.
+    \item Citation Network Completeness - develop a method to link literature references
+    \item Inclusion of Non-English Publications - 
+    \item Fine-gained Research Artifact Representations - 
+\end{rtlist}
 
 % per chapter: cit network, xling, params
 % other: cleanliness/precision (but arXMLiv), automation (only compared to ORKG), ...
