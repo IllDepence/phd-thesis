@@ -11,7 +11,7 @@ OUTPUTDIR = out
 # default target
 all: $(PDFTARGET)
 
-# fill build
+# full build
 $(PDFTARGET): $(TEXFILE) $(BIBFILE)
 	$(LATEXMK) -pdf -pdflatex="pdflatex -interaction=nonstopmode" -bibtex -outdir=$(OUTPUTDIR) $(TEXFILE)
 
