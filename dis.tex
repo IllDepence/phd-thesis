@@ -206,13 +206,19 @@
 %\faPlus           -- mby contribution, but also looks medical
 %\faThumbTack      -- slightly weird shape
 \usepackage{enumitem}
+\newcommand{\dqmark}[1]{%
+    \textbf{{\color{progressblue-box}\faBarChart}\,#1}%
+}
 \newlist{dqlist}{enumerate}{1}
 \setlist[dqlist]{%
 labelindent=0em,%
 labelwidth=1.2cm,%
-labelsep*=0.5em,%
+labelsep*=0.1em,%
 leftmargin=!,%
 label=\textbf{{\color{progressblue-box}\faBarChart}},%
+}
+\newcommand{\rtmark}[1]{%
+    \textbf{{\color{objblue-box}\faCrosshairs}\,RT#1}%
 }
 \newlist{rtlist}{enumerate}{1}
 \setlist[rtlist]{%
@@ -220,7 +226,7 @@ labelindent=0em,%
 labelwidth=2cm,%
 labelsep*=0.5em,%
 leftmargin=!,%
-label=\textbf{{\color{objblue-box}\faCrosshairs}\,RT\arabic*}:,%
+label=\rtmark{\arabic*}:,%
 }
 
 % - - - /intro
