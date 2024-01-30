@@ -45,7 +45,7 @@
 \newcommand{\Abstract}[1][Abstract]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}\markboth{#1}{#1}} 
 
 %% Nur als Beispiel – im endgültigen Dokument bitte entfernen
-\usepackage{blindtext}
+% \usepackage{blindtext}
 % TikZ ist kein Zeichenprogramm
 \usepackage{tikz}
 % Schöne Tabellen
@@ -205,6 +205,24 @@
 %\faMap            -- sth w/ planning?
 %\faPlus           -- mby contribution, but also looks medical
 %\faThumbTack      -- slightly weird shape
+\usepackage{enumitem}
+\newlist{dqlist}{enumerate}{1}
+\setlist[dqlist]{%
+labelindent=0em,%
+labelwidth=1.2cm,%
+labelsep*=0.5em,%
+leftmargin=!,%
+label=\textbf{{\color{progressblue-box}\faBarChart}},%
+}
+\newlist{rtlist}{enumerate}{1}
+\setlist[rtlist]{%
+labelindent=0em,%
+labelwidth=2cm,%
+labelsep*=0.5em,%
+leftmargin=!,%
+label=\textbf{{\color{objblue-box}\faCrosshairs}\,RT\arabic*}:,%
+}
+
 % - - - /intro
 
 % - - - foundations
