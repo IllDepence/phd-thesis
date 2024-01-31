@@ -124,13 +124,20 @@ This leaves the question of what ``high-quality'' and ``suitable for digital pro
 
 The five dimensions can briefly be described as as follows.
 
-\begin{dqlist}
-    \item \textbf{rel}: \textit{Relevance} quantifies how well the data is connected to its intended use.
-    \item \textbf{acc}: \textit{Accuracy} is concerned with how error-free the data is.
-    \item \textbf{tim}: \textit{Timeliness} expresses to which degree the data is current enough.
-    \item \textbf{coy}: \textit{Comparability} measures the extent to which the data is comparable to other \hphantom{\textbf{Coy}: }data, e.g. due to the existence of common identifiers.
-    \item \textbf{cos}: \textit{Completeness} is a measure for the rate of missing records, and the rate of \hphantom{\textbf{Cos}: }missing data elements within records.
-\end{dqlist}
+% \begin{dqlist}
+%     \item \textbf{rel}: \textit{Relevance} quantifies how well the data is connected to its intended use.
+%     \item \textbf{acc}: \textit{Accuracy} is concerned with how error-free the data is.
+%     \item \textbf{tim}: \textit{Timeliness} expresses to which degree the data is current enough.
+%     \item \textbf{coy}: \textit{Comparability} measures the extent to which the data is comparable to other \hphantom{\textbf{Coy}: }data, e.g. due to the existence of common identifiers.
+%     \item \textbf{cos}: \textit{Completeness} is a measure for the rate of missing records, and the rate of \hphantom{\textbf{Cos}: }missing data elements within records.
+% \end{dqlist}
+\begin{enumerate}
+    \item \textbf{Relevance} measures the extent to which the data is connected to its intended use.
+    \item \textbf{Accuracy} is concerned with how error-free the data is.
+    \item \textbf{Timeliness} expresses to which degree the data is current enough.
+    \item \textbf{Comparability} quantifies how well the data is comparable to other data, e.g. due to the existence of common identifiers.
+    \item \textbf{Completeness} is a measure for the rate of missing records, and the rate of missing data elements within records.
+\end{enumerate}
 
 We elaborate on this in Section~\ref{sec:foundations-dataquality}, where we derive specific quality criteria for scholarly data across these dimensions, grounded in considerations of how scholarly data is used.
 
@@ -221,10 +228,10 @@ We argue that a shallow representation is insufficient, as it renders scholarly 
 Improvements regarding a more fine-granular coverage of research artifacts are presented in Chapter~\ref{chp:params}. Similar to anglocentrism, the work presented entails improvements in the data quality dimensions relevance and comparability.
 \end{enumerate}
 
-In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, and will be tracked along the dissertation at the beginning of each chapter.
+In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, as mentioned for each of the three points above. Details regarding the improvements are tracked along the dissertation and summarized for each chapter. The steps to address the identified research gap are structured into four research tasks, described in the following.
 
 \paragraph{Research Tasks}
-Based on the research gap identified above, we formulate the following four research tasks as sub-points to our overarching research objective set in Section~\ref{sec:intro-researchobj}.
+Based on the research gap identified, we formulate the following four research tasks as sub-points to our overarching research objective set in Section~\ref{sec:intro-researchobj}.
 
 \begin{rtlist}
     \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high quality scholarly data set, that is on par with or improving upon existing data sets.
@@ -303,7 +310,7 @@ Based on the research gap identified above, we formulate the following four rese
 
 \section{Outline and Contributions}
 
-The contributions made across the works tackling the challenges and research gaps outlined in Sections \ref{sec:intro-challenges} and \ref{sec:intro-gap} represent the main part of this dissertation. Together with the following and the final chapter they make up the remainder of the document, which is structured as follows.
+The contributions made across the works tackling the challenges and research gaps outlined in Sections \ref{sec:intro-challenges} and \ref{sec:intro-gap} represent the main part of this dissertation. Together with the following and the final chapter, they make up the remainder of the document, which is structured as follows.
 
 \begin{itemize}
     \item Chapter~\ref{chp:foundations} - \textbf{Foundations}
@@ -314,25 +321,55 @@ The contributions made across the works tackling the challenges and research gap
     \item Chapter~\ref{chp:conclusion} - \textbf{Conclusion}
 \end{itemize}
 
+% The chapters contents are as follows.
+
 In Chapter~\ref{chp:foundations}, Foundations, we introduce overarching and foundational concepts related to scholarly data as well as data mining and information extraction. The provided information is conducive to understanding (1)~decisions made in the system design and method development of the approaches discussed later on, and (2)~the quantification of the research goals and achieved results.
 
 Chapters~\ref{chp:corpus} to \ref{chp:params} make up the main contributions of the work presented in this dissertation. Specifically, these are:
 
-\textbf{Linked Document Scholarly Data Corpus Creation from \LaTeX} With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate.
+Chapter~\ref{chp:corpus} - \textbf{Corpus}
+\begin{itemize}
+    \setlength\itemsep{-0.5em}
+    \item Contribution: \textit{Linked Document Scholarly Data Corpus Creation from \LaTeX}
+    \item Addresses: \rtmark{1}, \rtmark{2}
+    \item Improves: accuracy, relevance, timeliness, comparability, and completeness
+\end{itemize}
+With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate.
 This contribution lays the foundation for the subsequent research conducted for the dissertation, and primarily addresses the research gap \emph{citation network}.
 The work presented achieves improvements across all five data quality dimensions.
 
-\textbf{Inter-Reference Blocking and Fine-Granular Text Representation} Building upon \emph{unarXive}, we present in Chapter~\ref{chp:covgran} advancements in two areas. First, regarding the citation network, we develop a inter-reference blocking and matching method that significantly increases matched references as well as bibliographic couplings, and achieve a new state-of-the-art matching success rate. Second, we present an improved conversion method for \LaTeX\ source files leading to fine-granularly structured document representations. % Consider putting a sentences regarding the updated unarXive here, comparing it to S2ORC (mentioning that S2ORC (LaTeX) pipeline is based on unarXive)
+Chapter~\ref{chp:covgran} - \textbf{Reference Coverage and Granularity}
+\begin{itemize}
+    \setlength\itemsep{-0.5em}
+    \item Contribution: \textit{Inter-Reference Blocking and Fine-Granular Text Representation}
+    \item Addresses: \rtmark{2}
+    \item Improves: relevance, timeliness, comparability, and completeness
+\end{itemize}
+Building upon \emph{unarXive}, we present in Chapter~\ref{chp:covgran} advancements in two areas. First, regarding the citation network, we develop a inter-reference blocking and matching method that significantly increases matched references as well as bibliographic couplings, and achieve a new state-of-the-art matching success rate. Second, we present an improved conversion method for \LaTeX\ source files leading to fine-granularly structured document representations. % Consider putting a sentences regarding the updated unarXive here, comparing it to S2ORC (mentioning that S2ORC (LaTeX) pipeline is based on unarXive)
 This contribution addresses the research gap \emph{citation network}, and furthermore lays the foundation for the research presented in Chapter 6 (see below).
 In total, the work presented achieves data quality improvements in terms of relevance, timeliness, comparability, and completeness.
 
-\textbf{Detection and Large-Scale Analysis of Cross-Lingual Citations} Using the \emph{unarXive} corpus, we present in Chapter~\ref{chp:xling} a method to reliably identify cross-lingual citations in English publications. Based on this, we conduct the so far largest analysis of this type of citation. Where previous studies of comparable setting only looked at hundreds of documents, our study includes over one million publications. Analysing cross-lingual citations' prevalence, usage, and impact, we identify trends over time as well as challenges.
+Chapter~\ref{chp:xling} - \textbf{References Across Languages}
+\begin{itemize}
+    \setlength\itemsep{-0.5em}
+    \item Contribution: \textit{Detection and Large-Scale Analysis of Cross-Lingual Citations}
+    \item Addresses: \rtmark{3}
+    \item Improves: comparability and completeness
+\end{itemize}
+Using the \emph{unarXive} corpus, we present in Chapter~\ref{chp:xling} a method to reliably identify cross-lingual citations in English publications. Based on this, we conduct the so far largest analysis of this type of citation. Where previous studies of comparable setting only looked at hundreds of documents, our study includes over one million publications. Analysing cross-lingual citations' prevalence, usage, and impact, we identify trends over time as well as challenges.
 This contribution addresses the research gap \emph{anglocentrism}.
 The work results in data quality improvements in %the citation network's
 terms of 
 relevance and comparability.
 
-\textbf{Information Extraction for Hyperparameter Information} To further improve the granularity of the full-text representations in \emph{unarXive}, we develop in Chapter~\ref{chp:params} information extraction methods for research artifacts and their usage parameters. In doing so, we enable the study of parameter use and reporting patterns across time and scientific disciplines. The extracted information furthermore bears potential for use in automated reproduction. The developed methods achieve an improvement over strong baselines.
+Chapter~\ref{chp:params} - \textbf{References with Usage Parameters}
+\begin{itemize}
+    \setlength\itemsep{-0.5em}
+    \item Contribution: \textit{Information Extraction for Hyperparameter Information}
+    \item Addresses: \rtmark{4}
+    \item Improves: comparability and completeness
+\end{itemize}
+To further improve the granularity of the full-text representations in \emph{unarXive}, we develop in Chapter~\ref{chp:params} information extraction methods for research artifacts and their usage parameters. In doing so, we enable the study of parameter use and reporting patterns across time and scientific disciplines. The extracted information furthermore bears potential for use in automated reproduction. The developed methods achieve an improvement over strong baselines.
 This contribution addresses the research gap \emph{research artifacts}.
 Regarding data quality, the work represents improvements %regarding the document representation
 in the data quality dimensions relevance and comparability.
