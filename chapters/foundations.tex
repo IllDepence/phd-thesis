@@ -239,24 +239,24 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
   \centering
   \begin{small}
     \begin{threeparttable}
-      \begin{tabular}{lll}  % p{9.7cm}
+      \begin{tabular}{llll}  % p{9.7cm}
         \toprule
-        Dimension & Focus\tnote{a} & Specific Criterion\\
+        Dimension & Focus\tnote{a} & \multicolumn{2}{l}{Specific Criterion and Short Description} \\
         \midrule
-        \multirow{2}{*}{Relevance} & CN & \textbf{C1} Representative coverage of publications in target area \\
-        \ & SDR & \textbf{C2} Inclusion of relevant content types (text, formulae, tables, etc.) \\
+        \multirow{2}{*}{Relevance} & CN & $\mathbf{Rel_{CN}}$ & Representative coverage of publications in target area \\
+        \ & SDR & $\mathbf{Rel_{SDR}}$ & Inclusion of relevant content types (text, math, etc.) \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Accuracy} & CN & \textbf{C3} Correctly linked references \\
-        \ & SDR & \textbf{C4} Noise-free full-text content \\
+        \multirow{2}{*}{Accuracy} & CN & $\mathbf{Acc_{CN}}$ & Correctly linked references \\
+        \ & SDR & $\mathbf{Acc_{SDR}}$ & Noise-free full-text content \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{(both\tnote{b}~\,)} & \multirow{2}{*}{\textbf{C5} Coverage of recent publications} \\
+        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{both\tnote{b}~\,} & \multirow{2}{*}{$\mathbf{Tim_{C/S}}$} & \multirow{2}{*}{Coverage of recent publications} \\
         \ & \ & \ \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Comparability} & CN & \textbf{C6} Use of established document identifiers (DOI, PubMed ID, etc.) \\
-        \ & SDR & \textbf{C7} Fine-granular, specifically typed content representation \\
+        \multirow{2}{*}{Comparability} & CN & $\mathbf{Coy_{CN}}$ & Use of established doc. identifiers (DOI, PMID, etc.) \\
+        \ & SDR & $\mathbf{Coy_{SDR}}$ & Fine-granular, specifically typed content representation \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Completeness} & CN & \textbf{C8} All references of included publications successfully linked \\
-        \ & SDR & \textbf{C9} No sections or content missing (appendices, formulae, etc.) \\
+        \multirow{2}{*}{Completeness} & CN & $\mathbf{Cos_{CN}}$ & All references in publications successfully linked \\
+        \ & SDR & $\mathbf{Cos_{SDR}}$ & No sections or content missing (appendices, math, etc.) \\
         \bottomrule
       \end{tabular}
       \begin{tablenotes}
@@ -268,29 +268,30 @@ Key dimensions of data quality most commonly cited in the literature are (1)~rel
 \end{table}
 
 \begin{enumerate}
-    \item \textbf{Relevance} is a quality dimension heavily dependent on the data's intended use. As scholarly data is used to gain insight on particular aspects of academia (e.g. a certain field, practice, institution or individual), the data needs to cover that aspect to a sufficient degree in order to be relevant. For citation based analyses, this means a representative portion of publications from the studied disciplines, time span, languages, etc. has to be covered. On the level of document representations, it is important that relevant content types are included. For example, for a comparison of mathematical formula usage in publications, the data has to contain publications' full-text \emph{including} pieces and sections of mathematical notation.  % generalization: volume (the more publications, the more general coverage)
-    \item \textbf{Accuracy} regarding the citation network means, that references should be correctly linked to the publications they are referencing. For document representations, accuracy entails that text content should be free of noise. As described in the previous sections, both of these are non-trivial due to the sources scholarly data relies on. Regarding the question of how accurate scholarly data has to be for meaningful usage, previous research proposes that for ``local analyses'' (e.g. node degrees in a citation network) 80\% correct data can already allow for reasonable insight, but for ``global analyses'' (e.g. rankings) at least 90\% correctness should be aimed for~\cite{Strotmann2015}. Others have argued that quality requirements in scientometrics are high enough to warrant the cost of requiring a ``human in the loop'' approach to data generation~\cite{Lauscher2018}.  % argument for LaTeX
-    \item \textbf{Timeliness} with regard to scholarly data is crucial if the underlying reality of the research object changes quickly. In cases like training a model for parsing bibliographic references, recent data is likely not needed, as citation styles don't change rapidly.  However, for tasks like paper recommendation, everything published after the recommender model's training data simply cannot be recommended. Accordingly the coverage of recent publications is desirable.  % TODO: mention that ``timely'' depends on publications as a primary object of consideration, and therefore distinguishing between CN and SDR does not make sense  % argument for continuous generation (possible w/ unarXive code, not implemented though; also: matching to target set more easily updatable than clustering)
-    \item \textbf{Comparability} as a quality criterion is of importance to enable the combined use of data sets. In other words, items in the data set should be clearly identified. In the case of scholarly data, this calls for determining the persistent identifiers (e.g. DOI, ORCiD, and ROR~\cite{Meadows2019}) of items of interest. For the citation network specifically, this means providing document identifiers. Regarding a structured document representation, comparability of contents can be facilitated by providing a fine-grained, typed content representation---for example, by representing a publications' text structured into sections, subsections, etc.
-    \item \textbf{Completeness} of data means that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data, there are practical boundaries to simply aiming for including everything ever published (e.g. closed access publications and distribution rights). It is reasonable, however, to strive for a complete citation network, i.e. that all entries in the reference section of a given publication are successfully linked. For a structured document representation, completeness means that no parts of the content or types of content are missing (e.g. appendices, formulae, etc.). % could also mention metadata (e.g. not missing author information)
+    \item \textbf{Relevance} is a quality dimension heavily dependent on the data's intended use. As scholarly data is used to gain insight on particular aspects of academia (e.g. a certain field, practice, institution or individual), the data needs to cover that aspect to a sufficient degree in order to be relevant. For citation based analyses, this means a representative portion of publications from the studied disciplines, time span, languages, etc. has to be covered ($\mathbf{Rel_{CN}}$). On the level of document representations, it is important that relevant content types are included. For example, for a comparison of mathematical formula usage in publications, the data has to contain publications' full-text \emph{including} pieces and sections of mathematical notation ($\mathbf{Rel_{SDR}}$).  % generalization: volume (the more publications, the more general coverage)
+    \item \textbf{Accuracy} regarding the citation network means, that references should be correctly linked to the publications they are referencing ($\mathbf{Acc_{CN}}$). For document representations, accuracy entails that text content should be free of noise ($\mathbf{Acc_{SDR}}$). As described in the previous sections, both of these are non-trivial due to the sources scholarly data relies on. Regarding the question of how accurate scholarly data has to be for meaningful usage, previous research proposes that for ``local analyses'' (e.g. node degrees in a citation network) 80\% correct data can already allow for reasonable insight, but for ``global analyses'' (e.g. rankings) at least 90\% correctness should be aimed for~\cite{Strotmann2015}. Others have argued that quality requirements in scientometrics are high enough to warrant the cost of requiring a ``human in the loop'' approach to data generation~\cite{Lauscher2018}.  % argument for LaTeX
+    \item \textbf{Timeliness} with regard to scholarly data is crucial if the underlying reality of the research object changes quickly. In cases like training a model for parsing bibliographic references, recent data is likely not needed, as citation styles don't change rapidly.  However, for tasks like paper recommendation, everything published after the recommender model's training data simply cannot be recommended. Accordingly the coverage of recent publications is desirable. For timeliness there is no distinction between the citation network and document representations, because neither part of the document changes independently of the other ($\mathbf{Tim_{S/R}}$). % (done): mention that ``timely'' depends on publications as a primary object of consideration, and therefore distinguishing between CN and SDR does not make sense  % argument for continuous generation (possible w/ unarXive code, not implemented though; also: matching to target set more easily updatable than clustering)
+
+    \item \textbf{Comparability} as a quality criterion is of importance to enable the combined use of data sets. In other words, items in the data set should be clearly identified. In the case of scholarly data, this calls for determining the persistent identifiers (e.g. DOI, ORCiD, and ROR~\cite{Meadows2019}) of items of interest. For the citation network specifically, this means providing document identifiers ($\mathbf{Coy_{CN}}$). Regarding a structured document representation, comparability of contents can be facilitated by providing a fine-grained, typed content representation---for example, by representing a publications' text structured into sections, subsections, etc ($\mathbf{Coy_{SDR}}$).
+    \item \textbf{Completeness} of data means that no records are missing \emph{and} records are not missing any attributes. Regarding scholarly data, there are practical boundaries to simply aiming for including everything ever published (e.g. closed access publications and distribution rights). It is reasonable, however, to strive for a complete citation network, i.e. that all entries in the reference section of a given publication are successfully linked ($\mathbf{Cos_{CN}}$). For a structured document representation, completeness means that no parts of the content or types of content are missing, like appendices, formulae, etc. ($\mathbf{Cos_{SDR}}$). % could also mention metadata (e.g. not missing author information)
 \end{enumerate}
 
-Based on these considerations, and the resulting quality criteria \textbf{C1\,--\,C9} presented in Table~\ref{tab:scholdataquali}, a quantitative view on the goal of the presented work (enabling higher quality scholarly data) and achieved results is possible.
+Based on these considerations, and the resulting quality criteria presented in Table~\ref{tab:scholdataquali}, a quantitative view on the goal of the presented work (enabling higher quality scholarly data) and achieved results is possible.
 % Scholarly data provided specifically for a narrowly defined use case naturally ...
 For each chapter, we present a summary box as the one shown below.\footnote{Result indicator (``Res.'') \textbf{+}: SOTA/improvement/etc. (see explanation), =: equal to previous, $\circ$: not considered.}
 
 \begin{infobox-progress}
       \textbf{Scholarly Data Quality Contributions - [Example]}\vspace{0.5em}
 
-      \begin{tabular}{cp{11.3cm}}
+      \begin{tabular}{lp{10.9cm}}
         \toprule
         Crit. & Explanation \\
         %Crit.\footnote{Quality criterion (see Table~\ref{tab:scholdataquali}} & Res.\footnote{Result\\\textbf{+}: SOTA/improvement/etc. (see explanation)\\=: equal to previous\\$\circ$: not considered.} & Explanation \\
         \midrule
-        \textbf{C1} & Improvement of relevance, by adding ... to the citation network. \\
-        \textbf{C2} & Improvement of relevance, by adding ... to the structured document representation. \\
+        $\mathbf{Rel_{CN}}$ & Improvement of relevance, by adding ... to the citation network. \\
+        $\mathbf{Rel_{SDR}}$ & Improvement of relevance, by adding ... to the structured document representation. \\
         ... & ... \\
-        \textbf{C9} & Improvement of completeness of document representation, by .... \\
+        $\mathbf{Cos_{SDR}}$ & Improvement of completeness of document representation, by .... \\
         \bottomrule
       \end{tabular}
 

@@ -209,9 +209,11 @@ To various degrees, some of the aspects mentioned above apply to several other t
 % - unbounded domain (-> need to cover lots of additional data?)
 % - multi-linguality (-> need sophisticated NLP?)
 
-This dissertation is not the first research endeavor with the objective the develop methods for the creation of high-quality scholarly data. Prior approaches exist and, accordingly, have grappled with the challenges laid out in the previous section. However, there are three key areas in which we see particular shortcomings in existing work. Together, they make up the research gap addressed by this dissertation, and are described in the following.
+This dissertation is not the first research endeavor with the objective the develop methods for the creation of high-quality scholarly data. Prior approaches exist and, accordingly, have grappled with the challenges laid out in the previous section. However, there are three key areas in which we see particular shortcomings in existing work. These allow us to focus our efforts of improving scholarly data quality and, as a whole, make up the research gap addressed by this dissertation. We describe the three areas in the following and, 
 % More detailed accounts regarding each area can be found in the respective chapters later on.
-Based on the identified shortcomings, we then formulate our research tasks.
+based on %the identified shortcomings, we then 
+that, 
+formulate our research tasks.
 
 \begin{enumerate}
     \item \textbf{Citation Network} Several of the most prevalent use cases for scholarly data hinge on the interlinking of publications through citations. This includes uses cases such as bibliometric analyses, scientometrics, as well as the study of citation networks as a type of graph (e.g. in graph neural network evaluations). Despite this importance, not much focus seems to be put on the quality of citation networks in scholarly data. The much used data set CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, for example, takes the approach of clustering references and publications, but there is no assessment of the citation network's completeness---i.e., what proportion of references of a paper can successfully be linked to the cited document. The more recently introduced data set S2ORC~\cite{Lo2020}---more specifically, it's \LaTeX\ subset---provides an investigation into the proportion of successfully matched references, but only achieves to successfully match 31.1\% of references.
@@ -228,7 +230,7 @@ We argue that a shallow representation is insufficient, as it renders scholarly 
 Improvements regarding a more fine-granular coverage of research artifacts are presented in Chapter~\ref{chp:params}. Similar to anglocentrism, the work presented entails improvements in the data quality dimensions relevance and comparability.
 \end{enumerate}
 
-In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, as mentioned for each of the three points above. Details regarding the improvements are tracked along the dissertation and summarized for each chapter. The steps to address the identified research gap are structured into four research tasks, described in the following.
+In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, as mentioned for each of the three points above. Details regarding the improvements are tracked along the dissertation and summarized in each chapter. The steps to address the identified research gap are structured into four research tasks, described in the following.
 
 \paragraph{Research Tasks}
 Based on the research gap identified, we formulate the following four research tasks as sub-points to our overarching research objective set in Section~\ref{sec:intro-researchobj}.
@@ -332,7 +334,7 @@ Chapter~\ref{chp:corpus} - \textbf{Corpus}
     \setlength\itemsep{-0.5em}
     \item Contribution: \textit{Linked Document Scholarly Data Corpus Creation from \LaTeX}
     \item Addresses: \rtmark{1}, \rtmark{2}
-    \item Improves: accuracy, relevance, timeliness, comparability, and completeness
+    \item Improves: relevance, accuracy, timeliness, comparability, and completeness
 \end{itemize}
 With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate.
 This contribution lays the foundation for the subsequent research conducted for the dissertation, and primarily addresses the research gap \emph{citation network}.

@@ -28,6 +28,15 @@ To focus the efforts of improving scholarly data quality, we identified three ar
            Lack of structured representation of research artifacts mentioned in publications
 \end{enumerate}
 
+Based on these, four research tasks were defined.
+
+\begin{rtlist}
+    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high quality scholarly data set, that is on par with or improving upon existing data sets.
+    \item \textit{Citation Network Completeness} - develop a method to link literature references, that is able to link more references than are linked in existing data sets, while not compromising on link correctness or processing efficiency.
+    \item \textit{Inclusion of Non-English Publications} - find and implement an approach to to include non-English publications into a large-scale, high quality scholarly data set.
+    \item \textit{Fine-gained Research Artifact Representations} - develop a method to extract fine-grained information on research artifacts from text in scientific publications.
+\end{rtlist}
+
 To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of interlinked, annotated, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
 In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete, state-of-the-art citation network. The updated procedure furthermore enabled more fine-granular document representations, which in turn made the subsequent work in Chapter~\ref{chp:params} possible. %``Reference Coverage and Granularity''
 In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we developed a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact. %``References Across Languages''
@@ -38,23 +47,23 @@ The presented work makes the following contributions towards the research object
 \begin{infobox-progress}
       \textbf{Scholarly Data Quality Contributions - Overview}\vspace{0.5em}
 
-      \begin{tabular}{lccccc}
+      \begin{tabular}{llcccc}
         \toprule
-        Quality Dimension & Quality Criterion\tnote{b} & \multicolumn{4}{c}{Contribution} \\
+        Quality Dimension & Criterion\hphantom{mmm}& \multicolumn{4}{c}{Contribution} \\
         \midrule
-        \multirow{2}{*}{Relevance} & \textbf{C1} & {\large\textbf{+}} & = & {\large\textbf{+}} & $\circ$ \\
-         & \textbf{C2} & $\circ$ & {\large\textbf{+}} & $\circ$ & {\large\textbf{+}} \\
+        \multirow{2}{*}{Relevance} & $\mathbf{Rel_{CN}}$ & {\large\textbf{+}} & = & {\large\textbf{+}} & $\circ$ \\
+         & $\mathbf{Rel_{SDR}}$ & $\circ$ & {\large\textbf{+}} & $\circ$ & {\large\textbf{+}} \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Accuracy} & \textbf{C3} & {\large\textbf{+}} & = & $\circ$ & $\circ$ \\
-         & \textbf{C4} & {\large\textbf{+}} & = & $\circ$ & $\circ$ \\
+        \multirow{2}{*}{Accuracy} & $\mathbf{Acc_{CN}}$ & {\large\textbf{+}} & = & $\circ$ & $\circ$ \\
+         & $\mathbf{Acc_{SDR}}$ & {\large\textbf{+}} & = & $\circ$ & $\circ$ \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        Timeliness & \textbf{C5} & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
+        Timeliness & $\mathbf{Tim_{C/S}}$ & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Comparability} & \textbf{C6} & {\large\textbf{+}} & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ \\
-         & \textbf{C7} & $\circ$ & {\large\textbf{+}} & $\circ$ & {\large\textbf{+}} \\
+        \multirow{2}{*}{Comparability} & $\mathbf{Coy_{CN}}$ & {\large\textbf{+}} & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ \\
+         & $\mathbf{Coy_{SDR}}$ & $\circ$ & {\large\textbf{+}} & $\circ$ & {\large\textbf{+}} \\
         \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
-        \multirow{2}{*}{Completeness} & \textbf{C8} & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
-         & \textbf{C9} & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
+        \multirow{2}{*}{Completeness} & $\mathbf{Cos_{CN}}$ & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
+         & $\mathbf{Cos_{SDR}}$ & {\large\textbf{+}} & {\large\textbf{+}} & $\circ$ & $\circ$ \\
         \midrule
         \midrule
         \multicolumn{2}{r}{Chapter} & \ref{chp:corpus} & \ref{chp:covgran} & \ref{chp:xling} & \ref{chp:params} \\
