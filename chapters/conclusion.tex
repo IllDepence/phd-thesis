@@ -23,7 +23,7 @@ To focus the efforts of improving scholarly data quality, we identified three ar
     \item \textbf{Citation Network}\\
           Lacking completeness of the network connecting publications through citations
     \item \textbf{Anglocentrism}\\
-          Lacking coverage of non-English publications in data used in approaches
+          Lacking coverage of non-English publications in data used and analyzed
     \item \textbf{Research Artifacts}\\
            Lack of structured representation of research artifacts mentioned in publications
 \end{enumerate}
@@ -37,12 +37,12 @@ Based on these, four research tasks were defined.
     \item \textit{Fine-gained Research Artifact Representations} - develop a method to extract fine-grained information on research artifacts from text in scientific publications.
 \end{rtlist}
 
-To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of interlinked, annotated, full-text documents. The presented method also includes a highly accurate reference matching procedure. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
-In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete, state-of-the-art citation network. The updated procedure furthermore enabled more fine-granular document representations, which in turn made the subsequent work in Chapter~\ref{chp:params} possible. %``Reference Coverage and Granularity''
-In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we developed a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact. %``References Across Languages''
-Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found differences in parameter reporting patterns across several disciplines. %``References with Usage Parameters''
+To achieve improvements in these areas, the following steps were performed. In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX\ source files into a large-scale corpus of interlinked, annotated, full-text documents (\rtmark{1}). The presented method also includes a highly accurate reference matching procedure (\rtmark{2}). Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
+In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete, state-of-the-art citation network (\rtmark{2}). The updated procedure furthermore enabled more fine-granular document representations, which in turn made the subsequent work in Chapter~\ref{chp:params} possible. %``Reference Coverage and Granularity''
+In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we developed a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact (\rtmark{3}). %``References Across Languages''
+Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found differences in parameter reporting patterns across several disciplines (\rtmark{4}). %``References with Usage Parameters''
 
-The presented work makes the following contributions towards the research objective.
+The presented work across the four research tasks makes the following contributions towards the research objective.
 
 \begin{infobox-progress}
       \textbf{Scholarly Data Quality Contributions - Overview}\vspace{0.5em}
