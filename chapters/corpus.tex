@@ -22,25 +22,7 @@ It furthermore makes contributions to the following research task, which is like
 \section{Overview}
 In this chapter, we introduce a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files. The resulting corpus, \emph{unarXive}, comprises over one million documents across multiple scientific disciplines, and spans 27 years. It is further on also used as the basis for the research presented in the subsequent chapters. Along with the corpus creation methodology, extensive analyses of the resulting corpus are presented.
 
-In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
-
-\begin{infobox-progress}
-      \textbf{Scholarly Data Quality Contributions - \cite{Saier2020}}\vspace{0.5em}
-
-      \begin{tabular}{lp{10.9cm}}
-        \toprule
-        Crit. & Explanation \\
-        \midrule
-        $\mathbf{Rel_{CN}}$ & Improved relevance, by providing representative coverage of physics, mathematics, and computer science papers \\
-        $\mathbf{Acc_{CN}}$ & Improved citation network accuracy, by introducing $>96$\% accurate reference matching method \\
-        $\mathbf{Acc_{SDR}}$ & Improved document representation accuracy, due to low noise through using \LaTeX\ as the data source \\
-        $\mathbf{Tim_{C/S}}$ & Improved coverage, by including publications up until the end of the most recent full year \\
-        $\mathbf{Coy_{CN}}$ & Improved comparability, by providing MAG and arXiv IDs, as well as DOIs through the linked MAG records \\
-        $\mathbf{Cos_{CN}}$ & Improved citation network completeness, by achieving 42.6\% reference matching success rate (SOTA) \\
-        $\mathbf{Cos_{SDR}}$ & Improved document representation completeness, by providing full-text \\
-        \bottomrule
-      \end{tabular}
-\end{infobox-progress}
+At the end of the chapter in Section~\ref{sec:corpus-assessment} we assess the achievement of the research tasks, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
 
 % \begin{abstract}
 % In recent years, scholarly data sets have been used for various purposes, such as paper recommendation, citation recommendation, citation context analysis, and citation context-based document summarization. 
@@ -600,5 +582,53 @@ We provide the data set and the implementation for creating the data set from ar
 
 % For the future, we plan to use the data set for a variety of tasks. Among others, we will develop a citation recommendation system based on all arXiv papers. Furthermore, we plan to perform additional analyses on citations and citation contexts across scientific disciplines, and to use the differences in citing behavior for enhanced citation recommendation.
 
-\section*{Author Contributions}  % cf. https://casrai.org/credit/
+\section{Author Contributions}  % cf. https://casrai.org/credit/
 Tarek Saier: Conceptualization, Data curation, Formal analysis, Investigation, Methodology, Software, Visualization, Writing -- original draft, Writing -- review \& editing. Michael F{\"a}rber: Supervision, Writing -- review \& editing.
+
+\section{Result Assessment}
+\label{sec:corpus-assessment}
+
+The work in this chapter primarily addresses the following research task.
+
+\begin{rtlist}
+    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high quality scholarly data set, that is on par with or improving upon existing data sets.
+\end{rtlist}
+
+The presented methodology and resulting corpus \emph{unarXive} are on par or improve upon the identified related work both in terms of scale and quality. Regarding scale, \emph{unarXive}(1\,M documents) is among the top three along side CiteSeerX (1\,M) and the PubMed Central OAS (2.3\,M). Considering quality, using \LaTeX\ source files ensures less noisy full-text compared to data sets generated from PDFs, and the establishedcitation network links proved of high accuracy in a manual evaliation. Accordingly, we deem \rtmark{1} successfully achieved.
+
+The work presented in this chapter furthermore makes contributions to the following research task.
+
+\begin{rtlist}
+    \item[\rtmark{2}:] \textit{Citation Network Completeness} - develop a method to link literature references, that is able to link more references than are linked in existing data sets, while not compromising on link correctness or processing efficiency.
+\end{rtlist}
+
+% \cite{Faerber2018LREC}
+% @Sec 4
+% All papers reference 277,227 unique papers using
+% 2,448,826 citation markers in total (i.e., on average 27.1
+% citation markers per citing paper). Of these references,
+% 962,084 could be found on DBLP and we could assign
+% them a DBLP URL.
+% 962,084/2,448,826 = 0,3928
+
+The reference linking method developed for \emph{unarXive} is able to link 42.6\% of references successfully to the MAG. While no data set with which a direct comparison would be possible existed at the time of publication, the number compares favourably to arXiv CS achieving 39.3\%\footnote{962,084 out of 2,448,826 references are reported to be successfully linked in the arXiv CS paper~\cite{Faerber2018LREC}.}, and also can be considered an improvement over the PubMed Central OAS with no consistent citation network as well as CiteSeerX with no assessment resented for its citation network. Accordingly, we deem this a significant contribution to \rtmark{2}.
+
+In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
+
+\begin{infobox-progress}
+      \textbf{Scholarly Data Quality Contributions - \cite{Saier2020}}\vspace{0.5em}
+
+      \begin{tabular}{lp{10.9cm}}
+        \toprule
+        Crit. & Explanation \\
+        \midrule
+        $\mathbf{Rel_{CN}}$ & Improved relevance, by providing representative coverage of physics, mathematics, and computer science papers \\
+        $\mathbf{Acc_{CN}}$ & Improved citation network accuracy, by introducing $>96$\% accurate reference matching method \\
+        $\mathbf{Acc_{SDR}}$ & Improved document representation accuracy, due to low noise through using \LaTeX\ as the data source \\
+        $\mathbf{Tim_{C/S}}$ & Improved coverage, by including publications up until the end of the most recent full year \\
+        $\mathbf{Coy_{CN}}$ & Improved comparability, by providing MAG and arXiv IDs, as well as DOIs through the linked MAG records \\
+        $\mathbf{Cos_{CN}}$ & Improved citation network completeness, by achieving 42.6\% reference matching success rate (SOTA) \\
+        $\mathbf{Cos_{SDR}}$ & Improved document representation completeness, by providing full-text \\
+        \bottomrule
+      \end{tabular}
+\end{infobox-progress}
