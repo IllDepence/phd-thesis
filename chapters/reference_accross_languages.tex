@@ -21,20 +21,7 @@ In this chapter, we address the scholarly data limitation of disregarding non-En
 
 For this, we find a method to reliably identify cross-lingual citations in English publications. Based on this, we conduct the so far largest analysis of this type of citation, covering over one million publications. We analyse cross-lingual citations' prevalence, usage, as well as impact, and identify trends over time as well as challenges.
 
-In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
-
-\begin{infobox-progress}
-      \textbf{Scholarly Data Quality Contributions - \cite{Saier2020xling,Saier2021}}\vspace{0.5em}
-
-      \begin{tabular}{lp{10.9cm}}
-        \toprule
-        Crit. & Explanation \\
-        \midrule
-        $\mathbf{Rel_{CN}}$ & Improved relevance, as detection of cross-lingual citations adds a relevant facet to the citation network. \\
-        $\mathbf{Coy_{CN}}$ & Improved comparability, as detection of cross-lingual citations enables more fine-granular comparison of nodes and edges is the citation network based on document language. \\
-        \bottomrule
-      \end{tabular}
-\end{infobox-progress}
+At the end of the chapter in Section~\ref{sec:xling-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
 
 % \begin{abstract}
 % Citation information in scholarly data is an important source of insight into the reception of publications and the scholarly discourse. Outcomes of citation analyses and the applicability of citation based machine learning approaches heavily depend on the completeness of such data. One particular shortcoming of scholarly data nowadays is that non-English publications are often not included in data sets, or that language metadata is not available.
@@ -42,6 +29,12 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 % Our investigation covers differences between cited languages and disciplines, trends over time, and the usage characteristics as well as impact of cross-lingual citations. Among our findings are an increasing rate of citations to publications written in Chinese, citations being primarily to local non-English languages, and consistency in citation intent between cross- and monolingual citations.
 % To facilitate further research, we make our collected data and source code publicly available.
 % \end{abstract}
+
+\begin{figure}[h] % tb (moved to prevent end of overview section below the figure)
+\centering
+\includegraphics[width=0.5\linewidth]{figures/ref_xling/terminology_with_text_twocolumn.pdf}
+\caption{Schematic explanation of terminology.} \label{fig:terminology}
+\end{figure}
 
 \section{Introduction}
 
@@ -52,12 +45,6 @@ in two major directions of lacking coverage---namely the humanities~\cite{Colavi
 Because most large scholarly data sets are either artificially limited to few languages (e.g., English only) or do not provide language metadata,
 a particular practice not well researched so far is cross-lingual citation. That is, references where the citing and cited documents are written in different languages (see \textit{(vi)} in Figure~\ref{fig:terminology}).
 Cross-lingual citations are, however, important bridges between otherwise insufficiently connected ``language silos''~\cite{Shu2019,Moskaleva2019}.
-
-\begin{figure}[tb]
-\centering
-\includegraphics[width=0.5\linewidth]{figures/ref_xling/terminology_with_text_twocolumn.pdf}
-\caption{Schematic explanation of terminology.} \label{fig:terminology}
-\end{figure}
 
 English currently being the de facto academic lingua franca~\cite{Montgomery2013}, citations from non-English languages to English are significantly more prevalent than the other way around. This dichotomy is reflected in existing literature, where usually either citations from English~\cite{Kellsey2004,Lillis2010}, or to English~\cite{Tang2014,Jiang2018,Jiang2018b,Schrader2019} are analyzed. As both directions involve a non-English document on one side of the citation, the analysis of either is challenging with today's Anglocentric state of citation data.
 
@@ -606,8 +593,35 @@ Through our preliminary analyses (see Section~\ref{sec:ident}) we identify chall
 Our analysis is based on explicit language markers of cited documents, which has shown to be reliable for non-Latin script languages, but only capture a small fraction of citations to Latin script languages. We therefore want to investigate further methods for identifying cross-lingual citations, to be able perform more exhaustive analyses. Furthermore, our corpus covers publications from the fields of physics, mathematics, and computer science. While arxiv.org has extensive coverage of physics and mathematics, the share of computer science publications is currently still in a phase of rapid growth. We therefore want to expand our investigation regarding computer science publications to get more representative results, but also include additional disciplines not covered so far.
 Lastly, we would like to conduct complementary analyses of cross-lingual citations from non-English to English. These might be more challenging to perform on a large scale, because non-English scholarly data is not as readily available. However, such analyses are also likely to yield insights with a larger impact, as citing English language publications is rather common in other languages.
 
-\section*{Author Contributions}  % cf. https://casrai.org/credit/
+\section{Author Contributions}  % cf. https://casrai.org/credit/
 Tarek Saier: Conceptualization, Data curation, Formal analysis, Investigation, Methodology, Software, Visualization, Writing -- original draft (lead), Writing -- review \& editing. Michael F{\"a}rber: Supervision, Writing -- review \& editing. Tornike Tsereteli: Formal analysis, Software, Writing -- original draft (support).
 
-\section*{Acknowledgements}
+\section{Acknowledgements}
 We thank Irma Suppes for supporting manual data labeling and language identification tasks.
+
+\section{Result Assessment}
+\label{sec:xling-assessment}
+
+The work in this chapter addresses the following research task.
+
+\begin{rtlist}
+    \item[\rtmark{3}:] \textit{Inclusion of Non-English Publications} - find and implement an approach to to include non-English publications into a large-scale, high quality scholarly data set.
+\end{rtlist}
+
+With the presented method to identify cross-lingual citations in English publications, we are able to conduct the so far largest analysis of this type of citation. Our analysis comprises 1.1\,M documents and 39\,M references. Whereas the only analysis comparable in size (0.5\,M documents) is restricted to just one non-English language (Russian), and analyses with a similar comparison (citations from English to any language) include fewer than 500 documents and fewer than 20\,k references. Through our large-scale identification and analysis of citations into non-English languages, we make significant improvements to counteract Anglocentrism. Accordingly, we deem \rtmark{3} successfully achieved.
+
+In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
+
+\begin{infobox-progress}
+      \textbf{Scholarly Data Quality Contributions - \cite{Saier2020xling,Saier2021}}\vspace{0.5em}
+
+      \begin{tabular}{lp{10.9cm}}
+        \toprule
+        Crit. & Explanation \\
+        \midrule
+        $\mathbf{Rel_{CN}}$ & Improved relevance, as detection of cross-lingual citations adds a relevant facet to the citation network. \\
+        $\mathbf{Coy_{CN}}$ & Improved comparability, as detection of cross-lingual citations enables more fine-granular comparison of nodes and edges is the citation network based on document language. \\
+        \bottomrule
+      \end{tabular}
+\end{infobox-progress}
+

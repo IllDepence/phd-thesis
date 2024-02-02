@@ -16,20 +16,7 @@ The work in this chapter addresses the following research task.
 \section{Overview}
 In this chapter, we present information extraction methods for research artifacts and their usage parameters. This aims to advance the granularity of document representations, as research artifacts become an increasingly relevant object of research. Enabling the extraction of structured information on research artifacts and their parameters enables the study of usage and reporting patterns across time and scientific disciplines. The extracted information furthermore bears potential for use in automated reproduction.
 
-In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
-
-\begin{infobox-progress}
-      \textbf{Scholarly Data Quality Contributions - \cite{Saier2023hyperpie}}
-
-      \begin{tabular}{lp{10.9cm}}
-        \toprule
-        Crit. & Explanation \\
-        \midrule
-        $\mathbf{Rel_{SDR}}$ & Improved relevance, as extracted hyperparameter information adds a relevant type of content to the structured document representation. \\
-        $\mathbf{Coy_{SDR}}$ & Improved comparability of document contents, as extracted hyperparameter information allows for fine-granular comparison based on parameters and their values. \\
-        \bottomrule
-      \end{tabular}
-\end{infobox-progress}
+At the end of the chapter in Section~\ref{sec:hypepie-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
 
 % \begin{abstract}
 % Automatic extraction of information from publications is key to making scientific knowledge machine readable at a large scale.
@@ -920,7 +907,7 @@ We formalize the novel ER+RE task HyperPIE and develop approaches for it, thereb
 
 % extracted information can be used to extend existing knowledge bases like ORKG or PwC
 
-\section*{Author Contributions}  % cf. https://credit.niso.org/
+\section{Author Contributions}  % cf. https://credit.niso.org/
 Tarek Saier: Conceptualization, Data curation, Formal analysis, Methodology, Software, Visualization, Writing -- original draft, Writing -- review \& editing. Mayumi Ohta: Conceptualization (LLM few-shot), Formal analysis (LLM few-shot), Methodology (LLM few-shot), Software (LLM few-shot), Writing -- original draft (support). Takuto Asakura: Conceptualization, Writing -- review \& editing. Michael F{\"a}rber: Writing -- review \& editing.
 
 %%
@@ -928,7 +915,33 @@ Tarek Saier: Conceptualization, Data curation, Formal analysis, Methodology, Sof
 %% (and NOT an unnumbered section). This ensures the proper
 %% identification of the section in the article metadata, and the
 %% consistent spelling of the heading.
-\section*{Acknowledgements}
+\section{Acknowledgements}
 This work was partially supported by the German Federal Ministry of Education and Research (BMBF) via [KOM,BI], a Software Campus project (01IS17042).
 The authors acknowledge support by the state of Baden-W{\"u}rttemberg through bwHPC.
 We thank Nicholas Popovic for extensive feedback on the experiment design and prompt engineering. We thank Tarek Gaddour for feedback during the annotation scheme development, and Xiao Ning for input during early model development.
+
+\section{Result Assessment}
+\label{sec:hypepie-assessment}
+
+The work in this chapter addresses the following research task.
+
+\begin{rtlist}
+    \item[\rtmark{4}:] \textit{Fine-gained Research Artifact Representations} - develop a method to extract fine-grained information on research artifacts from text in scientific publications.
+\end{rtlist}
+
+The presented approaches to extracting hyperparameter information from scientific text achieve an improvement in RE compared to a state-of-the-art baseline (79\& compared to 39\% in $\text{F}_1$ score). The applicability of the approach on large-scale data is demonstrated through an analysis of hyperparameter reporting patterns in 15,000 unannotated papers. Accordingly, we deem \rtmark{4} successfully achieved.
+
+In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
+
+\begin{infobox-progress}
+      \textbf{Scholarly Data Quality Contributions - \cite{Saier2023hyperpie}}
+
+      \begin{tabular}{lp{10.9cm}}
+        \toprule
+        Crit. & Explanation \\
+        \midrule
+        $\mathbf{Rel_{SDR}}$ & Improved relevance, as extracted hyperparameter information adds a relevant type of content to the structured document representation. \\
+        $\mathbf{Coy_{SDR}}$ & Improved comparability of document contents, as extracted hyperparameter information allows for fine-granular comparison based on parameters and their values. \\
+        \bottomrule
+      \end{tabular}
+\end{infobox-progress}
