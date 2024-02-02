@@ -200,7 +200,8 @@ To various degrees, some of the aspects mentioned above apply to several other t
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{figures/introduction/objective_dq_grid}
-  \caption[TODO]{TODO.}
+  \caption[Schematic overview of the structural approach taken in this dissertation]{Schematic overview of the structural approach taken in this dissertation. 
+The overall objective of improving scholarly data quality is quantified across data quality dimensions (rows). The approach taken towards this goal is focussed by identifying the research gap and deriving research tasks. Including an initial step of establishing a base upon which the subsequent research is built, four research tasks are identified (columns). The cell contents ``\checkmark | $\times$'' indicate an evaluation of the research task results for the respective data quality dimension.}
   \label{fig:introduction-obj-dq-grid}
 \end{figure}
 
@@ -215,11 +216,9 @@ To various degrees, some of the aspects mentioned above apply to several other t
 % - unbounded domain (-> need to cover lots of additional data?)
 % - multi-linguality (-> need sophisticated NLP?)
 
-This dissertation is not the first research endeavor with the objective the develop methods for the creation of high-quality scholarly data. Prior approaches exist and, accordingly, have grappled with the challenges laid out in the previous section. However, there are three key areas in which we see particular shortcomings in existing work. These allow us to focus our efforts of improving scholarly data quality and, as a whole, make up the research gap addressed by this dissertation. We describe the three areas in the following and, 
-% More detailed accounts regarding each area can be found in the respective chapters later on.
-based on %the identified shortcomings, we then 
-that, 
-formulate our research tasks.
+This dissertation is not the first research endeavor with the objective the develop methods for the creation of high-quality scholarly data. Prior approaches exist and, accordingly, have grappled with the challenges laid out in the previous section.
+However, there are three key areas in which we see particular shortcomings in existing work. These allow us to focus our efforts of improving scholarly data quality and, as a whole, make up the research gap addressed by this dissertation.
+We describe the three areas in the following and, based on that, formulate our research tasks. Figure~\ref{fig:introduction-obj-dq-grid} provides a structural overview of how the research gap and tasks relate to the previously defined data quality dimensions.
 
 \begin{enumerate}
     \item \textbf{Citation Network} Several of the most prevalent use cases for scholarly data hinge on the interlinking of publications through citations. This includes uses cases such as bibliometric analyses, scientometrics, as well as the study of citation networks as a type of graph (e.g. in graph neural network evaluations). Despite this importance, not much focus seems to be put on the quality of citation networks in scholarly data. The much used data set CiteSeerX~\cite{Wu2015,Wu2016,Patel2021}, for example, takes the approach of clustering references and publications, but there is no assessment of the citation network's completeness---i.e., what proportion of references of a paper can successfully be linked to the cited document. The more recently introduced data set S2ORC~\cite{Lo2020}---more specifically, it's \LaTeX\ subset---provides an investigation into the proportion of successfully matched references, but only achieves to successfully match 31.1\% of references.
