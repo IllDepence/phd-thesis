@@ -18,26 +18,10 @@ The work in this chapter addresses the following research task.
 
 \section{Overview}
 In this chapter, we introduce improvements for our corpus creation methodology in two areas.
-First, we present in Section~\ref{sec:covgran-blocking} a blocking and matching method applied on the set of references in a corpus. With this matched references as well as bibliographic couplings can significantly be increased. % Furthermore, it removes the reliance of a ...
+First, we present in Section~\ref{sec:covgran-blocking} a blocking and matching method applied on the set of references in a corpus. With this, matched references as well as bibliographic couplings can significantly be increased. % Furthermore, it removes the reliance of a ...
 Second, we present in Section~\ref{sec:covgran-ux22} an improved conversion method for \LaTeX\ source files, and with it an update of the \emph{unarXive} corpus. The improved corpus creation method enables fine-granularly structured document representations, and achieves a new state-of-the-art reference matching success rate.\footnote{After the publication of our initial corpus creation methodology in \cite{Saier2020} (see Chapter~\ref{chp:corpus}), the now widely used corpus S2ORC~\cite{Lo2020} adapted our document conversion methodology for the \LaTeX\ subset of their data set. While they do not achieve a reference matching success rate as high as ours, they made advances regarding the structured document representation. With the work presented in this chapter, we follow and improve upon their example, establishing a fine-granular structured document representation for the \emph{unarXive} corpus.}
 
-In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
-
-\begin{infobox-progress}
-      \textbf{Scholarly Data Quality Contributions - \cite{Saier2022ULITE,Saier2023unarXive}}\vspace{0.5em}
-
-      \begin{tabular}{lp{10.9cm}}
-        \toprule
-        Crit. & Explanation \\
-        \midrule
-        $\mathbf{Rel_{SDR}}$ & Improved relevance, by adding mathematical notation as well as figure and table captions to the document representation \\
-        $\mathbf{Tim_{C/S}}$ & Improved coverage, by including publications up until the end of the most recent full year \\
-        $\mathbf{Coy_{CN}}$ & Improved comparability, by providing OpenAlex and arXiv IDs, as well as DOIs through the linked OpenAlex records \\
-        $\mathbf{Cos_{CN}}$ & Improved citation network completeness, by introducing blocking and matching procedure \\
-        $\mathbf{Cos_{SDR}}$ & Improved document representation completeness, by providing full-text with mathematical notation preserved as \LaTeX \\
-        \bottomrule
-      \end{tabular}
-\end{infobox-progress}
+At the end of the chapter in Section~\ref{sec:covgran-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
 
 % \begin{abstract}
 % Analyses and applications based on bibliographic references are of ever increasing importance. However, reference linking methods described in the literature are only able to link around half of the references in papers. To improve the quality of reference linking in large scholarly data sets, we propose a blocking-based reference linking approach that utilizes a rich set of reference fields (title, author, journal, year, etc.) and is independent of a target collection of paper records to be linked to. We evaluate our approach on a corpus of 300,000 references. Relative to the original data, we achieve a 90\% increase in papers linked through references, a five-fold increase in bibliographic coupling, and a nine-fold increase in in-text citations covered. The newly established links are of high quality (85\% $\text{F}_1$ score). We conclude that our proposed approach demonstrates a way towards better quality scholarly data.
@@ -709,7 +693,7 @@ We plan to incrementally update our data set with new arXiv.org submissions. For
 
 % \cite{delemazure2020}
 
-\subsection*{Author Contributions}  % cf. https://credit.niso.org/
+\subsection{Author Contributions}  % cf. https://credit.niso.org/
 Tarek Saier: Conceptualization, Data curation (lead), Formal analysis, Methodology, Software (lead), Visualization, Writing -- original draft, Writing -- review \& editing. Johan Krause: Data curation (support), Software (support). Michael F{\"a}rber: Writing -- review \& editing.
 
 %%
@@ -717,7 +701,38 @@ Tarek Saier: Conceptualization, Data curation (lead), Formal analysis, Methodolo
 %% (and NOT an unnumbered section). This ensures the proper
 %% identification of the section in the article metadata, and the
 %% consistent spelling of the heading.
-\subsection*{Acknowledgements}
+\subsection{Acknowledgements}
 This work was partially supported by the German Federal Ministry of Education and Research (BMBF) via [KOM,BI], a Software Campus project (01IS17042).
 The authors acknowledge support by the state of Baden-W{\"u}rttemberg through bwHPC.
 We thank Johannes Reber for supporting early stages of the software development.
+
+\section{Result Assessment}
+\label{sec:covgran-assessment}
+
+The work in this chapter addresses the following research task.
+
+\begin{rtlist}
+    \item[\rtmark{2}:] \textit{Citation Network Completeness} - develop a method to link literature references, that is able to link more references than are linked in existing data sets, while not compromising on link correctness or processing efficiency.
+\end{rtlist}
+
+With the inter-reference blocking and matching method presented in Section~\ref{sec:covgran-blocking} we achieve a 90\% increase in linked references, a five-fold increase in bibliographic couplings, and a nine-fold increase in connected in-text citation markers.
+Furthermore, with the improved corpus creation method presented in Section~\ref{sec:covgran-ux22}, we achieve a new state-of-the-art reference matching success rate of 44.4\%. Different from our contributions to \rtmark{2} in Chapter~\ref{chp:corpus}, we are here able to make direct comparisons to related work. Our reference matching success rate of 44.4\% compares favorably to our previously method (42.6\%), S2ORC (31.1\%), and arXMLiv (no citation network). Accordingly, we 
+Accordingly, we deem \rtmark{2} successfully achieved.
+
+In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
+
+\begin{infobox-progress}
+      \textbf{Scholarly Data Quality Contributions - \cite{Saier2022ULITE,Saier2023unarXive}}\vspace{0.5em}
+
+      \begin{tabular}{lp{10.9cm}}
+        \toprule
+        Crit. & Explanation \\
+        \midrule
+        $\mathbf{Rel_{SDR}}$ & Improved relevance, by adding mathematical notation as well as figure and table captions to the document representation \\
+        $\mathbf{Tim_{C/S}}$ & Improved coverage, by including publications up until the end of the most recent full year \\
+        $\mathbf{Coy_{CN}}$ & Improved comparability, by providing OpenAlex and arXiv IDs, as well as DOIs through the linked OpenAlex records \\
+        $\mathbf{Cos_{CN}}$ & Improved citation network completeness, by introducing blocking and matching procedure \\
+        $\mathbf{Cos_{SDR}}$ & Improved document representation completeness, by providing full-text with mathematical notation preserved as \LaTeX \\
+        \bottomrule
+      \end{tabular}
+\end{infobox-progress}
