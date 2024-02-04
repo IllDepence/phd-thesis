@@ -929,7 +929,7 @@ The work in this chapter addresses the following research task.
     \item[\rtmark{4}:] \textit{Fine-gained Research Artifact Representations} - develop a method to extract fine-grained information on research artifacts from text in scientific publications.
 \end{rtlist}
 
-The presented approaches to extracting hyperparameter information from scientific text achieve an improvement in RE compared to a state-of-the-art baseline (79\& compared to 39\% in $\text{F}_1$ score). The applicability of the approach on large-scale data is demonstrated through an analysis of hyperparameter reporting patterns in 15,000 unannotated papers. Accordingly, we deem \rtmark{4} successfully achieved.
+The presented approaches to extracting hyperparameter information from scientific text achieve an improvement in RE compared to a state-of-the-art baseline (79\% compared to 39\% in $\text{F}_1$ score). The applicability of the approach on large-scale data is demonstrated through an analysis of hyperparameter reporting patterns in 15,000 unannotated papers. Previous related approaches, namely SciERC and SciREX, only extract comparably shallow information. Specifically, the parameters and parameters' values of research artifacts are not extracted. Our approach adds this information. Accordingly, we deem \rtmark{4} successfully achieved.
 
 In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
 
@@ -938,10 +938,14 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 
       \begin{tabular}{lp{10.9cm}}
         \toprule
-        Crit. & Explanation \\
+        Crit. & Contribution \\
         \midrule
-        $\mathbf{Rel_{SDR}}$ & Improved relevance, as extracted hyperparameter information adds a relevant type of content to the structured document representation. \\
-        $\mathbf{Coy_{SDR}}$ & Improved comparability of document contents, as extracted hyperparameter information allows for fine-granular comparison based on parameters and their values. \\
+        $\mathbf{Rel_{SDR}}$ & Added hyperparameter information to the structured document representations \\
+        $\mathbf{Coy_{SDR}}$ & Fine-granular comparison of documents enabled by through artifacts' parameters and their values \\
         \bottomrule
       \end{tabular}
 \end{infobox-progress}
+
+$\mathbf{Rel_{SDR}}$ The extracted hyperparameter information from publications' full-text enriches structured document representations with relevant novel content. Our analysis of hyperparameter reporting patterns in 15,000 papers is a simple example. Further applications for which the data is relevant are, for example, faceted academic search, recommendation, and approaches to automated reproduction.
+
+$\mathbf{Coy_{SDR}}$ The added hyperparameter information enables fine-grained comparison of document contents. For example, sections can be compared or filtered based on whether they contain hyperparameter information or not. Furthermore, comparisons based on parameters and their values are made possible.

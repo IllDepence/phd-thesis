@@ -716,8 +716,7 @@ The work in this chapter addresses the following research task.
 \end{rtlist}
 
 With the inter-reference blocking and matching method presented in Section~\ref{sec:covgran-blocking} we achieve a 90\% increase in linked references, a five-fold increase in bibliographic couplings, and a nine-fold increase in connected in-text citation markers.
-Furthermore, with the improved corpus creation method presented in Section~\ref{sec:covgran-ux22}, we achieve a new state-of-the-art reference matching success rate of 44.4\%. Different from our contributions to \rtmark{2} in Chapter~\ref{chp:corpus}, we are here able to make direct comparisons to related work. Our reference matching success rate of 44.4\% compares favorably to our previously method (42.6\%), S2ORC (31.1\%), and arXMLiv (no citation network). Accordingly, we 
-Accordingly, we deem \rtmark{2} successfully achieved.
+Furthermore, with the improved corpus creation method presented in Section~\ref{sec:covgran-ux22}, we achieve a new state-of-the-art reference matching success rate of 44.4\%. Different from our contributions to \rtmark{2} in Chapter~\ref{chp:corpus}, we are here able to make direct comparisons to related work. Our reference matching success rate of 44.4\% compares favorably to our previously method (42.6\%), S2ORC (31.1\%), and arXMLiv (no citation network). Accordingly, we deem \rtmark{2} successfully achieved.
 
 In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
 
@@ -726,14 +725,26 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 
       \begin{tabular}{lp{10.9cm}}
         \toprule
-        Crit. & Explanation \\
+        Crit. & Contribution \\
         \midrule
-        $\mathbf{Rel_{SDR}}$ & Improved relevance, by adding mathematical notation as well as figure and table captions to the document representation \\
-        $\mathbf{Tim_{C/S}}$ & Improved coverage, by including publications up until the end of the most recent full year \\
-        $\mathbf{Coy_{CN}}$ & Improved comparability, by providing OpenAlex and arXiv IDs, as well as DOIs through the linked OpenAlex records \\
-        $\mathbf{Coy_{SDR}}$ & Improved document representation comparability, by providing section structure and types \\
-        $\mathbf{Cos_{CN}}$ & Improved citation network completeness, by introducing blocking and matching procedure \\
-        $\mathbf{Cos_{SDR}}$ & Improved document representation completeness, by providing full-text with mathematical notation preserved as \LaTeX \\
+        $\mathbf{Rel_{SDR}}$ & Mathematical notation included in the structured document representation \\
+        $\mathbf{Tim_{C/S}}$ & Publications included up until end of the most recent full year \\
+        $\mathbf{Coy_{CN}}$ & OpenAlex, arXiv, and PubMed IDs as well as DOIs included \\
+        $\mathbf{Coy_{SDR}}$ & Section structure and section type information included \\
+        $\mathbf{Cos_{CN}}$ & Blocking and matching procedure enabling increase linked references and bibliographic couplings \\
+        $\mathbf{Cos_{SDR}}$ & Full-text of documents as well as figure and table captions included \\
         \bottomrule
       \end{tabular}
 \end{infobox-progress}
+
+$\mathbf{Rel_{SDR}}$ Our improved document conversion methodology provides structured mathematical notation as part of our document representations. The resulting data data is therefore of high relevance for use cases focussing on phenomena manifested within them, such as mathematical information retrieval~\cite{semeval22_task12} and the analysis of theorems\refurl{https://github.com/PierreSenellart/theoremkb}{2024-02-04}. Our data source being arXiv, which has a large coverage of physics, mathematics, and computer science papers, additionally in beneficial in this regard, as all three are disciplines, where mathematical notation is comparably relevant and frequently used.
+
+$\mathbf{Tim_{C/S}}$ We apply our method for generating scholarly data on all documents on arXiv until end of the most recent full year. Accordingly, the resulting corpus contains more recent documents than data sets released earlier.
+
+$\mathbf{Coy_{CN}}$ By linking references to OpenAlex, we are able to provide a large number of document identifiers in our citation network. In particular these are OpenAlex IDs, arXiv IDs, PubMed IDs, and DOIs. This makes our data a versatile target for comparing and combining it with other data.
+
+$\mathbf{Coy_{SDR}}$ Our document representation provides a section structure as well as section type information (text, listing, etc.). This enables fine-grained document content comparison, filtering, and combination with external data. % TODO: comparison to other datasets (S2ORC, arXMLiv, PMC-OAS)
+
+$\mathbf{Cos_{CN}}$ With our inter-reference blocking and matching method, we provide a means to improve citation network completeness through increased linked references (~\ref{sec:covgran-blocking}). Furthermore, our improved corpus creation method achieves a new state-of-the-art reference matching success rate of 44.4\% (Section~\ref{sec:covgran-ux22})
+
+$\mathbf{Cos_{SDR}}$ In addition to papers' full-text content, we provide figure and table captions linked within the text. This makes our structured document representations more complete than before.
