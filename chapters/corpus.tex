@@ -643,17 +643,17 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 
 $\mathbf{Rel_{CN}}$ We provide the first data set based on all of arXiv with a citation network. Previous data sets only cover part of arXiv~\cite{Faerber2018LREC}, or don't include a citation network~\cite{arXMLiv}. By covering all of arXiv, the data is of high relevance for use cases focussing on physics, mathematics, or computer science. Because documents submitted to arXiv undergo a moderation process\refurl{https://info.arxiv.org/help/moderation/index.html}{2024-02-03} in which they are assigned to a topic according to the arXiv taxonomy,\refurl{https://arxiv.org/category_taxonomy}{2024-02-03} a fine-granular and reliable determination of relevance to a subject of study is possible. While documents on arXiv are by designation preprints, most of them are self-archived author copies which later appear in peer-reviewed venues---between 75\% and 80\% averaged over all disciplines, measured on all papers from 2008 to 2017~\cite{Lin2020}, and at 90.1\% in computer science measured on a sample of 18 thousand papers~\cite{Bagchi2024} from 2022.
 
-$\mathbf{Acc_{CN}}$ Our referencing linking method is evaluated at an accuracy of $>96$\%. By comparison, CiteSeerX~\cite{Wu2015,Wu2016,Patel2021} provides no assessment of their citation network accuracy, and S2ORC~\cite{Lo2020} (published shortly after unarXive) only achieves a matching accuracy of 92\% on arXiv. Our work accordingly results in state-of-the-art citation network accuracy.
+$\mathbf{Acc_{CN}}$ Our referencing linking method is evaluated at an accuracy of $>96$\%. By comparison, CiteSeerX~\cite{Wu2015,Wu2016,Patel2021} provides no assessment of their citation network accuracy, and S2ORC~\cite{Lo2020} (published shortly after unarXive) only achieves a matching accuracy of 92\% on arXiv papers. Our work accordingly achieves state-of-the-art citation network accuracy.
 
-$\mathbf{Acc_{SDR}}$ Low noise text extraction by using \LaTeX\ as data source \\
+$\mathbf{Acc_{SDR}}$ We create document representations not from PDF files but from papers' \LaTeX\ sources. Text extraction from \LaTeX\ has been used to generate ground truths for the evaluation of from PDF documents~\cite{Bast2017}. Accordingly, we argue that our method constitutes an improvement for the accuracy of document representations.
 
-$\mathbf{Tim_{C/S}}$ Publications included up until end of the most recent full year \\
+$\mathbf{Tim_{C/S}}$ We apply our method for generating scholarly data on all documents on arXiv until end of the most recent full year. Accordingly, the resulting corpus contains more recent documents than data sets released earlier.
 
-$\mathbf{Coy_{CN}}$ MAG and arXiv IDs included; DOIs linked through MAG records \\
+$\mathbf{Coy_{CN}}$ We provide MAG IDs and arXiv IDs for the documents in our corpus. Furthermore DOIs are available through the liked MAG paper records. Enabling the use of three different types of unique identifiers makes our data a versatile target for comparing and combining it with other data. Other data sets of comparable size only provide their own identifiers (CiteSeerX) or only feature a heterogeneous set of identifiers (PubMed Central OAS). \\
 
-$\mathbf{Cos_{CN}}$ 42.6\% reference matching success rate (SOTA) \\
+$\mathbf{Cos_{CN}}$ We are able to successfully link 42.6\% of all reference in our data. This makes our citation network more complete. Other approaches do not provide an assessment of their citation network completeness (CiteSeerX), or only achieve a lower percentage (arXiv CS achieving at 39.3\%).
 
-$\mathbf{Cos_{SDR}}$ Full-text of documents included \\
+$\mathbf{Cos_{SDR}}$ For all documents in our data set we provide their full-text content. This means our document representations are more complete that those in metadata sets like the MAG, and on par with other data sets providing full-text such as CiteSeerX and PubMed Central OAS. \\
 
 % quantification / good enough
 
