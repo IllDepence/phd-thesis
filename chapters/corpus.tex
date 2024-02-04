@@ -628,18 +628,32 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 
       \begin{tabular}{lp{10.9cm}}
         \toprule
-        Crit. & Explanation \\
+        Crit. & Contribution \\
         \midrule
-        $\mathbf{Rel_{CN}}$ & Improved relevance, by providing representative coverage of physics, mathematics, and computer science papers \\
-        $\mathbf{Acc_{CN}}$ & Improved citation network accuracy, by introducing $>96$\% accurate reference matching method \\
-        $\mathbf{Acc_{SDR}}$ & Improved document representation accuracy, due to low noise through using \LaTeX\ as the data source \\
-        $\mathbf{Tim_{C/S}}$ & Improved coverage, by including publications up until the end of the most recent full year \\
-        $\mathbf{Coy_{CN}}$ & Improved comparability, by providing MAG and arXiv IDs, as well as DOIs through the linked MAG records \\
-        $\mathbf{Cos_{CN}}$ & Improved citation network completeness, by achieving 42.6\% reference matching success rate (SOTA) \\
-        $\mathbf{Cos_{SDR}}$ & Improved document representation completeness, by providing full-text \\
+        $\mathbf{Rel_{CN}}$ & First data set based on all of arXiv with a citation network \\
+        $\mathbf{Acc_{CN}}$ & $>96$\% accurate reference matching method (SOTA) \\
+        $\mathbf{Acc_{SDR}}$ & Low noise text extraction by using \LaTeX\ as data source \\
+        $\mathbf{Tim_{C/S}}$ & Publications included up until end of the most recent full year \\
+        $\mathbf{Coy_{CN}}$ & MAG and arXiv IDs included; DOIs linked through MAG records \\
+        $\mathbf{Cos_{CN}}$ & 42.6\% reference matching success rate (SOTA) \\
+        $\mathbf{Cos_{SDR}}$ & Full-text of documents included \\
         \bottomrule
       \end{tabular}
 \end{infobox-progress}
+
+$\mathbf{Rel_{CN}}$ We provide the first data set based on all of arXiv with a citation network. Previous data sets only cover part of arXiv~\cite{Faerber2018LREC}, or don't include a citation network~\cite{arXMLiv}. By covering all of arXiv, the data is of high relevance for use cases focussing on physics, mathematics, or computer science. Because documents submitted to arXiv undergo a moderation process\refurl{https://info.arxiv.org/help/moderation/index.html}{2024-02-03} in which they are assigned to a topic according to the arXiv taxonomy,\refurl{https://arxiv.org/category_taxonomy}{2024-02-03} a fine-granular and reliable determination of relevance to a subject of study is possible. While documents on arXiv are by designation preprints, most of them are self-archived author copies which later appear in peer-reviewed venues---between 75\% and 80\% averaged over all disciplines, measured on all papers from 2008 to 2017~\cite{Lin2020}, and at 90.1\% in computer science measured on a sample of 18 thousand papers~\cite{Bagchi2024} from 2022.
+
+$\mathbf{Acc_{CN}}$ Our referencing linking method is evaluated at an accuracy of $>96$\%. By comparison, CiteSeerX~\cite{Wu2015,Wu2016,Patel2021} provides no assessment of their citation network accuracy, and S2ORC~\cite{Lo2020} (published shortly after unarXive) only achieves a matching accuracy of 92\% on arXiv. Our work accordingly results in state-of-the-art citation network accuracy.
+
+$\mathbf{Acc_{SDR}}$ Low noise text extraction by using \LaTeX\ as data source \\
+
+$\mathbf{Tim_{C/S}}$ Publications included up until end of the most recent full year \\
+
+$\mathbf{Coy_{CN}}$ MAG and arXiv IDs included; DOIs linked through MAG records \\
+
+$\mathbf{Cos_{CN}}$ 42.6\% reference matching success rate (SOTA) \\
+
+$\mathbf{Cos_{SDR}}$ Full-text of documents included \\
 
 % quantification / good enough
 
@@ -663,3 +677,23 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
 
 % $\mathbf{Cos_{SDR}}$ Improved document representation completeness, by providing full-text \\
 % 
+
+
+% = @ topic fit
+% - arXiv moderation process \refurl{https://info.arxiv.org/help/moderation/index.html}{2024-02-03}
+%   - "guaranteed" topic fit
+%   - topic fit given in metadata according to taxonomy -> better than venue/journal b/c often not that granular
+%
+% = @ how much of arXiv later published ("precision")
+% - \cite{Lariviere2014}
+%   - 474,011 out of the 744,583 arXiv e-prints (63.7%) were matched with a WoS-indexed journal article, note, or review (2014)
+% - \cite{Lin2020}
+%   - ~75-80% overall (data from 2008-2017)
+%   - 77.1% of CS,
+% - \cite{Bagchi2024}
+%   - 90.1% of CS papers put on arXiv in 2022 (from 48.6% in 2013) (18,113 article data set)
+%
+% = @ how much of all publications on arXive ("recall")
+% - \cite{Sutton2017}
+%   - arXiv 23% CS coverage in 2017 (from 1% in 2007) (82,427 paper data set)
+%   - in theoretical CS and ML, over 60% of top conf pprs on arXiv
