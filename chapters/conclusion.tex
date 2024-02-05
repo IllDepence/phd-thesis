@@ -10,14 +10,48 @@ This dissertation set out to alleviate the state of scholarly data. In order to 
 Develop an automated process that takes as input scientific publications, and produces as output a high-quality derivative representation of the publications, suitable for digital processing.
 \end{infobox-objective}
 
-Criteria for high-quality were defined across the following dimensions.\footnote{See Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations} for the list of criteria.}
+Criteria for high quality in the context of scholarly data were defined across the following five dimensions.%\footnote{See Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations} for the list of criteria.}
 
 \begin{infobox-progress}
       \textbf{Data Quality Dimensions}\\
        (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, (5)~completeness
 \end{infobox-progress}
 
-To focus the efforts of improving scholarly data quality, we identified three areas in which scholarly data based on existing work particularly has limitations (see also Section \ref{sec:intro-gap}).
+Based on the way scholarly data is used, the criteria were derived for two focus areas, the citation network (CN) and structured document representations (SDR), as shown in Table~\ref{tab:scholdataquali-again}. %(see Section~\ref{sec:foundations-dataquality}), 
+
+\begin{table}[tb]
+  \caption{Scholarly Data Quality Criteria}
+  \label{tab:scholdataquali-again}
+  \centering
+  \begin{small}
+    \begin{threeparttable}
+      \begin{tabular}{llll}  % p{9.7cm}
+        \toprule
+        Dimension & Focus & \multicolumn{2}{l}{Specific Criterion and Short Description} \\
+        \midrule
+        \multirow{2}{*}{Relevance} & CN & $\mathbf{Rel_{CN}}$ & Representative coverage of publications in target area \\
+        \ & SDR & $\mathbf{Rel_{SDR}}$ & Inclusion of relevant content types (text, math, etc.) \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Accuracy} & CN & $\mathbf{Acc_{CN}}$ & Correctly linked references \\
+        \ & SDR & $\mathbf{Acc_{SDR}}$ & Noise-free full-text content \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Timeliness} & \multirow{2}{*}{both} & \multirow{2}{*}{$\mathbf{Tim_{C/S}}$} & \multirow{2}{*}{Coverage of recent publications} \\
+        \ & \ & \ \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Comparability} & CN & $\mathbf{Coy_{CN}}$ & Use of established doc. identifiers (DOI, PMID, etc.) \\
+        \ & SDR & $\mathbf{Coy_{SDR}}$ & Fine-granular, specifically typed content representation \\
+        \arrayrulecolor{lightgrey}\hline\arrayrulecolor{black}
+        \multirow{2}{*}{Completeness} & CN & $\mathbf{Cos_{CN}}$ & All references in publications successfully linked \\
+        \ & SDR & $\mathbf{Cos_{SDR}}$ & No sections or content missing (appendices, math, etc.) \\
+        \bottomrule
+      \end{tabular}
+      % \begin{tablenotes}
+      % \end{tablenotes}
+    \end{threeparttable}
+  \end{small}
+\end{table}
+
+To focus the efforts of improving scholarly data quality, we identified three areas in which current scholarly data particularly has limitations (see also Section \ref{sec:intro-gap}).
 
 \begin{enumerate}
     \item \textbf{Citation Network}\\
@@ -42,7 +76,7 @@ In Chapter~\ref{chp:covgran} we presented improvements regarding the citation ne
 In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we developed a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact (\rtmark{3}). %``References Across Languages''
 Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found differences in parameter reporting patterns across several disciplines (\rtmark{4}). %``References with Usage Parameters''
 
-The contributions towards the overall research objective that are made across work on the four research tasks is summarized in the overview below. As can be seen, improvements are made across all quality dimensions and criteria. Details regarding each of the contributions are given in the respective chapters.
+In the overview below, we summarize the contributions towards scholarly data quality made across the work on the four research tasks. As can be seen, improvements are achieved across all quality dimensions and criteria. Details regarding each of the contributions are given in the respective chapters. A discussion of the achieved improvements as well as their limitations can be found in the following section.
 
 \begin{infobox-progress}
       \textbf{Scholarly Data Quality Contributions - Overview}\vspace{0.5em}
@@ -84,9 +118,38 @@ The contributions towards the overall research objective that are made across wo
 
 Structured representations of scientific publications bear large potential for accelerated progress and well founded strategic decisions in academia. Their use furthermore can mitigate the information overflow that scientists are faced with.
 Our current ``digital record of science'', however, is limited in various ways. This not only prevents faster progress, but also means decisions based on current scholarly data can be flawed and analysis results faulty.
-Particularly, the \emph{citation networks} in scholarly data are incomplete, \emph{non-English content} is often not covered, and increasingly relevant \emph{research artifacts} are not available as structured data.
+Particularly, (1)~the \emph{citation networks} in scholarly data are incomplete, (2)~\emph{non-English content} is often not covered, and (3)~increasingly relevant \emph{research artifacts} are not available as structured data.
 
-In this dissertation, we made significant progress in all three aforementioned areas, as laid out in the previous section. With this, we achieved comprehensive improvements of data quality, as determined across the five dimensions relevance, accuracy, timeliness, comparability, and completeness. Furthermore, the presented work already made an impact on the research fields concerned with scholarly data and the study of publications. Below, we give a brief account of ideas and results from this dissertation permeating into and being used in the research community.
+In this dissertation, we made significant progress in all three aforementioned areas.
+%
+% what
+(1)~Achieving state-of-the-art citation network completeness on a large-scale, multi-discipline corpus,
+% impact
+means we enable analysis results more valid than previously possible, and the training of prediction models grounded more in reality than before.
+% good enough?
+That being said, our achieved completeness of 44.4\% means that missing citation links in scholarly data remain a problem.
+% path forward
+We see potential for future improvements in the development of sophisticated inter-reference blocking and matching methods, building upon our work in Chapter~\ref{chp:covgran}.
+%
+% what
+(2)~Identifying cross-lingual citations across our 1.9\,M document corpus,
+% impact
+we perform the largest analysis of this kind of citation kind to date, shining light on current trends as well as challenges for scholarly data generation.
+% good enough? (↓ could think a little bigger here — i.e. also consider development of extraction models etc.)
+These challenges remain a problem for the integration of non-English publications in scholarly data.
+% path forward
+We see particular potential for improvements 
+%
+% what
+(3)~
+% impact
+% good enough?
+% path forward
+
+Through the above, we achieved comprehensive improvements of data quality, as determined across the five dimensions relevance, accuracy, timeliness, comparability, and completeness.
+% TODO: discuss achievements, their limitations, and if the problem now is solved
+
+Furthermore, the presented work already made an impact on the research fields concerned with scholarly data and the study of publications. Below, we give a brief account of ideas and results from this dissertation permeating into and being used in the research community.
 
 \begin{itemize}
     \item Use of \textbf{methodology}
