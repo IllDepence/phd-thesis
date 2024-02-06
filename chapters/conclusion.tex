@@ -122,7 +122,13 @@ In the overview below, we summarize the contributions towards scholarly data qua
 % TODO: add some segue foo (bigger picture, broader view, etc.)
 We discuss the contributions made in this dissertation from three different perspectives: (1)~the identified research gaps, (2)~the five quality dimensions, and (3)~the research community.
 
-\subsection{Research Gaps}
+% \begin{enumerate}
+%     \item The identified research gap
+%     \item The five quality dimensions
+%     \item The research community
+% \end{enumerate}
+
+\subsection{Research Gaps}\label{sec:discussion-rgap}
 We made significant progress in all three areas of the identified research gap.
 
 \begin{enumerate}
@@ -163,21 +169,21 @@ Through addressing the identified research gap, our work achieves comprehensive 
 Our improvements regarding relevance stem from two areas. (i)~We cover a large extent of documents with clear assignability to a subject of study, thereby facilitating, for example, representative coverage of area of research. This improvement is by virtue of making use of arXiv as a data source. (ii)~We furthermore enable the extraction and structured representation of significant document contents, such as hyperparameter information. This improvement is independent of the specific data source used.
 % “general relevance” ~= lots of data + clear assingability to subjects of study
 \item \textbf{Accuracy}\\
-Our improvements in document representation accuracy are achieved by harnessing a partially structured data source. In particular, we perform our work based on papers' \LaTeX\ sources. However, similar source types such as JATS XML and DOCX files bear the same potential. %, which presents an opportunity for future developments.
+Improvements we achieve in document representation accuracy are accomplished by harnessing a partially structured data source. In particular, we perform our work based on papers' \LaTeX\ sources. However, similar source types such as JATS XML and DOCX files bear the same potential. %, which presents an opportunity for future developments.
 The citation network accuracy of >96\% that we achieve is already very high, with identified errors being edge cases such as follow-up publications with near identical titles. % mby some addition wrt to recall (CN completeness) trade-off?
 \item \textbf{Timeliness}\\
 Our improvements in terms of data timeliness are a result of us updating our corpus to include recent publications (e.g. up until the end of the most recent completed year). This level of timeliness is arguably sufficient for the study of and applications based on phenomena that don't change within the span of a year, such as citing behavior or writing conventions (e.g. how hyperparameters are reported). Furthermore, a data set with a fixed set of contents is beneficial for comparison of approaches on the same data. For some applications, however, it is desirable to have data on publications included right with their release. An example for this would be paper recommendation. In such cases a ``living corpus'' that is constantly updated is preferable. % consider stating that this is (technically) possible to realize for ppl if they use our method (begs the question though why we then don't provide a living unarXive + snapshots)
 \item \textbf{Comparability}\\
-Our improvements in comparability are primarily based on (i)~determining documents' unique identifiers, and (ii)~providing fine-granular structure in our document content representations. (i)~Regarding document identifiers, DOIs are most established in academia, but a significant portion of publications without DOI exists (e.g. 
+We achieve improvements in comparability primarily based on (i)~determining documents' unique identifiers, and (ii)~providing fine-granular structure in our document content representations. (i)~Regarding document identifiers, DOIs are most established in academia, but a significant portion of publications without DOI exists (e.g. 
 %about 14\% of PubMed articles in 2015~\cite{10.1007/s11192-016-2225-6}
-measured in 2014 on Web of Science and Scopus at 12\% in life sciences, 15\% in physical \& health sciences, and 23\% in social sicences \& humanities~\cite{10.1016/j.joi.2015.11.008}).
-By providing additional identifiers, we can cover part of those as well. (ii)~As for document content, the typed paragraph structure we provide in \textit{unarXive} matches ...
+measured in 2014 on Web of Science and Scopus at 12\% in life sciences, 15\% in physical \& health sciences, and 23\% in social sicences \& humanities~\cite{Gorraiz2016}).
+By providing additional identifiers, we can cover part of those as well. (ii)~As for document content, the typed section and paragraph structure we provide in \textit{unarXive} represents natural semantic units on the intra-document level. On the level of sentences, a wide range of structures of interest can be conceived of. Our choice to focus on hyperparameter information is motivated by considerations of potential impact.
 \item \textbf{Completeness}\\
-Citation network see above, document content tricky b/c of multimodality ... providing fine-granular structure in our document content (i.e. cover lots of important stuff in stuctured representation (q: is it "there" if its contained but not in a strucutred way? i.e. full PDF))
+Improvements we achieve in terms of data completeness stem from our reference matching---the results of of which we already discussed in Section~\ref{sec:discussion-rgap} above---, and our \LaTeX\ document conversion methodology. Regarding the latter, we are able to provide some document content in addition to the full-text---namely captions of tables and figures as well as mathematical notation. Tables and figures themselves would be a valuable addition, but require the development of additional extraction mechanisms and were not considered. % q: is it "there" if its contained but not in a structured way? i.e. in a PDF
 \end{enumerate}
 
 \subsection{Research Community}
-Our work already made an impact on the research fields concerned with scholarly data and the study of publications. Below, we give a brief account of ideas and results from this dissertation permeating into and being used in the research community.
+Despite its recency, our work already made an impact on the research fields concerned with scholarly data and the study of publications. Below, we give a brief account of ideas and results from this dissertation permeating into and being used by the research community.
 
 \begin{itemize}
     \item Use of \textbf{methodology}
@@ -212,6 +218,11 @@ Compared to other efforts with the goal to create high-quality scholarly data, o
 % Note that in other contexts the term ``scholarly data'' can have a broader meaning than just ``structured representations of scientific publications''. For example, it can also include data on research institutions or funding bodies, without necessitating the context of a publication.
 
 Our work, as well as aforementioned related work, seek to represent scientific publications in a broad way. That is, multiple scientific disciplines and large time spans are covered, and the structured data reflects multiple aspects such as full-text, citation network, authors, etc. An alternative approach to high quality scholarly data could be dedicated efforts in specific areas. An example of such an effort is the OpenCitations Index\refurl{https://opencitations.net/index}{2023-11-30}, focussing solely on citation data. Such an approach, however, necessitates the ability to combine multiple dedicated resources. For example, combining citation data with publication full-texts. This is only possible as far as unique persistent identifiers for all involved entities exist---e.g. DOIs for documents, ORCiDs for authors, and ROR IDs for affiliations~\cite{Meadows2019}. Although use of such identifiers is becoming more and more established,\footnote{For example, arXiv.org began automatically assigning DOIs to all submissions in 2022, and Springer Nature trialed mandatory use of ORCiDs in 2018. See \refurlinline{https://blog.arxiv.org/2022/02/17/new-arxiv-articles-are-now-automatically-assigned-dois/}{2023-11-30} and \refurlinline{https://info.orcid.org/orcid-mandate-trial-at-springer-nature/}{2023-11-30}.} gaps in their coverage mean that, for the moment, a combination of dedicated resources is only of limited use~\cite{Youtie2017,Haak2018}.
+
+% beyond research driven improvements
+% - publishing industry
+% - conventions
+% - ...
 
 \section{Outlook}
 
