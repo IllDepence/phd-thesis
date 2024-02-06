@@ -55,11 +55,11 @@ To focus the efforts of improving scholarly data quality, we identified three ar
 
 \begin{enumerate}
     \item \textbf{Citation Network}\\
-          Lacking completeness of the network connecting publications through citations
+          Lacking completeness of the network connecting publications through citations.
     \item \textbf{Anglocentrism}\\
-          Lacking coverage of non-English publications in data used and analyzed
+          Lacking coverage of non-English publications in data used and analyzed.
     \item \textbf{Research Artifacts}\\
-           Lack of structured representation of research artifacts mentioned in publications
+           Lack of structured representation of research artifacts mentioned in publications.
 \end{enumerate}
 
 Based on these, four research tasks were defined.
@@ -116,7 +116,7 @@ In the overview below, we summarize the contributions towards scholarly data qua
 
 \section{Discussion}
 
-Structured representations of scientific publications bear large potential for accelerated progress and well founded strategic decisions in academia. Their use furthermore can mitigate the information overflow that scientists are faced with.
+Structured representations of scientific publications bear large potential for accelerated progress and well-founded strategic decisions in academia. Their use furthermore can mitigate the information overflow that scientists are faced with.
 Our current ``digital record of science'', however, is limited in various ways. This not only prevents faster progress, but also means decisions based on current scholarly data can be flawed and analysis results faulty.
 Particularly, (1)~the \emph{citation networks} in scholarly data are incomplete, (2)~\emph{non-English content} is often not covered, and (3)~increasingly relevant \emph{research artifacts} are not available as structured data.
 In this dissertation, we made significant progress in all three aforementioned areas.
@@ -156,8 +156,11 @@ Through addressing the identified research gap, our work achieves comprehensive 
 \item Our improvements in document representation accuracy are achieved by harnessing a partially structured data source. In particular, we perform our work based on papers' \LaTeX\ sources. However, similar source types such as JATS XML and DOCX files bear the same potential. %, which presents an opportunity for future developments.
 The citation network accuracy of >96\% that we achieve is already very high, with identified errors being edge cases such as follow-up publications with near identical titles. % mby some addition wrt to recall (CN completeness) trade-off?
 \item Our improvements in terms of data timeliness are a result of us updating our corpus to include recent publications (e.g. up until the end of the most recent completed year). This level of timeliness is arguably sufficient for the study of and applications based on phenomena that don't change within the span of a year, such as citing behavior or writing conventions (e.g. how hyperparameters are reported). Furthermore, a data set with a fixed set of contents is beneficial for comparison of approaches on the same data. For some applications, however, it is desirable to have data on publications included right with their release. An example for this would be paper recommendation. In such cases a ``living corpus'' that is constantly updated is preferable. % consider stating that this is (technically) possible to realize for ppl if they use our method (begs the question though why we then don't provide a living unarXive + snapshots)
-\item Our improvements in comparability are based on (i)~determining documents' unique identifiers, and (ii)~providing fine-granular structure in our document content representations.
-\item Citation network see above, document content tricky b/c of multimodality
+\item Our improvements in comparability are primarily based on (i)~determining documents' unique identifiers, and (ii)~providing fine-granular structure in our document content representations. (i)~Regarding document identifiers, DOIs are most established in academia, but a significant portion of publications without DOI exists (e.g. 
+%about 14\% of PubMed articles in 2015~\cite{10.1007/s11192-016-2225-6}
+measured in 2014 on Web of Science and Scopus at 12\% in life sciences, 15\% in physical \& health sciences, and 23\% in social sicences \& humanities~\cite{10.1016/j.joi.2015.11.008}).
+By providing additional identifiers, we can cover part of those as well. (ii)~As for document content, the typed paragraph structure we provide in \textit{unarXive} matches ...
+\item Citation network see above, document content tricky b/c of multimodality ... providing fine-granular structure in our document content (i.e. cover lots of important stuff in stuctured representation (q: is it "there" if its contained but not in a strucutred way? i.e. full PDF))
 \end{enumerate}
 
 Furthermore, the presented work already made an impact on the research fields concerned with scholarly data and the study of publications. Below, we give a brief account of ideas and results from this dissertation permeating into and being used in the research community.
