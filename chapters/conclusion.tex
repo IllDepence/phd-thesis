@@ -119,11 +119,11 @@ In the overview below, we summarize the contributions towards scholarly data qua
 Structured representations of scientific publications bear large potential for accelerated progress and well founded strategic decisions in academia. Their use furthermore can mitigate the information overflow that scientists are faced with.
 Our current ``digital record of science'', however, is limited in various ways. This not only prevents faster progress, but also means decisions based on current scholarly data can be flawed and analysis results faulty.
 Particularly, (1)~the \emph{citation networks} in scholarly data are incomplete, (2)~\emph{non-English content} is often not covered, and (3)~increasingly relevant \emph{research artifacts} are not available as structured data.
-
 In this dissertation, we made significant progress in all three aforementioned areas.
-%
+
+\begin{enumerate}
 % what
-(1)~Achieving state-of-the-art citation network completeness on a large-scale, multi-discipline corpus,
+\item Achieving state-of-the-art citation network completeness on a large-scale, multi-discipline corpus,
 % impact
 means we enable analysis results more valid than previously possible, and the training of prediction models grounded more in reality than before.
 % good enough?
@@ -132,29 +132,33 @@ That being said, our achieved completeness of 44.4\% means that missing citation
 We see potential for future improvements in the development of sophisticated inter-reference blocking and matching methods, building upon our work in Chapter~\ref{chp:covgran}.
 %
 % what
-(2)~Performing the largest study on citations of non-English publications to date,
+\item Performing the largest study on citations of non-English publications to date,
 % impact
 we provide novel insight into a understudied phenomenon, and are able to highlight challenges for the integration of scholarly data across language borders.
 % good enough? / path forward
 Based on our findings, we see potential for improvements through better language support of platforms, and more widespread use of unique document identifiers. Another important aspect is the development of information extraction approaches applicable to non-English publications, which our work does not cover.
 %
 % what
-(3)~With our task definition as well as model development and application for the extraction of hyperparameter information,
+\item With our task definition as well as model development and application for the extraction of hyperparameter information,
 % impact
 we enable the use and study of an important type of content in scientific publications.
 % good enough?
 Our model performance of 79\% $\text{F}_1$ for entity recognition and 39\% for relation extraction indicates remaining challenges particular regarding the latter.
 % path forward
 Based on our analysis, we can point to parameter entities as a particularly viable focus for achieving improvements in future endeavors.
+\end{enumerate}
 
-Through addressing the identified research gap, our work achieves comprehensive improvements of data quality, as determined across the five dimensions (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, and (5)~completeness. Specifically, these are as follows.
-% TODO: discuss achievements, their limitations, and if the problem now is solved
-(1)~Our improvements regarding relevance stem from two areas: (a)~covering a large extent of documents with clear assignability to a subject of study (e.g. representative coverage of a field of study), and (b)~enabling the extraction and structured representation of significant document contents (e.g. mathematical notation). The increased relevance of the concrete data set we create, our corpus \textit{unarXive}, accordingly is given for use cases concerned with the scientific disciplines covered by the data source arXiv.
-% “general relevance” means lots of data + clear assingability to subjects of study
-(2)~Choosing of \LaTeX\ , discuss non-use of other structured sources
-(3)~Versioned vs living corpus
-(4)~Kinda close to (1)
-(5)~Citation network see above, document content tricky b/c of multimodality
+Through addressing the identified research gap, our work achieves comprehensive improvements of data quality, as determined across the five dimensions (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, and (5)~completeness. The improvements along each of the dimensions is discussed in the following..
+
+\begin{enumerate}
+\item Our improvements regarding relevance stem from two areas. (i)~We cover a large extent of documents with clear assignability to a subject of study, thereby facilitating, for example, representative coverage of area of research. This improvement is by virtue of making use of arXiv as a data source. (ii)~We furthermore enable the extraction and structured representation of significant document contents, such as hyperparameter information. This improvement is independent of the specific data source used.
+% “general relevance” ~= lots of data + clear assingability to subjects of study
+\item Our improvements in document representation accuracy are achieved by harnessing a partially structured data source. In particular, we perform our work based on papers' \LaTeX\ sources. However, similar source types such as JATS XML and DOCX files bear the same potential. %, which presents an opportunity for future developments.
+The citation network accuracy of >96\% that we achieve is already very high, with identified errors being edge cases such as follow-up publications with near identical titles. % mby some addition wrt to recall (CN completeness) trade-off?
+\item Our improvements in terms of data timeliness are a result of us updating our corpus to include recent publications (e.g. up until the end of the most recent completed year). This level of timeliness is arguably sufficient for the study of and applications based on phenomena that don't change within the span of a year, such as citing behavior or writing conventions (e.g. how hyperparameters are reported). Furthermore, a data set with a fixed set of contents is beneficial for comparison of approaches on the same data. For some applications, however, it is desirable to have data on publications included right with their release. An example for this would be paper recommendation. In such cases a ``living corpus'' that is constantly updated is preferable.
+\item The improvements we achieve regarding comparability ... 
+\item Citation network see above, document content tricky b/c of multimodality
+\end{enumerate}
 
 Furthermore, the presented work already made an impact on the research fields concerned with scholarly data and the study of publications. Below, we give a brief account of ideas and results from this dissertation permeating into and being used in the research community.
 
