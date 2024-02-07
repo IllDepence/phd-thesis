@@ -70,9 +70,9 @@ To focus the efforts of improving scholarly data quality, we identified three ar
 In order to address these, four research tasks were defined.
 
 \begin{rtlist}
-    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high quality scholarly data set, that is on par with or improving upon existing data sets.
+    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high-quality scholarly data set, that is on par with or improving upon existing data sets.
     \item \textit{Citation Network Completeness} - develop a method to link literature references, that is able to link more references than are linked in existing data sets, while not compromising on link correctness or processing efficiency.
-    \item \textit{Inclusion of Non-English Publications} - find and implement an approach to to include non-English publications into a large-scale, high quality scholarly data set.
+    \item \textit{Inclusion of Non-English Publications} - find and implement an approach to to include non-English publications into a large-scale, high-quality scholarly data set.
     \item \textit{Fine-gained Research Artifact Representations} - develop a method to extract fine-grained information on research artifacts from text in scientific publications.
 \end{rtlist}
 
@@ -122,9 +122,9 @@ Through the accomplishment of the four research tasks, significant improvements 
 \end{infobox-progress}
 
 In summary, we successfully addressed three key areas of limitation of current scholarly data and achieved comprehensive improvements in data quality. All introduced methods operate automatcically and are demonstrably applicable to large-scale data. %Taking scientific publications as input, our methods generate structured representations.
-Accordingly, we argue to have succeeded in developing an automated process producing high-quality derivative representation of scientific publications: \textbf{{\color{objblue-box}\faCrosshairs}\,Research Objective \large\checkmark}
+Accordingly, we argue to have succeeded in developing an automated process producing high-quality derivative representation of scientific publications, and therefore accomplished our \textbf{{\color{objblue-box}\faCrosshairs}\,Research Objective \large\checkmark}
 
-In the following section, we offer considerations regarding impact and limitations of our work, as well as prospective avenues for further improvement.
+Naturally, advances uncover new challenges, and room for improvemet remains. In the following section, we therefore discuss the impact and limitations of our work, as well as prospective avenues for further improvement.
 
 %Details regarding each of the contributions are given in the respective chapters. A discussion of the achieved improvements as well as their limitations can be found in the following section.
 
@@ -177,7 +177,7 @@ Through addressing the identified research gap, our work achieves comprehensive 
 
 \begin{enumerate}
 \item \textbf{Relevance}\\
-Our improvements regarding relevance stem from two areas. (i)~We cover a large extent of documents with clear assignability to a subject of study, thereby facilitating, for example, representative coverage of area of research. This improvement is by virtue of making use of arXiv as a data source. (ii)~We furthermore enable the extraction and structured representation of significant document contents, such as hyperparameter information. This improvement is independent of the specific data source used.
+Our improvements regarding relevance stem from two areas. (i)~We cover a large extent of documents with clear assignability to a subject of study, thereby facilitating, for example, representative coverage of an area of research. This improvement is by virtue of making use of arXiv as a data source. (ii)~We furthermore enable the extraction and structured representation of significant document contents, such as hyperparameter information. This improvement is independent of the specific data source used.
 % “general relevance” ~= lots of data + clear assingability to subjects of study
 \item \textbf{Accuracy}\\
 Improvements we achieve in document representation accuracy are accomplished by harnessing a partially structured data source. In particular, we perform our work based on papers' \LaTeX\ sources. However, similar source types such as JATS XML and DOCX files bear the same potential. %, which presents an opportunity for future developments.
@@ -222,18 +222,19 @@ Despite its recency, our work already made an impact on the research fields conc
     %\end{itemize}
 \end{itemize}
 
-Compared to other efforts with the goal to create high-quality scholarly data, our work particularly stands out through the \emph{combination} of the following three aspects. (1)~Accurate, fine-granular document representations, (2)~a citation network, and (3)~applicability on a large scale due to being automated. This distinguishes our work from existing efforts by others as follows. S2ORC~\cite{Lo2020} predominantly uses PDF data and therefore does not provide the same level of granularity (e.g. mathematical notation) and is more prone to noise. arXMLiv~\cite{arXMLiv}, while providing accurate, fine-granular document representations, lacks a citation network. Lastly, the Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} relies on manual or only semi-automated adding of data, and is therefore limited in scale.
+Comparing our work to existing efforts within the research community which strive to create high-quality scholarly data, we find that our work particularly stands out through the \emph{combination} of the following three aspects. (1)~Accurate, fine-granular document representations, (2)~a citation network, and (3)~applicability on a large scale due to being automated. This distinguishes our work from existing efforts as follows. S2ORC~\cite{Lo2020} predominantly uses PDF data and therefore does not provide the same level of granularity (e.g. mathematical notation) and is more prone to noise. arXMLiv~\cite{arXMLiv}, while providing accurate, fine-granular document representations, lacks a citation network. Lastly, the Open Research Knowledge Graph (ORKG)~\cite{orkg1,orkg2} relies on manual or only semi-automated adding of data, and is therefore limited in scale.
 
 % TODO: consider discussing arXiv being a preprint server and the level of difference between preprints on arXiv and their published counterpart
 
 % Note that in other contexts the term ``scholarly data'' can have a broader meaning than just ``structured representations of scientific publications''. For example, it can also include data on research institutions or funding bodies, without necessitating the context of a publication.
 
-Our work, as well as aforementioned related work, seek to represent scientific publications in a broad way. That is, multiple scientific disciplines and large time spans are covered, and the structured data reflects multiple aspects such as full-text, citation network, authors, etc. An alternative approach to high quality scholarly data could be dedicated efforts in specific areas. An example of such an effort is the OpenCitations Index\refurl{https://opencitations.net/index}{2023-11-30}, focussing solely on citation data. Such an approach, however, necessitates the ability to combine multiple dedicated resources. For example, combining citation data with publication full-texts. This is only possible as far as unique persistent identifiers for all involved entities exist---e.g. DOIs for documents, ORCiDs for authors, and ROR IDs for affiliations~\cite{Meadows2019}. Although use of such identifiers is becoming more and more established,\footnote{For example, arXiv.org began automatically assigning DOIs to all submissions in 2022, and Springer Nature trialed mandatory use of ORCiDs in 2018. See \refurlinline{https://blog.arxiv.org/2022/02/17/new-arxiv-articles-are-now-automatically-assigned-dois/}{2023-11-30} and \refurlinline{https://info.orcid.org/orcid-mandate-trial-at-springer-nature/}{2023-11-30}.} gaps in their coverage mean that, for the moment, a combination of dedicated resources is only of limited use~\cite{Youtie2017,Haak2018}.
+%Besides the work described above, there are also efforts of different nature striving towards the same goal. Our and aforementioned similar work seek to represent scientific publications in a broad way.
+Our work, as well as the related work described above, seek to represent scientific publications in a broad way.
+That is, multiple scientific disciplines and large time spans are covered, and the structured data reflects multiple aspects such as full-text, citation network, authors, etc. Another approach towards high-quality scholarly data are dedicated efforts in specific areas. An example of such an effort is the OpenCitations Index\refurl{https://opencitations.net/index}{2023-11-30}, focussing solely on citation data. Such an approach, however, necessitates the ability to combine multiple dedicated resources. For example, combining citation data with publication full-texts. This is only possible as far as unique persistent identifiers for all involved entities exist---e.g. DOIs for documents, ORCiDs for authors, and ROR IDs for affiliations~\cite{Meadows2019}. Although use of such identifiers is becoming more and more established~\cite{Gorraiz2016}, 
+%\footnote{For example, arXiv.org began automatically assigning DOIs to all submissions in 2022, and Springer Nature trialed mandatory use of ORCiDs in 2018. See \refurlinline{https://blog.arxiv.org/2022/02/17/new-arxiv-articles-are-now-automatically-assigned-dois/}{2023-11-30} and \refurlinline{https://info.orcid.org/orcid-mandate-trial-at-springer-nature/}{2023-11-30}.}
+gaps in their coverage mean that, for the moment, a combination of dedicated resources is only of limited use~\cite{Youtie2017,Haak2018}.
 
-% beyond research driven improvements
-% - publishing industry
-% - conventions
-% - ...
+To briefly recap, we discussed our contributions and impact (1)~in terms of the addressed research gap, (2)~across the five data quality dimensions, and (3)~in relation to the research community. Overall, ...
 
 \section{Outlook}
 
@@ -246,7 +247,7 @@ Our work takes publications' \LaTeX\ source files from arXiv.org as the starting
 In terms of information extraction methodologies, a continuation of the recent advances in LLMs could enable more effective semantic enrichment of scholarly data. The application of LLMs, even though their performance is not on par with dedicated models yet~\cite{Yang2023}, is promising because models have wide-ranging background knowledge. A particular challenge with the application of LLMs for the creation of scholarly data is scaling approaches to large scale applications.
 
 % the future of input formats
-Looking beyond the current state of scholarly data, where it is necessary to apply information extraction methods to retroactively determine document structure and semantic information, future developments regarding ``tagged PDFs''\refurl{https://taggedpdf.com/}{2023-11-30} could simplify the creation of high quality scholarly data. Widespread adoption of encouragement or requirements for semantically tagging PDFs could either be driven by efforts to improve the accessibility of scientific publications, or by the fact that it would facility data mining. In STEM fields, a prerequisite for such a developments would be that the \LaTeX\ Project's plan to support semantic annotation natively succeeds~\cite{Mittelbach2020,Mittelbach2023}.
+Looking beyond the current state of scholarly data, where it is necessary to apply information extraction methods to retroactively determine document structure and semantic information, future developments regarding ``tagged PDFs''\refurl{https://taggedpdf.com/}{2023-11-30} could simplify the creation of high-quality scholarly data. Widespread adoption of encouragement or requirements for semantically tagging PDFs could either be driven by efforts to improve the accessibility of scientific publications, or by the fact that it would facility data mining. In STEM fields, a prerequisite for such a developments would be that the \LaTeX\ Project's plan to support semantic annotation natively succeeds~\cite{Mittelbach2020,Mittelbach2023}.
 
 % the futer of publishing
 Considering future developments of the landscape of scientific publications, changes to the status quo of papers being the primary unit of publication would accordingly bring changes to the nature of scholarly data. For example, establishment of micropublications~\cite{Raciti2018} and further adoption of data citations~\cite{Kratz2015} could bring new requirements to 

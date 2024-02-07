@@ -18,7 +18,7 @@ The publication cited above is a journal article that represents an extension of
 The work in this chapter addresses the following research task.
 
 \begin{rtlist}
-    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high quality scholarly data set, that is on par with or improving upon existing data sets.
+    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high-quality scholarly data set, that is on par with or improving upon existing data sets.
 \end{rtlist}
 
 It furthermore makes contributions to the following research task, which is likewise addressed in the next chapter.
@@ -144,7 +144,7 @@ This data set has the following drawbacks \cite{Roy2016fixed,Faerber2018LREC}: T
   \end{small}
 \end{table}
 
-The PubMed Central Open Access Subset is another large data set that has been used for citation-based tasks~\cite{Gipp2015,Duma2016,Galke2018}. Contained publications are already processed and available in the JATS~\cite{Huh2014} XML format. While the data set overall is comparatively clean, heterogeneous annotation of citations within the text and mixed usage of identifiers of cited documents (PubMed, MEDLINE, DOI, etc.) make it difficult to retrieve high quality citation interlinkings of documents from the data set\footnote{To be more precise, the heterogeneity makes the usage of the data set \emph{as is} unfeasible. Resolving references to a single consistent set of identifiers retroactively would be an option, but comparatively challenging in the case of PubMed, because of the frequent usage of special notation in publication titles; see also: \refurlinline{https://zenodo.org/records/3598421/files/CITREC_Parser_Documentation.pdf}{2023-11-06}.}~\cite{Gipp2015}.
+The PubMed Central Open Access Subset is another large data set that has been used for citation-based tasks~\cite{Gipp2015,Duma2016,Galke2018}. Contained publications are already processed and available in the JATS~\cite{Huh2014} XML format. While the data set overall is comparatively clean, heterogeneous annotation of citations within the text and mixed usage of identifiers of cited documents (PubMed, MEDLINE, DOI, etc.) make it difficult to retrieve high-quality citation interlinkings of documents from the data set\footnote{To be more precise, the heterogeneity makes the usage of the data set \emph{as is} unfeasible. Resolving references to a single consistent set of identifiers retroactively would be an option, but comparatively challenging in the case of PubMed, because of the frequent usage of special notation in publication titles; see also: \refurlinline{https://zenodo.org/records/3598421/files/CITREC_Parser_Documentation.pdf}{2023-11-06}.}~\cite{Gipp2015}.
 
 Beside the aforementioned, there are other collections of scientific publications. Among them are the ACL Anthology corpus \cite{Bird2008ACLARC} and Scholarly Dataset 2 \cite{Sugiyama2015}.
 Note that these data sets only contain the publications themselves, typically in PDF format. Therefore, using such data sets for paper-based or citation-based approaches is troublesome, since one must preprocess the data (i.e., (1) extract the content without introducing too much noise, (2) specify global identifiers for cited papers, and (3) annotate citations with those identifiers).
@@ -172,7 +172,7 @@ Scientific publications are usually distributed in formats targeted at \emph{hum
 The following two resources are the basis of the data set creation process.
 
 \paragraph{arXiv} hosts over 1.5 million documents from August 1991 onward.%
-\refurl{https://arxiv.org/stats/monthly_submissions}{2023-11-06} They are available not only as PDF, but (in most cases) also as \LaTeX{} source files. The discipline most prominently represented is physics, followed by mathematics, with computer science seeing a continued increase in percentage of submissions ranking third (see Fig.~\ref{fig:sankey}). The availability of \LaTeX{} sources makes arXiv documents particularly well suited for extracting high quality plain text and accurate citation information. So much so, that it has been used to generate ground truths for the evaluation of PDF-to-text conversion tools~\cite{Bast2017}.
+\refurl{https://arxiv.org/stats/monthly_submissions}{2023-11-06} They are available not only as PDF, but (in most cases) also as \LaTeX{} source files. The discipline most prominently represented is physics, followed by mathematics, with computer science seeing a continued increase in percentage of submissions ranking third (see Fig.~\ref{fig:sankey}). The availability of \LaTeX{} sources makes arXiv documents particularly well suited for extracting high-quality plain text and accurate citation information. So much so, that it has been used to generate ground truths for the evaluation of PDF-to-text conversion tools~\cite{Bast2017}.
 \paragraph{Microsoft Academic Graph} is a very large, automatically generated data set on 213 million publications, related entities (authors, venues, etc.), and their interconnections through 1.4 billion references.\footnote{Numbers as of February 2019.} It has been widely used as a repository of all publications in academia in the fields of bibliometrics and scientometrics \cite{Mohapatra2019}. While pre-extracted citing sentences are available, these do not contain annotated citation marker positions. Full text documents are also not available. The size of the MAG makes it a good target for matching reference strings\footnote{I.e., the entries in the reference section of a publication. See Lst.~\ref{lst:refitems} for examples.} against it, especially given that arXiv spans several disciplines.
 
 \subsection{Pipeline Overview}
@@ -599,7 +599,7 @@ Tarek Saier: Conceptualization, Data curation, Formal analysis, Investigation, M
 The work in this chapter primarily addresses the following research task.
 
 \begin{rtlist}
-    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high quality scholarly data set, that is on par with or improving upon existing data sets.
+    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high-quality scholarly data set, that is on par with or improving upon existing data sets.
 \end{rtlist}
 
 The presented methodology and resulting corpus \emph{unarXive} are on par or improve upon the identified related work both in terms of scale and quality. Regarding scale, \emph{unarXive}(1\,M documents) is among the top three along side CiteSeerX (1\,M) and the PubMed Central OAS (2.3\,M). Considering quality, using \LaTeX\ source files ensures less noisy full-text compared to data sets generated from PDFs, and the establishedcitation network links proved of high accuracy in a manual evaliation. Accordingly, we deem \rtmark{1} successfully achieved.
@@ -652,7 +652,7 @@ $\mathbf{Tim_{C/S}}$ We apply our method for generating scholarly data on all do
 
 $\mathbf{Coy_{CN}}$ We provide MAG IDs and arXiv IDs for the documents in our corpus. Furthermore DOIs are available through the liked MAG paper records. Enabling the use of three different types of unique identifiers makes our data a versatile target for comparing and combining it with other data. Other data sets of comparable size only provide their own identifiers (CiteSeerX) or only feature a heterogeneous set of identifiers (PubMed Central OAS). \\
 
-$\mathbf{Cos_{CN}}$ We are able to successfully link 42.6\% of all reference in our data. This makes our citation network more complete. Other approaches do not provide an assessment of their citation network completeness (CiteSeerX), or only achieve a lower percentage (arXiv CS achieving at 39.3\%).
+$\mathbf{Cos_{CN}}$ We are able to successfully link 42.6\% of all reference in our data. This makes our citation network more complete. Other approaches do not provide an assessment of their citation network completeness (CiteSeerX), or only achieve a lower percentage (arXiv CS achieving 39.3\%).
 
 $\mathbf{Cos_{SDR}}$ For all documents in our data set we provide their full-text content. This means our document representations are more complete that those in metadata sets like the MAG, and on par with other data sets providing full-text such as CiteSeerX and PubMed Central OAS. \\
 
