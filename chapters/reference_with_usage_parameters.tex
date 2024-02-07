@@ -100,7 +100,7 @@ In the remainder of this chapter we first discuss related work in Section~\ref{s
 % biomedical domain~\cite{Choudhary2022}
 % material science~\cite{Wornow2023}
 
-\subsubsection{Fine-Tuned Models}
+\subsection{Fine-Tuned Models}
 
 % mby short intro paragraph regarding domain specificity
 
@@ -110,7 +110,7 @@ IE models aiming to relate natural language to numerical values and mathematical
 
 Similarly, we find a level of regularity in how authors report parameters and values, and make use of that in our approach accordingly. In line with related work using fine-tuned models, we also use BERT and SciBERT for contextualized token embeddings.
 
-\subsubsection{LLMs}
+\subsection{LLMs}
 
 With the recent advances in LLMs, there has been a surge in efforts to utilize them for IE from scientific text. Nevertheless, their performance is not on par with dedicated models for NER and RE yet~\cite{Yang2023}.
 
@@ -349,7 +349,7 @@ During the development of our model we also experiment with concatenation in fav
 
 % Implementation details for both the PL-Marker ER component as well as the RE component can be found in Appendix~\ref{sec:implementation-details}.
 
-\subsection{LLM}\label{sec:methLLMs}
+\subsection{LLMs}\label{sec:methLLMs}
 
 We develop our LLM approach for a zero-shot and a few-shot setting. This means the models perform the IE task based on either instructions only (zero-shot), or instructions and a small number of examples (few-shot).
 
