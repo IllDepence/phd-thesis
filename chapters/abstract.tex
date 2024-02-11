@@ -1,21 +1,43 @@
 \selectlanguage{english}
 \Abstract{}
 % motivation
-Data extracted from publications serves as the foundation for vital infrastructure in academia.
+Data extracted from scientific publications serves as the foundation for vital infrastructure in academia.
 %Vital infrastructure in academia relies on data extracted from publications.
 For example, academic search engines and bibliometric indicators, which are indispensable for literature review and decision making, % are based on operate on / rely on / would not be possible without
 % machine-readable data % information
 % representing publications.
 rely on it.
 % For example, academic search engines and bibliometric indicators, which are indispensable for literature review and decision making, are based on % operate on / rely on / would not be possible without
-However, the extraction of this data is a challenging and error-prone process.
-This is because scientific publications are written by humans for humans, assume background knowledge for their understanding and don't adhere to strict syntactic rules. Extraction methods have to bridge this gap.
+However, the extraction of such data is a challenging and error-prone process.
+This is because scientific publications are written for human readers, and therefore do not provide the structure and unambiguity necessary for automated processing. Faced with this challenge, existing extraction methods and the data they produce are limited in areas of key importance.
 
 % gap
-Existing methods for the creation of data representing publications, and by extension the data they produce, are limited in various ways. Specifically, there are shortcomings regarding documents' interconnections, language coverage, and content representation granularity. For example, widely used data sets have highly incomplete citation networks, are limited to publications written in English, or fail to accurately capture mathematical notation. As a consequence, applications and research building on this data are of limited scope and validity.
+Specifically, we focus on three areas of limitation because of their significance to academia.
+% 1, why important, how limited
+Our first focus are documents' interconnections through citations.
+Citation networks are a key characteristic of scientific corpora, and are vital for common use cases such as the calculation of bibliometric indicators and the development of citation-based recommender systems. Despite this importance, widely used data sets have highly incomplete citation networks, putting the validity of analysis results and effectiveness of systems in question.
+% 2, why important, how limited
+Second, we focus on language coverage.
+Science is a global and therefore inherently multi-lingual endeavor. Accordingly, capturing the state and progress of science in data necessitates including publications written in various languages. However, despite a growing awareness in the
+%natural language processing
+research community, important platforms, approaches, and data sets in the scholarly domain are still limited to English publications only. % maybe add sentence why this is bad
+% 3, why important, how limited
+Our third focus area is the representation of research artifacts in data. ...
+
+% why exactly there gaps?
+% - citation network -> key characteristic that is vital for common use cases (bibliometric indicators, cit. based rec., ...)
+% - language coverage -> growing awareness in NLP, scholarly data also affected
+% - content representation granularity -> research increasingly driven by curated data and algorithmic processing
+
+
+
+Specifically, there are key shortcomings regarding documents' interconnections, language coverage, and content representation granularity.
+For example, widely used data sets have highly incomplete citation networks, are limited to publications written in English, or fail to accurately capture mathematical notation. As a consequence, applications and research building on this data are of limited scope and validity.
 
 % solution
-To address these issues, we present a set of data mining and information extraction approaches that enable the creation of machine-readable publication corpora more complete, extensive, and of finer granularity than previously available. We quantify our contributions to better data quality along the dimensions relevance, accuracy, timeliness, comparability, and completeness, and achieve improvements across all of them.
+To address these issues, we present a set of data mining and information extraction approaches that enable the creation of machine-readable publication corpora more complete, extensive, and of finer granularity than previously available.
+% TODO: make orthogonal nature of gap/focus vs. quality dimensions clearer
+We quantify our contributions to better data quality along the dimensions relevance, accuracy, timeliness, comparability, and completeness, and achieve improvements across all of them.
 
 In particular, we present the following.
 As the foundation of our research, we introduce a method for creating a large-scale corpus of linked, full-text documents from publications' \LaTeX\ sources.
