@@ -307,8 +307,8 @@ In the following section we present the tools to quantitatively assess the infor
 
 \subsection{Model Evaluation}
 
-Model evaluation guides the development and assessment of approaches to computational problems. For example, when developing a machine learning approach to a classification problem, it is of interest to compare the approach to existing ones. In essence, a model evaluation results in a performance estimate. This is because the model performance can not be known in advance for every possible input, so only an estimate based on a set of realistic inputs can be attained.
-To get a performance estimate, the model is applied on inputs, for which the desired output is already known---a \emph{ground truth}. The model outputs are then compared with the desired outputs to by means of \emph{evaluation metrics}. In the following, we describe the means of such output comparisons, as well as several evaluation metrics.
+Model evaluation guides the development and assessment of approaches to computational problems. For example, when developing a machine learning approach to a classification problem, it is of interest to compare the approach to existing methods. In essence, a model evaluation results in a performance estimate. This is because the model performance can not be known in advance for every possible input, so only an estimate based on a set of realistic inputs can be attained.
+To get a performance estimate, the model is applied on inputs, for which the desired output is already known---a \emph{ground truth}. The model outputs are then compared with the desired outputs by means of \emph{evaluation metrics}. In the following, we describe the means of such output comparisons, as well as several evaluation metrics.
 
 \subsubsection{Basic Concepts}
 
@@ -364,10 +364,10 @@ Accuracy is informative in evaluations where the labels are balanced, but of lim
 \text{Recall (R)} = \frac{\text{TP}}{\text{TP + FN}}
 \end{equation*}
 
-Achieving high precision and recall with a model is always a trade-off. This can be illustrated by the fact that a model which always predicts a positive label will achieve a perfect recall of 1.\footnote{Always predicting a positive label ensures $\text{FN} = 0$, which means $\text{R} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{TP} + 0} = \frac{\text{TP}}{\text{TP}} = 1$.} Because then all ground truth positives will be predicted correctly, but in turn all ground truth negatives will be predicted incorrectly.
+Achieving high precision and recall with a model is always a trade-off. This can be illustrated by the fact that a model which always predicts a positive label will achieve a perfect recall of 1.\footnote{Always predicting a positive label ensures $\text{FN} = 0$, which means $\text{R} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{TP} + 0} = \frac{\text{TP}}{\text{TP}} = 1$.} Such a model would predict all ground truth positives correctly, but in turn predict all ground truth negatives incorrectly.
 
 \paragraph{F-score}
-is a means to quantify precision and recall in a single value. Its general form, $\text{F}_\beta$, allows to put more weight on either the precision or recall. Setting $\beta$ to 1 gives the $\text{F}_1$, which is the harmonic mean of precision and recall.
+is a means to quantify precision and recall in a single value. Its general form, $\text{F}_\beta$, allows to put more weight on either the precision or recall. Setting $\beta$ to 1 gives the $\text{F}_1$-score, which is the harmonic mean of precision and recall.
 
 \begin{equation*}
 \text{$\text{F}_1$-score ($\text{F}_1$)} = \frac{2 \cdot \text{P} \cdot \text{R}}{\text{P + R}}
@@ -389,7 +389,7 @@ Precision, recall and, $\text{F}_1$-score are the typical metrics to assess and 
 Here we briefly present considerations regarding the evaluation of models for specific tasks. Detailed discussions can be found in the respective chapters.
 
 \paragraph{Reference Linking}
-is a task that aims to identify for a bibliographic reference, which publication it is referring to. The task is necessary because references in available data sources (PDF, \LaTeX, etc.) are first and foremost just ambiguous character strings, as they do not unanimously follow a single, rigorously defined format. Furthermore, identifying the referenced publication presupposes a given set of distinct publications (a ``target set'') from which to identify one. In an idealized model world, this target set encompasses everything that was ever referenced. Practically though, the target set is a finite set of publication records acquired from some data source. For the evaluation of reference linking models, this leads to the following consideration.
+is a task that aims to identify for a bibliographic reference, which publication it is referring to. The task is necessary because references in available data sources (PDF, \LaTeX, etc.) are first and foremost just ambiguous character strings, as they do not unanimously follow a single, rigorously defined format. Furthermore, identifying the referenced publication presupposes a given set of distinct publications (a ``target set'') in which the correct one is contained and can be identified. In an idealized model world, this target set encompasses everything that was ever referenced. Practically though, the target set is a finite set of publication records acquired from some data source. For the evaluation of reference linking models, this leads to the following consideration.
 
 If a reference cannot be linked to the target set, it stands to question if
 \begin{itemize}
@@ -397,11 +397,15 @@ If a reference cannot be linked to the target set, it stands to question if
     \item (b) the reference publication \emph{is not} part of the target set, and the matching model correctly determined that none of the publications in the target set is the correct match.
 \end{itemize}
 
-As a consequence, the recall of a reference linking model (i.e. the ratio of successfully matched references) is influenced both by the model performance \emph{and} the selection of target set. The precision (i.e. the correctness ratio of matched references) can be understood as is.
+As a consequence, the recall of a reference linking model (i.e. the ratio of successfully matched references) is influenced both by the model performance \emph{and} the selection of target set. Recall values should therefore be interpreted with with comprehensiveness of the target set in mind.
+Precision values (i.e. the correctness ratio of matched references), on the other hand, can be understood as is without special considerations.
 
 \paragraph{Entity Recognition}
 is the task of identifying entities mentioned in a text.\footnote{It is also referred to as ``Named Entity Recognition'' (NER). The term ``Named Entity Recognition and Classification'' (NERC) is sometimes used to distinguish it from only identifying mentions without assigning an entity type. Similarly, ``Named Entity Recognition and Disambiguation'' (NERD) means entities are furthermore disambiguated, which usually is done by linking to a knowledge graph.}
-A key consideration regarding the evaluation of entity recognition models is whether to require \emph{exact matches} of entity mention spans (strict), or whether to also consider \emph{partial matches} (loose). For example, if a text mentions the ``Directory of Open Access Journals'' and a model only identifies ``Directory of Open Access'', this can be seen as either incorrect (strict) or correct (loose). Another consideration is whether a evaluation scheme requires the model, in addition to identifying entity mentions, to also determine each entity's type, which is common practice. The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Goyal2018}.
+A key consideration regarding the evaluation of entity recognition models is whether to require \emph{exact matches} of entity mention spans (strict), or whether to also consider \emph{partial matches} (loose). For example, if a text mentions the ``Directory of Open Access Journals'' and a model only identifies ``Directory of Open Access'', this can be seen as either incorrect (strict) or correct (loose).
+Another consideration is whether a evaluation scheme requires the model, in addition to identifying entity mentions, to also determine each entity's type, which is common practice.
+The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Goyal2018}.
+
 
 % TODO: adjust s.t. there are some considerations form which some consequence follows
 
@@ -413,7 +417,8 @@ Relation extraction, as described above, is evaluated on an \emph{entity level},
 \textit{``The Directory of Open Access Journals (DOAJ) currently indexes over 20k journals. Lars Bj{\o}rnshauge, who founded the DOAJ 20 years ago, is happy about that.''}
 \end{quote}
 
-The relation [Lars~Bj{\o}rnshauge]\,$\xrightarrow[]{\text{\texttt\tiny founded}}$[DOAJ] exists between two entities. The second sentence it the text with entity mentions \textit{``Lars~Bj{\o}rnshauge''} and \textit{``DOAJ''} can be regarded as the \emph{relation evidence}. The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Nasar2021}.
+A relation $e_{lars}$\,$\xrightarrow[]{\text{\texttt\tiny founded}}$$e_{dir}$ exists between the entities $e_{lars}$, mentioned as ``Lars~Bj{\o}rnshauge'', and $e_{dir}$, mentioned  as ``The Directory of Open Access Journals (DOAJ)'' and later ``DOAJ''.
+The second sentence containing the entity mentions \textit{``Lars~Bj{\o}rnshauge''} and \textit{``DOAJ''} can be regarded as the \emph{relation evidence}. The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Nasar2021}.
 
 \subsubsection{Bibliographic Note}
 
