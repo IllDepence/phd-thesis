@@ -401,16 +401,15 @@ As a consequence, the recall of a reference linking model (i.e. the ratio of suc
 Precision values (i.e. the correctness ratio of matched references), on the other hand, can be understood as is without special considerations.
 
 \paragraph{Entity Recognition}
-is the task of identifying entities mentioned in a text.\footnote{It is also referred to as ``Named Entity Recognition'' (NER). The term ``Named Entity Recognition and Classification'' (NERC) is sometimes used to distinguish it from only identifying mentions without assigning an entity type. Similarly, ``Named Entity Recognition and Disambiguation'' (NERD) means entities are furthermore disambiguated, which usually is done by linking to a knowledge graph.}
-A key consideration regarding the evaluation of entity recognition models is whether to require \emph{exact matches} of entity mention spans (strict), or whether to also consider \emph{partial matches} (loose). For example, if a text mentions the ``Directory of Open Access Journals'' and a model only identifies ``Directory of Open Access'', this can be seen as either incorrect (strict) or correct (loose).
+(ER) is the task of identifying entities mentioned in a text.\footnote{It is also referred to as ``Named Entity Recognition'' (NER). The term ``Named Entity Recognition and Classification'' (NERC) is sometimes used to distinguish it from only identifying mentions without assigning an entity type. Similarly, ``Named Entity Recognition and Disambiguation'' (NERD) means entities are furthermore disambiguated, which usually is done by linking to a knowledge graph.}
+A key consideration regarding the evaluation of ER models is whether to require \emph{exact matches} of entity mention spans (strict), or whether to also consider \emph{partial matches} (loose). For example, if a text mentions the ``Directory of Open Access Journals'' and a model only identifies ``Directory of Open Access'', this can be seen as either incorrect (strict) or correct (loose).
 Another consideration is whether a evaluation scheme requires the model, in addition to identifying entity mentions, to also determine each entity's type, which is common practice.
-The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Goyal2018}.
-
-
-% TODO: adjust s.t. there are some considerations form which some consequence follows
+To ensure valid ER model comparisons in our work, we therefore make sure to always compare the same type of measurements (e.g. strict+type with strict+type).
+The metrics typically used for ER evaluations are precision, recall, and $\text{F}_1$-score~\cite{Goyal2018}.
+% consider adding considerations/consequences specific to the scholarly data context (in case there are any relevant ones)
 
 \paragraph{Relation Extraction}
-has to goal of determining the relations between entities mentioned in a text. It can be posed as a classification task on entity pairs. That is, for each possible combination of two entities $a$ and $b$ in a document, the task is to determine a relation label for $(a, b)$, where ``no relation'' is among the possibilities. A further distinction can be made by defining a ``none of the above'' (NOTA) label, which means the two entities \emph{are} in a relation, but there is not fitting label in the set of labels defined by the task~\cite{Bassignana2022}. % could also mention directed vs undirected relations -> strict vs loose evaluation
+(RE) has to goal of determining the relations between entities that are mentioned in a text. It can be posed as a classification task on entity pairs. That is, for each possible combination of two entities $a$ and $b$ in a document, the task is to determine a relation label for $(a, b)$, where ``no relation'' is among the possibilities. A further distinction can be made by defining a ``none of the above'' (NOTA) label, which means the two entities \emph{are} in a relation, but there is not fitting label in the set of labels defined by the task~\cite{Bassignana2022}. % could also mention directed vs undirected relations -> strict vs loose evaluation
 Relation extraction, as described above, is evaluated on an \emph{entity level}, while the text based on which relations get determined contains entity \emph{mentions}. To illustrate this, consider the following text.
 
 \begin{quote}
@@ -418,7 +417,9 @@ Relation extraction, as described above, is evaluated on an \emph{entity level},
 \end{quote}
 
 A relation $e_{lars}$\,$\xrightarrow[]{\text{\texttt\tiny founded}}$$e_{dir}$ exists between the entities $e_{lars}$, mentioned as ``Lars~Bj{\o}rnshauge'', and $e_{dir}$, mentioned  as ``The Directory of Open Access Journals (DOAJ)'' and later ``DOAJ''.
-The second sentence containing the entity mentions \textit{``Lars~Bj{\o}rnshauge''} and \textit{``DOAJ''} can be regarded as the \emph{relation evidence}. The metrics typically used for evaluation are precision, recall, and $\text{F}_1$-score~\cite{Nasar2021}.
+The second sentence containing the entity mentions \textit{``Lars~Bj{\o}rnshauge''} and \textit{``DOAJ''} can be regarded as the \emph{relation evidence}.
+In our work, we model data for RE tasks \emph{with} relation evidence information. The setting of evaluations we perform depends on the specifics of the models compared to.
+The metrics typically used for RE evaluations are precision, recall, and $\text{F}_1$-score~\cite{Nasar2021}.
 
 \subsubsection{Bibliographic Note}
 
