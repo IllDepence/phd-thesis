@@ -130,7 +130,7 @@ This data set has the following drawbacks \cite{Roy2016fixed,Faerber2018LREC}: T
    \midrule
    % capital Ms and lowercase ks (supposed to be like that)
    CiteSeerX \cite{Caragea2014}/RefSeer \cite{Huang2015fixed} &  1.0\,M & 400 characters & (all) & no & no \\
-   PubMed Central OAS\tnote{a} & 2.3\,M & extractable & BM/LS & yes & mixed \\
+   PMC OAS\tnote{a} & 2.3\,M & extractable & BM/LS & yes & mixed \\
    Scholarly Dataset 2 \cite{Sugiyama2015} & 0.1\,M & extractable* & CS & yes & no \\
    arXiv CS \cite{Faerber2018LREC}   &  0.09\,M & 1 sentence & CS & yes & DBLP \\
    ACL-ARC \cite{Bird2008ACLARC} & 0.01\,M & extractable* & CS/CL & yes & no \\
@@ -144,7 +144,7 @@ This data set has the following drawbacks \cite{Roy2016fixed,Faerber2018LREC}: T
   \end{small}
 \end{table}
 
-The PubMed Central Open Access Subset is another large data set that has been used for citation-based tasks~\cite{Gipp2015,Duma2016,Galke2018}. Contained publications are already processed and available in the JATS~\cite{Huh2014} XML format. While the data set overall is comparatively clean, heterogeneous annotation of citations within the text and mixed usage of identifiers of cited documents (PubMed, MEDLINE, DOI, etc.) make it difficult to retrieve high-quality citation interlinkings of documents from the data set\footnote{To be more precise, the heterogeneity makes the usage of the data set \emph{as is} unfeasible. Resolving references to a single consistent set of identifiers retroactively would be an option, but comparatively challenging in the case of PubMed, because of the frequent usage of special notation in publication titles; see also: \refurlinline{https://zenodo.org/records/3598421/files/CITREC_Parser_Documentation.pdf}{2023-11-06}.}~\cite{Gipp2015}.
+The PubMed Central Open Access Subset (PMC OAS) is another large data set that has been used for citation-based tasks~\cite{Gipp2015,Duma2016,Galke2018}. Contained publications are already processed and available in the JATS~\cite{Huh2014} XML format. While the data set overall is comparatively clean, heterogeneous annotation of citations within the text and mixed usage of identifiers of cited documents (PubMed, MEDLINE, DOI, etc.) make it difficult to retrieve high-quality citation interlinkings of documents from the data set\footnote{To be more precise, the heterogeneity makes the usage of the data set \emph{as is} unfeasible. Resolving references to a single consistent set of identifiers retroactively would be an option, but comparatively challenging in the case of PubMed, because of the frequent usage of special notation in publication titles; see also: \refurlinline{https://zenodo.org/records/3598421/files/CITREC_Parser_Documentation.pdf}{2023-11-06}.}~\cite{Gipp2015}.
 
 Beside the aforementioned, there are other collections of scientific publications. Among them are the ACL Anthology corpus \cite{Bird2008ACLARC} and Scholarly Dataset 2 \cite{Sugiyama2015}.
 Note that these data sets only contain the publications themselves, typically in PDF format. Therefore, using such data sets for paper-based or citation-based approaches is troublesome, since one must preprocess the data (i.e., (1) extract the content without introducing too much noise, (2) specify global identifiers for cited papers, and (3) annotate citations with those identifiers).
@@ -602,7 +602,7 @@ The work in this chapter primarily addresses the following research task.
     \item \textit{Base Methodology} - establish a base methodology for generating a large-scale, high-quality scholarly data set, that is on par with or improving upon existing data sets.
 \end{rtlist}
 
-The presented methodology and resulting corpus \emph{unarXive} are on par or improve upon the identified related work both in terms of scale and quality. Regarding scale, \emph{unarXive}(1\,M documents) is among the top three along side CiteSeerX (1\,M) and the PubMed Central OAS (2.3\,M). Considering quality, using \LaTeX\ source files ensures less noisy full-text compared to data sets generated from PDFs, and the establishedcitation network links proved of high accuracy in a manual evaliation. Accordingly, we deem \rtmark{1} successfully achieved.
+The presented methodology and resulting corpus \emph{unarXive} are on par or improve upon the identified related work both in terms of scale and quality. Regarding scale, \emph{unarXive}(1\,M documents) is among the top three along side CiteSeerX (1\,M) and the PMC OAS (2.3\,M). Considering quality, using \LaTeX\ source files ensures less noisy full-text compared to data sets generated from PDFs, and the establishedcitation network links proved of high accuracy in a manual evaliation. Accordingly, we deem \rtmark{1} successfully achieved.
 
 The work presented in this chapter furthermore makes contributions to the following research task.
 
@@ -619,7 +619,7 @@ The work presented in this chapter furthermore makes contributions to the follow
 % them a DBLP URL.
 % 962,084/2,448,826 = 0,3928
 
-The reference linking method developed for \emph{unarXive} is able to link 42.6\% of references successfully to the MAG. While no data set with which a direct comparison would be possible existed at the time of publication, the number compares favorably to arXiv CS achieving 39.3\%\footnote{962,084 out of 2,448,826 references are reported to be successfully linked in the arXiv CS paper~\cite{Faerber2018LREC}.}, and also can be considered an improvement over the PubMed Central OAS with no consistent citation network as well as CiteSeerX with no assessment resented for its citation network. Accordingly, we deem this a significant contribution to \rtmark{2}.
+The reference linking method developed for \emph{unarXive} is able to link 42.6\% of references successfully to the MAG. While no data set with which a direct comparison would be possible existed at the time of publication, the number compares favorably to arXiv CS achieving 39.3\%\footnote{962,084 out of 2,448,826 references are reported to be successfully linked in the arXiv CS paper~\cite{Faerber2018LREC}.}, and also can be considered an improvement over the PMC OAS with no consistent citation network as well as CiteSeerX with no assessment resented for its citation network. Accordingly, we deem this a significant contribution to \rtmark{2}.
 
 In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
 
@@ -650,11 +650,11 @@ $\mathbf{Acc_{SDR}}$ We create document representations not from PDF files but f
 
 $\mathbf{Tim_{C/S}}$ We apply our method for generating scholarly data on all documents on arXiv until end of the most recent full year. Accordingly, the resulting corpus contains more recent documents than data sets released earlier.
 
-$\mathbf{Coy_{CN}}$ We provide MAG IDs and arXiv IDs for the documents in our corpus. Furthermore DOIs are available through the liked MAG paper records. Enabling the use of three different types of unique identifiers makes our data a versatile target for comparing and combining it with other data. Other data sets of comparable size only provide their own identifiers (CiteSeerX) or only feature a heterogeneous set of identifiers (PubMed Central OAS). \\
+$\mathbf{Coy_{CN}}$ We provide MAG IDs and arXiv IDs for the documents in our corpus. Furthermore DOIs are available through the liked MAG paper records. Enabling the use of three different types of unique identifiers makes our data a versatile target for comparing and combining it with other data. Other data sets of comparable size only provide their own identifiers (CiteSeerX) or only feature a heterogeneous set of identifiers (PMC OAS). \\
 
 $\mathbf{Cos_{CN}}$ We are able to successfully link 42.6\% of all reference in our data. This makes our citation network more complete. Other approaches do not provide an assessment of their citation network completeness (CiteSeerX), or only achieve a lower percentage (arXiv CS achieving 39.3\%).
 
-$\mathbf{Cos_{SDR}}$ For all documents in our data set we provide their full-text content. This means our document representations are more complete that those in metadata sets like the MAG, and on par with other data sets providing full-text such as CiteSeerX and PubMed Central OAS. \\
+$\mathbf{Cos_{SDR}}$ For all documents in our data set we provide their full-text content. This means our document representations are more complete that those in metadata sets like the MAG, and on par with other data sets providing full-text such as CiteSeerX and PMC OAS. \\
 
 % quantification / good enough
 
