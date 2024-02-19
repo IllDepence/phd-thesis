@@ -207,7 +207,7 @@ In the following, we will describe the tools considered for parsing \LaTeX{}, th
     TexSoup\tnote{b} & document tree & no & yes\\
     opendetex\tnote{c}\,/detex\tnote{d} & plain text & no & yes\\
     GrabCite~\cite{Faerber2018LREC} & plain\hphantom{ }text\hphantom{ }+ resolved ref. & yes & no\\
-    LaTeXML\tnote{e} & XML & yes & yes\\
+    \LaTeXML\tnote{e} & XML & yes & yes\\
     Tralics\tnote{f} & XML & yes & yes\\
   \bottomrule
 \end{tabular}  \begin{tablenotes}
@@ -223,7 +223,7 @@ In the following, we will describe the tools considered for parsing \LaTeX{}, th
 \end{table}
 
 We took several tools for a direct conversion from \LaTeX{} to plain text or to intermediate formats into consideration and evaluated them. Table \ref{tbl:tools} gives an overview of our results. Half of the tools failed to produce any output for a large amount of arXiv documents we used as test input and were therefore deemed not robust enough. \textit{GrabCite} \cite{Faerber2018LREC} is able to parse 78.5\%
-of arXiv CS documents but integrates resolving references (see Sec.~\ref{sec:refresol}) against DBLP into the parsing process and therefore would require significant modification to fit our new system architecture. \textit{LaTeXML} and \textit{Tralics} are both robust and can be used as \LaTeX{} conversion tools as is. Based on subsequent tests, we observed that \textit{LaTeXML} needs on average 7.7 seconds (3.3 if formula environments are heuristically removed beforehand) to parse an arXiv paper, while \textit{Tralics} needs 0.09. Because the quality of their output seemed comparable, we chose to use \textit{Tralics}.
+of arXiv CS documents but integrates resolving references (see Sec.~\ref{sec:refresol}) against DBLP into the parsing process and therefore would require significant modification to fit our new system architecture. \textit{\LaTeXML} and \textit{Tralics} are both robust and can be used as \LaTeX{} conversion tools as is. Based on subsequent tests, we observed that \textit{LaTeXML} needs on average 7.7 seconds (3.3 if formula environments are heuristically removed beforehand) to parse an arXiv paper, while \textit{Tralics} needs 0.09. Because the quality of their output seemed comparable, we chose to use \textit{Tralics}.
 
 \subsubsection{Challenges}\label{sec:refresolchallenges}
 Apart from the general difficulty of parsing \LaTeX{} due to its feature richness and people's free-spirited use of it, we especially note difficulty in dealing with extra packages not included in documents' sources.\footnote{The arXiv guidelines specifically suggest the omission of such (see \refurlinline{https://arxiv.org/help/submit_tex\#wegotem}{2023-11-06}).} While \textit{Tralics}, for example, is supposed to deal with \textit{natbib} citations,\refurl{https://www-sop.inria.fr/marelle/tralics/packages.html\#natbib}{2023-11-06} normalization of such citations leads to a decrease of citation markers not being able to be matched to an entry in the document's reference section from 30\% to 5\% in a sample of 565,613 citations we tested.
