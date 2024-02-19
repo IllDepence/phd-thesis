@@ -226,23 +226,23 @@ Improvements regarding citation networks in scholarly data are presented in Chap
     \item \textbf{Anglocentrism} Science is a global and therefore inherently multi-lingual endeavor. Accordingly, capturing the state and progress of science in data, necessitates including publications written in various languages. In various areas of NLP, there has been a growing awareness and consideration of non-English language content in the last years~\cite{Dabre2020,Yu2022,Ramesh2023}. However, in research concerned with scientific publications, as well as in available data sets covering scientific publications, there still is a major lack of coverage of non-English documents~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019,MartinMartin2021}.
 Accordingly, research results are of limited validity due to an insufficiency of the underlying data.
 Improvements regarding the inclusion and analysis of non-English publications are presented in Chapter~\ref{chp:xling}. The presented work entails improvements in the data quality dimensions relevance and comparability.
-    \item \textbf{Research Artifacts} To an increasing degree research is driven by curated data sets and algorithmic processing techniques such as machine learning methods and models (``research artifacts''). This development can, for example, be observed in the field of NLP, which has undergone a shift towards ``rapid discovery science'', characterized by a high consensus on research topics, methods and technologies~\cite{Jurgens2018}. Further signs of the growing importance of research artifacts are, for example, the launch of both Google Dataset Search\refurl{https://datasetsearch.research.google.com/}{2023-11-24} and Papers With Code\refurl{https://paperswithcode.com/}{2023-11-24} in 2018, as well as the gradual adoption of data citations~\cite{Kratz2015}.
+    \item \textbf{Research Artifacts} To an increasing degree, research is driven by curated data sets and algorithmic processing techniques, such as machine learning methods and models (``research artifacts''). This development can, for example, be observed in the field of NLP, which has undergone a shift towards ``rapid discovery science'', characterized by a high consensus on research topics, methods and technologies~\cite{Jurgens2018}. Further signs of the growing importance of research artifacts are, for example, the launch of both Google Dataset Search\refurl{https://datasetsearch.research.google.com/}{2023-11-24} and Papers With Code\refurl{https://paperswithcode.com/}{2023-11-24} in 2018, as well as the gradual adoption of data citations~\cite{Kratz2015}.
 % GDS 2018: https://doi.org/10.1038/d41586-018-06201-x
 % PwC 2018: https://web.archive.org/web/20220513185917/https://www.reddit.com/r/MachineLearning/comments/8t0l40/p_papers_with_code_the_latest_machine_learning/
-Despite these developments, efforts to include structured representations of research artifacts in scholarly data are limited. Some work in this direction exists, most notably SciERC~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, but it only covers a shallow representation of research artifacts.
-We argue that a shallow representation is insufficient, as it renders scholarly data unusable for several beneficial applications, for example in reproducibility research.
+Despite these developments, efforts to include structured representations of research artifacts in scholarly data are limited. Some work in this direction exists, most notably SciERC~\cite{luan2018scierc} and SciREX~\cite{Jain2020scirex}, but it only covers shallow representations of research artifacts.
+We argue that shallow representations are insufficient, as they don't provide the necessary granularity for several beneficial applications, such as faceted search and automated reproducibility.
 Improvements regarding a more fine-granular coverage of research artifacts are presented in Chapter~\ref{chp:params}. Similar to anglocentrism, the work presented entails improvements in the data quality dimensions relevance and comparability.
 \end{enumerate}
 
-In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, as mentioned for each of the three points above. Details regarding the improvements are tracked along the dissertation and summarized in each chapter. The steps to address the identified research gap are structured into four research tasks, described in the following.
+In addressing above limitations, we alleviate the state of scholarly data. This improvement is also reflected in the data quality dimensions introduced in Section~\ref{sec:intro-researchobj}, as mentioned for each of the three points above. Details regarding the improvements are tracked along the dissertation, and are summarized at the end of each chapter. The steps to address the identified research gap are structured into four research tasks, described in the following.
 
 \paragraph{Research Tasks}
 Based on the research gap identified, we formulate the following four research tasks as sub-points to our overarching research objective set in Section~\ref{sec:intro-researchobj}.
 
 \begin{rtlist}
-    \item \textit{Base Methodology} - identify or establish a base methodology for generating a large-scale, high-quality scholarly data set, that is on par with or improving upon existing data sets.
+    \item \textit{Base Methodology} - establish a base methodology for generating a large-scale, high-quality scholarly data set, that is on par with or improving upon existing data sets.
     \item \textit{Citation Network Completeness} - develop a method to link literature references, that is able to link more references than are linked in existing data sets, while not compromising on link correctness or processing efficiency.
-    \item \textit{Inclusion of Non-English Publications} - find and implement an approach to to include non-English publications into a large-scale, high-quality scholarly data set.
+    \item \textit{Inclusion of Non-English Publications} - find and implement an approach to include non-English publications into a large-scale, high-quality scholarly data set.
     \item \textit{Fine-gained Research Artifact Representations} - develop a method to extract fine-grained information on research artifacts from text in scientific publications.
 \end{rtlist}
 
@@ -316,7 +316,7 @@ Based on the research gap identified, we formulate the following four research t
 
 \section{Outline and Contributions}
 
-The contributions made across the works tackling the challenges and research gaps outlined in Sections \ref{sec:intro-challenges} and \ref{sec:intro-gap} represent the main part of this dissertation. Together with the following and the final chapter, they make up the remainder of the document, which is structured as follows.
+The contributions made across the works tackling the challenges and research gaps outlined above, represent the main part of this dissertation. Together with the following and the final chapter, they make up the remainder of the document, which is structured as follows.
 
 \begin{itemize}
     \item Chapter~\ref{chp:foundations} - \textbf{Foundations}
@@ -340,7 +340,7 @@ Chapter~\ref{chp:corpus} - \textbf{Corpus}
     \item Addresses: \rtmark{1}, \rtmark{2}
     \item Improves: relevance, accuracy, timeliness, comparability, and completeness
 \end{itemize}
-With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files, which we apply to all of arXiv.org. At the time of publication it was the first corpus of linked publications with representative coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate.
+With \emph{unarXive} we present in Chapter~\ref{chp:corpus} a methodology for creating a large-scale corpus of linked, full-text documents from \LaTeX\ source files, which we apply to all of arXiv.org. At the time of publication, it was the first corpus of linked publications with extensive coverage in physics, mathematics, and computer science. By creating the corpus from \LaTeX\ source files, it is less noisy than related work created from PDFs, such as CiteSeerX~\cite{Wu2015}. The creation method furthermore includes a highly accurate reference matching procedure achieving a state-of-the-art matching success rate.
 This contribution lays the foundation for the subsequent research conducted for the dissertation, and primarily addresses the research gap \emph{citation network}.
 The work presented achieves improvements across all five data quality dimensions.
 
@@ -380,11 +380,11 @@ This contribution addresses the research gap \emph{research artifacts}.
 Regarding data quality, the work represents improvements %regarding the document representation
 in the data quality dimensions relevance and comparability.
 
-The dissertation concludes in Chapter~\ref{chp:conclusion} with an overarching discussion of the results attained, impact of the work so far, and an outlook.
+The dissertation concludes in Chapter~\ref{chp:conclusion}, with an overarching discussion of the results attained, impact of the work so far, and an outlook.
 
 \section{Overview of Publications}\label{sec:intro-puboverview}
 
-The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or, if not available, the most up-to-date prior ranking. For workshops, the rank of the conference at which the workshop is hosted is shown.} For all publications in Table~\ref{tab:primarypublicationoverview} the author of this dissertation is the first and corresponding author. Detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective chapter.
+The contributions in this dissertation have been published in peer-reviewed international conferences and journals. Table~\ref{tab:primarypublicationoverview} gives an overview of the publications and the chapters they make up. Venue ranks are taken from Core\refurl{http://portal.core.edu.au/conf-ranks/}{2023-10-12} in the case of conferences and from SJR\refurl{https://www.scimagojr.com/}{2023-10-12} in the case of journals.\footnote{The ranks shown are the rating for the respective publication year, or, if not available, the most up-to-date prior ranking. For workshops, the rank of the conference at which the workshop is hosted is shown.} For all publications in Table~\ref{tab:primarypublicationoverview}, the author of this dissertation is the first and corresponding author. Detailed author contributions according to the Contributor Roles Taxonomy\refurl{https://credit.niso.org/}{2023-10-12} are listed at the end of the respective chapter.
 
 \begin{table}[h]
 \caption{Overview of publications reused in this dissertation.}
@@ -443,7 +443,7 @@ The contributions in this dissertation have been published in peer-reviewed inte
 %   \end{small}
 % \end{table}
 
-Additional publications (co-)authored leading up to and during the research period which are not a direct part of this dissertation, but nevertheless informed the overall research trajectory, are listed in Table~\ref{tab:secondarypublicationoverview}.
+Additional publications (co-)authored leading up to and during the research period, which are not a direct part of this dissertation but nevertheless informed the overall research trajectory, are listed in Table~\ref{tab:secondarypublicationoverview}.
 
 \begin{table}[h]
   \caption{Overview of secondary publications not reused in this dissertation.}
