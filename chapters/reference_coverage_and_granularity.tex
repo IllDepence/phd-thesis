@@ -32,11 +32,11 @@ At the end of the chapter, in Section~\ref{sec:covgran-assessment}, we assess th
 
 \subsection{Introduction}
 % % Motivation
-Scholarly data is becoming increasingly important and with it its quality and coverage. Connections between publications in the form of literature references are of particular importance, as they are used as a basis for various analyses, decision making, and applications. Some examples are research output quantification~\cite{Hirsch2005}, trend detection~\cite{Chen2006}, summarization~\cite{Elkiss2008}, and recommendation~\cite{Ma2020,Faerber2020a}.
+Scholarly data is becoming increasingly important, and with it, its quality and coverage. Connections between publications in the form of literature references are of particular importance, as they are used as a basis for various analyses, decision making, and applications. Some examples are research output quantification~\cite{Hirsch2005}, trend detection~\cite{Chen2006}, summarization~\cite{Elkiss2008}, and recommendation~\cite{Ma2020,Faerber2020a}.
 
 % Problem
 %However, in current data sets providing interlinked publications, only around half of the references contained in the original papers are linked\footnote{We use ``link[ing/ed] references'' w.r.t. to connections to cited papers rather than in-text citation markers.} to the cited publications~\cite{Lo2020,Saier2020}. This lack in coverage is especially affecting references to non-English publications~\cite{Saier2021}, which are in general underrepresented in scholarly data~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019} along with publications in the humanities~\cite{Colavizza2019,Kellsey2004}.
-However, reference linking methods\footnote{In the following, we use ``link[ing/ed] references'' to refer to connections to cited papers rather than in-text citation markers.} described in the literature are only able to link around half of the references contained in the original papers to the cited publications~\cite{Lo2020,Saier2020}. This lack in coverage is especially affecting references to non-English publications~\cite{Saier2021}, which are in general underrepresented in scholarly data~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019} along with publications in the humanities~\cite{Colavizza2019,Kellsey2004}.
+However, reference linking methods\footnote{In the following, we use ``link[ing/ed] references'' to refer to connections to cited papers rather than in-text citation markers.} described in the literature are only able to link around half of the references contained in the original papers to the cited publications~\cite{Lo2020,Saier2020}. This lack in coverage is especially affecting references to non-English publications~\cite{Saier2021}, which are in general underrepresented in scholarly data~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019}, along with publications in the humanities~\cite{Colavizza2019,Kellsey2004}.
 
 We see the reason for this lack in linked references in two key shortcomings of current methods.
 First, references are linked using simple string similarity measures that are often relying \emph{only} on publications' title and author information (which is not always contained in references; see Figure~\ref{fig:hardmatch}). %Note: maybe add sth. along the lines of “relying on title (and mby authors) is deemed sufficient”
@@ -58,13 +58,13 @@ Second, references are exclusively linked to a target collection of paper record
 
 %ER related work
 Linking references can be seen as a task of entity resolution~\cite{Christophides2015ERdef}, which is concerned with identifying entities referring to the same object within or between large data sets. Because the task requires a one-to-one comparison between each of the involved entities, it is inherently of quadratic complexity. To make approaches scalable, entities are assigned into groups of likely matching candidates prior to comparison, a technique called blocking~\cite{Papadakis2020survey}.
-While blocking-based approaches are used in the domain of scholarly data to, for example, identify duplicate paper records~\cite{Simonini2016blast,Sefid2019,Lo2020} (where information such as abstracts are used) and authors~\cite{FaerberLin2022}, they are not utilized for bibliographic references.
+While blocking-based approaches are used in the domain of scholarly data to, for example, identify duplicate paper records~\cite{Simonini2016blast,Sefid2019,Lo2020} (where information such as abstracts are used) and authors~\cite{FaerberLin2022}, they are not utilized among bibliographic references.
 
 % Our solution
-We therefore address both of the aforementioned problems with current reference linking approaches, (1)~the use of simple matching methods based on title and authors, as well as (2)~the reliance on a target collection of paper records, by proposing (1)~the use of a blocking and matching process utilizing seven reference fields (title, author, journal, year, etc.) that (2)~operates \emph{within} the set of bibliographic references of a corpus, and is thereby \emph{independent} of a target collection of papers (see marker ``(1)'' in Figure~\ref{fig:approach}).
+We therefore address both of the aforementioned problems of current reference linking approaches, namely, (1)~the use of simple matching methods based on title and authors, as well as (2)~the reliance on a target collection of paper records, by proposing (1)~the use of a blocking and matching process utilizing seven reference fields (title, author, journal, year, etc.) that (2)~operates \emph{within} the set of bibliographic references of a corpus, and is thereby \emph{independent} of a target collection of papers (see marker ``(1)'' in Figure~\ref{fig:approach}).
 
 We showcase the feasibility and benefits of our approach, implementing a pre-processing, blocking, and matching pipeline and evaluating it on a corpus containing 300,000 references.
-We show that relative to the original data, our approach gives us a \textbf{90\% increase} in papers linked to the target collection, a \textbf{five-fold increase} in bibliographically coupled~\cite{Boyack2010} papers (see marker ``(2)'' in Figure~\ref{fig:approach}), and a \textbf{nine-fold increase} in in-text citation markers covered.\footnote{With the ``coverage'' of in-text citation markers we refer to markers associated with linked references, relative to markers belonging to unlinked references.} The new links are furthermore of high quality (85\% $\text{F}_1$ score). This paves the way towards higher quality scholarly data, especially regarding the coverage of so far underrepresented literature and non-source items.
+We show that relative to the original data, our approach gives us a \emph{90\% increase} in papers linked to the target collection, a \emph{five-fold increase} in bibliographically coupled~\cite{Boyack2010} papers (see marker ``(2)'' in Figure~\ref{fig:approach}), and a \emph{nine-fold increase} in in-text citation markers covered.\footnote{With the ``coverage'' of in-text citation markers we refer to markers associated with linked references, relative to markers belonging to unlinked references.} The new links are furthermore of high quality (85\% $\text{F}_1$ score). This paves the way towards higher quality scholarly data, especially regarding the coverage of so far underrepresented literature and non-source items.
 
 In summary, we make the following contributions.
 
@@ -373,13 +373,13 @@ Across these key aspects, we see significant shortcomings in currently available
 % - - - - - How is this research gap closed? (conceptional) - - - - -
 
 To address these issues, we propose a new version of the data set unarXive, %\footnote{The \LaTeX{} based data set for NLP on Academic Text}
-which comprises 1.9 M publication across several disciplines, includes a more complete citation network than its predecessors, and retains structured mathematical notation as well as table and figure captions (see Figure~\ref{fig:schema}).  % captions = “textual surrogates”
+which comprises 1.9 M publications across several disciplines, includes a more complete citation network than its predecessors, and retains structured mathematical notation as well as table and figure captions (see Figure~\ref{fig:schema}).  % captions = “textual surrogates”
 Apart from the data set itself, we furthermore provide ready-to-use training and test data for two NLP tasks. Overall, we make the following contributions.
 
 % - - - - - List of contributions, shared data, etc. (name numbers, facts, links to data, etc.) - - - - -
 
 \begin{itemize}
-    \item We provide a 1.9 M document scholarly data set, containing structured full-text, annotated in-text citations, linked table and figure captions, structured mathematical notation, and a hight quality citation network.
+    \item We provide a 1.9 M document scholarly data set, containing structured full-text, annotated in-text citations, linked table and figure captions, structured mathematical notation, and a high-quality citation network.
     \item We provide ready-to-use training/test data for the development and evaluation of approaches to two NLP tasks, namely citation recommendation and IMRaD classification.
     \item We distribute our data in accordance to the FAIR principles~\cite{Wilkinson2016} and share our source code freely available under a permissive license.
 \end{itemize}
@@ -394,11 +394,11 @@ Apart from the data set itself, we furthermore provide ready-to-use training and
   %    $^\ddagger$References in the PMC OAS are partially linked to a mixed set of IDs (PubMed, MEDLINE, DOI)~\cite{Gipp2015}. Therefore there is no single, comprehensive number for its completeness.
   %   }
   %  }
-  \caption[Comparison of large data sets derived from paper full-texts]{Comparison of large data sets derived from paper full-texts ($^\dagger$Cit. network completeness is reported is two ways. ``general'': the whole data set; not directly comparable. ``compare'': for arXiv.org data from 1991--2020; directly comparable. $^\ddagger$References in the PMC OAS are partially linked to a mixed set of IDs (PubMed, MEDLINE, DOI)~\cite{Gipp2015}. Therefore there is no single, comprehensive number for its completeness.}
+  \caption[Comparison of large data sets derived from paper full-texts]{Comparison of large data sets derived from paper full-texts ($^\dagger$Citation network completeness is reported is two ways. ``general'': the whole data set; not directly comparable. ``compare'': for arXiv.org data from 1991--2020; directly comparable. $^\ddagger$References in the PMC OAS are partially linked to a mixed set of IDs (PubMed, MEDLINE, DOI)~\cite{Gipp2015}. Therefore there is no single, comprehensive number for its completeness.}
   \label{tab:comparison}
   \begin{tabular}{lccccccccc}
     \toprule
-    \ & \multicolumn{2}{c}{Source} & \multicolumn{2}{c}{\hphantom{wi}Citation Network$^\dagger$} & \multicolumn{2}{c}{Structured} & \ & \ & \ \\
+    \ & \multicolumn{2}{c}{Source} & \multicolumn{2}{c}{Citation Network$^\dagger$} & \multicolumn{2}{c}{Structured} & \ & \ & \ \\
     Data Set & Data & Format & general & compare & Doc. & Math. & \# Docs & Disciplines & Purpose \\
     \midrule
     CORE~\cite{core} & multiple & PDF & 0\% & - & $\times$ & $\times$ & $>$100 M & various & general NLP \\
@@ -680,7 +680,7 @@ making it possible to grant access to the data on request given the intended use
 \subsection{Conclusion}
 We propose unarXive 2022, a data set generated from 1.9 M \LaTeX{} paper sources and suitable for a wide variety of analyses and NLP applications. We base our approach to data set creation and format on existing works, while also addressing their shortcomings. Improving upon these tried and tested predecessors, unarXive 2022 offers the most complete citation network and most structured content compared to existing data sets, and is surpassed in size only by the PMC OAS, which covers a different set of disciplines.
 
-With our data set we provide data for two NLP tasks, content based citation recommendation and IMRaD classification, to facilitate its usage. We furthermore distribute our work under consideration of the FAIR principles, sharing it through well established channels and permissively licensed, thereby ensuring proper accessibility, easy use, and possibilities for adaption and extension.
+Together with our data set, we provide data for two NLP tasks, content based citation recommendation and IMRaD classification, to facilitate its usage. We furthermore distribute our work under consideration of the FAIR principles, sharing it through well established channels and permissively licensed, thereby ensuring proper accessibility, easy use, and possibilities for adaption and extension.
 
 We plan to incrementally update our data set with new arXiv.org submissions. For future developments, we note the importance of mathematical notation in academic publications, as reflected by recent SemEval tasks in 2021 and 2022~\cite{semeval21_task8,semeval22_task12}. Similar to existing projects,\refurl{https://github.com/PierreSenellart/theoremkb}{2023-11-10} we plan to investigate novel analyses and applications based on the combination of our data set's citation network and structured mathematical notation.
 
@@ -715,7 +715,7 @@ The work in this chapter addresses the following research task.
     \item[\rtmark{2}:] \textit{Citation Network Completeness} - develop a method to link literature references, that is able to link more references than are linked in existing data sets, while not compromising on link correctness or processing efficiency.
 \end{rtlist}
 
-With the inter-reference blocking and matching method presented in Section~\ref{sec:covgran-blocking} we achieve a 90\% increase in linked references, a five-fold increase in bibliographic couplings, and a nine-fold increase in connected in-text citation markers.
+With the inter-reference blocking and matching method presented in Section~\ref{sec:covgran-blocking}, we achieve a 90\% increase in linked references, a five-fold increase in bibliographic couplings, and a nine-fold increase in connected in-text citation markers.
 Furthermore, with the improved corpus creation method presented in Section~\ref{sec:covgran-ux22}, we achieve a new state-of-the-art reference matching success rate of 44.4\%. Different from our contributions to \rtmark{2} in Chapter~\ref{chp:corpus}, we are here able to make direct comparisons to related work. Our reference matching success rate of 44.4\% compares favorably to our previously method (42.6\%), S2ORC (31.1\%), and arXMLiv (no citation network). Accordingly, we deem \rtmark{2} successfully achieved.
 
 In terms of the overarching research goal of enabling higher-quality scholarly data (see Table~\ref{tab:scholdataquali} in Chapter~\ref{chp:foundations}), the work presented in this chapter makes the following contributions.
@@ -731,13 +731,13 @@ In terms of the overarching research goal of enabling higher-quality scholarly d
         $\mathbf{Tim_{C/S}}$ & Publications included up until end of the most recent full year \\
         $\mathbf{Coy_{CN}}$ & OpenAlex, arXiv, and PubMed IDs as well as DOIs included \\
         $\mathbf{Coy_{SDR}}$ & Section structure and section type information included \\
-        $\mathbf{Cos_{CN}}$ & Blocking and matching procedure enabling increase linked references and bibliographic couplings \\
+        $\mathbf{Cos_{CN}}$ & Blocking and matching procedure enabling increase in linked references and bibliographic couplings \\
         $\mathbf{Cos_{SDR}}$ & Full-text of documents as well as figure and table captions included \\
         \bottomrule
       \end{tabular}
 \end{infobox-progress}
 
-$\mathbf{Rel_{SDR}}$ Our improved document conversion methodology provides structured mathematical notation as part of our document representations. The resulting data is therefore of high relevance for use cases focussing on phenomena manifested within them, such as mathematical information retrieval~\cite{semeval22_task12} and the analysis of theorems\refurl{https://github.com/PierreSenellart/theoremkb}{2024-02-04}. Our data source being arXiv, which has a large coverage of physics, mathematics, and computer science papers, additionally is beneficial in this regard, as all three are disciplines, where mathematical notation is comparably relevant and frequently used.
+$\mathbf{Rel_{SDR}}$ Our improved document conversion methodology provides structured mathematical notation as part of our document representations. The resulting data is therefore of high relevance for use cases focussing on phenomena manifested within them, such as mathematical information retrieval~\cite{semeval22_task12} and the analysis of theorems.\refurl{https://github.com/PierreSenellart/theoremkb}{2024-02-04} Our data source being arXiv, which has a large coverage of physics, mathematics, and computer science papers, additionally is beneficial in this regard, as all three are disciplines, where mathematical notation is comparably relevant and frequently used.
 
 $\mathbf{Tim_{C/S}}$ We apply our method for generating scholarly data on all documents on arXiv until end of the most recent full year. Accordingly, the resulting corpus contains more recent documents than data sets released earlier.
 
