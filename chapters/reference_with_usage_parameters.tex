@@ -16,7 +16,7 @@ The work in this chapter addresses the following research task.
 \section{Overview}
 In this chapter, we present information extraction methods for research artifacts and their usage parameters. This aims to advance the granularity of document representations, as research artifacts become an increasingly relevant object of research. Enabling the extraction of structured information on research artifacts and their parameters enables the study of usage and reporting patterns across time and scientific disciplines. The extracted information furthermore bears potential for use in automated reproduction.
 
-At the end of the chapter in Section~\ref{sec:hypepie-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
+At the end of the chapter, in Section~\ref{sec:hypepie-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
 
 % \begin{abstract}
 % Automatic extraction of information from publications is key to making scientific knowledge machine readable at a large scale.
@@ -400,7 +400,7 @@ In doing so, we expect to avoid problems with LLM output not being parsable. Our
 
 \subsubsection{Zero-shot} We build our zero-shot prompts from the following consecutive components: \texttt{[task]\allowbreak[input text]\allowbreak[format]\allowbreak[completion prefix]}.
 An example is shown in Appendix~\ref{app:hyperpie-implementation-details}.
-In \texttt{[task]} we specify the information to extract, i.e. research artifacts, their parameters, etc. \texttt{[input text]} is the paragraph from which to extract the information. \texttt{[format]} defines the output YAML schema. \texttt{[completion prefix]} is a piece of text that directly precedes the LLM's output, such as \textit{``ASSISTANT:~''}.
+In \texttt{[task]} we specify the information to extract, i.e., research artifacts, their parameters, etc. \texttt{[input text]} is the paragraph from which to extract the information. \texttt{[format]} defines the output YAML schema. \texttt{[completion prefix]} is a piece of text that directly precedes the LLM's output, such as \textit{``ASSISTANT:~''}.
 %
 % Also: in case of maximum output length being reached, “fixing” is trivial by removing last (potentially incomplete line), whereas fixing JSON to make it parsable is more involved (need matching delimiters
 %
@@ -432,7 +432,7 @@ We use PL-Marker, the currently best performing model on SciERC, as our baseline
 % (possible example for difference: token “5-fold” w/ only “5” annotated as value)
 Models are trained and evaluated using 5-fold cross validation (3 folds training, 1 dev, 1 test).
 %
-% We also experiment with splitting the data into folds obtained by sampling whole papers (i.e. the complete set of paragraphs of each paper) rather than individual paragraphs. We do this to ensure a realistic evaluation setting and prevent, for example, directly subsequent paragraphs of a paper being split up into training and testing data. This has the side effect that class distributions across the 10 evaluation runs vary considerably---in other words, some folds contain considerably fewer entities and/or relations to extract than others. As a consequence, model performance varies between splits, leading to high standard deviations in the evaluation metrics.
+% We also experiment with splitting the data into folds obtained by sampling whole papers (i.e., the complete set of paragraphs of each paper) rather than individual paragraphs. We do this to ensure a realistic evaluation setting and prevent, for example, directly subsequent paragraphs of a paper being split up into training and testing data. This has the side effect that class distributions across the 10 evaluation runs vary considerably---in other words, some folds contain considerably fewer entities and/or relations to extract than others. As a consequence, model performance varies between splits, leading to high standard deviations in the evaluation metrics.
 %
 We train the ER component of PL-Marker as done in~\cite{Ye2022}, using \textit{scibert-scivocab-uncased} as the encoder, Adam as the optimizer, a learning rate of 2e-5, and 50 training epochs. Regarding the two RE components we compare, the PL-Marker RE component is trained using \textit{bert-base-uncased}, Adam, a learning rate of 2e-5, and 10 training epochs. Our own RE component also uses \textit{bert-base-uncased}, Adam as the optimizer, and is trained with a learning rate of 1e-3 for 90 epochs.\footnote{The two RE models we compare require different learning rates and number of training epochs, because their architecture varies significantly.}
 The models are trained and evaluated on a server with a single GeForce~RTX~3090 (24\,GB).\footnote{More extensive implementation details can be found in Appendix~\ref{app:hyperpie-implementation-details}.}

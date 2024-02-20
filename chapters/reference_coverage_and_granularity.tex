@@ -21,7 +21,7 @@ In this chapter, we introduce improvements for our corpus creation methodology i
 First, we present in Section~\ref{sec:covgran-blocking} a blocking and matching method applied on the set of references in a corpus. With this, matched references as well as bibliographic couplings can significantly be increased. % Furthermore, it removes the reliance of a ...
 Second, we present in Section~\ref{sec:covgran-ux22} an improved conversion method for \LaTeX\ source files, and with it an update of the \emph{unarXive} corpus. The improved corpus creation method enables fine-granularly structured document representations, and achieves a new state-of-the-art reference matching success rate.\footnote{After the publication of our initial corpus creation methodology in \cite{Saier2020} (see Chapter~\ref{chp:corpus}), the now widely used corpus S2ORC~\cite{Lo2020} adapted our document conversion methodology for the \LaTeX\ subset of their data set. While they do not achieve a reference matching success rate as high as ours, they made advances regarding the structured document representation. With the work presented in this chapter, we follow and improve upon their example, establishing a fine-granular structured document representation for the \emph{unarXive} corpus.}
 
-At the end of the chapter in Section~\ref{sec:covgran-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
+At the end of the chapter, in Section~\ref{sec:covgran-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
 
 % \begin{abstract}
 % Analyses and applications based on bibliographic references are of ever increasing importance. However, reference linking methods described in the literature are only able to link around half of the references in papers. To improve the quality of reference linking in large scholarly data sets, we propose a blocking-based reference linking approach that utilizes a rich set of reference fields (title, author, journal, year, etc.) and is independent of a target collection of paper records to be linked to. We evaluate our approach on a corpus of 300,000 references. Relative to the original data, we achieve a 90\% increase in papers linked through references, a five-fold increase in bibliographic coupling, and a nine-fold increase in in-text citations covered. The newly established links are of high quality (85\% $\text{F}_1$ score). We conclude that our proposed approach demonstrates a way towards better quality scholarly data.
@@ -114,7 +114,7 @@ Following~\cite{Papadakis2016}, we build our blocking pipeline from components f
 
 % \emph{Meta-blocking}~\cite{Papadakis2014}, our comparison cleaning step, reduces unnecessary comparisons within blocks and consists of four sub-steps: graph building, edge weighting, graph pruning, and block collecting.
 
-% In the \emph{graph building} step, the block collection is transformed in a blocking graph, where an entity (i.e. reference string) is represented as a node, and the co-occurrence of two entities in a common block is conveyed by an edge connecting them. Since a new edge is only created for a pair of entities that hasn’t appear yet. If a pair of entities share more than one block, they will only be connected by one edge and will not appear repeatedly in the blocking graph. 
+% In the \emph{graph building} step, the block collection is transformed in a blocking graph, where an entity (i.e., reference string) is represented as a node, and the co-occurrence of two entities in a common block is conveyed by an edge connecting them. Since a new edge is only created for a pair of entities that hasn’t appear yet. If a pair of entities share more than one block, they will only be connected by one edge and will not appear repeatedly in the blocking graph. 
 
 % The information conveyed through the number of blocks shared by a pair of entities is entailed in the weight of the edge between the pair, which is determined in the \emph{edge weighting} step relying on a weighting scheme. There are five weighting schemes available: (1)	Aggregate Reciprocal Comparisons Scheme(ARCS), (2)	Common Blocks Scheme(CBS), (3) Enhanced Common Blocks Scheme(ECBS), (4)	Jaccard Scheme(JS), and (5)	Enhanced Jaccard Scheme(EJS).
 
@@ -503,7 +503,7 @@ We mark the position of citation markers, tables, figures, and mathematical nota
             \begin{itemize}[leftmargin=1mm]
                 \item Raw reference string
                 \item List of contained arXiv IDs
-                \item List of embedded links (i.e. URLs of clickable links not rendered as text when viewing the document)
+                \item List of embedded links (i.e., URLs of clickable links not rendered as text when viewing the document)
             \end{itemize}
         \end{minipage}\\
   \bottomrule
