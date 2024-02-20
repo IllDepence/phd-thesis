@@ -19,7 +19,7 @@ The work in this chapter addresses the following research task.
 \section{Overview}
 In this chapter, we introduce improvements for our corpus creation methodology in two areas.
 First, we present in Section~\ref{sec:covgran-blocking} a blocking and matching method applied on the set of references in a corpus. With this, matched references as well as bibliographic couplings can significantly be increased. % Furthermore, it removes the reliance of a ...
-Second, we present in Section~\ref{sec:covgran-ux22} an improved conversion method for \LaTeX\ source files, and with it an update of the \emph{unarXive} corpus. The improved corpus creation method enables fine-granularly structured document representations, and achieves a new state-of-the-art reference matching success rate.\footnote{After the publication of our initial corpus creation methodology in \cite{Saier2020} (see Chapter~\ref{chp:corpus}), the now widely used corpus S2ORC~\cite{Lo2020} adapted our document conversion methodology for the \LaTeX\ subset of their data set. While they do not achieve a reference matching success rate as high as ours, they made advances regarding the structured document representation. With the work presented in this chapter, we follow and improve upon their example, establishing a fine-granular structured document representation for the \emph{unarXive} corpus.}
+Second, we present in Section~\ref{sec:covgran-ux22} an improved conversion method for \LaTeX{} source files, and with it an update of the \emph{unarXive} corpus. The improved corpus creation method enables fine-granularly structured document representations, and achieves a new state-of-the-art reference matching success rate.\footnote{After the publication of our initial corpus creation methodology in \cite{Saier2020} (see Chapter~\ref{chp:corpus}), the now widely used corpus S2ORC~\cite{Lo2020} adapted our document conversion methodology for the \LaTeX{} subset of their data set. While they do not achieve a reference matching success rate as high as ours, they made advances regarding the structured document representation. With the work presented in this chapter, we follow and improve upon their example, establishing a fine-granular structured document representation for the \emph{unarXive} corpus.}
 
 At the end of the chapter, in Section~\ref{sec:covgran-assessment}, we assess the achievement of the research task, as well as the contributions made in terms of the overarching research goal of enabling higher-quality scholarly data.
 
@@ -86,7 +86,7 @@ Lastly, Färber et al.~\cite{FaerberLin2022} detect duplicates among 243 million
 % Linked bib. entries    19.3M  |  6.8M*
 %
 % *The lower number of linked bibliography entries in latex parses is due to large numbers of papers (mostly in the field of physics) for which the bibliography entries are formatted without paper titles. Our linking algorithm strongly depends on titles and fails to link these entries.
-Lo et al.~\cite{Lo2020} introduced the data set S2ORC, which contains 9.6 million open access papers and has recently seen extensive use in area of scholarly document processing. The authors link references to papers within their data set using a heuristic similarity measure based on n-grams and the Jaccard similarity, which only uses the paper title. Using this method, 26 million out of 50 million references  (52\%) are successfully linked. The authors report that the low number is \textit{``due to large numbers of papers (mostly in the field of physics) for which the bibliography entries are formatted without paper titles.''} Saier et al.~\cite{Saier2020} introduce unarXive, a data set created from papers' \LaTeX\ sources containing over 1 million publications. Bibliographic references in the data set are linked to the Microsoft Academic Graph~\cite{Sinha2015,Wang2019}. The linking procedure is based on string similarity of papers' titles and author information. With this procedure 17 million out of 40 million references (42\%) are successfully linked.
+Lo et al.~\cite{Lo2020} introduced the data set S2ORC, which contains 9.6 million open access papers and has recently seen extensive use in area of scholarly document processing. The authors link references to papers within their data set using a heuristic similarity measure based on n-grams and the Jaccard similarity, which only uses the paper title. Using this method, 26 million out of 50 million references  (52\%) are successfully linked. The authors report that the low number is \textit{``due to large numbers of papers (mostly in the field of physics) for which the bibliography entries are formatted without paper titles.''} Saier et al.~\cite{Saier2020} introduce unarXive, a data set created from papers' \LaTeX{} sources containing over 1 million publications. Bibliographic references in the data set are linked to the Microsoft Academic Graph~\cite{Sinha2015,Wang2019}. The linking procedure is based on string similarity of papers' titles and author information. With this procedure 17 million out of 40 million references (42\%) are successfully linked.
 Lastly, CiteSeer$^x$~\cite{Wu2015,CiteSeerX2019} in another large data set containing paper records. Similar to S2ORC, references are linked to paper records within the data set itself. In the case of CiteSeer$^x$ the linking is performed through a heuristic assignment based on title and author information.  We are not aware of information on the percentage of references that are successfully linked in CiteSeer$^x$.
 
 %ad hoc~\cite{Kokash2022}
@@ -320,7 +320,7 @@ Tarek Saier: Conceptualization, Data curation (support), Formal analysis, Invest
 
 % Large-scale metadata on scholarly publications is the basis for bibliometric analyses, research output quantification~\cite{Hirsch2005}, and various applications such as trend detection~\cite{Chen2006}. Beyond metadata, large data sets reflecting the \emph{full-text} content of papers have recently enabled more sophisticated analyses and applications, such as scientific language models~\cite{scibert}, claim verification~\cite{wadden2020}, and knowledge graph generation~\cite{luan2018scierc}.
 
-% The creation of scholarly \emph{full-text} data sets requires information extraction (IE) from papers. In terms of their form, papers pose two key challenges for IE. First, papers are commonly distributed in PDF format, which can introduce noise in extracted text~\cite{Bast2017}. This can be avoided in certain domains by using papers' \LaTeX\ source~\cite{Saier2020,Lo2020,chen2021-scixgen}. Secondly, papers are multimodal---that is, information is not only presented in running plain text, but also in figures, tables, and mathematical notation.
+% The creation of scholarly \emph{full-text} data sets requires information extraction (IE) from papers. In terms of their form, papers pose two key challenges for IE. First, papers are commonly distributed in PDF format, which can introduce noise in extracted text~\cite{Bast2017}. This can be avoided in certain domains by using papers' \LaTeX{} source~\cite{Saier2020,Lo2020,chen2021-scixgen}. Secondly, papers are multimodal---that is, information is not only presented in running plain text, but also in figures, tables, and mathematical notation.
 
 % Publications in many scientific disciplines communicate key information through numbers and formulae. Accordingly, the extraction of such information has recently gained attention~\cite{semeval21_task8,semeval22_task12}. While some data sets exist that can be used as a basis for such applications, they come with various limitations, namely coverage, ... % TODO: rewrite s.t. the **CITATION NETWORK** stays relevant.
 
@@ -330,15 +330,15 @@ Large data sets derived from the full-texts of academic publications are of ever
   \centering
   \includegraphics[width=\linewidth]{figures/ref_covgran/schema}
   % \caption{Schematic of our data set.\\
-  %   \footnotesize\normalfont Created from arXiv.org \LaTeX\ sources, our data set preserves document \emph{sctructure} (sections, subsections, ...) and \emph{content types} (paragraphs, listings, ...). In-text positions of mathematical notation, figures, tables and citation markers are linked to \LaTeX\ math content, figure/table captions, and bibliographic references respectively. Bibliographical references are linked to the large paper corpus OpenAlex.
+  %   \footnotesize\normalfont Created from arXiv.org \LaTeX{} sources, our data set preserves document \emph{sctructure} (sections, subsections, ...) and \emph{content types} (paragraphs, listings, ...). In-text positions of mathematical notation, figures, tables and citation markers are linked to \LaTeX{} math content, figure/table captions, and bibliographic references respectively. Bibliographical references are linked to the large paper corpus OpenAlex.
   % }
-  \caption[Schematic of our data set]{Schematic of our data set. (Created from arXiv.org \LaTeX\ sources, our data set preserves document sctructure (sections, subsections, ...) and content types (paragraphs, listings, ...). In-text positions of mathematical notation, figures, tables and citation markers are linked to \LaTeX\ math content, figure/table captions, and bibliographic references respectively. Bibliographical references are linked to the large paper corpus OpenAlex.}
+  \caption[Schematic of our data set]{Schematic of our data set. (Created from arXiv.org \LaTeX{} sources, our data set preserves document sctructure (sections, subsections, ...) and content types (paragraphs, listings, ...). In-text positions of mathematical notation, figures, tables and citation markers are linked to \LaTeX{} math content, figure/table captions, and bibliographic references respectively. Bibliographical references are linked to the large paper corpus OpenAlex.}
   \label{fig:schema}
 \end{figure}
 
 % - - - - - What are key shortcomings of current data sets? (research gap)
 
-Key aspects of such data sets are (1)~basic measures such as quality, size, and temporal as well as disciplinary coverage, (2)~their citation network, and (3)~handling of non-textual content. (1)~Quality is affected by the source material (e.g. PDF or \LaTeX) and parsing method. (2)~The citation network is important to allow for bibliometric analyses. (3)~Non-textual content such as tables, figures, and mathematical notation often contain important information.
+Key aspects of such data sets are (1)~basic measures such as quality, size, and temporal as well as disciplinary coverage, (2)~their citation network, and (3)~handling of non-textual content. (1)~Quality is affected by the source material (e.g. PDF or \LaTeX{}) and parsing method. (2)~The citation network is important to allow for bibliometric analyses. (3)~Non-textual content such as tables, figures, and mathematical notation often contain important information.
 
 Across these key aspects, we see significant shortcomings in currently available data sets, as shown in Table~\ref{tab:comparison}. For example, (1)~limited size (SciXGen), (2)~omission of a citation network (arXMLiv), and (3)~no or limited handling of mathematical notation (S2ORC, unarXive 2020).
 
@@ -372,7 +372,7 @@ Across these key aspects, we see significant shortcomings in currently available
 
 % - - - - - How is this research gap closed? (conceptional) - - - - -
 
-To address these issues, we propose a new version of the data set unarXive, %\footnote{The \LaTeX\ based data set for NLP on Academic Text}
+To address these issues, we propose a new version of the data set unarXive, %\footnote{The \LaTeX{} based data set for NLP on Academic Text}
 which comprises 1.9 M publication across several disciplines, includes a more complete citation network than its predecessors, and retains structured mathematical notation as well as table and figure captions (see Figure~\ref{fig:schema}).  % captions = “textual surrogates”
 Apart from the data set itself, we furthermore provide ready-to-use training and test data for two NLP tasks. Overall, we make the following contributions.
 
@@ -404,13 +404,13 @@ Apart from the data set itself, we furthermore provide ready-to-use training and
     CORE~\cite{core} & multiple & PDF & 0\% & - & $\times$ & $\times$ & $>$100 M & various & general NLP \\
     S2ORC (PDF)~\cite{Lo2020} & multiple & PDF & 69.4\% & - & \checkmark & $\times$ & 12 M & various & general NLP \\
     % (19.3+6.8)/(27.8+21.9) = 53% overall, 69.4% GROBID parses, 31.1% LaTeX parses
-    unarXive 2020~\cite{Saier2020} & arXiv.org & \LaTeX & 42.6\% & 42.6\% & $\times$ & $\times$ & 1.2 M & phys., maths, CS & general NLP \\
+    unarXive 2020~\cite{Saier2020} & arXiv.org & \LaTeX{} & 42.6\% & 42.6\% & $\times$ & $\times$ & 1.2 M & phys., maths, CS & general NLP \\
     \midrule
-    S2ORC (\LaTeX)~\cite{Lo2020} & arXiv.org & \LaTeX & 31.1\% & 31.1\% & \checkmark & \checkmark & 1.5 M & phys., maths, CS & general NLP \\
-    arXMLiv~\cite{arXMLiv} & arXiv.org & \LaTeX & 0\% & 0\% & \checkmark & \checkmark & 1.6 M & phys., maths, CS & maths linguistics \\
-    SciXGen~\cite{chen2021-scixgen} & arXiv.org & \LaTeX & 41.6\% & - & \checkmark & \checkmark & 205 k & CS & text generation \\
+    S2ORC (\LaTeX{})~\cite{Lo2020} & arXiv.org & \LaTeX{} & 31.1\% & 31.1\% & \checkmark & \checkmark & 1.5 M & phys., maths, CS & general NLP \\
+    arXMLiv~\cite{arXMLiv} & arXiv.org & \LaTeX{} & 0\% & 0\% & \checkmark & \checkmark & 1.6 M & phys., maths, CS & maths linguistics \\
+    SciXGen~\cite{chen2021-scixgen} & arXiv.org & \LaTeX{} & 41.6\% & - & \checkmark & \checkmark & 205 k & CS & text generation \\
     PMC OAS\textsuperscript{14} & PubMed & XML & mixed$^\ddagger$ & - & \checkmark & \checkmark & \textbf{3.3 M} & \textbf{biomedical} & not NLP specific \\  % TODO: make sure this footnotemark still is correct in the end, or convert the table to a threeparttable with its own tablenotes
-    \textbf{unarXive 2022} (ours) & arXiv.org & \LaTeX & 44.4\% & \textbf{44.4\%} & \textbf{\checkmark} & \textbf{\checkmark} & \textbf{1.9 M} & \textbf{phys., maths, CS} & general NLP \\
+    \textbf{unarXive 2022} (ours) & arXiv.org & \LaTeX{} & 44.4\% & \textbf{44.4\%} & \textbf{\checkmark} & \textbf{\checkmark} & \textbf{1.9 M} & \textbf{phys., maths, CS} & general NLP \\
     % 0.4441 for 1991—2022, 0.4438 for 1991–2020
     \bottomrule
   \end{tabular}
@@ -428,7 +428,7 @@ S2ORC (PDF)~\cite{Lo2020} is second in size and, while not directly comparable d
 unarXive 2020~\cite{Saier2020} has the second highest citation network completeness in direct comparison, but lacks structured content.
 
 The bottom part of the table are data sets with both document structure preserved and structured mathematical notation.
-S2ORC (\LaTeX)~\cite{Lo2020} is a discontinued\footnote{Last release including the \LaTeX\ subset is 2019-09-28, see \refurlinline{https://github.com/allenai/s2orc}{2023-02-12}.} subset of S2ORC and has a limited citation network, 
+S2ORC (\LaTeX{})~\cite{Lo2020} is a discontinued\footnote{Last release including the \LaTeX{} subset is 2019-09-28, see \refurlinline{https://github.com/allenai/s2orc}{2023-02-12}.} subset of S2ORC and has a limited citation network, 
 arXMLiv~\cite{arXMLiv} offers the highest level of structure but no citation network, and 
 SciXGen~\cite{chen2021-scixgen} is limited in size.
 The PMC OAS\refurl{https://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/}{2023-11-06} is comparable to unarXive 2022 in size and structure, but has a partial and mixed citation network.
@@ -439,20 +439,20 @@ Overall, unarXive 2022 has the most complete citation network as far as direct c
 \subsection{Approach}
 % How the data sets was created
 
-We base our data set creation approach in part on S2ORC (\LaTeX) and in part on unarXive 2020. This is motivated as follows.
+We base our data set creation approach in part on S2ORC (\LaTeX{}) and in part on unarXive 2020. This is motivated as follows.
 
-As shown in Table~\ref{tab:comparison}, the majority of related data sets is based on paper's \LaTeX\ sources---which is less noise-prone than parsing PDFs~\cite{Bast2017}. Among these, S2ORC (\LaTeX) provides well structured full-text content usable for a wide variety of applications (see Section~\ref{sec:applications}), while arXMLiv and SciXGen are optimized for special purposes. We therefore base our structured document representation on S2ORC (\LaTeX). Regarding the citation network, however, unarXive 2020 achieves the most high-quality results in direct comparison among existing data sets. We therefore base our citation network creation on unarXive 2020.
+As shown in Table~\ref{tab:comparison}, the majority of related data sets is based on paper's \LaTeX{} sources---which is less noise-prone than parsing PDFs~\cite{Bast2017}. Among these, S2ORC (\LaTeX{}) provides well structured full-text content usable for a wide variety of applications (see Section~\ref{sec:applications}), while arXMLiv and SciXGen are optimized for special purposes. We therefore base our structured document representation on S2ORC (\LaTeX{}). Regarding the citation network, however, unarXive 2020 achieves the most high-quality results in direct comparison among existing data sets. We therefore base our citation network creation on unarXive 2020.
 
-Regarding both S2ORC (\LaTeX) and unarXive 2020, we do not just copy, but also improve upon the existing work. To furthermore provide an up-to-date data set, we use as source data all papers on arXiv.org up until the end of 2022.
+Regarding both S2ORC (\LaTeX{}) and unarXive 2020, we do not just copy, but also improve upon the existing work. To furthermore provide an up-to-date data set, we use as source data all papers on arXiv.org up until the end of 2022.
 
 Conceptually, our overall data set creation process can be broken down into two major steps, namely document parsing and reference linking, In the following these are described in more detail.
 
 \subsubsection{Document Parsing}
-To convert the \LaTeX\ source of a paper into a format that is well suited for NLP applications and analyses, we follow S2ORC (\LaTeX) and unarXive 2020 and perform the following three steps. First, we flatten the paper's \LaTeX\ source into a single \texttt{.tex} document using latexpand.\refurl{https://ctan.org/pkg/latexpand}{2023-11-10} Next, we use the tool Tralics\refurl{https://www-sop.inria.fr/marelle/tralics/}{2023-11-10} to convert the \LaTeX\ source into XML. In the last step, we create an easy to handle JSON structure from the XML.
+To convert the \LaTeX{} source of a paper into a format that is well suited for NLP applications and analyses, we follow S2ORC (\LaTeX{}) and unarXive 2020 and perform the following three steps. First, we flatten the paper's \LaTeX{} source into a single \texttt{.tex} document using latexpand.\refurl{https://ctan.org/pkg/latexpand}{2023-11-10} Next, we use the tool Tralics\refurl{https://www-sop.inria.fr/marelle/tralics/}{2023-11-10} to convert the \LaTeX{} source into XML. In the last step, we create an easy to handle JSON structure from the XML.
 
 We adapt and extend the JSON structure of S2ORC as shown in Table~\ref{tab:formext}. Adding paper metadata facilitates easier analyses (e.g. for specific or across disciplines). Including information on section numbers and types reflects the document structure more closely (e.g. the nesting structure is not lost). Retaining URLs from embedded links helps with reference linking (see Section~\ref{sec:reflink}).
 
-We mark the position of citation markers, tables, figures, and mathematical notation within the running text, and link citations markers to their references, tables and figures to their captions (i.e., textual surrogates of their content), and mathematical notation to its original \LaTeX\ content.
+We mark the position of citation markers, tables, figures, and mathematical notation within the running text, and link citations markers to their references, tables and figures to their captions (i.e., textual surrogates of their content), and mathematical notation to its original \LaTeX{} content.
 
 \begin{table}
   \centering
@@ -678,7 +678,7 @@ making it possible to grant access to the data on request given the intended use
 \end{itemize}
 
 \subsection{Conclusion}
-We propose unarXive 2022, a data set generated from 1.9 M \LaTeX\ paper sources and suitable for a wide variety of analyses and NLP applications. We base our approach to data set creation and format on existing works, while also addressing their shortcomings. Improving upon these tried and tested predecessors, unarXive 2022 offers the most complete citation network and most structured content compared to existing data sets, and is surpassed in size only by the PMC OAS, which covers a different set of disciplines.
+We propose unarXive 2022, a data set generated from 1.9 M \LaTeX{} paper sources and suitable for a wide variety of analyses and NLP applications. We base our approach to data set creation and format on existing works, while also addressing their shortcomings. Improving upon these tried and tested predecessors, unarXive 2022 offers the most complete citation network and most structured content compared to existing data sets, and is surpassed in size only by the PMC OAS, which covers a different set of disciplines.
 
 With our data set we provide data for two NLP tasks, content based citation recommendation and IMRaD classification, to facilitate its usage. We furthermore distribute our work under consideration of the FAIR principles, sharing it through well established channels and permissively licensed, thereby ensuring proper accessibility, easy use, and possibilities for adaption and extension.
 
