@@ -20,7 +20,7 @@ Criteria for high quality in the context of scholarly data were defined across t
        (1)~relevance, (2)~accuracy, (3)~timeliness, (4)~comparability, (5)~completeness
 \end{infobox-progress}
 
-For each dimension, criteria were defined for scholarly data's key aspects of the citation network (CN) and structured document representations (SDR), as shown in Table~\ref{tab:scholdataquali-again}.
+For each dimension, criteria were defined for scholarly data's key elements: the citation network (CN) and structured document representations (SDR), as shown in Table~\ref{tab:scholdataquali-again}.
 
 % Based on the way scholarly data is used, the criteria were derived for two focus  areas, the citation network (CN) and structured document representations (SDR), as shown in Table~\ref{tab:scholdataquali-again}. %(see Section~\ref{sec:foundations-dataquality}), 
 
@@ -56,7 +56,7 @@ For each dimension, criteria were defined for scholarly data's key aspects of th
   \end{small}
 \end{table}
 
-To focus the efforts of improving scholarly data quality, we identified three areas in which current scholarly data particularly has limitations (see also Section \ref{sec:intro-gap}).
+To focus the efforts of improving scholarly data quality, we identified three areas of key importance, in which current scholarly data has significant limitations (see Section \ref{sec:intro-gap}).
 
 \begin{enumerate}
     \item \textbf{Citation Network}\\
@@ -78,10 +78,10 @@ In order to address these, four research tasks were defined.
 
 %To achieve improvements in these areas, the following steps were performed.
 The four research tasks were accomplished as follows. % consider s/accomplish/carried out
-In Chapter~\ref{chp:corpus} we developed a corpus creation method transforming publications' \LaTeX{} source files into a large-scale corpus of interlinked, annotated, full-text documents \rtmark{1\large\checkmark}. The presented method also includes a highly accurate reference matching procedure \rtmark{2}{\small(\checkmark)}. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
-In Chapter~\ref{chp:covgran} we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete, state-of-the-art citation network \rtmark{2\large\checkmark}. The updated procedure furthermore enabled more fine-granular document representations, which in turn made the subsequent work in Chapter~\ref{chp:params} possible. %``Reference Coverage and Granularity''
-In Chapter~\ref{chp:xling} we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we developed a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact \rtmark{3\large\checkmark}. %``References Across Languages''
-Lastly, in Chapter~\ref{chp:params} we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found differences in parameter reporting patterns across several disciplines \rtmark{4\large\checkmark}. %``References with Usage Parameters''
+In Chapter~\ref{chp:corpus}, we developed a corpus creation method transforming publications' \LaTeX{} source files into a large-scale corpus of interlinked, annotated, full-text documents \rtmark{1\large\checkmark}. The presented method also includes a highly accurate reference matching procedure \rtmark{2}{\small(\checkmark)}. Applying our method on the complete set of all publications on arXiv.org, we created the data set \emph{unarXive}, which was used as a basis for all subsequent work. %``Corpus''
+In Chapter~\ref{chp:covgran}, we presented improvements regarding the citation network and the granularity of document representations. For the citation network, a blocking technique was developed that, applied on the set of references in a corpus, increases the number of matched references and bibliographic couplings. With an updated corpus creation method, the \emph{unarXive} data set achieved a more complete, state-of-the-art citation network \rtmark{2\large\checkmark}. The updated procedure furthermore enabled more fine-granular document representations, which in turn made the subsequent work in Chapter~\ref{chp:params} possible. %``Reference Coverage and Granularity''
+In Chapter~\ref{chp:xling}, we studied cross-lingual citations in the \emph{unarXive} corpus. For this, we developed a method to reliably identify this type of citation based on raw reference strings. In our study, which is the largest of its kind to date, we analysed cross-lingual citations' prevalence, usage, and impact \rtmark{3\large\checkmark}. %``References Across Languages''
+Lastly, in Chapter~\ref{chp:params}, we developed methods for extracting information about research artifacts and their usage parameters from publication full-texts. Applying our best performing method on \emph{unarXive}, we found differences in parameter reporting patterns across several disciplines \rtmark{4\large\checkmark}. %``References with Usage Parameters''
 
 Through the accomplishment of the four research tasks, significant improvements across all quality dimensions and criteria were achieved, as summarized in the overview below.
 
@@ -200,13 +200,13 @@ Despite its recency, our work already made an impact on the research fields conc
     \item Use of \textbf{methodology}
     \begin{itemize}
         \item In~\cite{Lo2020} Lo et al.\ use our corpus creation methodology for creating the \LaTeX{} subset of their S2ORC data set.
-        \item Chen et al.\ extend upon our reference matching procedure in~\cite{chen2021-scixgen} for the creation of their SciXGen data set.
+        \item Chen et al.\ build on our reference matching procedure in~\cite{chen2021-scixgen} for the creation of their SciXGen data set.
     \end{itemize}
     \item Use for \textbf{model development and evaluation}
     \begin{itemize}
         \item Meyer et al.\ use our data for the development and evaluation of a citation recommendation model in~\cite{Citcom2021}. %~(\cite{Saier2019,HybridCite2020})
-        \item In~\cite{Parisot2022} Parisot and Zavrel train a novel multi-objective representation learning technique for scientific document retrieval on our data.
-        \item With Researcher2Vec Mochihashi present a method for researcher profile embeddings in~\cite{Mochihashi2023}, using our data to validate their approach.
+        \item In~\cite{Parisot2022}, Parisot and Zavrel train a novel multi-objective representation learning technique for scientific document retrieval on our data.
+        \item With Researcher2Vec, Mochihashi presents a method for researcher profile embeddings in~\cite{Mochihashi2023}, using our data to validate their approach.
         %\item Reference Linking~(\cite{Saier2022ULITE})
     \end{itemize}
     \item Use for \textbf{analyses}
@@ -230,7 +230,7 @@ Comparing our work to existing efforts within the research community which striv
 
 %Besides the work described above, there are also efforts of different nature striving towards the same goal. Our and aforementioned similar work seek to represent scientific publications in a broad way.
 Our work, as well as the related work described above, seek to represent scientific publications in a broad way.
-That is, multiple scientific disciplines and large time spans are covered, and the structured data reflects multiple aspects such as full-text, citation network, authors, etc. Another approach towards high-quality scholarly data are dedicated efforts in specific areas. An example of such an effort is the OpenCitations Index\refurl{https://opencitations.net/index}{2023-11-30}, focussing solely on citation data. Such an approach, however, necessitates the ability to combine multiple dedicated resources. For example, combining citation data with publication full-texts. This is only possible as far as unique persistent identifiers for all involved entities exist---e.g. DOIs for documents, ORCiDs for authors, and ROR IDs for affiliations~\cite{Meadows2019}. Although use of such identifiers is becoming more and more established~\cite{Gorraiz2016}, 
+That is, multiple scientific disciplines and large time spans are covered, and the structured data reflects multiple aspects such as full-text, citation network, authors, etc. Another approach towards high-quality scholarly data are dedicated efforts in specific areas. An example of such an effort is the OpenCitations Index,\refurl{https://opencitations.net/index}{2023-11-30} focussing solely on citation data. Such an approach, however, necessitates the ability to combine multiple dedicated resources. For example, combining citation data with publication full-texts. This is only possible as far as unique persistent identifiers for all involved entities exist---e.g. DOIs for documents, ORCiDs for authors, and ROR IDs for affiliations~\cite{Meadows2019}. Although use of such identifiers is becoming more and more established~\cite{Gorraiz2016}, 
 %\footnote{For example, arXiv.org began automatically assigning DOIs to all submissions in 2022, and Springer Nature trialed mandatory use of ORCiDs in 2018. See \refurlinline{https://blog.arxiv.org/2022/02/17/new-arxiv-articles-are-now-automatically-assigned-dois/}{2023-11-30} and \refurlinline{https://info.orcid.org/orcid-mandate-trial-at-springer-nature/}{2023-11-30}.}
 gaps in their coverage mean that, for the moment, a combination of dedicated resources is only of limited use~\cite{Youtie2017,Haak2018}.
 
@@ -246,7 +246,7 @@ We conclude with a brief look at viable extensions of our work, as well as poten
 
 % extension to more input formats
 \paragraph{Extension to Other Input Formats}
-Our work takes publications' \LaTeX{} source files from arXiv.org as the starting point. Because \LaTeX{} provides a certain level of explicit document structure and semantic information, a natural extension would be to replicate our work on the likewise structured JATS XML publications of the PubMed Central Open Access Subset. This would widen the scope of the results attained, namely by adding life sciences to the already covered disciplines of physics, mathematics, and computer science. In disciplines other than the aforementioned, however, only PDFs are available in large quantities given the current state of scientific publishing. An extension to PDF input would likely come with challenges regarding structured document representations. However, the work we presented for the focus areas \emph{citation network}, \emph{non-English content}, and \emph{research artifacts}---see Chapters~\ref{chp:covgran}, \ref{chp:xling} and \ref{chp:params} respectively---is not reliant on \LaTeX{} as a starting point. This means, given methods for information extraction from PDFs producing output equal to our intermediate results from \LaTeX{}, extending our work to PDF based document collections is unlikely to pose difficulties.
+Our work takes publications' \LaTeX{} source files from arXiv.org as the starting point. Because \LaTeX{} provides a certain level of explicit document structure and semantic information, a natural extension would be to replicate our work on the likewise structured JATS XML publications of the PubMed Central Open Access Subset. This would widen the scope of the results attained, namely by adding life sciences to the already covered disciplines of physics, mathematics, and computer science. In disciplines other than the aforementioned, however, only PDFs are available in large quantities, given the current state of scientific publishing. An extension to PDF input would likely come with challenges regarding structured document representations. However, the work we presented for the focus areas \emph{citation network}, \emph{non-English content}, and \emph{research artifacts}---see Chapters~\ref{chp:covgran}, \ref{chp:xling} and \ref{chp:params} respectively---is not reliant on \LaTeX{} as a starting point. This means, given methods for information extraction from PDFs producing output equal to our intermediate results from \LaTeX{}, extending our work to PDF based document collections is likely possible without major challenges.
 
 \paragraph{Reference Parsing and Matching}
 % - recall eval problem (boundless domain)
@@ -258,7 +258,7 @@ Our work takes publications' \LaTeX{} source files from arXiv.org as the startin
 We achieve state-of-the-art citation network completeness, but the amount of missing citation links in scholarly data remains an issue. Regarding future development, we see three key elements playing a role. First, the parsing of reference strings in order to extract structured information (title, authors, etc.) bears potential for improvement using synthetic training data~\cite{Shapiro2022}. Second, based on our work on reference clustering presented in Chapter~\ref{chp:covgran}, the development and application of novel clustering approaches is promising. Third, a continuation of the trend that DOIs usage is becoming more and more established~\cite{Gorraiz2016} can be expected to simplify the underlying challenge itself, at least regarding future publications.
 
 \paragraph{Integration of Non-English Publication Repositories}
-We studied references \emph{to non-English publications} in the English full-text documents in our corpus. More extensive follow-up studies could be made possible by integrating large repositories of non-English publications, such as the Japanese J-STAGE\refurl{https://www.jstage.jst.go.jp/}{2024-02-07} containing over 5 million open access articles. This would enable, for example, studying the ``reverse'' phenomenon of what we examined and analyse references \emph{from non-English} publications. Furthermore, the resulting large-scale multilingual full-text corpus would be a valuable resource for the development and evaluation of information extraction models not limited to English, thereby further counteracting Anglocentrism in scholarly data related research.
+We studied references \emph{to non-English publications} in the English full-text documents in our corpus. More extensive follow-up studies could be made possible by integrating large repositories of non-English publications, such as the Japanese J-STAGE\refurl{https://www.jstage.jst.go.jp/}{2024-02-07} containing over 5 million open access articles. This would enable, for example, studying the ``reverse'' phenomenon of what we examined, and analyse references \emph{from non-English} publications. Furthermore, the resulting large-scale multilingual full-text corpus would be a valuable resource for the development and evaluation of information extraction models not limited to English, thereby further counteracting Anglocentrism in scholarly data related research.
 
 \paragraph{Utilization of Hyperparameter Information}
 We developed models for the extraction of hyperparameter information from papers' full-text. To demonstrate their applicability on large-scale data, we perform an exemplary analysis of differences in hyperparameter reporting patterns across disciplines. Beyond this exemplary use, the extracted information bears potential for powering faceted academic search and recommendation systems, as well as the development of approaches to automated reproduction. However, because the performance of our models is still limited, especially in terms of relations extraction when parameter type entities are involved, we see further efforts towards model improvement as a priority.
@@ -270,7 +270,7 @@ We developed models for the extraction of hyperparameter information from papers
 \paragraph{LLMs}
 Regarding information extraction methodologies, a continuation of the recent advances in LLM technology could become a key factor in bridging the gap between our by-human for-human publications, and machine-readable scholarly data.
 This is because, even though LLM performance is not on par with dedicated models yet~\cite{Yang2023}, the wide-ranging information available to them could allow filling in the assumed background knowledge that is necessary for understanding, but not explicitly mentioned in, scientific publications.
-However, particular challenge with the application of LLMs for the creation of scholarly data is scaling approaches to large scale applications.
+However, a particular challenge with the use of LLMs for the creation of scholarly data, is scaling approaches to large-scale data, because of the required computing resources.
 
 % the future of input formats
 \paragraph{Tagged PDFs}
@@ -278,10 +278,10 @@ Looking beyond the current state of scholarly data, where it is necessary to app
 
 % the future of publishing
 \paragraph{What Constitutes a Publication}
-Considering future developments of the landscape of scientific publications, changes to the status quo of papers being the primary unit of publication would accordingly bring changes to the nature of scholarly data. For example, establishment of micropublications~\cite{Raciti2018} and further adoption of data citations~\cite{Kratz2015} could bring new requirements and opportunities to scholarly data both in terms of data modeling as well as information extraction methods.
+Considering future developments of the landscape of scientific publications, changes to the status quo of papers being the primary unit of publication would accordingly bring changes to the nature of scholarly data. For example, establishment of micropublications~\cite{Raciti2018} and further adoption of data citations~\cite{Kratz2015} could bring new requirements and opportunities to scholarly data, both in terms of data modeling as well as information extraction methods.
 
 \vspace{1em}Through the continuation of our work and that of our colleagues,
-we envision a gradual closing of the gap between scientific publications and their digital representation in the form of scholarly data, eventually enabling a digital record of science faithful to its anthropocentric origin.
+we envision a gradual closing of the gap between scientific publications and their machine-readable representation in the form of scholarly data, eventually enabling a digital record of science faithful to its anthropocentric origin.
 % - - - choose your level of modesty - - -
 % minor
 % small
