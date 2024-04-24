@@ -9,3 +9,4 @@
 out
 *.dummy
 *.orig
+*-converted-to.pdf
