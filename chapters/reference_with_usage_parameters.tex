@@ -367,7 +367,7 @@ We develop our LLM approach for a zero-shot and a few-shot setting. This means t
 
 % Using LLMs to extract structured data from natural language text, means that at a transition has to be achieved from the ambiguous realm of natural language to precisely defined structures. 
 
-Performing IE using LLMs in zero-shot or few-shot settings requires the desired structure of the output data to be specified within the model input. In simple cases (e.g. numbers or yes/no decisions) this can be achieved by an in-line specification of the format in natural language (e.g. ``The answer (arabic numerals) is'')~\cite{Kojima2022}. IE from scientific publications, however, often seeks to extract more complex information. To achieve this, the model can be tasked to produce output in a text based data serialization format such as JSON, as done in previous work~\cite{Dunn2022}. Especially for complex structured predictions, few-shot prompting has been shown to further boost in-context learning (ICL) accuracy and consistency at inference time~\cite{Brown2020gpt3}.
+Performing IE using LLMs in zero-shot or few-shot settings requires the desired structure of the output data to be specified within the model input. In simple cases (e.g. numbers or yes/no decisions) this can be achieved by an in-line specification of the format in natural language (e.g. ``The answer (Arabic numerals) is'')~\cite{Kojima2022}. IE from scientific publications, however, often seeks to extract more complex information. To achieve this, the model can be tasked to produce output in a text based data serialization format such as JSON, as done in previous work~\cite{Dunn2022}. Especially for complex structured predictions, few-shot prompting has been shown to further boost in-context learning (ICL) accuracy and consistency at inference time~\cite{Brown2020gpt3}.
 
 Drawing from techniques used in previous work approaching other IE tasks, we investigate several prompting strategies to build our approach.
 %
@@ -387,7 +387,7 @@ Drawing from techniques used in previous work approaching other IE tasks, we inv
 \begin{enumerate}
     \item \textit{Multi-stage prompting}~\cite{Polak2023}: first determine the presence of hyperparameters information; if present, extract the list of entities; lastly, determine relations.
     \item \textit{In-text annotation}~\cite{Wang2023}: let the input text be repeated with entity annotations, e.g. repeat ``We use BERT for ...'' as ``We use [a1|BERT] for ...''. %, where ``a'' indicates entity class ``artifact'' and ``1'' is the entity ID.
-    \item \textit{Data serialization format}~\cite{Dunn2022}: specify a serialization format in the promt that is parsed afterwards; then match in-text mentions in the input.
+    \item \textit{Data serialization format}~\cite{Dunn2022}: specify a serialization format in the prompt that is parsed afterwards; then match in-text mentions in the input.
     \item \textit{(3)+(2)}: prompt as in (3); then match in-text mentions using (2).
 \end{enumerate}
 
@@ -850,7 +850,7 @@ Lastly, we see that using YAML leads to better ER results accross all six models
 
 In Figure~\ref{fig:yamlVSjson} we show an analysis of the steps leading up to model prediction. Focussing first on the zero-shot models (upper five) we observe the following across the four plots from left to right. (a)~For three of five models, prompting for YAML leads to fewer parsing errors. (b)~Unwanted text around the extracted data is generated more/less by two models each. (c)~Hallucinated entities and (d)~out of scope entities appear overall slightly more often for in YAML compared to JSON. For our few-shot approach (bottom model), we see that the use of a grammar (a, b)~prevents all output format issues. Furthermore (c)~hallucinated entities are reduced. (d)~Out of scope entities can not be evaluated, because our in-context examples lead to frequent omission of type information in the output.
 
-Through manual analysis we identify a common cause for parsing errors in JSON output to be boolean values (e.g. for ``\texttt{text\_\allowbreak contains\_\allowbreak entities:}'') being copied by the LLM as ``true/false'' from the promt. We furthermore find that ``entities not in the text'' can arise from unsolicited \LaTeX{} parsing by the LLM (e.g. ``\verb|\lambda|'' in text $\rightarrow$ ``$\lambda$'' in YAML). Prompting for \emph{verbatim} parameter/value strings does not mitigate this.
+Through manual analysis we identify a common cause for parsing errors in JSON output to be boolean values (e.g. for ``\texttt{text\_\allowbreak contains\_\allowbreak entities:}'') being copied by the LLM as ``true/false'' from the prompt. We furthermore find that ``entities not in the text'' can arise from unsolicited \LaTeX{} parsing by the LLM (e.g. ``\verb|\lambda|'' in text $\rightarrow$ ``$\lambda$'' in YAML). Prompting for \emph{verbatim} parameter/value strings does not mitigate this.
 %TODO: would be nice to add some analysis on the output length when using YAML/JSON and some thoughts as to why the one might work better w/ LLMs than the other (e.g.: YAML is shorter: fewer tokens to "get off track" / JSON mby easier for LLMs to decide when to end b/c of clear brackets instead of just indentation)
 
 % ... a few mentions of quantitative stuff based on format figs.,
