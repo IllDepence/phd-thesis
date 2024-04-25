@@ -278,7 +278,7 @@ We heuristically pre-filter our ML paper corpus for sections reporting on hyperp
 
 As shown in Figure~\ref{fig:text-seg-size}, we observe text segments reporting on hyperparameters to generally have a length below 600 characters. %, with a mean of 269.8 (standard deviation 233.2) and median of 191.
 We furthermore see that most text segments contain between 3 and 15 entities. % (mean 8.9, median 7).
-Lastly, in Figure~\ref{fig:rel-dists}, show distances between artifacts and their parameters, as well as parameters and their values. We see that artifacts usually are mentioned before their parameters (78\%), and parameters before their values (93\%). The reverse cases also exists, but are less common.
+Lastly, in Figure~\ref{fig:rel-dists}, show distances between artifacts and their parameters, as well as parameters and their values. We see that artifacts usually are mentioned before their parameters (78\%), and parameters before their values (93\%). The reverse cases also exist, but are less common.
 Additionally, we can see that values are most commonly reported right after their parameter, while there is a higher variability in distances between parameters and artifacts.
 % The mean absolute distance is 51.6.
 Based on above observations % on (1) the length of text segments reporting hyperparameter information, and (2) relation distances between the entities concerned,
@@ -613,7 +613,7 @@ All open models are run on a high performance compute cluster.
 Vicuna${}_{4k}$ and WizardLM are run on nodes with $4\times$NVIDIA Tesla V100 (32\,GB).
 GALACTICA, Falcon, and Vicuna${}_{16k}$ are run on nodes with $4\times$NVIDIA A100 (80\,GB).\footnote{More extensive implementation details can be found in Appendix~\ref{app:hyperpie-implementation-details}.}
 
-As a baseline, we use a JSON variant for each model, where the \texttt{[format]} and \texttt{[examples]} compontents of prompts use JSON, and compare it to the respective YAML version. All models are used with greedy decoding (temperature = 0) for the sake of reproducibility.
+As a baseline, we use a JSON variant for each model, where the \texttt{[format]} and \texttt{[examples]} components of prompts use JSON, and compare it to the respective YAML version. All models are used with greedy decoding (temperature = 0) for the sake of reproducibility.
 
 % Accordingly, only one completion is created per prompt. We evaluate the models on three levels. (1) Parsing success and format adherence, meaning if the produced JSON/YAML was parsable and according to the specified format, (2) hallucinations and scope adherence, where we measure hallucinated and out of scope entities, and (3) prediction performance in terms of precision, recall, and $\text{F}_1$ score.
 
@@ -824,9 +824,9 @@ As a baseline, we use a JSON variant for each model, where the \texttt{[format]}
   \end{tabular}
 \end{table}
 
-In Table~\ref{tab:llmeval}, show the prediction performance of all models and prompt variants. Overall, LLM performance does not reach the level of our pre-trained models. For zero-shot, we observe the best performance with both GPT-3.5 variants, where YAML outperforms JSON (+3.6\% ER and +0.6\% RE in $\text{F}_1$ score). The second highest ER $\text{F}_1$ score by model is achieved by Vicuna${}_{4k}$ (22.3), despite its size being less than a 10th that of GPT-3.5. For RE, however, even the best model only reaches 7.8\%. With our few-shot approach, we are able to considerably improve performance between Vicuna models (+27\% ER and +6\% RE in $\text{F}_1$), surpassing the zero-shot performance of GPT-3.5 in ER.
+In Table~\ref{tab:llmeval}, show the prediction performance of all models and prompt variants. Overall, LLM performance does not reach the level of our pre-trained models. For zero-shot, we observe the best performance with both GPT-3.5 variants, where YAML outperforms JSON (+3.6\% ER and +0.6\% RE in $\text{F}_1$ score). The second-highest ER $\text{F}_1$ score by model is achieved by Vicuna${}_{4k}$ (22.3), despite its size being less than a 10th that of GPT-3.5. For RE, however, even the best model only reaches 7.8\%. With our few-shot approach, we are able to considerably improve performance between Vicuna models (+27\% ER and +6\% RE in $\text{F}_1$), surpassing the zero-shot performance of GPT-3.5 in ER.
 % Add a sentence here breaking down the few-shot improvements by grammar/ICL once available
-Lastly, we see that using YAML leads to better ER results accross all six models, with ER performance being comparable or improved as well.
+Lastly, we see that using YAML leads to better ER results across all six models, with ER performance being comparable or improved as well.
 
 \subsubsection{Analysis}
 

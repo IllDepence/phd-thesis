@@ -32,7 +32,7 @@ At the end of the chapter, in Section~\ref{sec:covgran-assessment}, we assess th
 
 \subsection{Introduction}
 % % Motivation
-Scholarly data is becoming increasingly important, and with it, its quality and coverage. Connections between publications in the form of literature references are of particular importance, as they are used as a basis for various analyses, decision making, and applications. Some examples are research output quantification~\cite{Hirsch2005}, trend detection~\cite{Chen2006}, summarization~\cite{Elkiss2008}, and recommendation~\cite{Ma2020,Faerber2020a}.
+Scholarly data is becoming increasingly important, and with it, its quality and coverage. Connections between publications in the form of literature references are of particular importance, as they are used as a basis for various analyses, decision-making, and applications. Some examples are research output quantification~\cite{Hirsch2005}, trend detection~\cite{Chen2006}, summarization~\cite{Elkiss2008}, and recommendation~\cite{Ma2020,Faerber2020a}.
 
 % Problem
 %However, in current data sets providing interlinked publications, only around half of the references contained in the original papers are linked\footnote{We use ``link[ing/ed] references'' w.r.t. to connections to cited papers rather than in-text citation markers.} to the cited publications~\cite{Lo2020,Saier2020}. This lack in coverage is especially affecting references to non-English publications~\cite{Saier2021}, which are in general underrepresented in scholarly data~\cite{Vera-Baceta2019,Liu2019,Moed2018,Moskaleva2019} along with publications in the humanities~\cite{Colavizza2019,Kellsey2004}.
@@ -208,7 +208,7 @@ For our evaluation we use the data set unarXive~\cite{Saier2020}. We chose this 
 
 Our large-scale evaluation is performed in two steps. First, we determine the most suitable configuration of graph weighting and pruning scheme for our meta-blocking step, then we apply our pipeline to the evaluation corpus and determine the number of additionally linked entities.
 
-To chose a graph weighting and pruning scheme, we use the 13,976 references in our corpus which are are already linked to the target collection as ground truth. Following~\cite{Papadakis2014}, we select five combinations of schemes to evaluate. The combinations are evaluated using the metrics pair completeness (PC), which expresses the ratio of detected matches with respect to all true matches, pair quality (PQ), which estimates the portion of true matches within all executed comparisons in the block collection, and reduction ratio (RR), which measures the number of unnecessary comparisons that are saved through blocking. Table~\ref{tab:evaluation} shows the results of our evaluation. We achieve the best results using ECBS weighting and CNP pruning. Accordingly, we apply our pipeline with this configuration on the full evaluation corpus of 300k references, where our approach performs 496,051 comparisons after blocking and identifies 71,826 matches.
+To choose a graph weighting and pruning scheme, we use the 13,976 references in our corpus which are already linked to the target collection as ground truth. Following~\cite{Papadakis2014}, we select five combinations of schemes to evaluate. The combinations are evaluated using the metrics pair completeness (PC), which expresses the ratio of detected matches with respect to all true matches, pair quality (PQ), which estimates the portion of true matches within all executed comparisons in the block collection, and reduction ratio (RR), which measures the number of unnecessary comparisons that are saved through blocking. Table~\ref{tab:evaluation} shows the results of our evaluation. We achieve the best results using ECBS weighting and CNP pruning. Accordingly, we apply our pipeline with this configuration on the full evaluation corpus of 300k references, where our approach performs 496,051 comparisons after blocking and identifies 71,826 matches.
 
 \begin{table*}
    \centering
@@ -425,7 +425,7 @@ Excluded are data sets that are either just sets of PDFs, or only contain metada
 
 CORE~\cite{core}, while being very large, does not contain a citation network, nor is document structure preserved.
 S2ORC (PDF)~\cite{Lo2020} is second in size and, while not directly comparable due to different publications covered, has the most complete citation network. However, mathematical notation is only partially preserved as plain text.
-unarXive 2020~\cite{Saier2020} has the second highest citation network completeness in direct comparison, but lacks structured content.
+unarXive 2020~\cite{Saier2020} has the second-highest citation network completeness in direct comparison, but lacks structured content.
 
 The bottom part of the table are data sets with both document structure preserved and structured mathematical notation.
 S2ORC (\LaTeX{})~\cite{Lo2020} is a discontinued\footnote{Last release including the \LaTeX{} subset is 2019-09-28, see \refurlinline{https://github.com/allenai/s2orc}{2023-02-12}.} subset of S2ORC and has a limited citation network, 
@@ -441,7 +441,7 @@ Overall, unarXive 2022 has the most complete citation network as far as direct c
 
 We base our data set creation approach in part on S2ORC (\LaTeX{}) and in part on unarXive 2020. This is motivated as follows.
 
-As shown in Table~\ref{tab:comparison}, the majority of related data sets is based on paper's \LaTeX{} sources---which is less noise-prone than parsing PDFs~\cite{Bast2017}. Among these, S2ORC (\LaTeX{}) provides well structured full-text content usable for a wide variety of applications (see Section~\ref{sec:applications}), while arXMLiv and SciXGen are optimized for special purposes. We therefore base our structured document representation on S2ORC (\LaTeX{}). Regarding the citation network, however, unarXive 2020 achieves the most high-quality results in direct comparison among existing data sets. We therefore base our citation network creation on unarXive 2020.
+As shown in Table~\ref{tab:comparison}, the majority of related data sets is based on paper's \LaTeX{} sources---which is less noise-prone than parsing PDFs~\cite{Bast2017}. Among these, S2ORC (\LaTeX{}) provides well-structured full-text content usable for a wide variety of applications (see Section~\ref{sec:applications}), while arXMLiv and SciXGen are optimized for special purposes. We therefore base our structured document representation on S2ORC (\LaTeX{}). Regarding the citation network, however, unarXive 2020 achieves the most high-quality results in direct comparison among existing data sets. We therefore base our citation network creation on unarXive 2020.
 
 Regarding both S2ORC (\LaTeX{}) and unarXive 2020, we do not just copy, but also improve upon the existing work. To furthermore provide an up-to-date data set, we use as source data all papers on arXiv.org up until the end of 2022.
 

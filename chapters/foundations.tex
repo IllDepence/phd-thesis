@@ -103,7 +103,7 @@ Besides arXiv.org, we are not aware of other significant sources of scientific l
 %   -> JATS is mighty, Word is XML, triple formats are used for metadata
 
 \paragraph{Word}
-documents (DOCX files\refurl{https://www.loc.gov/preservation/digital/formats/fdd/fdd000397.shtml}{2023-11-08}) are the second major data format commonly accepted by publishers for submitting manuscripts~\cite{Johnson2018stm}. Contrary to the \LaTeX{} approach of compilation from source files, documents are edited in an interactive ``What you see is what you get'' (WYSIWYG) editor.\refurl{https://www.microsoft.com/microsoft-365/word}{2023-11-08} While DOCX files are essentially ZIP compressed XML files, and contain more explicit information then PDF derivates, there appear to be no open repositories similar to arXiv.org that provide large quantities of papers' Word source files. These are only available to the publishers receiving manuscript submissions in DOCX format. % open question: do publishers keep them?
+documents (DOCX files\refurl{https://www.loc.gov/preservation/digital/formats/fdd/fdd000397.shtml}{2023-11-08}) are the second major data format commonly accepted by publishers for submitting manuscripts~\cite{Johnson2018stm}. Contrary to the \LaTeX{} approach of compilation from source files, documents are edited in an interactive ``What you see is what you get'' (WYSIWYG) editor.\refurl{https://www.microsoft.com/microsoft-365/word}{2023-11-08} While DOCX files are essentially ZIP compressed XML files, and contain more explicit information than PDF derivates, there appear to be no open repositories similar to arXiv.org that provide large quantities of papers' Word source files. These are only available to the publishers receiving manuscript submissions in DOCX format. % open question: do publishers keep them?
 
 \paragraph{Journal Article Tag Suite}
 (JATS) is a standardized markup format for scientific publications based on XML~\cite{Huh2014}. As depicted in Figure~\ref{fig:foundations-datalifecycle}, JATS files are not directly created by researchers, but are rather an intermediate format used by publishers, from which they derive different presentation formats of publications, such as PDF and HTML. While JATS files provide semantically richer information than \LaTeX{} or Word source files, their generation can only partially be automated and requires human oversight. Regarding availability, the PubMed Central Open Access Subset\refurl{https://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/}{2023-11-06} (PMC OAS) provides over 3 million publications from the biomedical and life sciences domain in JATS XML format. While the JATS files of the PMC OAS have been used to generate a corpus of linked publications in the past~\cite{Gipp2015}, more up-to-date and widely used corpora have only used the PDF versions of the contained documents~\cite{Lo2020}.
@@ -362,7 +362,7 @@ Accuracy is informative in evaluations where the labels are balanced, but of lim
 Achieving high precision and recall with a model is always a trade-off. This can be illustrated by the fact that a model, which always predicts a positive label, will achieve a perfect recall of 1.\footnote{Always predicting a positive label ensures $\text{FN} = 0$, which means $\text{R} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{TP} + 0} = \frac{\text{TP}}{\text{TP}} = 1$.} Such a model would predict all ground truth positives correctly, but in turn predict all ground truth negatives incorrectly.
 
 \paragraph{F-score}
-is a means to quantify precision and recall in a single value. Its general form, $\text{F}_\beta$, allows to put more weight on either the precision or recall. Setting $\beta$ to 1 gives the $\text{F}_1$-score, which is the harmonic mean of precision and recall.
+is a means to quantify precision and recall in a single value. Its general form, $\text{F}_\beta$, allows putting more weight on either the precision or recall. Setting $\beta$ to 1 gives the $\text{F}_1$-score, which is the harmonic mean of precision and recall.
 
 \begin{equation*}
 \text{$\text{F}_1$-score ($\text{F}_1$)} = \frac{2 \cdot \text{P} \cdot \text{R}}{\text{P + R}}
@@ -392,7 +392,7 @@ If a reference cannot be linked to the target set, it stands to question if
     \item (b) the reference publication \emph{is not} part of the target set, and the matching model correctly determined that none of the publications in the target set is the correct match.
 \end{itemize}
 
-As a consequence, the recall of a reference linking model (i.e., the ratio of successfully matched references) is influenced both by the model performance \emph{and} the selection of target set. Recall values should therefore be interpreted with with comprehensiveness of the target set in mind.
+As a consequence, the recall of a reference linking model (i.e., the ratio of successfully matched references) is influenced both by the model performance \emph{and} the selection of target set. Recall values should therefore be interpreted with comprehensiveness of the target set in mind.
 Precision values (i.e., the correctness ratio of matched references), on the other hand, can be understood as is without special considerations.
 
 \paragraph{Entity Recognition}
@@ -404,7 +404,7 @@ The metrics typically used for ER evaluations are precision, recall, and $\text{
 % consider adding considerations/consequences specific to the scholarly data context (in case there are any relevant ones)
 
 \paragraph{Relation Extraction}
-(RE) has to goal of determining the relations between entities that are mentioned in a text. It can be posed as a classification task on entity pairs. That is, for each possible combination of two entities $a$ and $b$ in a document, the task is to determine a relation label for $(a, b)$, where ``no relation'' is among the possibilities. A further distinction can be made by defining a ``none of the above'' (NOTA) label, which means the two entities \emph{are} in a relation, but there is not fitting label in the set of labels defined by the task~\cite{Bassignana2022}. % could also mention directed vs undirected relations -> strict vs loose evaluation
+(RE) has the goal of determining the relations between entities that are mentioned in a text. It can be posed as a classification task on entity pairs. That is, for each possible combination of two entities $a$ and $b$ in a document, the task is to determine a relation label for $(a, b)$, where ``no relation'' is among the possibilities. A further distinction can be made by defining a ``none of the above'' (NOTA) label, which means the two entities \emph{are} in a relation, but there is not fitting label in the set of labels defined by the task~\cite{Bassignana2022}. % could also mention directed vs undirected relations -> strict vs loose evaluation
 Relation extraction, as described above, is evaluated on an \emph{entity level}, while \emph{mentions} of those entities are contained in the text based on which relations get determined. To illustrate this, consider the following text.
 
 \begin{quote}
