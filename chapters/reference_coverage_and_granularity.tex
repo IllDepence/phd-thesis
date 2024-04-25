@@ -338,7 +338,7 @@ Large data sets derived from the full-texts of academic publications are of ever
 
 % - - - - - What are key shortcomings of current data sets? (research gap)
 
-Key aspects of such data sets are (1)~basic measures such as quality, size, and temporal as well as disciplinary coverage, (2)~their citation network, and (3)~handling of non-textual content. (1)~Quality is affected by the source material (e.g. PDF or \LaTeX{}) and parsing method. (2)~The citation network is important to allow for bibliometric analyses. (3)~Non-textual content such as tables, figures, and mathematical notation often contain important information.
+Key aspects of such data sets are (1)~basic measures such as quality, size, and temporal as well as disciplinary coverage, (2)~their citation network, and (3)~handling of non-textual content. (1)~Quality is affected by the source material (e.g.\ PDF or \LaTeX{}) and parsing method. (2)~The citation network is important to allow for bibliometric analyses. (3)~Non-textual content such as tables, figures, and mathematical notation often contain important information.
 
 Across these key aspects, we see significant shortcomings in currently available data sets, as shown in Table~\ref{tab:comparison}. For example, (1)~limited size (SciXGen), (2)~omission of a citation network (arXMLiv), and (3)~no or limited handling of mathematical notation (S2ORC, unarXive 2020).
 
@@ -450,7 +450,7 @@ Conceptually, our overall data set creation process can be broken down into two 
 \subsubsection{Document Parsing}
 To convert the \LaTeX{} source of a paper into a format that is well suited for NLP applications and analyses, we follow S2ORC (\LaTeX{}) and unarXive 2020 and perform the following three steps. First, we flatten the paper's \LaTeX{} source into a single \texttt{.tex} document using latexpand.\refurl{https://ctan.org/pkg/latexpand}{2023-11-10} Next, we use the tool Tralics\refurl{https://www-sop.inria.fr/marelle/tralics/}{2023-11-10} to convert the \LaTeX{} source into XML. In the last step, we create an easy to handle JSON structure from the XML.
 
-We adapt and extend the JSON structure of S2ORC as shown in Table~\ref{tab:formext}. Adding paper metadata facilitates easier analyses (e.g. for specific or across disciplines). Including information on section numbers and types reflects the document structure more closely (e.g. the nesting structure is not lost). Retaining URLs from embedded links helps with reference linking (see Section~\ref{sec:reflink}).
+We adapt and extend the JSON structure of S2ORC as shown in Table~\ref{tab:formext}. Adding paper metadata facilitates easier analyses (e.g.\ for specific or across disciplines). Including information on section numbers and types reflects the document structure more closely (e.g.\ the nesting structure is not lost). Retaining URLs from embedded links helps with reference linking (see Section~\ref{sec:reflink}).
 
 We mark the position of citation markers, tables, figures, and mathematical notation within the running text, and link citations markers to their references, tables and figures to their captions (i.e., textual surrogates of their content), and mathematical notation to its original \LaTeX{} content.
 
@@ -487,8 +487,8 @@ We mark the position of citation markers, tables, figures, and mathematical nota
         \begin{minipage}[t]{\linewidth}
             \begin{itemize}[leftmargin=1mm]
                 \item Section number 
-                \item Section type (e.g. \textit{section}, \textit{subsection}) 
-                \item Content type (e.g. \textit{paragraph}, \textit{listing}, \textit{proof})
+                \item Section type (e.g.\ \textit{section}, \textit{subsection}) 
+                \item Content type (e.g.\ \textit{paragraph}, \textit{listing}, \textit{proof})
             \end{itemize}
         \end{minipage}\\
     %\midrule
@@ -516,7 +516,7 @@ To add a citation network to the data set, bibliographical references---which at
 
 \paragraph{Parsing} unarXive 2020 utilizes the tool Neural Parscit~\cite{neuralparscit} for reference parsing and furthermore uses a heuristic procedure to determine identifiers such as DOIs or arXiv IDs found within reference string. We use GROBID~\cite{Lopez2009}, a more commonly used and actively developed tool. Additionally, we extend the identifier determination heuristics to be more robust and versatile by refining matching patterns and extending them to more citation styles.
 
-\paragraph{Matching} unarXive 2020 matches references to paper records in the Microsoft Academic Graph (MAG)~\cite{Sinha2015}, which is no longer publicly available. Instead of the MAG, we use OpenAlex~\cite{openalex}, the MAG's open successor provided by the nonprofit organization OurResearch.\refurl{https://ourresearch.org/}{2023-11-10} Choosing OpenAlex allows us to also match references to recent papers, which would not be contained in legacy versions of the MAG. Additionally, the fact that OpenAlex paper records contain a variety of identifiers (e.g. DOI and PubMed ID) facilitates combined and comparative analyses of our data with others. Furthermore, OpenAlex has been deemed better suited for bibliographic analyses than the MAG~\cite{openalex-vs-mag}.
+\paragraph{Matching} unarXive 2020 matches references to paper records in the Microsoft Academic Graph (MAG)~\cite{Sinha2015}, which is no longer publicly available. Instead of the MAG, we use OpenAlex~\cite{openalex}, the MAG's open successor provided by the nonprofit organization OurResearch.\refurl{https://ourresearch.org/}{2023-11-10} Choosing OpenAlex allows us to also match references to recent papers, which would not be contained in legacy versions of the MAG. Additionally, the fact that OpenAlex paper records contain a variety of identifiers (e.g.\ DOI and PubMed ID) facilitates combined and comparative analyses of our data with others. Furthermore, OpenAlex has been deemed better suited for bibliographic analyses than the MAG~\cite{openalex-vs-mag}.
 
 % if we need scientific foundation for the decision to choose OpenAlex:
 % a recent research comparing MAG's and OpenAlex suitability for bibliometric work concludes: " OpenAlex seems to be more suited for bibliometric analyses than MAG"
@@ -627,7 +627,7 @@ The result is 2.5 M items consisting of (1) a paragraph and citation marker posi
 
 \paragraph{IMRaD Classification}
 Scientific publications are usually structured into sections commonly summarized as ``Introduction, Methods, Results, and Discussion'' (IMRaD). Classifying sections of scientific text into these four classes is done, for example, in fine-grained citation classification. % ---to answer, for example, if a publication was cited as background information in the introduction, or as an influence on the methodology in the methods section.
-Because conventions differ between disciplines, we prepare data for this task for computer science papers only. To aforementioned four classes we add the common ``Related Work'' section as a fifth class. From the permissively licensed computer science papers in our data, we use those that are unambiguously assignable to one of the five classes. The result is 530~k items consisting of (1) the paragraph text (model input), and (2) the class (desired model output). An exemplary application scenario for a model trained on this data is a paper writing assistant that can detect parts in a manuscript, which might be better placed in a different section (e.g. discussion rather than results).
+Because conventions differ between disciplines, we prepare data for this task for computer science papers only. To aforementioned four classes we add the common ``Related Work'' section as a fifth class. From the permissively licensed computer science papers in our data, we use those that are unambiguously assignable to one of the five classes. The result is 530~k items consisting of (1) the paragraph text (model input), and (2) the class (desired model output). An exemplary application scenario for a model trained on this data is a paper writing assistant that can detect parts in a manuscript, which might be better placed in a different section (e.g.\ discussion rather than results).
 % The data is available at \refurlinline{https://huggingface.co/datasets/saier/unarXive_imrad_clf}{2023-11-10}.
 
 
