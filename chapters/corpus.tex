@@ -58,7 +58,7 @@ It is freely available at \refurlinline{http://doi.org/10.5281/zenodo.3385851}{2
 
 \begin{table}[t]
 \centering
-  \caption{Overview of the proposed data set}
+  \caption[Overview of the proposed data set]{Overview of the proposed data set.}
   \label{tbl:allthestats}
 \begin{small}
 \begin{tabular}{lrcc|cc}
@@ -120,7 +120,7 @@ This data set has the following drawbacks~\cite{Roy2016fixed,Faerber2018LREC}: T
 \begin{table}[tb]
  % \caption{Overview of existing data sets\\\small{(\#P.=Number of papers; Cit.\ cont.=Citation contexts; Ref.\ IDs=Reference IDs; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics)\\(\emph{extractable*} indicates that extraction might be error-prone due to papers only being available in PDF format)}}
  % NOTE: above is original caption, but does not compile in this document class
- \caption[Overview of existing data sets]{Overview of existing data sets (\#Papers=Number of papers; Cit.\ contexts=Citation contexts; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics; extractable* indicates that extraction might be error-prone due to papers only being available in PDF format)}
+ \caption[Overview of existing data sets]{Overview of existing data sets (\#Papers=Number of papers; Cit.\ contexts=Citation contexts; CS=Computer Science, BM=Biomedicine, LS=Life Sciences, CL=Computer Linguistics; extractable* indicates that extraction might be error-prone due to papers only being available in PDF format).}
  \label{tab:existing-data-sets}
   \centering
   \begin{small}
@@ -181,7 +181,7 @@ The following two resources are the basis of the data set creation process.
 \begin{figure}[tb]
   \centering
     \includegraphics[width=.7\textwidth]{figures/corpus/Fig1.pdf}
-  \caption{Schematic representation of the data set generation process}
+  \caption[Schematic representation of the data set generation process]{Schematic representation of the data set generation process.}
   \label{fig:datagen}
 \end{figure}
 
@@ -196,7 +196,7 @@ In the following, we will describe the tools considered for parsing \LaTeX{}, th
 
 \begin{table}[tb]
 \centering
-  \caption{Comparison of tools for parsing \LaTeX{}}
+  \caption[Comparison of tools for parsing \LaTeX{}]{Comparison of tools for parsing \LaTeX{}.}
   \label{tbl:tools}
 \begin{small}
 \begin{threeparttable}
@@ -239,7 +239,7 @@ Resolving references to globally consistent identifiers (e.g.\ detecting that th
 \subsubsection{Challenges}
 Reference resolution can be challenging when reference strings contain only minimal amounts of information, when formulas or other special notation is used in titles, or when they refer to non publications (e.g., Listing~\ref{lst:refitems}, (4)--(6)).  Another problem we encountered was noise in the MAG. One such case are the MAG papers with IDs \texttt{2167727518} and \texttt{2763160969}. Both are identically titled \emph{``Observation of a new boson at a mass of 125 GeV with the CMS experiment at the LHC''} and dated to the year 2012. But while the former is cited 17k times and cites 112 papers within the MAG, the latter is a neither cited nor cites any other papers.\footnote{The MAG record with ID \texttt{2763160969} appears to be a noisy duplicate caused by a web source with easily misinterpretable author information (only a partial list is displayed).} Taking the number of citations into account when matching references, reduced the number of mismatches in this particular case from 2,918 to 0 and improved the overall quality of matches in general.
 
-\begin{lstlisting}[caption={Examples of reference strings},label={lst:refitems}]
+\begin{lstlisting}[caption={Examples of reference strings.},label={lst:refitems}]
 (1) V. N. Senoguz and Q. Shafi, arXiv:hep-ph/0412102
 (2) V.N. Senoguz and Q. Shafi, Phys. Rev. D 71 (2005) 043514.
 (3) V. N. Senoguz and Q. Shafi, ''Reheat temperature in supersymme
@@ -262,7 +262,7 @@ The identified title is then matched against the normalized titles of all public
 Listing~\ref{lst:formatall} shows some example content from the data set. In addition to the paper plain text files and the references database, we also provide the citation contexts of all successfully resolved references extracted to a CSV file as well as a script to create custom exports.\footnote{See Python script \texttt{extract\_contexts.py} bundled with the data set for details.} For the provided CSV export, we set the citation context length to 3 sentences---the sentence containing the citation as well as the one before and after---as used by~\cite{Tang2014} and~\cite{Huang2015fixed}. Each line in an export CSV has the following columns: cited MAG ID, adjacent cited MAG IDs, citing MAG ID, cited arXiv ID, adjacent cited arXiv IDs, citing arXiv ID, text (see bottom of Listing~\ref{lst:formatall}). Citations are deemed adjacent, if they are part of a citation group or are at most 5 characters apart (e.g.\ ``\emph{[27,42]''}, \emph{``[27], [42]''} or \emph{``[27] and [42]''}). The IDs of adjacent cited documents are added, because those documents are cited in an almost identical context (i.e., only a few characters to the left or right).
 % Sentence tokenization for the extraction is performed with NLTK's pre-trained PunktSentenceTokenizer.
 
-\begin{lstlisting}[caption={Excerpts from (top to bottom) a paper's plain text, corresponding entries in the references database, entries in the MAG, and extracted citation context CSV},label={lst:formatall}]
+\begin{lstlisting}[caption={Excerpts from (top to bottom) a paper's plain text, corresponding entries in the references database, entries in the MAG, and extracted citation context CSV.},label={lst:formatall}]
 It has over 79 million images stored at the resolution of FORMULA 
 . Each image is labeled with one of the 75,062 non-abstract nouns 
 in English, as listed in the Wordnet{{cite:9ad20b7d-87d1-47f5-aeed
@@ -302,14 +302,14 @@ Comparing the performance of our approach using all papers (1991--2018) to using
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=0.92\linewidth]{figures/corpus/Fig2.pdf}
-  \caption{Number of citing documents per cited document}
+  \caption[Number of citing documents per cited document]{Number of citing documents per cited document.}
   \label{fig:numcitdoc}
   \vspace{1em}
 %\end{figure}
 %\begin{figure}[ht]
 %  \centering
   \includegraphics[width=0.92\linewidth]{figures/corpus/Fig3.pdf}
-  \caption{Number of citation contexts per reference}
+  \caption[Number of citation contexts per reference]{Number of citation contexts per reference.}
   \label{fig:numcontref}
     \vspace{1em}
 \end{figure}
@@ -324,7 +324,7 @@ Our data set consists of \emph{2,746,288 cited papers, 1,043,126 citing papers, 
 \begin{figure}[tb]
   \centering
     \includegraphics[width=.9\textwidth]{figures/corpus/Fig4.pdf}
-  \caption{Visualization of the citation flow in terms of documents and references from arXiv to the MAG}
+  \caption[Visualization of the citation flow in terms of documents and references from arXiv to the MAG]{Visualization of the citation flow in terms of documents and references from arXiv to the MAG.}
   \label{fig:inflow}
 \end{figure}
 
@@ -340,7 +340,7 @@ Because not all documents referenced by arXiv papers are hosted on arXiv itself,
 To evaluate the validity of our reference resolution results, we take a random sample of 300 matched reference strings and manually check for each of them, if the correct record in the MAG was identified. This is done by viewing the reference string next to the matched MAG record and verifying, if the former actually refers to the latter.\footnote{Further details can be found at \refurlinline{https://github.com/IllDepence/unarXive/tree/legacy_2020/doc/matching_evaluation}{2023-11-06}.} Given the 300 items, we observed 3 errors, giving us an accuracy estimate of 96\% at the worst, as shown in Table~\ref{tbl:confvals}. Table~\ref{tbl:mismatches} shows the three incorrectly identified documents. In all three cases the misidentified document's title is contained in the correct document's title, and there is a large or complete author overlap between correct and actual match. This shows that authors sometimes title follow-up work very similarly, which leads too hard to distinguish cases.
 
 \begin{table}[tb]
-  \caption[Confidence intervals for a sample size of 300]{Confidence intervals for a sample size of 300 with 297 positive results as given by Wilson score interval and Jeffreys interval~\cite{Brown2001}}
+  \caption[Confidence intervals for a sample size of 300]{Confidence intervals for a sample size of 300 with 297 positive results as given by Wilson score interval and Jeffreys interval~\cite{Brown2001}.}
   \label{tbl:confvals}
   \centering
   \begin{small}
@@ -359,7 +359,7 @@ To evaluate the validity of our reference resolution results, we take a random s
 \end{table}
 
 \begin{table}[tb]
-  \caption{Mismatched documents}
+  \caption[Mismatched documents]{Mismatched documents.}
   \label{tbl:mismatches}
   \centering
   \begin{small}
@@ -386,14 +386,14 @@ For the 95\% of our data set, where citing as well as cited document have a MAG 
 \begin{figure}[tb]
   \centering
     \includegraphics[width=\textwidth]{figures/corpus/Fig5.pdf}
-  \caption[Composition of reference section coverage for all citing documents]{Composition of reference section coverage for all citing documents (cut off at 100 cited documents)}
+  \caption[Composition of reference section coverage for all citing documents]{Composition of reference section coverage for all citing documents (cut off at 100 cited documents).}
   \label{fig:citcomp}
 \end{figure}
 
 \begin{figure}[tb]
   \centering
     \includegraphics[width=\textwidth]{figures/corpus/Fig6.pdf}
-  \caption[Distribution of citing documents in terms of reference section size and their coverage in unarXive and MAG]{Distribution of citing documents in terms of reference section size and their coverage in unarXive and MAG (cut off at 750 cited documents)}
+  \caption[Distribution of citing documents in terms of reference section size and their coverage in unarXive and MAG]{Distribution of citing documents in terms of reference section size and their coverage in unarXive and MAG (cut off at 750 cited documents).}
   \label{fig:citcount2balance}
 \end{figure}
 
@@ -409,7 +409,7 @@ Because the documents in unarXive span multiple scientific disciplines, interdis
 \begin{figure}
   \centering
     \includegraphics[width=0.97\textwidth]{figures/corpus/Fig7.pdf}
-  \caption[Citation flow by discipline for 15.9 million references]{Citation flow by discipline for 15.9 million references (the number of citing and cited documents per discipline are plotted on the sides)}
+  \caption[Citation flow by discipline for 15.9 million references]{Citation flow by discipline for 15.9 million references (the number of citing and cited documents per discipline are plotted on the sides).}
   \label{fig:sankey}
 \end{figure}
 
@@ -420,7 +420,7 @@ Figure~\ref{fig:sankey} depicts the flow of citations by discipline for all 15.9
 \begin{figure}
   \centering
     \includegraphics[width=\textwidth]{figures/corpus/Fig8.pdf}
-  \caption{Normalized distribution of the number of citation contexts per cited document}
+  \caption[Normalized distribution of the number of citation contexts per cited document]{Normalized distribution of the number of citation contexts per cited document.}
   \label{fig:citcontextdist}
 \end{figure}
 
@@ -434,7 +434,7 @@ We first discuss the terms \emph{``integral''} and \emph{``syntactic''}, which a
 
 \begin{table}
 \centering
-    \caption[Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic]{Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic (``\checkmark''=yes, ``$\times$''=no, ``?''=unclear)}
+    \caption[Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic]{Examples of citations and their categorization into integral/non-\allowbreak integral as well as syntactic/non-syntactic (``\checkmark''=yes, ``$\times$''=no, ``?''=unclear).}
     \label{tab:integralsyntactic}
 \begin{center}
     \begin{tabular}{llll|ll}
@@ -461,7 +461,7 @@ Table~\ref{tab:integralsyntactic} gives a more detailed account of both terms' u
 
 \begin{table}
 \centering
-    \caption{Examples of target section specific citations}
+    \caption[Examples of target section specific citations]{Examples of target section specific citations.}
     \label{tab:secspec}
 \begin{center}
     \begin{tabular}{l}
@@ -486,7 +486,7 @@ In the following we will analyze all three aspects (integral, syntactic, target 
 
 \begin{table}[tb]
 \centering
-  \caption[Per discipline number of citations labeled integral, syntactic, imultaneously integral and syntactic, target section specific]{Per discipline number of citations labeled (1)~integral, (2)~syntactic, (3)~simultaneously integral and syntactic, (4)~target section specific (sample size = 300)}
+  \caption[Per discipline number of citations labeled integral, syntactic, imultaneously integral and syntactic, target section specific]{Per discipline number of citations labeled (1)~integral, (2)~syntactic, (3)~simultaneously integral and syntactic, (4)~target section specific (sample size = 300).}
   \label{tbl:integralsyntacticsecspec}
 \begin{small}
 \begin{tabular}{lrrrr}
@@ -531,7 +531,7 @@ Sentences including a target section specific citation often follow distinct and
 
 \begin{table}[tb]
 \centering
-  \caption[Occurrence of target section specific citations by discipline]{Occurrence of target section specific citations by discipline (pairs annotated as follows, \textsuperscript{\textdagger}:~Mathematics citing document, \textsuperscript{\textdaggerdbl}:~Mathematics cited document, \underline{X$\rightarrow$X}:~Citing and cited document are from the same discipline)}
+  \caption[Occurrence of target section specific citations by discipline]{Occurrence of target section specific citations by discipline (pairs annotated as follows, \textsuperscript{\textdagger}:~Mathematics citing document, \textsuperscript{\textdaggerdbl}:~Mathematics cited document, \underline{X$\rightarrow$X}:~Citing and cited document are from the same discipline).}
   \label{tbl:secref}
 \begin{small}
 \begin{tabular}{llrrr}

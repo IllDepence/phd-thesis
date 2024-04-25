@@ -43,7 +43,7 @@ Cross-lingual citations are, however, important bridges between otherwise insuff
 \begin{figure}[b] % tb (moved to prevent end of overview section below the figure)
 \centering
 \includegraphics[width=0.5\linewidth]{figures/ref_xling/terminology_with_text_twocolumn.pdf}
-\caption{Schematic explanation of terminology.} \label{fig:terminology}
+\caption[Schematic explanation of terminology]{Schematic explanation of terminology.} \label{fig:terminology}
 \end{figure}
 
 English currently being the de facto academic lingua franca~\cite{Montgomery2013}, citations from non-English languages to English are significantly more prevalent than the other way around. This dichotomy is reflected in existing literature, where usually either citations from English~\cite{Kellsey2004,Lillis2010}, or to English~\cite{Tang2014,Jiang2018,Jiang2018b,Schrader2019} are analyzed. As both directions involve a non-English document on one side of the citation, the analysis of either is challenging with today's anglocentric state of citation data.
@@ -74,7 +74,7 @@ Because \textit{citation}, \textit{reference} and related terms are not used con
 \section{Related Work}\label{sec:relwork}
 
 \begin{table*}
-\caption{Comparison of corpora}
+\caption[Comparison of corpora]{Comparison of corpora.}
  \label{tab:relworkcomp}
   \centering
   \begin{small}
@@ -143,7 +143,7 @@ In the large automated analysis, we first identify the cited document's title wi
 Manually inspecting our results, we note that non-Latin script languages (e.g., Chinese, Japanese, Russian) are detected reliably,\footnote{To be more precise, no language that uses a script different to the Latin alphabet appears to be falsely identified as English. We are, however, not able to judge whether languages using the same non-Latin script---such as languages written in Cyrillic---are distinguished correctly by Lingua.} but Latin script languages (e.g., German and French) are not. For instance, many English titles are falsely identified as German.
 
 \begin{table}
-\caption{References to non-Latin script languages in the automated analysis}
+\caption[References to non-Latin script languages in the automated analysis]{References to non-Latin script languages in the automated analysis.}
  \label{tab:automatedresults}
   \centering
   \begin{small}
@@ -167,7 +167,7 @@ Manually inspecting our results, we note that non-Latin script languages (e.g., 
 For non-Latin script languages, which we show in Table~\ref{tab:automatedresults}, only a small fraction of cross-lingual citations is not explicitly marked. We observe ratios of unmarked cross-lingual citations relative to explicit markers consistently below 2\%.\footnote{Because our analysis is based on language identification of the titles of cited publications, we cannot detect when a non-English work is cited with a translated title \emph{and} no explicit language marker.}
 
 \begin{table}
-\caption{Results of manual labeling}
+\caption[Results of manual labeling]{Results of manual labeling.}
  \label{tab:manualresults}
   \centering
   \begin{small}
@@ -202,7 +202,7 @@ The results of above preliminary investigations have two consequences for the fi
 \subsection{Data Source Selection}\label{sec:dataselect}
 
 \begin{table}
-\caption{Overview of data sets}
+\caption[Overview of data sets]{Overview of data sets.}
  \label{tab:datasets}
   \centering
   \begin{small}
@@ -246,7 +246,7 @@ To analyze differences between papers containing cross-lingual citations in unar
 In the following, we describe the results of our analyses with regard to the questions laid out in the introduction. We begin with general numbers concerning the \emph{prevalence} of cross-lingual citations. These results are based on unarXive alone. This is followed by more in-depth observations regarding cross-lingual citations' \emph{usage} (e.g., the underlying motivation or the citation's function) and \emph{impact} (e.g., acceptance by reviewers or challenges for data mining). These subsequent in-depth analyses additionally utilize the MAG metadata.
 
 \begin{table}
-\caption{Overview of data used}
+\caption[Overview of data used]{Overview of data used.}
  \label{tab:dataused}
   \centering
   \begin{small}
@@ -275,7 +275,7 @@ In the following, we describe the results of our analyses with regard to the que
 We find \textit{``(in $<$Language$>$)''} markers in 33,290 out of 39,694,083 reference section entries (0.08\%). These appear in 18,171 out of 1,192,097 documents (1.5\%)---in other words in every 66th document. Of these 18k documents, 17,223 cite one language other than English, 864 cite two, 76 three, 7 documents four, and a single document cites works in English and five further languages (Russian, French, Polish, Italian, and German). The five most common language pairs within a single document are Russian-Ukrainian (277 documents), German-Russian (166), French-Russian (135), French-German (68), and Chinese-Russian (59).
 
 \begin{table}
-\caption{Most prevalent languages}
+\caption[Most prevalent languages]{Most prevalent languages.}
  \label{tab:prevlangs}
   \centering
   \begin{small}
@@ -306,13 +306,13 @@ Table~\ref{tab:prevlangs} shows the absolute number of reference section entries
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/ref_xling/relative_number_of_papers_lessthan64.pdf}
-\caption{Relative number of mathematics, physics, and computer science documents citing non-English works.} \label{fig:prevperdisc}
+\caption[Relative number of mathematics, physics, and computer science documents citing non-English works]{Relative number of mathematics, physics, and computer science documents citing non-English works.} \label{fig:prevperdisc}
 \end{figure}
 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/ref_xling/cross_ling_ratio_distribution_lessthan64.pdf}
-\caption{``Cross-linguality'' of reference sections by discipline.} \label{fig:xlinglyhistbydisc}
+\caption[``Cross-linguality'' of reference sections by discipline]{``Cross-linguality'' of reference sections by discipline.} \label{fig:xlinglyhistbydisc}
 \end{figure}
 
 Lastly, within the reference section of a document that has at least one cross-lingual citation, the mean value of ``cross-linguality'' (i.e., what portion of the reference section is cross-lingual) is 0.083 with a standard deviation of 0.099. Breaking these numbers down by discipline, we can see in Figure~\ref{fig:xlinglyhistbydisc} that there is no large difference, although mathematics papers tend to have a slightly higher portion of cross-lingual citations. The mean values for mathematics, physics and computer science are 0.090, 0.078, and 0.080 respectively.
@@ -332,7 +332,7 @@ To assess the relative degree of self-citation when referring to publications in
 To determine self-citation, we rely on the author metadata in the MAG and therefore require both the citing and cited document of a reference to have a MAG ID. Within the cross-lingual set, this is the case for 3,370 cross-lingual references and 264,341 monolingual references. While at first, we strictly determine a self-citation by author IDs in the MAG being identical, manual inspection of matches and non-matches reveals, that author disambiguation within the MAG is somewhat lacking---that is, in a non-trivial amount of cases there are several IDs for a single author. We therefore measure self-citation by two metrics. A strict metric which only counts a match of MAG IDs, and a loose metric which counts an overlap of the sets of author names on both ends of the reference as a self-citation.
 
 \begin{table}[tb]
-\caption{Self-citations}
+\caption[Self-citations]{Self-citations.}
  \label{tab:selfcit}
   \centering
   \begin{small}
@@ -357,13 +357,13 @@ Table~\ref{tab:selfcit} shows that going by the strict metric, self-citation is 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/ref_xling/citlang_to_author_aff_absolute_crop.pdf}
-\caption{Geographic origin of cross-lingual citations to the ten most cited languages (absolute count).} \label{fig:geo_abs}
+\caption[Geographic origin of cross-lingual citations to the ten most cited languages (absolute count)]{Geographic origin of cross-lingual citations to the ten most cited languages (absolute count).} \label{fig:geo_abs}
 %\end{figure}
 
 %\begin{figure}[tb]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/ref_xling/citlang_to_author_aff_relative_crop.pdf}
-\caption{Geographic origin of cross-lingual citations to the ten most cited languages (relative count).} \label{fig:geo_rel}
+\caption[Geographic origin of cross-lingual citations to the ten most cited languages (relative count)]{Geographic origin of cross-lingual citations to the ten most cited languages (relative count).} \label{fig:geo_rel}
 \end{figure}
 
 In this section we analyze the geographical origin of cross-lingual citations. As a measure for geographical origin we use the country in which a citing author's affiliation is located. We refer to a citation as being to a ``local language'' or of ``local origin'', if the cited document's language is the most commonly spoken language in the affiliation's location. An example of this would be a researcher affiliated with a research institution located in Russia, being the author of a paper in which they cite a publication written in Russian.
@@ -396,13 +396,13 @@ For the \textit{in-text x-ling} set we determine all in-text citations associate
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.5\linewidth]{figures/ref_xling/adjacent_reference_sampling.pdf}
-\caption{Schematic explanation of an adjacent monolingual reference.} \label{fig:adjrefsampling}
+\caption[Schematic explanation of an adjacent monolingual reference]{Schematic explanation of an adjacent monolingual reference.} \label{fig:adjrefsampling}
 \end{figure}
 
 As a citing sentence can contain more than one citation marker, it is possible that the in-text citations associated with two adjacent reference section entries appear within the same sentence (e.g., as indicated in the second ``text'' line in Figure~\ref{fig:adjrefsampling}). This is the case for 10,454 of the in-text citations we extracted (i.e., these appear in both sets). We define them as a third set called \textit{mixed}, leaving \textit{in-text x-ling} and \textit{in-text mono} at 35,062 items each.
 
 \begin{table}
-\caption{Class distribution and evaluation details for the model training.}
+\caption[Class distribution and evaluation details for the model training]{Class distribution and evaluation details for the model training.}
  \label{tab:classdist}
   \centering
   \begin{small}
@@ -520,7 +520,7 @@ For the manual evaluation, we take a random sample of 100 paper pairs. We then r
 Table~\ref{tab:peerreview} shows the results of our evaluations. In both, cross-lingual citations are more often removed than added, but in the majority of cases left intact. The larger volatility in the automated evaluation is likely due to parsing inconsistencies of GROBID. Our findings complement those of Lillis et al.~\cite{Lillis2010}, who, analyzing psychology journals, observe \textit{``some evidence that gatekeepers [...] are explicitly challenging citations in other languages.''} For the fields of physics, mathematics, and computer science, we find no clear indication of a consistent in- or decreasing effect of the peer review process on cross-lingual citations.
 
 \begin{table}
-\caption{Changes in cross-ling. cit. between preprints and published papers}
+\caption[Changes in cross-lingual citations between preprints and published papers]{Changes in cross-lingual citations between preprints and published papers.}
  \label{tab:peerreview}
   \centering
   \begin{small}
@@ -548,7 +548,7 @@ To get an indication of whether or not an English paper's success is influenced 
 
 
 \begin{table}[tb]
-\caption{Comparison of citations received}
+\caption[Comparison of citations received]{Comparison of citations received.}
  \label{tab:citcounts}
   \centering
   \begin{small}

@@ -240,7 +240,7 @@ We heuristically pre-filter our ML paper corpus for sections reporting on hyperp
     \subfloat[relation distances (\#chars)\label{fig:rel-dists}]{%
         \includegraphics[width=.53\linewidth]{figures/ref_params/stats_artifact_param_value_distance-crop}
     }
-    \caption{Observations of initial annotation round}
+    \caption[Observations of initial annotation round]{Observations of initial annotation round.}
     \label{fig:init-annot}
 \end{figure}
 
@@ -338,7 +338,7 @@ For RE we develop an approach that utilizes token embeddings as well as relative
 \begin{figure}[bt]
   \centering
   \includegraphics[width=.8\linewidth]{figures/ref_params/ffnn_re_sub_visual_v2}
-  \caption{Relation extraction with emphasis on entity candidate pair types and distance.}
+  \caption[Relation extraction with emphasis on entity candidate pair types and distance]{Relation extraction with emphasis on entity candidate pair types and distance.}
   \label{fig:ffnn-re-sub-visual}
 \end{figure}
 
@@ -482,7 +482,7 @@ The models are trained and evaluated on a server with a single GeForce~RTX~3090 
 \begin{figure}[tb]
   \centering
   \includegraphics[width=.8\linewidth]{figures/ref_params/fine_tuned_eval}
-  \caption{Fine-tuned model evaluation (5-fold cross validation).}
+  \caption[Fine-tuned model evaluation (5-fold cross validation)]{Fine-tuned model evaluation (5-fold cross validation).}
   \label{fig:finetunedeval}
 \end{figure}
 
@@ -532,7 +532,7 @@ Mean ER performance is 81.5, 76.8, and 79.0 (P, R, $\text{F}_1$). For RE, the pr
 % RE f1: 19.6 ± 18.0
 \begin{table}
   \centering
-  \caption[Ablation study results]{Ablation study results (model inputs are: T = BERT token embeddings, C = entity class embeddings, D = entity distance)}
+  \caption[Ablation study results]{Ablation study results (model inputs are: T = BERT token embeddings, C = entity class embeddings, D = entity distance).}
   \label{tab:finetunedablation}
   \begin{tabular}{lccc}
     \hline
@@ -551,7 +551,7 @@ Token level ER performance across entity classes (none, artifact, parameter, val
 \begin{figure}
   \centering
   \includegraphics[width=0.3\linewidth]{figures/ref_params/hyperparam_pos-crop}
-  \caption{Frequency of hyperparameter mention positions in papers.}
+  \caption[Frequency of hyperparameter mention positions in papers]{Frequency of hyperparameter mention positions in papers.}
   \label{fig:hyperparam_info_pos}
 \end{figure}
 
@@ -844,7 +844,7 @@ Lastly, we see that using YAML leads to better ER results across all six models,
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\linewidth]{figures/ref_params/format_eval_mix}
-  \caption[Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON and YAML]{Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON (J) and YAML (Y).}
+  \caption[Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON and YAML]{Parsing success, format adherence, hallucinations, and scope adherence of LLM generated JSON~(J) and YAML~(Y).}
   \label{fig:yamlVSjson}
 \end{figure}
 
