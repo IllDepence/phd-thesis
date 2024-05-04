@@ -51,9 +51,9 @@ Topic | Venue | Paper | Author Copy\* | Code &amp; Data |
 :-----|:------|---------------------|--------------|:---------------:|
 Publication Corpus Creation | Scientometrics 2020 | [Springer](https://doi.org/10.1007/s11192-020-03382-z)\* | [AIFB](https://aifb.kit.edu/images/f/f9/UnarXive_Scientometrics2020.pdf) | [GitHub](https://github.com/IllDepence/unarXive/tree/legacy_2020), [Zenodo](https://zenodo.org/records/4313164) |
 Cross-lingual Citations | ICADL 2020 | [Springer](https://doi.org/10.1007/978-3-030-64452-9_11) | [AIFB](https://www.aifb.kit.edu/images/5/5f/Cross-lingual_Citations_ICADL2020.pdf) | [GitHub](https://github.com/IllDepence/icadl2020) |
-Cross-lingual Citations (extended) | IJDL 2021| [Springer](https://doi.org/10.1007/s00799-021-00312-z)\* | [arXiv](https://doi.org/10.48550/arXiv.2111.05097) | [GitHub](https://github.com/IllDepence/cross-lingual-citations-from-en) |
+Cross-lingual Citations (ext.) | IJDL 2021| [Springer](https://doi.org/10.1007/s00799-021-00312-z)\* | [arXiv](https://doi.org/10.48550/arXiv.2111.05097) | [GitHub](https://github.com/IllDepence/cross-lingual-citations-from-en) |
 Inter-Reference Matching | ULITE@JCDL 2022 | [CEUR](https://ceur-ws.org/Vol-3220/paper2.pdf)\* | [AIFB](https://www.aifb.kit.edu/images/c/cc/Reference_Linking_Blocking_ULITE2022.pdf) | [GitHub](https://github.com/IllDepence/ulite2022) |
-Pub. Corpus Creation (improved) | JCDL 2023 | [IEEE](https://doi.org/10.1109/JCDL57899.2023.00020) | [arXiv](https://doi.org/10.48550/arXiv.2303.14957) | [GitHub](https://github.com/IllDepence/unarXive), [Zenodo](https://zenodo.org/records/7752754) |
+Corpus Creation (improved) | JCDL 2023 | [IEEE](https://doi.org/10.1109/JCDL57899.2023.00020) | [arXiv](https://doi.org/10.48550/arXiv.2303.14957) | [GitHub](https://github.com/IllDepence/unarXive), [Zenodo](https://zenodo.org/records/7752754) |
 Hyperparameter IE | ECIR 2024 | [Springer](https://doi.org/10.1007/978-3-031-56060-6_17) | [arXiv](https://doi.org/10.48550/arXiv.2312.10638) | [GitHub](https://github.com/IllDepence/hyperpie) |
 
 <p align=right>&ast;open access</p>
