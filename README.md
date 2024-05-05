@@ -7,6 +7,7 @@
 LaTeX project documenting the writing of my PhD thesis.
 
 * [Official Publication](https://doi.org/10.5445/IR/1000170262)
+* [Defense Slides](https://github.com/IllDepence/phd-defense)
 
 ## Tech
 
@@ -32,10 +33,19 @@ LaTeX project documenting the writing of my PhD thesis.
 
 ## Content
 
-#### General
+▸ **Title**: *Data Mining and Information Extraction Methods for Large-Scale  
+&emsp;&emsp;&emsp;&nbsp;&nbsp;High-Quality Representations of Scientific Publications*
 
-* Title: *Data Mining and Information Extraction Methods for Large-Scale  
-  &emsp;&emsp;&nbsp;&nbsp;High-Quality Representations of Scientific Publications*
+<details><summary><strong>Abstract</strong> (click to expand)</summary>
+
+<p>This dissertation addresses the challenge of generating high-quality, machine-readable representations of scientific publications at a large scale. Structured data representing scientific publications is the basis for vital infrastructure in academia, such as academic search and bibliometric performance indicators. Generating such data involves information extraction from publications’ natural language content, which makes it a challenging and error-prone process. Existing extraction methods and the data they produce are limited in several ways. This is problematic, because it means that applications and research based on currently available data are of limited scope and validity.</p>
+<p>Among the limitations of currently available methods and data, three areas are of particular importance due to their relevance in the academic context. (1)&nbsp;<em>Citation networks</em> are a key characteristic of scientific literature, and are vital for common use cases such as trend analyses and recommender systems. Despite this importance, citation networks of widely used data sets are highly incomplete. (2)&nbsp;<em>Language coverage</em>: science is a global and therefore inherently multi-lingual endeavor. Despite a growing awareness of this, important platforms, approaches, and data sets in the scholarly domain are still limited to English publications only. (3)&nbsp;<em>Research artifacts</em>, such as methods and data sets, become more and more important, as science is increasingly driven by curated data and algorithmic processing. Fine-grained representations of research artifacts bear large potential for applications like faceted academic search and automated reproduction. However, existing extraction methods only yield shallow representations of research artifacts, not sufficient for these use cases.</p>
+<p>To address these issues, we develop data mining and information extraction approaches, that enable the creation of machine-readable publication corpora. We furthermore quantify the improvements we achieve in terms of data quality in each area of limitation. In particular, we make the following contributions. As the foundation of our research, we develop a method for creating a large-scale corpus of interlinked, full-text documents from publications’ LaTeX sources. Applying our method to all of arXiv.org, we create the first corpus of interlinked publications with extensive coverage in physics, mathematics, and computer science. Utilizing our corpus, we further present approaches yielding advances in all of the three aforementioned areas of limitation. (1)&nbsp;We develop a methodology for linking bibliographic references, which achieves state-of-the-art citation network completeness. Based on this, we perform novel types of citation analyses. (2)&nbsp;We present a method for identifying cross-lingual citations and, utilizing it, perform the largest analysis of this type of citation to date. Through our analysis, we are able to identify challenges for integrating non-English publications. (3)&nbsp;We develop information extraction approaches for fine-granular representations of research artifacts and their parameters. Our methods achieve an improvement over strong baselines, and their utilization enables novel types of analyses and applications.</p>
+<p>Overall, our approaches address key shortcomings of existing methods for the creation of structured data representing publications. Through their use, we achieve significant improvements in terms of data quality. For each of our approaches, we demonstrate its viability and benefits through evaluations and practical large-scale applications. Our methods have already been adopted in several parts of the research community, which further confirms their utility.</p>
+</details>
+
+
+#### General Info
 * Research period: 2019 – 2024
 * Research group: [Web Science](https://www.aifb.kit.edu/web/Web_Science/en) group at [institute AIFB](https://www.aifb.kit.edu/), KIT, Germany
 * Writing schedule
