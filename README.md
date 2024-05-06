@@ -29,6 +29,7 @@ LaTeX project documenting the writing of my PhD thesis.
     * written with **vim** ♡
     * illustrations created in **Inkscape**
     * bibliography managed in **JabRef**
+    * proofreading done with **TeXtidote**
 
 
 ## Content
@@ -74,7 +75,7 @@ Hyperparameter IE | ECIR 2024 | [Springer](https://doi.org/10.1007/978-3-031-560
     * make author copies of publications freely accessible
     * share code and data
     * put [author contributions sections](https://credit.niso.org/) in publications
-    * put final dissertation under a CC license
+    * publish dissertation under a CC license
 * write locally (e.g. no web-hosted [Overleaf instance](https://github.com/overleaf/toolkit?tab=readme-ov-file#overleaf-toolkit))
 * create illustrations as vector graphics
 
@@ -82,7 +83,7 @@ Hyperparameter IE | ECIR 2024 | [Springer](https://doi.org/10.1007/978-3-031-560
 
 * [André Greiner-Petter](https://link.springer.com/book/10.1007/978-3-658-40473-4)
     * Highlight boxes with icons
-    * Structure with research objective and research tasks (as opposed to research hypotheses and/or research questions
+    * Structure with research objective and research tasks (as opposed to research hypotheses and/or research questions)
     * Overview tables of primary and secondary publications
     * Dedicated reference section for own publications
 * [Tobias Weller](https://publikationen.bibliothek.kit.edu/1000130825)
